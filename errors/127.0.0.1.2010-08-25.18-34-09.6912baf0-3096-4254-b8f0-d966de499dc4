@@ -1,0 +1,721 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'
+p4
+sS'code'
+p5
+S"db = DAL('postgres://web2py:xx@localhost/web2py')\n\n#Tabela Alunos\ndb.define_table(\n\t\t'alunos',\n\t\tField('email', 'string', length='64', required=True, notnull=True,\n\t\t\trequires=IS_EMAIL()),\n\t\tField('name', 'string', length='128'),\n\t\tField('password', 'password', length='32', required=True, notnull=True))\n\n#Tabela Disciplinas\ndb.define_table(\n\t\t'disciplinas',\n\t\tField('name', 'string', length='128', required=True, notnull=True),\n\t\tField('code', 'string', length='8', required=True, notnull=True))\n\n#Tabela Professores\ndb.define_table(\n\t\t'professores',\n\t\tField('email', 'string', length='64', required=True, notnull=True,\n\t\t\trequires = IS_EMAIL()),\n\t\tField('short_name', 'string', length='32'),\n\t\tField('long_name', 'string', length='128', required=True, notnull=True),\n\t\tField('password', 'string', length='32'))\n\n#Tabela Avaliacoes\ndb.define_table(\n\t\t'avaliacoes',\n\t\tField('aluno_id', db.alunos.id, required=True, notnull=True, writable = False, readable = False,\n\t\t\trequires = IS_IN_DB(db, db.alunos.id, '')),\n\t\tField('disciplina_id', db.disciplinas.id, required=True, notnull=True, writable = False, readable = False,\n\t\t\trequires = IS_IN_DB(db, db.disciplinas.id, '')),\n\t\tField('professor_id', db.professores.id, required=True, notnull=True, writable = False, readable = False,\n\t\t\trequires = IS_IN_DB(db, db.professores.id, '')),\n\t\tField('year', 'integer', length='4',\n\t\t\trequires = IS_INT_IN_RANGE(1970,9999)),\n\t\tField('semester', 'integer', length='1',\n\t\t\trequires = IS_INT_IN_RANGE(1,2)),\n\t\tField('grade', 'integer', length='1', required=True, notnull=True,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('geral_grade', 'integer', length='1',\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('geral_comment', 'string', length='2048'),\n\t\tField('didatica_grade', 'integer', length='1',\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('didatica_comment', 'string', length='2048'),\n\t\tField('dinamica_grade', 'integer', length='1',\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('dinamica_comment', 'integer', length='2048'),\n\t\tField('avaliacao_grade', 'integer', length='1',\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('avaliacao_comment', 'string', length='2048'),\n\t\tField('disponibilidade_grade', 'integer', length='1',\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('disponibilidade_comment', 'string', length='2048'))\n\n"
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.ValueError object at 0x16d7d40>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.ValueError object at 0x16d7d40>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.ValueError object at 0x16d7d40>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.ValueError object at 0x16d7d40>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.ValueError object at 0x16d7d40>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.ValueError object at 0x16d7d40>'
+p22
+sS'args'
+p23
+S'("invalid literal for int() with base 10: \'id\'",)'
+p24
+sS'__reduce__'
+p25
+S'<built-in method __reduce__ of exceptions.ValueError object at 0x16d7d40>'
+p26
+sS'__str__'
+p27
+S"<method-wrapper '__str__' of exceptions.ValueError object at 0x16d7d40>"
+p28
+sS'__format__'
+p29
+S'<built-in method __format__ of exceptions.ValueError object at 0x16d7d40>'
+p30
+sS'__getattribute__'
+p31
+S"<method-wrapper '__getattribute__' of exceptions.ValueError object at 0x16d7d40>"
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.ValueError'>"
+p34
+sS'__unicode__'
+p35
+S'<built-in method __unicode__ of exceptions.ValueError object at 0x16d7d40>'
+p36
+sS'__delattr__'
+p37
+S"<method-wrapper '__delattr__' of exceptions.ValueError object at 0x16d7d40>"
+p38
+sS'__subclasshook__'
+p39
+S'<built-in method __subclasshook__ of type object at 0x812e20>'
+p40
+sS'__repr__'
+p41
+S"<method-wrapper '__repr__' of exceptions.ValueError object at 0x16d7d40>"
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.ValueError object at 0x16d7d40>'
+p46
+sS'__doc__'
+p47
+S"'Inappropriate argument value (of correct type).'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.ValueError object at 0x16d7d40>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object at 0x812e20>'
+p52
+ssS'evalue'
+p53
+S"invalid literal for int() with base 10: 'id'"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'index'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object at 0x385ddf8>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S"'/forca/default/index'"
+p70
+sg23
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: session_id_admin='127-0-0-1-dfed7...'127-0-0-1-f4e943e8-6071-4511-a68e-3738716bdadb'>"
+p75
+sS'application'
+p76
+S"'forca'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/tiago/Desktop/web2py/web2py/applications/forca/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 8, 25, 18, 34, 9, 224817)'
+p91
+sS'post_vars'
+p92
+S'<Storage {}>'
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/tiago/Desktop/web2py/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x3832b70, file "/home/...2py/applications/forca/models/models.py", line 1>'
+p104
+ssS'lnum'
+p105
+I186
+sS'lines'
+p106
+(dp107
+I181
+S'        if type(code) == types.CodeType:'
+p108
+sI182
+S'            ccode = code'
+p109
+sI183
+S'        else:'
+p110
+sI184
+S'            ccode = compile2(code,layer)'
+p111
+sI185
+S''
+sI186
+S'        exec ccode in environment'
+p112
+sI187
+S'    except HTTP:'
+p113
+sI188
+S'        raise'
+p114
+sI189
+S'    except Exception:'
+p115
+sI190
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p116
+ssS'call'
+p117
+S'(code="db = DAL(\'postgres://web2py:xx@localhost/web2py\'...onibilidade_comment\', \'string\', length=\'2048\'))\\n\\n", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py\')'
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'
+p122
+sg99
+(dp123
+S'Field'
+p124
+S"<class 'gluon.sql.Field'>"
+p125
+sS'length'
+p126
+S'undefined'
+p127
+ssg105
+I55
+sg106
+(dp128
+I47
+S"\t\tField('dinamica_grade', 'integer', length='1',"
+p129
+sI48
+S'\t\t\trequires = IS_INT_IN_RANGE(1,5)),'
+p130
+sI49
+S"\t\tField('dinamica_comment', 'integer', length='2048'),"
+p131
+sI50
+S"\t\tField('avaliacao_grade', 'integer', length='1',"
+p132
+sI51
+S'\t\t\trequires = IS_INT_IN_RANGE(1,5)),'
+p133
+sI52
+S"\t\tField('avaliacao_comment', 'string', length='2048'),"
+p134
+sI53
+S"\t\tField('disponibilidade_grade', 'integer', length='1',"
+p135
+sI54
+S'\t\t\trequires = IS_INT_IN_RANGE(1,5)),'
+p136
+sI55
+S"\t\tField('disponibilidade_comment', 'string', length='2048'))"
+p137
+sI56
+S''
+ssg117
+S'()'
+p138
+sg119
+S'<module>'
+p139
+sa(dp140
+g97
+S'/home/tiago/Desktop/web2py/web2py/gluon/sql.py'
+p141
+sg99
+(dp142
+S'trigger_name'
+p143
+S'None'
+p144
+sS'sequence_name'
+p145
+S"'avaliacoes_id_Seq'"
+p146
+sS'builtindict'
+p147
+S"<type 'dict'>"
+p148
+ssg105
+I1349
+sg106
+(dp149
+I1344
+S"        if 'primarykey' in args:"
+p150
+sI1345
+S'            t = self[tablename] = KeyedTable(self, tablename, *fields,'
+p151
+sI1346
+S"                    **dict(primarykey=args['primarykey'], trigger_name=trigger_name, sequence_name=sequence_name))"
+p152
+sI1347
+S'        else:'
+p153
+sI1348
+S'            t = self[tablename] = Table(self, tablename, *fields,'
+p154
+sI1349
+S'                    **dict(trigger_name=trigger_name, sequence_name=sequence_name))'
+p155
+sI1350
+S'        # db magic'
+p156
+sI1351
+S"        if self._uri == 'None':"
+p157
+sI1352
+S'            return t'
+p158
+sI1353
+S''
+ssg117
+S"(self=<SQLDB {'_connection': <connection object at 0x3...l.Field object at 0x39ef590>}>, '_pool_size': 0}>, tablename='avaliacoes', *fields=(<gluon.sql.Field object at 0x39ef990>, <gluon.sql.Field object at 0x39ef9d0>, <gluon.sql.Field object at 0x39efbd0>, <gluon.sql.Field object at 0x39ef450>, <gluon.sql.Field object at 0x39ef710>, <gluon.sql.Field object at 0x39efb90>, <gluon.sql.Field object at 0x39efa50>, <gluon.sql.Field object at 0x3841a10>, <gluon.sql.Field object at 0x38410d0>, <gluon.sql.Field object at 0x38411d0>, <gluon.sql.Field object at 0x3841690>, <gluon.sql.Field object at 0x38415d0>, <gluon.sql.Field object at 0x3841c50>, <gluon.sql.Field object at 0x3841a50>, <gluon.sql.Field object at 0x38418d0>, <gluon.sql.Field object at 0x3841190>), **args={})"
+p159
+sg119
+S'define_table'
+p160
+sa(dp161
+g97
+S'/home/tiago/Desktop/web2py/web2py/gluon/sql.py'
+p162
+sg99
+(dp163
+S'field.type'
+p164
+S'<gluon.sql.Field object at 0x3836790>'
+p165
+sS'field'
+p166
+S'<gluon.sql.Field object at 0x39ef990>'
+p167
+ssg105
+I1583
+sg106
+(dp168
+I1578
+S"        new_fields = [ Field('id', 'id') ]"
+p169
+sI1579
+S'        for field in fields:'
+p170
+sI1580
+S"            if hasattr(field,'_db'):"
+p171
+sI1581
+S'                field = copy.copy(field)'
+p172
+sI1582
+S'            if isinstance(field, Field):'
+p173
+sI1583
+S"                if field.type == 'id':"
+p174
+sI1584
+S'                    # Keep this alias for the primary key.'
+p175
+sI1585
+S'                    new_fields[0] = field'
+p176
+sI1586
+S'                else:'
+p177
+sI1587
+S'                    new_fields.append(field)'
+p178
+ssg117
+S"(self=<Table {}>, db=<SQLDB {'_connection': <connection object at 0x3...l.Field object at 0x39ef590>}>, '_pool_size': 0}>, tablename='avaliacoes', *fields=(<gluon.sql.Field object at 0x39ef990>, <gluon.sql.Field object at 0x39ef9d0>, <gluon.sql.Field object at 0x39efbd0>, <gluon.sql.Field object at 0x39ef450>, <gluon.sql.Field object at 0x39ef710>, <gluon.sql.Field object at 0x39efb90>, <gluon.sql.Field object at 0x39efa50>, <gluon.sql.Field object at 0x3841a10>, <gluon.sql.Field object at 0x38410d0>, <gluon.sql.Field object at 0x38411d0>, <gluon.sql.Field object at 0x3841690>, <gluon.sql.Field object at 0x38415d0>, <gluon.sql.Field object at 0x3841c50>, <gluon.sql.Field object at 0x3841a50>, <gluon.sql.Field object at 0x38418d0>, <gluon.sql.Field object at 0x3841190>), **args={'sequence_name': 'avaliacoes_id_Seq', 'trigger_name': None})"
+p179
+sg119
+g49
+sa(dp180
+g97
+S'/home/tiago/Desktop/web2py/web2py/gluon/sql.py'
+p181
+sg99
+(dp182
+S'self'
+p183
+S'<gluon.sql.Field object at 0x3836790>'
+p184
+sS'global Query'
+p185
+S"<class 'gluon.sql.Query'>"
+p186
+sS'value'
+p187
+S"'id'"
+p188
+ssg105
+I2548
+sg106
+(dp189
+I2543
+S"        return Expression(str(self) + ' DESC', None, None)"
+p190
+sI2544
+S''
+sI2545
+S'    # for use in Query'
+p191
+sI2546
+S''
+sI2547
+S'    def __eq__(self, value):'
+p192
+sI2548
+S"        return Query(self, '=', value)"
+p193
+sI2549
+S''
+sI2550
+S'    def __ne__(self, value):'
+p194
+sI2551
+S"        return Query(self, '<>', value)"
+p195
+sI2552
+S''
+ssg117
+S"(self=<gluon.sql.Field object at 0x3836790>, value='id')"
+p196
+sg119
+S'__eq__'
+p197
+sa(dp198
+g97
+S'/home/tiago/Desktop/web2py/web2py/gluon/sql.py'
+p199
+sg99
+(dp200
+S'right'
+p201
+S"'id'"
+p202
+sS'global sql_represent'
+p203
+S'<function sql_represent at 0x2277de8>'
+p204
+sS'left._db._dbname'
+p205
+S"'postgres'"
+p206
+sS'left._db'
+p207
+S"<SQLDB {'_connection': <connection object at 0x3...l.Field object at 0x39ef590>}>, '_pool_size': 0}>"
+p208
+sS'left.type'
+p209
+S"'id'"
+p210
+sS'left._db._db_codec'
+p211
+S"'UTF-8'"
+p212
+sS'left'
+p213
+S'<gluon.sql.Field object at 0x3836790>'
+p214
+ssg105
+I2990
+sg106
+(dp215
+I2985
+S'            else:'
+p216
+sI2986
+S'                raise SyntaxError, \'Right argument of "IN" is not suitable\''
+p217
+sI2987
+S'        elif isinstance(right, (Field, Expression)):'
+p218
+sI2988
+S"            self.sql = '%s%s%s' % (left, op, right)"
+p219
+sI2989
+S'        else:'
+p220
+sI2990
+S'            right = sql_represent(right, left.type, left._db._dbname, left._db._db_codec)'
+p221
+sI2991
+S"            self.sql = '%s%s%s' % (left, op, right)"
+p222
+sI2992
+S''
+sI2993
+S'    def __and__(self, other):'
+p223
+sI2994
+S"        return Query('(%s AND %s)' % (self, other))"
+p224
+ssg117
+S"(self=<gluon.sql.Query object at 0x3841890>, left=<gluon.sql.Field object at 0x3836790>, op='=', right='id')"
+p225
+sg119
+g49
+sa(dp226
+g97
+S'/home/tiago/Desktop/web2py/web2py/gluon/sql.py'
+p227
+sg99
+(dp228
+S'builtinstr'
+p229
+S"<type 'str'>"
+p230
+sS'builtinint'
+p231
+S"<type 'int'>"
+p232
+sS'obj'
+p233
+S"'id'"
+p234
+ssg105
+I555
+sg106
+(dp235
+I550
+S"            if obj and not str(obj)[0].upper() == 'F':"
+p236
+sI551
+S'                return "\'T\'"'
+p237
+sI552
+S'            else:'
+p238
+sI553
+S'                return "\'F\'"'
+p239
+sI554
+S"    if fieldtype.startswith('i'):"
+p240
+sI555
+S'        return str(int(obj))'
+p241
+sI556
+S"    if fieldtype.startswith('decimal'):"
+p242
+sI557
+S'        return str(obj)'
+p243
+sI558
+S"    elif fieldtype.startswith('r'): # reference"
+p244
+sI559
+S"        if fieldtype.find('.')>0:"
+p245
+ssg117
+S"(obj='id', fieldtype='id', dbname='postgres', db_codec='UTF-8')"
+p246
+sg119
+S'sql_represent'
+p247
+sasS'pyver'
+p248
+S'Python 2.6.4: /usr/bin/python'
+p249
+sS'session'
+p250
+(dp251
+S'auth'
+p252
+S'None'
+p253
+ssS'etype'
+p254
+S"<type 'exceptions.ValueError'>"
+p255
+sS'date'
+p256
+S'Wed Aug 25 18:34:09 2010'
+p257
+sS'response'
+p258
+(dp259
+S'status'
+p260
+S'200'
+p261
+sg59
+S'<cStringIO.StringO object at 0x3846ca8>'
+p262
+sg74
+S"<SimpleCookie: session_id_forca='127-0-0-1-b9768198-37ac-4906-af35-3d790b1f621a'>"
+p263
+sS'_vars'
+p264
+S'None'
+p265
+sS'title'
+p266
+S"'forca'"
+p267
+sS'session_file'
+p268
+S"<open file '/home/tiago/Desktop/web2py/web2py/ap...4906-af35-3d790b1f621a', mode 'rb+' at 0x35868b0>"
+p269
+sS'flash'
+p270
+S"''"
+p271
+sS'_custom_rollback'
+p272
+S'None'
+p273
+sS'session_id'
+p274
+S"'127-0-0-1-b9768198-37ac-4906-af35-3d790b1f621a'"
+p275
+sS'headers'
+p276
+S"<Storage {'Expires': 'Wed, 25 Aug 2010 21:34:09 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p277
+sS'meta'
+p278
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p279
+sS'session_filename'
+p280
+S"'/home/tiago/Desktop/web2py/web2py/applications/f...ns/127-0-0-1-b9768198-37ac-4906-af35-3d790b1f621a'"
+p281
+sS'postprocessing'
+p282
+S'[]'
+p283
+sS'menu'
+p284
+S"[(<lazyT 'Index'>, False, '/forca/default/index', []), (<lazyT 'Edit'>, False, '/admin/default/design/forca', [(<lazyT 'Controller'>, False, '/admin/default/edit/forca/controllers/default.py'), (<lazyT 'View'>, False, '/admin/default/edit/forca/views/default/index.html'), (<lazyT 'Layout'>, False, '/admin/default/edit/forca/views/layout.html'), (<lazyT 'Stylesheet'>, False, '/admin/default/edit/forca/static/base.css'), (<lazyT 'DB Model'>, False, '/admin/default/edit/forca/models/db.py'), (<lazyT 'Menu Model'>, False, '/admin/default/edit/forca/models/menu.py'), (<lazyT 'Database'>, False, '/forca/appadmin/index')])]"
+p285
+sS'_view_environment'
+p286
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DAL': <function DAL at 0x22df1b8>, ...}"
+p287
+sS'subtitle'
+p288
+S"<lazyT 'customize me!'>"
+p289
+sS'session_id_name'
+p290
+S"'session_id_forca'"
+p291
+sS'_custom_commit'
+p292
+S'None'
+p293
+sS'_caller'
+p294
+S'<function <lambda> at 0x36d9a28>'
+p295
+sS'files'
+p296
+S'[]'
+p297
+sS'view'
+p298
+S"'default/index.html'"
+p299
+ssS'locals'
+p300
+(dp301
+S'obj'
+p302
+S"'id'"
+p303
+sS'db_codec'
+p304
+S"'UTF-8'"
+p305
+sS'dbname'
+p306
+S"'postgres'"
+p307
+sS'fieldtype'
+p308
+S"'id'"
+p309
+sssS'traceback'
+p310
+S'Traceback (most recent call last):\n  File "/home/tiago/Desktop/web2py/web2py/gluon/restricted.py", line 186, in restricted\n    exec ccode in environment\n  File "/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py", line 55, in <module>\n    Field(\'disponibilidade_comment\', \'string\', length=\'2048\'))\n  File "/home/tiago/Desktop/web2py/web2py/gluon/sql.py", line 1349, in define_table\n    **dict(trigger_name=trigger_name, sequence_name=sequence_name))\n  File "/home/tiago/Desktop/web2py/web2py/gluon/sql.py", line 1583, in __init__\n    if field.type == \'id\':\n  File "/home/tiago/Desktop/web2py/web2py/gluon/sql.py", line 2548, in __eq__\n    return Query(self, \'=\', value)\n  File "/home/tiago/Desktop/web2py/web2py/gluon/sql.py", line 2990, in __init__\n    right = sql_represent(right, left.type, left._db._dbname, left._db._db_codec)\n  File "/home/tiago/Desktop/web2py/web2py/gluon/sql.py", line 555, in sql_represent\n    return str(int(obj))\nValueError: invalid literal for int() with base 10: \'id\'\n'
+p311
+s.

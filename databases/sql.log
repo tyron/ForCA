@@ -1,0 +1,97 @@
+timestamp: 2010-08-25T17:21:02.993140
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512)
+);
+success!
+timestamp: 2010-08-25T17:21:03.071170
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2010-08-25T17:21:03.102972
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2010-08-25T17:21:03.107979
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2010-08-25T17:21:03.112533
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2010-08-25T17:42:46.569021
+CREATE TABLE disciplina(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(128) NOT NULL
+);
+success!
+DROP TABLE disciplina;
+success!
+timestamp: 2010-08-25T18:26:04.208675
+CREATE TABLE alunos(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL,
+    name VARCHAR(128),
+    password VARCHAR(32) NOT NULL
+);
+success!
+timestamp: 2010-08-25T18:26:04.253056
+CREATE TABLE disciplinas(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    code VARCHAR(8) NOT NULL
+);
+success!
+timestamp: 2010-08-25T18:26:04.259439
+CREATE TABLE professores(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL,
+    short_name VARCHAR(32),
+    long_name VARCHAR(128) NOT NULL,
+    password VARCHAR(32)
+);
+success!
+timestamp: 2010-08-25T18:37:02.472428
+CREATE TABLE avaliacoes(
+    id SERIAL PRIMARY KEY,
+    aluno_id INTEGER REFERENCES alunos(id) ON DELETE CASCADE,
+    disciplina_id INTEGER REFERENCES disciplinas(id) ON DELETE CASCADE,
+    professor_id INTEGER REFERENCES professores(id) ON DELETE CASCADE,
+    year INTEGER,
+    semester INTEGER,
+    grade INTEGER NOT NULL,
+    geral_grade INTEGER,
+    geral_comment VARCHAR(2048),
+    didatica_grade INTEGER,
+    didatica_comment VARCHAR(2048),
+    dinamica_grade INTEGER,
+    dinamica_comment INTEGER,
+    avaliacao_grade INTEGER,
+    avaliacao_comment VARCHAR(2048),
+    disponibilidade_grade INTEGER,
+    disponibilidade_comment VARCHAR(2048)
+);
+success!

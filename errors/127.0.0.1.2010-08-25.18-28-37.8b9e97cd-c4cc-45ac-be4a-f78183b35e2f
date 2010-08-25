@@ -1,0 +1,458 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'
+p4
+sS'code'
+p5
+S"db = DAL('postgres://web2py:xx@localhost/web2py')\n\n#Tabela Alunos\ndb.define_table(\n\t\t'alunos',\n\t\tField('email', 'string', length=64, required=True, notnull=True,\n\t\t\trequires=IS_EMAIL()),\n\t\tField('name', 'string', length=128),\n\t\tField('password', 'password', length=32, required=True, notnull=True))\n\n#Tabela Disciplinas\ndb.define_table(\n\t\t'disciplinas',\n\t\tField('name', 'string', length=128, required=True, notnull=True),\n\t\tField('code', 'string', length=8, required=True, notnull=True))\n\n#Tabela Professores\ndb.define_table(\n\t\t'professores',\n\t\tField('email', 'string', length=64, required=True, notnull=True,\n\t\t\trequires = IS_EMAIL()),\n\t\tField('short_name', 'string', length=32),\n\t\tField('long_name', 'string', length=128, required=True, notnull=True),\n\t\tField('password', 'string', length=32))\n\n#Tabela Avaliacoes\ndb.define_table(\n\t\t'avaliacoes',\n\t\tField('aluno_id', db.alunos.id, required=True, notnull=True, writable = readable = False,\n\t\t\trequires = IS_IN_DB(db, db.alunos.id, ''),\n\t\tField('disciplina_id', db.disciplinas.id, required=True, notnull=True, writable = readable = False,\n\t\t\trequires = IS_IN_DB(db, db.disciplinas.id, ''),\n\t\tField('professor_id', db.professores.id, required=True, notnull=True, writable = readable = False,\n\t\t\trequires = IS_IN_DB(db, db.professores.id, ''),\n\t\tField('year', 'integer', length=4,\n\t\t\trequires = IS_INT_IN_RANGE(1970,9999)),\n\t\tField('semester', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,2)),\n\t\tField('grade', 'integer', length=1, required=True, notnull=True,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('geral_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('geral_comment', 'string', length=2048),\n\t\tField('didatica_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('didatica_comment', 'string', length=2048),\n\t\tField('dinamica_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('dinamica_comment', 'integer', length=2048),\n\t\tField('avaliacao_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('avaliacao_comment', 'string', length=2048),\n\t\tField('disponibilidade_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('disponibilidade_comment', 'string', length=2048))\n\n"
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object at 0x37535f0>"
+p12
+sS'text'
+p13
+S'"\\t\\tField(\'aluno_id\', db.alunos.id, required=True, notnull=True, writable = readable = False,\\n"'
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object at 0x37535f0>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object at 0x37535f0>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object at 0x37535f0>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object at 0x37535f0>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object at 0x37535f0>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object at 0x37535f0>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object at 0x812460>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object at 0x37535f0>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S"'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'"
+p36
+sS'lineno'
+p37
+S'29'
+p38
+sS'msg'
+p39
+S"'invalid syntax'"
+p40
+sS'__doc__'
+p41
+S"'Invalid syntax.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object at 0x37535f0>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.SyntaxError object at 0x37535f0>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object at 0x37535f0>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S'(\'invalid syntax\', (\'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py\', 29, 84, "\\t\\tField(\'aluno_id\', db.alunos.id, required=True, notnull=True, writable = readable = False,\\n"))'
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object at 0x812460>'
+p54
+sS'offset'
+p55
+S'84'
+p56
+sS'__unicode__'
+p57
+S'<built-in method __unicode__ of exceptions.SyntaxError object at 0x37535f0>'
+p58
+sS'__delattr__'
+p59
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object at 0x37535f0>"
+p60
+sS'__repr__'
+p61
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object at 0x37535f0>"
+p62
+sS'__hash__'
+p63
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object at 0x37535f0>"
+p64
+ssS'evalue'
+p65
+S'invalid syntax (models.py, line 29)'
+p66
+sS'request'
+p67
+(dp68
+S'function'
+p69
+S"'index'"
+p70
+sS'body'
+p71
+S'<cStringIO.StringO object at 0x3a2c730>'
+p72
+sS'wsgi'
+p73
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p74
+sS'extension'
+p75
+S"'html'"
+p76
+sS'vars'
+p77
+S'<Storage {}>'
+p78
+sS'cid'
+p79
+S'None'
+p80
+sS'url'
+p81
+S"'/forca/default/index'"
+p82
+sg51
+S'[]'
+p83
+sS'controller'
+p84
+S"'default'"
+p85
+sS'cookies'
+p86
+S"<SimpleCookie: session_id_admin='127-0-0-1-dfed7...'127-0-0-1-f4e943e8-6071-4511-a68e-3738716bdadb'>"
+p87
+sS'application'
+p88
+S"'forca'"
+p89
+sS'ajax'
+p90
+S'False'
+p91
+sS'client'
+p92
+S"'127.0.0.1'"
+p93
+sS'env'
+p94
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...ce': False, 'path_info': '/forca/default/index'}>"
+p95
+sS'raw_args'
+p96
+S'None'
+p97
+sS'get_vars'
+p98
+S'<Storage {}>'
+p99
+sS'folder'
+p100
+S"'/home/tiago/Desktop/web2py/web2py/applications/forca/'"
+p101
+sS'now'
+p102
+S'datetime.datetime(2010, 8, 25, 18, 28, 37, 192095)'
+p103
+sS'post_vars'
+p104
+S'<Storage {}>'
+p105
+ssS'frames'
+p106
+(lp107
+(dp108
+S'file'
+p109
+S'/home/tiago/Desktop/web2py/web2py/gluon/restricted.py'
+p110
+sS'dump'
+p111
+(dp112
+S'code'
+p113
+S'"db = DAL(\'postgres://web2py:xx@localhost/web2py\'...sponibilidade_comment\', \'string\', length=2048))\\n\\n"'
+p114
+sS'layer'
+p115
+S"'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'"
+p116
+sS'global compile2'
+p117
+S'<function compile2 at 0x213b2a8>'
+p118
+sS'ccode'
+p119
+S'undefined'
+p120
+ssS'lnum'
+p121
+I184
+sS'lines'
+p122
+(dp123
+I179
+S''
+sI180
+S'    try:'
+p124
+sI181
+S'        if type(code) == types.CodeType:'
+p125
+sI182
+S'            ccode = code'
+p126
+sI183
+S'        else:'
+p127
+sI184
+S'            ccode = compile2(code,layer)'
+p128
+sI185
+S''
+sI186
+S'        exec ccode in environment'
+p129
+sI187
+S'    except HTTP:'
+p130
+sI188
+S'        raise'
+p131
+ssS'call'
+p132
+S'(code="db = DAL(\'postgres://web2py:xx@localhost/web2py\'...sponibilidade_comment\', \'string\', length=2048))\\n\\n", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py\')'
+p133
+sS'func'
+p134
+S'restricted'
+p135
+sa(dp136
+g109
+S'/home/tiago/Desktop/web2py/web2py/gluon/restricted.py'
+p137
+sg111
+(dp138
+S'builtincompile'
+p139
+S'<built-in function compile>'
+p140
+sS'code'
+p141
+S'"db = DAL(\'postgres://web2py:xx@localhost/web2py\'...sponibilidade_comment\', \'string\', length=2048))\\n\\n"'
+p142
+sS'code.rstrip'
+p143
+S'<built-in method rstrip of str object at 0x36a4910>'
+p144
+sS').replace'
+p145
+g120
+sS'layer'
+p146
+S"'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'"
+p147
+ssg121
+I171
+sg122
+(dp148
+I166
+S''
+sI167
+S'def compile2(code,layer):'
+p149
+sI168
+S'    """'
+p150
+sI169
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p151
+sI170
+S'    """'
+p152
+sI171
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p153
+sI172
+S''
+sI173
+S"def restricted(code, environment={}, layer='Unknown'):"
+p154
+sI174
+S'    """'
+p155
+sI175
+S'    runs code in environment and returns the output. if an exception occurs'
+p156
+ssg132
+S'(code="db = DAL(\'postgres://web2py:xx@localhost/web2py\'...sponibilidade_comment\', \'string\', length=2048))\\n\\n", layer=\'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py\')'
+p157
+sg134
+S'compile2'
+p158
+sasS'pyver'
+p159
+S'Python 2.6.4: /usr/bin/python'
+p160
+sS'session'
+p161
+(dp162
+S'auth'
+p163
+S'None'
+p164
+ssS'etype'
+p165
+S"<type 'exceptions.SyntaxError'>"
+p166
+sS'date'
+p167
+S'Wed Aug 25 18:28:37 2010'
+p168
+sS'response'
+p169
+(dp170
+S'status'
+p171
+S'200'
+p172
+sg71
+S'<cStringIO.StringO object at 0x385da78>'
+p173
+sg86
+S"<SimpleCookie: session_id_forca='127-0-0-1-b9768198-37ac-4906-af35-3d790b1f621a'>"
+p174
+sS'_vars'
+p175
+S'None'
+p176
+sS'title'
+p177
+S"'forca'"
+p178
+sS'session_file'
+p179
+S"<open file '/home/tiago/Desktop/web2py/web2py/ap...4906-af35-3d790b1f621a', mode 'rb+' at 0x35861c8>"
+p180
+sS'flash'
+p181
+S"''"
+p182
+sS'_custom_rollback'
+p183
+S'None'
+p184
+sS'session_id'
+p185
+S"'127-0-0-1-b9768198-37ac-4906-af35-3d790b1f621a'"
+p186
+sS'headers'
+p187
+S"<Storage {'Expires': 'Wed, 25 Aug 2010 21:28:37 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p188
+sS'meta'
+p189
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p190
+sS'session_filename'
+p191
+S"'/home/tiago/Desktop/web2py/web2py/applications/f...ns/127-0-0-1-b9768198-37ac-4906-af35-3d790b1f621a'"
+p192
+sS'postprocessing'
+p193
+S'[]'
+p194
+sS'menu'
+p195
+S"[(<lazyT 'Index'>, False, '/forca/default/index', []), (<lazyT 'Edit'>, False, '/admin/default/design/forca', [(<lazyT 'Controller'>, False, '/admin/default/edit/forca/controllers/default.py'), (<lazyT 'View'>, False, '/admin/default/edit/forca/views/default/index.html'), (<lazyT 'Layout'>, False, '/admin/default/edit/forca/views/layout.html'), (<lazyT 'Stylesheet'>, False, '/admin/default/edit/forca/static/base.css'), (<lazyT 'DB Model'>, False, '/admin/default/edit/forca/models/db.py'), (<lazyT 'Menu Model'>, False, '/admin/default/edit/forca/models/menu.py'), (<lazyT 'Database'>, False, '/forca/appadmin/index')])]"
+p196
+sS'_view_environment'
+p197
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DAL': <function DAL at 0x22df1b8>, ...}"
+p198
+sS'subtitle'
+p199
+S"<lazyT 'customize me!'>"
+p200
+sS'session_id_name'
+p201
+S"'session_id_forca'"
+p202
+sS'_custom_commit'
+p203
+S'None'
+p204
+sS'_caller'
+p205
+S'<function <lambda> at 0x374ade8>'
+p206
+sS'files'
+p207
+S'[]'
+p208
+sS'view'
+p209
+S"'default/index.html'"
+p210
+ssS'locals'
+p211
+(dp212
+g3
+S"'/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py'"
+p213
+sg5
+S'"db = DAL(\'postgres://web2py:xx@localhost/web2py\'...sponibilidade_comment\', \'string\', length=2048))\\n\\n"'
+p214
+sssS'traceback'
+p215
+S'Traceback (most recent call last):\n  File "/home/tiago/Desktop/web2py/web2py/gluon/restricted.py", line 184, in restricted\n    ccode = compile2(code,layer)\n  File "/home/tiago/Desktop/web2py/web2py/gluon/restricted.py", line 171, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/tiago/Desktop/web2py/web2py/applications/forca/models/models.py", line 29\n    Field(\'aluno_id\', db.alunos.id, required=True, notnull=True, writable = readable = False,\n                                                                                     ^\nSyntaxError: invalid syntax\n'
+p216
+s.

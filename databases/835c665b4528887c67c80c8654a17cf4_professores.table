@@ -1,0 +1,22 @@
+(dp1
+S'long_name'
+p2
+S'VARCHAR(128) NOT NULL'
+p3
+sS'password'
+p4
+S'VARCHAR(32)'
+p5
+sS'id'
+p6
+S'SERIAL PRIMARY KEY'
+p7
+sS'short_name'
+p8
+S'VARCHAR(32)'
+p9
+sS'email'
+p10
+S'VARCHAR(64) NOT NULL'
+p11
+s.
