@@ -1,10 +1,10 @@
-db = DAL('postgres://web2py:xx@localhost/web2py')
+db = DAL('postgres://forca:xx@localhost/forca')
 
 #Tabela Alunos
 db.define_table(
 		'alunos',
 		Field('email', 'string', length=64, required=True, notnull=True,
-			requires=IS_EMAIL()),
+			requires=[IS_EMAIL(), IS_NOT_EMPTY(error_message = T('Campo obrigatório!'))]),
 		Field('name', 'string', length=128),
 		Field('password', 'password', length=32, required=True, notnull=True))
 
@@ -21,16 +21,20 @@ db.define_table(
 			requires = IS_EMAIL()),
 		Field('short_name', 'string', length=32),
 		Field('long_name', 'string', length=128, required=True, notnull=True),
-		Field('password', 'string', length=32))
+		Field('password', 'string', length=32),
+		Field('picture', 'upload'))
 
 #Tabela Avaliacoes
 db.define_table(
 		'avaliacoes',
-		Field('aluno_id', db.alunos, required=True, notnull=True, writable = False, readable = False,
+		Field('aluno_id', db.alunos, required=True, notnull=True,
+			writable = False, readable = False,
 			requires = IS_IN_DB(db, db.alunos.id, '')),
-		Field('disciplina_id', db.disciplinas, required=True, notnull=True, writable = False, readable = False,
+		Field('disciplina_id', db.disciplinas, required=True, notnull=True,
+			writable = False, readable = False,
 			requires = IS_IN_DB(db, db.disciplinas.id, '')),
-		Field('professor_id', db.professores, required=True, notnull=True, writable = False, readable = False,
+		Field('professor_id', db.professores, required=True, notnull=True,
+			writable = False, readable = False,
 			requires = IS_IN_DB(db, db.professores.id, '')),
 		Field('year', 'integer', length=4,
 			requires = IS_INT_IN_RANGE(1970,9999)),

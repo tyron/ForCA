@@ -1,0 +1,457 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/tiago/ForCA/applications/forca/models/models.py'
+p4
+sS'code'
+p5
+S"db = DAL('postgres://forca:xx@localhost/forca')\n\n#Tabela Alunos\ndb.define_table(\n\t\t'alunos',\n\t\tField('email', 'string', length=64, required=True, notnull=True,\n\t\t\trequires=[IS_EMAIL(), IS_NOT_EMPTY(error_message = T('Campo obrigat\xc3\xb3rio!'))]),\n\t\tField('name', 'string', length=128),\n\t\tField('password', 'password', length=32, required=True, notnull=True))\n\n#Tabela Disciplinas\ndb.define_table(\n\t\t'disciplinas',\n\t\tField('name', 'string', length=128, required=True, notnull=True),\n\t\tField('code', 'string', length=8, required=True, notnull=True))\n\n#Tabela Professores\ndb.define_table(\n\t\t'professores',\n\t\tField('email', 'string', length=64, required=True, notnull=True,\n\t\t\trequires = IS_EMAIL()),\n\t\tField('short_name', 'string', length=32),\n\t\tField('long_name', 'string', length=128, required=True, notnull=True),\n\t\tField('password', 'string', length=32),\n\t\tField('picture', 'upload'\n\n#Tabela Avaliacoes\ndb.define_table(\n\t\t'avaliacoes',\n\t\tField('aluno_id', db.alunos, required=True, notnull=True,\n\t\t\twritable = False, readable = False,\n\t\t\trequires = IS_IN_DB(db, db.alunos.id, '')),\n\t\tField('disciplina_id', db.disciplinas, required=True, notnull=True,\n\t\t\twritable = False, readable = False,\n\t\t\trequires = IS_IN_DB(db, db.disciplinas.id, '')),\n\t\tField('professor_id', db.professores, required=True, notnull=True,\n\t\t\twritable = False, readable = False,\n\t\t\trequires = IS_IN_DB(db, db.professores.id, '')),\n\t\tField('year', 'integer', length=4,\n\t\t\trequires = IS_INT_IN_RANGE(1970,9999)),\n\t\tField('semester', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,2)),\n\t\tField('grade', 'integer', length=1, required=True, notnull=True,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('geral_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('geral_comment', 'string', length=2048),\n\t\tField('didatica_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('didatica_comment', 'string', length=2048),\n\t\tField('dinamica_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('dinamica_comment', 'integer', length=2048),\n\t\tField('avaliacao_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('avaliacao_comment', 'string', length=2048),\n\t\tField('disponibilidade_grade', 'integer', length=1,\n\t\t\trequires = IS_INT_IN_RANGE(1,5)),\n\t\tField('disponibilidade_comment', 'string', length=2048))\n\n"
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object>"
+p12
+sS'text'
+p13
+S"'db.define_table(\\n'"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S"'/home/tiago/ForCA/applications/forca/models/models.py'"
+p36
+sS'lineno'
+p37
+S'28'
+p38
+sS'msg'
+p39
+S"'invalid syntax'"
+p40
+sS'__doc__'
+p41
+S"'Invalid syntax.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.SyntaxError object>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S"('invalid syntax', ('/home/tiago/ForCA/applications/forca/models/models.py', 28, 2, 'db.define_table(\\n'))"
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'offset'
+p55
+S'2'
+sS'__unicode__'
+p56
+S'<built-in method __unicode__ of exceptions.SyntaxError object>'
+p57
+sS'__delattr__'
+p58
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object>"
+p59
+sS'__repr__'
+p60
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object>"
+p61
+sS'__hash__'
+p62
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object>"
+p63
+ssS'evalue'
+p64
+S'invalid syntax (models.py, line 28)'
+p65
+sS'request'
+p66
+(dp67
+S'function'
+p68
+S"'index'"
+p69
+sS'body'
+p70
+S'<cStringIO.StringO object>'
+p71
+sS'wsgi'
+p72
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p73
+sS'extension'
+p74
+S"'html'"
+p75
+sS'vars'
+p76
+S'<Storage {}>'
+p77
+sS'cid'
+p78
+S'None'
+p79
+sS'url'
+p80
+S"'/forca/default/index'"
+p81
+sg51
+S'[]'
+p82
+sS'controller'
+p83
+S"'default'"
+p84
+sS'cookies'
+p85
+S"<SimpleCookie: session_id_admin='127-0-0-1-1ebe2...'127-0-0-1-abc7134f-c8c4-45aa-b2fa-cf7e870650fe'>"
+p86
+sS'application'
+p87
+S"'forca'"
+p88
+sS'ajax'
+p89
+S'False'
+p90
+sS'client'
+p91
+S"'127.0.0.1'"
+p92
+sS'env'
+p93
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...te', 'query_string': '', 'wsgi_run_once': False}>"
+p94
+sS'raw_args'
+p95
+S'None'
+p96
+sS'get_vars'
+p97
+S'<Storage {}>'
+p98
+sS'folder'
+p99
+S"'/home/tiago/ForCA/applications/forca/'"
+p100
+sS'now'
+p101
+S'datetime.datetime(2010, 8, 25, 20, 40, 2, 856857)'
+p102
+sS'post_vars'
+p103
+S'<Storage {}>'
+p104
+ssS'frames'
+p105
+(lp106
+(dp107
+S'file'
+p108
+S'/home/tiago/ForCA/gluon/restricted.py'
+p109
+sS'dump'
+p110
+(dp111
+S'code'
+p112
+S'"db = DAL(\'postgres://forca:xx@localhost/forca\')\\n...sponibilidade_comment\', \'string\', length=2048))\\n\\n"'
+p113
+sS'layer'
+p114
+S"'/home/tiago/ForCA/applications/forca/models/models.py'"
+p115
+sS'global compile2'
+p116
+S'<function compile2>'
+p117
+sS'ccode'
+p118
+S'undefined'
+p119
+ssS'lnum'
+p120
+I184
+sS'lines'
+p121
+(dp122
+I179
+S''
+sI180
+S'    try:'
+p123
+sI181
+S'        if type(code) == types.CodeType:'
+p124
+sI182
+S'            ccode = code'
+p125
+sI183
+S'        else:'
+p126
+sI184
+S'            ccode = compile2(code,layer)'
+p127
+sI185
+S''
+sI186
+S'        exec ccode in environment'
+p128
+sI187
+S'    except HTTP:'
+p129
+sI188
+S'        raise'
+p130
+ssS'call'
+p131
+S'(code="db = DAL(\'postgres://forca:xx@localhost/forca\')\\n...sponibilidade_comment\', \'string\', length=2048))\\n\\n", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/tiago/ForCA/applications/forca/models/models.py\')'
+p132
+sS'func'
+p133
+S'restricted'
+p134
+sa(dp135
+g108
+S'/home/tiago/ForCA/gluon/restricted.py'
+p136
+sg110
+(dp137
+S'builtincompile'
+p138
+S'<built-in function compile>'
+p139
+sS'code'
+p140
+S'"db = DAL(\'postgres://forca:xx@localhost/forca\')\\n...sponibilidade_comment\', \'string\', length=2048))\\n\\n"'
+p141
+sS'code.rstrip'
+p142
+S'<built-in method rstrip of str object>'
+p143
+sS').replace'
+p144
+g119
+sS'layer'
+p145
+S"'/home/tiago/ForCA/applications/forca/models/models.py'"
+p146
+ssg120
+I171
+sg121
+(dp147
+I166
+S''
+sI167
+S'def compile2(code,layer):'
+p148
+sI168
+S'    """'
+p149
+sI169
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p150
+sI170
+S'    """'
+p151
+sI171
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p152
+sI172
+S''
+sI173
+S"def restricted(code, environment={}, layer='Unknown'):"
+p153
+sI174
+S'    """'
+p154
+sI175
+S'    runs code in environment and returns the output. if an exception occurs'
+p155
+ssg131
+S'(code="db = DAL(\'postgres://forca:xx@localhost/forca\')\\n...sponibilidade_comment\', \'string\', length=2048))\\n\\n", layer=\'/home/tiago/ForCA/applications/forca/models/models.py\')'
+p156
+sg133
+S'compile2'
+p157
+sasS'pyver'
+p158
+S'Python 2.6.5: /usr/bin/python'
+p159
+sS'session'
+p160
+(dp161
+S'auth'
+p162
+S'None'
+p163
+ssS'etype'
+p164
+S"<type 'exceptions.SyntaxError'>"
+p165
+sS'date'
+p166
+S'Wed Aug 25 20:40:02 2010'
+p167
+sS'response'
+p168
+(dp169
+S'status'
+p170
+S'200'
+p171
+sg70
+S'<cStringIO.StringO object>'
+p172
+sg85
+S"<SimpleCookie: session_id_forca='127-0-0-1-707082b1-7868-4538-800d-243891c4151e'>"
+p173
+sS'_vars'
+p174
+S'None'
+p175
+sS'title'
+p176
+S"'forca'"
+p177
+sS'session_file'
+p178
+S"<open file '/home/tiago/ForCA/applications/forca...07082b1-7868-4538-800d-243891c4151e', mode 'rb+'>"
+p179
+sS'flash'
+p180
+S"''"
+p181
+sS'_custom_rollback'
+p182
+S'None'
+p183
+sS'session_id'
+p184
+S"'127-0-0-1-707082b1-7868-4538-800d-243891c4151e'"
+p185
+sS'headers'
+p186
+S"<Storage {'Expires': 'Wed, 25 Aug 2010 23:40:02 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p187
+sS'meta'
+p188
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p189
+sS'session_filename'
+p190
+S"'/home/tiago/ForCA/applications/forca/sessions/127-0-0-1-707082b1-7868-4538-800d-243891c4151e'"
+p191
+sS'postprocessing'
+p192
+S'[]'
+p193
+sS'menu'
+p194
+S"[(<lazyT 'Index'>, False, '/forca/default/index', []), (<lazyT 'Edit'>, False, '/admin/default/design/forca', [(<lazyT 'Controller'>, False, '/admin/default/edit/forca/controllers/default.py'), (<lazyT 'View'>, False, '/admin/default/edit/forca/views/default/index.html'), (<lazyT 'Layout'>, False, '/admin/default/edit/forca/views/layout.html'), (<lazyT 'Stylesheet'>, False, '/admin/default/edit/forca/static/base.css'), (<lazyT 'DB Model'>, False, '/admin/default/edit/forca/models/db.py'), (<lazyT 'Menu Model'>, False, '/admin/default/edit/forca/models/menu.py'), (<lazyT 'Database'>, False, '/forca/appadmin/index')])]"
+p195
+sS'_view_environment'
+p196
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DAL': <function DAL>, ...}"
+p197
+sS'subtitle'
+p198
+S"<lazyT 'customize me!'>"
+p199
+sS'session_id_name'
+p200
+S"'session_id_forca'"
+p201
+sS'_custom_commit'
+p202
+S'None'
+p203
+sS'_caller'
+p204
+S'<function <lambda>>'
+p205
+sS'files'
+p206
+S'[]'
+p207
+sS'view'
+p208
+S"'default/index.html'"
+p209
+ssS'locals'
+p210
+(dp211
+g3
+S"'/home/tiago/ForCA/applications/forca/models/models.py'"
+p212
+sg5
+S'"db = DAL(\'postgres://forca:xx@localhost/forca\')\\n...sponibilidade_comment\', \'string\', length=2048))\\n\\n"'
+p213
+sssS'traceback'
+p214
+S'Traceback (most recent call last):\n  File "/home/tiago/ForCA/gluon/restricted.py", line 184, in restricted\n    ccode = compile2(code,layer)\n  File "/home/tiago/ForCA/gluon/restricted.py", line 171, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/tiago/ForCA/applications/forca/models/models.py", line 28\n    db.define_table(\n     ^\nSyntaxError: invalid syntax\n'
+p215
+s.
