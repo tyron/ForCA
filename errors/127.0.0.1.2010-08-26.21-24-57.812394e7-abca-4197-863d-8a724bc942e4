@@ -1,0 +1,903 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'
+p4
+sS'code'
+p5
+S'response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>ForCA - Lista de professores</title>\\n\\t</head>\\n\\t<body>\\n\\t\\t<table>\\n\\t\\t\\t<tr>\\n\\t\\t\\t\\t<th>Foto</th>\\n\\t\\t\\t\\t<th>Nome</th>\\n\\t\\t\\t\\t<th>E-mail</th>\\n\\t\\t\\t</tr>\\n\\t\\t\\t\', escape=False)\nfor prof in profs:\n    response.write(\'\\n\\t\\t\\t<tr>\\n\\t\\t\\t\\t<td><img src="\', escape=False)\n    response.write(URL(\'download\', args==profs.picture))\n    response.write(\'"></td>\\n\\t\\t\\t\\t<td>\', escape=False)\n    response.write(prof.long_name)\n    response.write(\'</td>\\n\\t\\t\\t\\t<td>\', escape=False)\n    response.write(prof.email)\n    response.write(\'</td>\\n\\t\\t\\t</tr>\\n\\t\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.NameError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.NameError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p40
+sS'args'
+p41
+S'("name \'args\' is not defined",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p46
+sS'__doc__'
+p47
+S"'Name not found globally.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"name 'args' is not defined"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'list'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S"'/ForCA/profs/list'"
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'profs'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: session_id_ForCA='127-0-0-1-4be4d...'127-0-0-1-27aed1a3-935d-4059-9eef-fa8b22024cd8'>"
+p75
+sS'application'
+p76
+S"'ForCA'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/tiago/ForCA/applications/ForCA/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 8, 26, 21, 24, 57, 754569)'
+p91
+sS'post_vars'
+p92
+S'<Storage {}>'
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/tiago/ForCA/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0xb2fd4e8, file "/home/...pplications/ForCA/views/profs/list.html", line 1>'
+p104
+ssS'lnum'
+p105
+I186
+sS'lines'
+p106
+(dp107
+I181
+S'        if type(code) == types.CodeType:'
+p108
+sI182
+S'            ccode = code'
+p109
+sI183
+S'        else:'
+p110
+sI184
+S'            ccode = compile2(code,layer)'
+p111
+sI185
+S''
+sI186
+S'        exec ccode in environment'
+p112
+sI187
+S'    except HTTP:'
+p113
+sI188
+S'        raise'
+p114
+sI189
+S'    except Exception:'
+p115
+sI190
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p116
+ssS'call'
+p117
+S'(code=r"response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>For...t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/tiago/ForCA/applications/ForCA/views/profs/list.html\')'
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'
+p122
+sg99
+(dp123
+S'head'
+p124
+S'undefined'
+p125
+ssg105
+I4
+sg106
+(dp126
+I1
+S"response.write('<html>\\n\\t<head>\\n\\t\\t<title>ForCA - Lista de professores</title>\\n\\t</head>\\n\\t<body>\\n\\t\\t<table>\\n\\t\\t\\t<tr>\\n\\t\\t\\t\\t<th>Foto</th>\\n\\t\\t\\t\\t<th>Nome</th>\\n\\t\\t\\t\\t<th>E-mail</th>\\n\\t\\t\\t</tr>\\n\\t\\t\\t', escape=False)"
+p127
+sI2
+S'for prof in profs:'
+p128
+sI3
+S'    response.write(\'\\n\\t\\t\\t<tr>\\n\\t\\t\\t\\t<td><img src="\', escape=False)'
+p129
+sI4
+S"    response.write(URL('download', args==profs.picture))"
+p130
+sI5
+S'    response.write(\'"></td>\\n\\t\\t\\t\\t<td>\', escape=False)'
+p131
+sI6
+S'    response.write(prof.long_name)'
+p132
+sI7
+S"    response.write('</td>\\n\\t\\t\\t\\t<td>', escape=False)"
+p133
+sI8
+S'    response.write(prof.email)'
+p134
+sI9
+S"    response.write('</td>\\n\\t\\t\\t</tr>\\n\\t\\t\\t', escape=False)"
+p135
+sI10
+S'    pass'
+p136
+sI11
+S"response.write('\\n\\t\\t</table>\\n\\t</body>\\n</html>\\n\\n', escape=False)"
+p137
+ssg117
+S'()'
+p138
+sg119
+S'<module>'
+p139
+sasS'pyver'
+p140
+S'Python 2.6.5: /usr/bin/python'
+p141
+sS'session'
+p142
+(dp143
+S'auth'
+p144
+S'None'
+p145
+sS'_formkey[login]'
+p146
+S"'c37e1159-ee83-48f0-9161-329dd06ebb70'"
+p147
+ssS'etype'
+p148
+S"<type 'exceptions.NameError'>"
+p149
+sS'date'
+p150
+S'Thu Aug 26 21:24:57 2010'
+p151
+sS'response'
+p152
+(dp153
+S'status'
+p154
+S'200'
+p155
+sg59
+S'<cStringIO.StringO object>'
+p156
+sg74
+S"<SimpleCookie: session_id_ForCA='127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'>"
+p157
+sS'_vars'
+p158
+S"{'profs': <gluon.sql.Rows object>}"
+p159
+sS'title'
+p160
+S"'ForCA'"
+p161
+sS'session_file'
+p162
+S"<open file '/home/tiago/ForCA/applications/ForCA...be4d4c9-7fb7-40f6-b2c5-ca52a8130cae', mode 'rb+'>"
+p163
+sS'flash'
+p164
+S"''"
+p165
+sS'_custom_rollback'
+p166
+S'None'
+p167
+sS'session_id'
+p168
+S"'127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'"
+p169
+sS'headers'
+p170
+S"<Storage {'Expires': 'Fri, 27 Aug 2010 00:24:57 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p171
+sS'meta'
+p172
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p173
+sS'session_filename'
+p174
+S"'/home/tiago/ForCA/applications/ForCA/sessions/127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'"
+p175
+sS'postprocessing'
+p176
+S'[]'
+p177
+sS'menu'
+p178
+S"[(<lazyT 'Index'>, False, '/ForCA/default/index', []), (<lazyT 'Edit'>, False, '/admin/default/design/ForCA', [(<lazyT 'Controller'>, False, '/admin/default/edit/ForCA/controllers/profs.py'), (<lazyT 'View'>, False, '/admin/default/edit/ForCA/views/profs/list.html'), (<lazyT 'Layout'>, False, '/admin/default/edit/ForCA/views/layout.html'), (<lazyT 'Stylesheet'>, False, '/admin/default/edit/ForCA/static/base.css'), (<lazyT 'DB Model'>, False, '/admin/default/edit/ForCA/models/db.py'), (<lazyT 'Menu Model'>, False, '/admin/default/edit/ForCA/models/menu.py'), (<lazyT 'Database'>, False, '/ForCA/appadmin/index')])]"
+p179
+sS'_view_environment'
+p180
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p181
+sS'subtitle'
+p182
+S"<lazyT 'customize me!'>"
+p183
+sS'session_id_name'
+p184
+S"'session_id_ForCA'"
+p185
+sS'_custom_commit'
+p186
+S'None'
+p187
+sS'_caller'
+p188
+S'<function <lambda>>'
+p189
+sS'files'
+p190
+S'[]'
+p191
+sS'view'
+p192
+S"'profs/list.html'"
+p193
+ssS'locals'
+p194
+(dp195
+S'Service'
+p196
+S'<class gluon.tools.Service>'
+p197
+sS'OBJECT'
+p198
+S"<class 'gluon.html.OBJECT'>"
+p199
+sS'SQLDB'
+p200
+S"<class 'gluon.sql.SQLDB'>"
+p201
+sg142
+S"<Storage {'_formkey[login]': 'c37e1159-ee83-48f0-9161-329dd06ebb70', 'auth': None}>"
+p202
+sS'LINK'
+p203
+S"<class 'gluon.html.LINK'>"
+p204
+sS'BR'
+p205
+S"<class 'gluon.html.BR'>"
+p206
+sS'local_import'
+p207
+S'<function <lambda>>'
+p208
+sS'OPTGROUP'
+p209
+S"<class 'gluon.html.OPTGROUP'>"
+p210
+sS'PRE'
+p211
+S"<class 'gluon.html.PRE'>"
+p212
+sS'IS_INT_IN_RANGE'
+p213
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p214
+sS'IS_LOWER'
+p215
+S"<class 'gluon.validators.IS_LOWER'>"
+p216
+sS'IS_STRONG'
+p217
+S"<class 'gluon.validators.IS_STRONG'>"
+p218
+sS'Recaptcha'
+p219
+S"<class 'gluon.tools.Recaptcha'>"
+p220
+sS'cache'
+p221
+S'<gluon.cache.Cache object>'
+p222
+sS'IS_IN_DB'
+p223
+S"<class 'gluon.validators.IS_IN_DB'>"
+p224
+sS'TAG'
+p225
+S'<gluon.html.__TAG__ object>'
+p226
+sS'SQLField'
+p227
+S"<class 'gluon.sql.Field'>"
+p228
+sS'mail'
+p229
+S'<gluon.tools.Mail object>'
+p230
+sS'BODY'
+p231
+S"<class 'gluon.html.BODY'>"
+p232
+sS'IS_DATE_IN_RANGE'
+p233
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p234
+sS'TH'
+p235
+S"<class 'gluon.html.TH'>"
+p236
+sS'URL'
+p237
+S'<function _URL>'
+p238
+sS'db'
+p239
+S"<SQLDB {'_connection': <connection object at 0xb...l.Field object at 0xb17b3ac>}>, '_pool_size': 0}>"
+p240
+sS'auth'
+p241
+S'<gluon.tools.Auth object>'
+p242
+sS'P'
+S"<class 'gluon.html.P'>"
+p243
+sS'TFOOT'
+p244
+S"<class 'gluon.html.TFOOT'>"
+p245
+sS'SQLFORM'
+p246
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p247
+sS'XHTML'
+p248
+S"<class 'gluon.html.XHTML'>"
+p249
+sS'ON'
+p250
+S'True'
+p251
+sS'OL'
+p252
+S"<class 'gluon.html.OL'>"
+p253
+sS'TEXTAREA'
+p254
+S"<class 'gluon.html.TEXTAREA'>"
+p255
+sS'MENU'
+p256
+S"<class 'gluon.html.MENU'>"
+p257
+sS'LOAD'
+p258
+S'<gluon.compileapp.LoadFactory instance>'
+p259
+sS'CODE'
+p260
+S"<class 'gluon.html.CODE'>"
+p261
+sS'HTTP'
+p262
+S"<class 'gluon.http.HTTP'>"
+p263
+sS'HR'
+p264
+S"<class 'gluon.html.HR'>"
+p265
+sS'IS_DATETIME'
+p266
+S"<class 'gluon.validators.IS_DATETIME'>"
+p267
+sS'HEAD'
+p268
+S"<class 'gluon.html.HEAD'>"
+p269
+sS'LABEL'
+p270
+S"<class 'gluon.html.LABEL'>"
+p271
+sS'CLEANUP'
+p272
+S"<class 'gluon.validators.CLEANUP'>"
+p273
+sS'plugins'
+p274
+S'<gluon.tools.PluginManager object>'
+p275
+sS'SELECT'
+p276
+S"<class 'gluon.html.SELECT'>"
+p277
+sS'CENTER'
+p278
+S"<class 'gluon.html.CENTER'>"
+p279
+sS'prettydate'
+p280
+S'<function prettydate>'
+p281
+sS'Crud'
+p282
+S"<class 'gluon.tools.Crud'>"
+p283
+sS'Auth'
+p284
+S"<class 'gluon.tools.Auth'>"
+p285
+sS'__builtins__'
+p286
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p287
+sS'IS_LIST_OF'
+p288
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p289
+sS'prof'
+p290
+S"<Row {'picture': 'professores.picture.810b24f4d6...lete_record': <function <lambda> at 0xb0946454>}>"
+p291
+sS'EM'
+p292
+S"<class 'gluon.html.EM'>"
+p293
+sS'redirect'
+p294
+S'<function redirect>'
+p295
+sS'FIELDSET'
+p296
+S"<class 'gluon.html.FIELDSET'>"
+p297
+sS'IS_EQUAL_TO'
+p298
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p299
+sS'embed64'
+p300
+S'<function embed64>'
+p301
+sS'INPUT'
+p302
+S"<class 'gluon.html.INPUT'>"
+p303
+sS'EMBED'
+p304
+S"<class 'gluon.html.EMBED'>"
+p305
+sS'FORM'
+p306
+S"<class 'gluon.html.FORM'>"
+p307
+sS'H2'
+p308
+S"<class 'gluon.html.H2'>"
+p309
+sS'H3'
+p310
+S"<class 'gluon.html.H3'>"
+p311
+sS'H1'
+p312
+S"<class 'gluon.html.H1'>"
+p313
+sS'H6'
+p314
+S"<class 'gluon.html.H6'>"
+p315
+sS'H4'
+p316
+S"<class 'gluon.html.H4'>"
+p317
+sS'H5'
+p318
+S"<class 'gluon.html.H5'>"
+p319
+sS'UL'
+p320
+S"<class 'gluon.html.UL'>"
+p321
+sS'IS_UPPER'
+p322
+S"<class 'gluon.validators.IS_UPPER'>"
+p323
+sS'xmlescape'
+p324
+S'<function xmlescape>'
+p325
+sS'IS_TIME'
+p326
+S"<class 'gluon.validators.IS_TIME'>"
+p327
+sS'profs'
+p328
+S'<gluon.sql.Rows object>'
+p329
+sS'OPTION'
+p330
+S"<class 'gluon.html.OPTION'>"
+p331
+sS'TITLE'
+p332
+S"<class 'gluon.html.TITLE'>"
+p333
+sS'CRYPT'
+p334
+S"<class 'gluon.validators.CRYPT'>"
+p335
+sS'IS_EMPTY_OR'
+p336
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p337
+sS'MARKMIN'
+p338
+S"<class 'gluon.html.MARKMIN'>"
+p339
+sS'service'
+p340
+S'<gluon.tools.Service instance>'
+p341
+sS'SCRIPT'
+p342
+S"<class 'gluon.html.SCRIPT'>"
+p343
+sS'geocode'
+p344
+S'<function geocode>'
+p345
+sS'TABLE'
+p346
+S"<class 'gluon.html.TABLE'>"
+p347
+sS'IS_IPV4'
+p348
+S"<class 'gluon.validators.IS_IPV4'>"
+p349
+sS'IS_LENGTH'
+p350
+S"<class 'gluon.validators.IS_LENGTH'>"
+p351
+sS'XML'
+p352
+S"<class 'gluon.html.XML'>"
+p353
+sS'B'
+S"<class 'gluon.html.B'>"
+p354
+sS'IMG'
+p355
+S"<class 'gluon.html.IMG'>"
+p356
+sS'SQLTABLE'
+p357
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p358
+sS'IS_MATCH'
+p359
+S"<class 'gluon.validators.IS_MATCH'>"
+p360
+sS'IS_ALPHANUMERIC'
+p361
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p362
+sS'SPAN'
+p363
+S"<class 'gluon.html.SPAN'>"
+p364
+sS'IS_SLUG'
+p365
+S"<class 'gluon.validators.IS_SLUG'>"
+p366
+sS'BEAUTIFY'
+p367
+S"<class 'gluon.html.BEAUTIFY'>"
+p368
+sS'META'
+p369
+S"<class 'gluon.html.META'>"
+p370
+sS'fetch'
+p371
+S'<function fetch>'
+p372
+sS'IS_DATE'
+p373
+S"<class 'gluon.validators.IS_DATE'>"
+p374
+sS'IS_EMAIL'
+p375
+S"<class 'gluon.validators.IS_EMAIL'>"
+p376
+sS'IS_NOT_EMPTY'
+p377
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p378
+sg55
+S"<Storage {'function': 'list', 'body': <cStringIO... 21, 24, 57, 754569), 'post_vars': <Storage {}>}>"
+p379
+sS'TBODY'
+p380
+S"<class 'gluon.html.TBODY'>"
+p381
+sS'Field'
+p382
+S"<class 'gluon.sql.Field'>"
+p383
+sS'Mail'
+p384
+S"<class 'gluon.tools.Mail'>"
+p385
+sS'DIV'
+p386
+S"<class 'gluon.html.DIV'>"
+p387
+sS'LEGEND'
+p388
+S"<class 'gluon.html.LEGEND'>"
+p389
+sS'DAL'
+p390
+S'<function DAL>'
+p391
+sS'TT'
+p392
+S"<class 'gluon.html.TT'>"
+p393
+sS'TR'
+p394
+S"<class 'gluon.html.TR'>"
+p395
+sS'LI'
+p396
+S"<class 'gluon.html.LI'>"
+p397
+sS'IFRAME'
+p398
+S"<class 'gluon.html.IFRAME'>"
+p399
+sS'TD'
+p400
+S"<class 'gluon.html.TD'>"
+p401
+sS'PluginManager'
+p402
+S"<class 'gluon.tools.PluginManager'>"
+p403
+sS'IS_URL'
+p404
+S"<class 'gluon.validators.IS_URL'>"
+p405
+sS'A'
+S"<class 'gluon.html.A'>"
+p406
+sS'STYLE'
+p407
+S"<class 'gluon.html.STYLE'>"
+p408
+sS'IS_DATETIME_IN_RANGE'
+p409
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p410
+sS'HTML'
+p411
+S"<class 'gluon.html.HTML'>"
+p412
+sS'IS_IMAGE'
+p413
+S"<class 'gluon.validators.IS_IMAGE'>"
+p414
+sS'I'
+S"<class 'gluon.html.I'>"
+p415
+sS'crud'
+p416
+S'<gluon.tools.Crud object>'
+p417
+sS'IS_NOT_IN_DB'
+p418
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p419
+sg152
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>"
+p420
+sS'THEAD'
+p421
+S"<class 'gluon.html.THEAD'>"
+p422
+sS'IS_NULL_OR'
+p423
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p424
+sS'IS_FLOAT_IN_RANGE'
+p425
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p426
+sS'IS_EXPR'
+p427
+S"<class 'gluon.validators.IS_EXPR'>"
+p428
+sS'T'
+S'<gluon.languages.translator object>'
+p429
+sS'IS_IN_SET'
+p430
+S"<class 'gluon.validators.IS_IN_SET'>"
+p431
+sS'IS_UPLOAD_FILENAME'
+p432
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p433
+sS'IS_DECIMAL_IN_RANGE'
+p434
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p435
+sssS'traceback'
+p436
+S'Traceback (most recent call last):\n  File "/home/tiago/ForCA/gluon/restricted.py", line 186, in restricted\n    exec ccode in environment\n  File "/home/tiago/ForCA/applications/ForCA/views/profs/list.html", line 4, in <module>\n    </head>\nNameError: name \'args\' is not defined\n'
+p437
+s.

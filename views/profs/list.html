@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>ForCA - Lista de professores</title>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th>Foto</th>
+				<th>Nome</th>
+				<th>E-mail</th>
+			</tr>
+			{{for prof in profs:}}
+			<tr>
+				<td><img width="100px" src="{{=URL('download', args=prof.picture)}}"></td>
+				<td>{{=prof.long_name}}</td>
+				<td>{{=prof.email}}</td>
+			</tr>
+			{{pass}}
+		</table>
+	</body>
+</html>
+

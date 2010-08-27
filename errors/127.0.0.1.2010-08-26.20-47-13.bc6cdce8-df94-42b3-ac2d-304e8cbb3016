@@ -1,0 +1,708 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/tiago/ForCA/applications/ForCA/controllers/profs.py'
+p4
+sS'code'
+p5
+S"#profs controller\n\ndef list():\n\t'''\n\tExibe a lista de professores\n\t'''\n\treturn db(db.professores.ALL).select()\n\nresponse._vars=response._caller(list)\n"
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__module__'
+p11
+S"'psycopg2'"
+p12
+sS'__getslice__'
+p13
+S"<method-wrapper '__getslice__' of ProgrammingError object>"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of ProgrammingError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of ProgrammingError object>'
+p18
+sS'__dict__'
+p19
+S'{\'cursor\': <cursor object at 0xaad6b8c; closed: 0>, \'pgcode\': \'42601\', \'pgerror\': \'ERROR:  syntax error at or near ","\\nLINE 1: ...o...                                               ^\\n\'}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of ProgrammingError object>'
+p22
+sS'__weakref__'
+p23
+S'None'
+p24
+sS'__init__'
+p25
+S"<method-wrapper '__init__' of ProgrammingError object>"
+p26
+sS'__setattr__'
+p27
+S"<method-wrapper '__setattr__' of ProgrammingError object>"
+p28
+sS'__reduce_ex__'
+p29
+S'<built-in method __reduce_ex__ of ProgrammingError object>'
+p30
+sS'__new__'
+p31
+S'<built-in method __new__ of type object>'
+p32
+sS'__format__'
+p33
+S'<built-in method __format__ of ProgrammingError object>'
+p34
+sS'__class__'
+p35
+S"<class 'psycopg2.ProgrammingError'>"
+p36
+sS'pgerror'
+p37
+S'\'ERROR:  syntax error at or near ","\\nLINE 1: ...o...                                               ^\\n\''
+p38
+sS'__doc__'
+p39
+S"'Error related to database programming (SQL error, table not found etc).'"
+p40
+sS'__getitem__'
+p41
+S"<method-wrapper '__getitem__' of ProgrammingError object>"
+p42
+sS'__setstate__'
+p43
+S'<built-in method __setstate__ of ProgrammingError object>'
+p44
+sS'__getattribute__'
+p45
+S"<method-wrapper '__getattribute__' of ProgrammingError object>"
+p46
+sS'args'
+p47
+S'(\'syntax error at or near ","\\nLINE 1: ...ores.pict...                                               ^\\n\',)'
+p48
+sS'__subclasshook__'
+p49
+S'<built-in method __subclasshook__ of type object>'
+p50
+sS'pgcode'
+p51
+S"'42601'"
+p52
+sS'__unicode__'
+p53
+S'<built-in method __unicode__ of ProgrammingError object>'
+p54
+sS'cursor'
+p55
+S'<cursor object at 0xaad6b8c; closed: 0>'
+p56
+sS'__delattr__'
+p57
+S"<method-wrapper '__delattr__' of ProgrammingError object>"
+p58
+sS'__repr__'
+p59
+S"<method-wrapper '__repr__' of ProgrammingError object>"
+p60
+sS'__hash__'
+p61
+S"<method-wrapper '__hash__' of ProgrammingError object>"
+p62
+ssS'evalue'
+p63
+S'syntax error at or near ","\nLINE 1: ...ores.picture FROM professores WHERE professores.id, professo...\n                                                             ^\n'
+p64
+sS'request'
+p65
+(dp66
+S'function'
+p67
+S"'list'"
+p68
+sS'body'
+p69
+S'<cStringIO.StringO object>'
+p70
+sS'wsgi'
+p71
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p72
+sS'extension'
+p73
+S"'html'"
+p74
+sS'vars'
+p75
+S'<Storage {}>'
+p76
+sS'cid'
+p77
+S'None'
+p78
+sS'url'
+p79
+S"'/ForCA/profs/list'"
+p80
+sg47
+S'[]'
+p81
+sS'controller'
+p82
+S"'profs'"
+p83
+sS'cookies'
+p84
+S"<SimpleCookie: session_id_ForCA='127-0-0-1-4be4d...'127-0-0-1-27aed1a3-935d-4059-9eef-fa8b22024cd8'>"
+p85
+sS'application'
+p86
+S"'ForCA'"
+p87
+sS'ajax'
+p88
+S'False'
+p89
+sS'client'
+p90
+S"'127.0.0.1'"
+p91
+sS'env'
+p92
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...te', 'query_string': '', 'wsgi_run_once': False}>"
+p93
+sS'raw_args'
+p94
+S'None'
+p95
+sS'get_vars'
+p96
+S'<Storage {}>'
+p97
+sS'folder'
+p98
+S"'/home/tiago/ForCA/applications/ForCA/'"
+p99
+sS'now'
+p100
+S'datetime.datetime(2010, 8, 26, 20, 47, 13, 265559)'
+p101
+sS'post_vars'
+p102
+S'<Storage {}>'
+p103
+ssS'frames'
+p104
+(lp105
+(dp106
+S'file'
+p107
+S'/home/tiago/ForCA/gluon/restricted.py'
+p108
+sS'dump'
+p109
+(dp110
+S'environment'
+p111
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p112
+sS'ccode'
+p113
+S'<code object <module> at 0xabfd0f8, file "/home/...applications/ForCA/controllers/profs.py", line 3>'
+p114
+ssS'lnum'
+p115
+I186
+sS'lines'
+p116
+(dp117
+I181
+S'        if type(code) == types.CodeType:'
+p118
+sI182
+S'            ccode = code'
+p119
+sI183
+S'        else:'
+p120
+sI184
+S'            ccode = compile2(code,layer)'
+p121
+sI185
+S''
+sI186
+S'        exec ccode in environment'
+p122
+sI187
+S'    except HTTP:'
+p123
+sI188
+S'        raise'
+p124
+sI189
+S'    except Exception:'
+p125
+sI190
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p126
+ssS'call'
+p127
+S'(code="#profs controller\\n\\ndef list():\\n\\t\'\'\'\\n\\tExibe a lis....select()\\n\\nresponse._vars=response._caller(list)\\n", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/tiago/ForCA/applications/ForCA/controllers/profs.py\')'
+p128
+sS'func'
+p129
+S'restricted'
+p130
+sa(dp131
+g107
+S'/home/tiago/ForCA/applications/ForCA/controllers/profs.py'
+p132
+sg109
+(dp133
+sg115
+I9
+sg116
+(dp134
+I1
+S'#profs controller'
+p135
+sI2
+S''
+sI3
+S'def list():'
+p136
+sI4
+S"\t'''"
+p137
+sI5
+S'\tExibe a lista de professores'
+p138
+sI6
+S"\t'''"
+p139
+sI7
+S'\treturn db(db.professores.ALL).select()'
+p140
+ssg127
+S'()'
+p141
+sg129
+S'<module>'
+p142
+sa(dp143
+g107
+S'/home/tiago/ForCA/gluon/globals.py'
+p144
+sg109
+(dp145
+S'self'
+p146
+S'undefined'
+p147
+sS'f'
+S'<function list>'
+p148
+ssg115
+I96
+sg116
+(dp149
+I96
+S'        self._caller = lambda f: f()'
+p150
+sI97
+S'        self._view_environment = None'
+p151
+sI98
+S'        self._custom_commit = None'
+p152
+sI99
+S'        self._custom_rollback = None'
+p153
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p154
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p155
+sI93
+S'        self.menu = []            # used by the default view layout'
+p156
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p157
+sI95
+S'        self._vars = None'
+p158
+ssg127
+S'(f=<function list>)'
+p159
+sg129
+S'<lambda>'
+p160
+sa(dp161
+g107
+S'/home/tiago/ForCA/applications/ForCA/controllers/profs.py'
+p162
+sg109
+(dp163
+S'global db'
+p164
+S"<SQLDB {'_connection': <connection object at 0xa...l.Field object at 0xacb020c>}>, '_pool_size': 0}>"
+p165
+sS'db.professores'
+p166
+S"<Table {'picture': <gluon.sql.Field object at 0x...[], 'id': <gluon.sql.Field object at 0xacb020c>}>"
+p167
+sS'db.professores.ALL'
+p168
+S'<gluon.sql.SQLALL object>'
+p169
+sS').select'
+p170
+g147
+ssg115
+I7
+sg116
+(dp171
+I1
+S'#profs controller'
+p172
+sI2
+S''
+sI3
+S'def list():'
+p173
+sI4
+S"\t'''"
+p174
+sI5
+S'\tExibe a lista de professores'
+p175
+sI6
+S"\t'''"
+p176
+sI7
+S'\treturn db(db.professores.ALL).select()'
+p177
+ssg127
+S'()'
+p178
+sg129
+S'list'
+p179
+sa(dp180
+g107
+S'/home/tiago/ForCA/gluon/sql.py'
+p181
+sg109
+(dp182
+S'query'
+p183
+S"'SELECT professores.id, professores.email, profes..._name, professores.password, professores.picture;'"
+p184
+sS'rows'
+p185
+g147
+sS'response'
+p186
+S'<function response>'
+p187
+ssg115
+I3216
+sg116
+(dp188
+I3211
+S'            db._execute(query)'
+p189
+sI3212
+S'            return db._cursor.fetchall()'
+p190
+sI3213
+S''
+sI3214
+S"        if not attributes.get('cache', None):"
+p191
+sI3215
+S'            query = self._select(*fields, **attributes)'
+p192
+sI3216
+S'            rows = response(query)'
+p193
+sI3217
+S'        else:'
+p194
+sI3218
+S"            (cache_model, time_expire) = attributes['cache']"
+p195
+sI3219
+S"            del attributes['cache']"
+p196
+sI3220
+S'            query = self._select(*fields, **attributes)'
+p197
+ssg127
+S'(self=<gluon.sql.Set object>, *fields=(), **attributes={})'
+p198
+sg129
+S'select'
+p199
+sa(dp200
+g107
+S'/home/tiago/ForCA/gluon/sql.py'
+p201
+sg109
+(dp202
+S'query'
+p203
+S"'SELECT professores.id, professores.email, profes..._name, professores.password, professores.picture;'"
+p204
+sS'db'
+p205
+S"<SQLDB {'_connection': <connection object at 0xa...l.Field object at 0xacb020c>}>, '_pool_size': 0}>"
+p206
+sS'db._execute'
+p207
+S'<function <lambda>>'
+p208
+ssg115
+I3211
+sg116
+(dp209
+I3206
+S'        """'
+p210
+sI3207
+S''
+sI3208
+S'        db=self._db'
+p211
+sI3209
+S'        def response(query):'
+p212
+sI3210
+S"            db['_lastsql'] = query"
+p213
+sI3211
+S'            db._execute(query)'
+p214
+sI3212
+S'            return db._cursor.fetchall()'
+p215
+sI3213
+S''
+sI3214
+S"        if not attributes.get('cache', None):"
+p216
+sI3215
+S'            query = self._select(*fields, **attributes)'
+p217
+ssg127
+S"(query='SELECT professores.id, professores.email, profes..._name, professores.password, professores.picture;')"
+p218
+sg129
+S'response'
+p219
+sa(dp220
+g107
+S'/home/tiago/ForCA/gluon/sql.py'
+p221
+sg109
+(dp222
+S'a'
+S"('SELECT professores.id, professores.email, profes..._name, professores.password, professores.picture;',)"
+p223
+sS'b'
+S'{}'
+p224
+sS'self._execute'
+p225
+S'<function <lambda>>'
+p226
+sS'self'
+p227
+S"<SQLDB {'_connection': <connection object at 0xa...l.Field object at 0xacb020c>}>, '_pool_size': 0}>"
+p228
+sS'self._cursor'
+p229
+S'<cursor object at 0xaad6b8c; closed: 0>'
+p230
+sS'self._cursor.execute'
+p231
+S'<built-in method execute of psycopg2._psycopg.cursor object>'
+p232
+ssg115
+I1010
+sg116
+(dp233
+I1005
+S'                "dbname=\'%s\' user=\'%s\' host=\'%s\' port=%s password=\'%s\'"\\'
+p234
+sI1006
+S'                 % (db, user, host, port, passwd)'
+p235
+sI1007
+S'            self._pool_connection(lambda : psycopg2.connect(msg))'
+p236
+sI1008
+S"            self._connection.set_client_encoding('UTF8')"
+p237
+sI1009
+S'            self._cursor = self._connection.cursor()'
+p238
+sI1010
+S'            self._execute = lambda *a, **b: self._cursor.execute(*a, **b)'
+p239
+sI1011
+S"            query = 'BEGIN;'"
+p240
+sI1012
+S"            self['_lastsql'] = query"
+p241
+sI1013
+S'            self._execute(query)'
+p242
+sI1014
+S'            self._execute("SET CLIENT_ENCODING TO \'UNICODE\';")  # ## not completely sure but should work'
+p243
+ssg127
+S"(*a=('SELECT professores.id, professores.email, profes..._name, professores.password, professores.picture;',), **b={})"
+p244
+sg129
+g160
+sasS'pyver'
+p245
+S'Python 2.6.5: /usr/bin/python'
+p246
+sS'session'
+p247
+(dp248
+S'auth'
+p249
+S'None'
+p250
+sS'_formkey[login]'
+p251
+S"'c37e1159-ee83-48f0-9161-329dd06ebb70'"
+p252
+ssS'etype'
+p253
+S"<class 'psycopg2.ProgrammingError'>"
+p254
+sS'date'
+p255
+S'Thu Aug 26 20:47:13 2010'
+p256
+sg219
+(dp257
+S'status'
+p258
+S'200'
+p259
+sg69
+S'<cStringIO.StringO object>'
+p260
+sg84
+S"<SimpleCookie: session_id_ForCA='127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'>"
+p261
+sS'_vars'
+p262
+S'None'
+p263
+sS'title'
+p264
+S"'ForCA'"
+p265
+sS'session_file'
+p266
+S"<open file '/home/tiago/ForCA/applications/ForCA...be4d4c9-7fb7-40f6-b2c5-ca52a8130cae', mode 'rb+'>"
+p267
+sS'flash'
+p268
+S"''"
+p269
+sS'_custom_rollback'
+p270
+S'None'
+p271
+sS'session_id'
+p272
+S"'127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'"
+p273
+sS'headers'
+p274
+S"<Storage {'Expires': 'Thu, 26 Aug 2010 23:47:13 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p275
+sS'meta'
+p276
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p277
+sS'session_filename'
+p278
+S"'/home/tiago/ForCA/applications/ForCA/sessions/127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'"
+p279
+sS'postprocessing'
+p280
+S'[]'
+p281
+sS'menu'
+p282
+S"[(<lazyT 'Index'>, False, '/ForCA/default/index', []), (<lazyT 'Edit'>, False, '/admin/default/design/ForCA', [(<lazyT 'Controller'>, False, '/admin/default/edit/ForCA/controllers/profs.py'), (<lazyT 'View'>, False, '/admin/default/edit/ForCA/views/profs/list.html'), (<lazyT 'Layout'>, False, '/admin/default/edit/ForCA/views/layout.html'), (<lazyT 'Stylesheet'>, False, '/admin/default/edit/ForCA/static/base.css'), (<lazyT 'DB Model'>, False, '/admin/default/edit/ForCA/models/db.py'), (<lazyT 'Menu Model'>, False, '/admin/default/edit/ForCA/models/menu.py'), (<lazyT 'Database'>, False, '/ForCA/appadmin/index')])]"
+p283
+sS'_view_environment'
+p284
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p285
+sS'subtitle'
+p286
+S"<lazyT 'customize me!'>"
+p287
+sS'session_id_name'
+p288
+S"'session_id_ForCA'"
+p289
+sS'_custom_commit'
+p290
+S'None'
+p291
+sS'_caller'
+p292
+S'<function <lambda>>'
+p293
+sS'files'
+p294
+S'[]'
+p295
+sS'view'
+p296
+S"'profs/list.html'"
+p297
+ssS'locals'
+p298
+(dp299
+S'a'
+S"('SELECT professores.id, professores.email, profes..._name, professores.password, professores.picture;',)"
+p300
+sS'self'
+p301
+S"<SQLDB {'_connection': <connection object at 0xa...l.Field object at 0xacb020c>}>, '_pool_size': 0}>"
+p302
+sS'b'
+g224
+sssS'traceback'
+p303
+S'Traceback (most recent call last):\n  File "/home/tiago/ForCA/gluon/restricted.py", line 186, in restricted\n    exec ccode in environment\n  File "/home/tiago/ForCA/applications/ForCA/controllers/profs.py", line 9, in <module>\n  File "/home/tiago/ForCA/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/tiago/ForCA/applications/ForCA/controllers/profs.py", line 7, in list\n    return db(db.professores.ALL).select()\n  File "/home/tiago/ForCA/gluon/sql.py", line 3216, in select\n    rows = response(query)\n  File "/home/tiago/ForCA/gluon/sql.py", line 3211, in response\n    db._execute(query)\n  File "/home/tiago/ForCA/gluon/sql.py", line 1010, in <lambda>\n    self._execute = lambda *a, **b: self._cursor.execute(*a, **b)\nProgrammingError: syntax error at or near ","\nLINE 1: ...ores.picture FROM professores WHERE professores.id, professo...\n                                                             ^\n\n'
+p304
+s.
