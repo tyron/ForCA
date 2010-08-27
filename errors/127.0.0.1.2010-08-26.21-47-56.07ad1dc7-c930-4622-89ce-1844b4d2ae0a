@@ -1,0 +1,461 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'
+p4
+sS'code'
+p5
+S'response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>ForCA - Lista de professores</title>\\n\\t</head>\\n\\t<body>\\n\\t\\t<table>\\n\\t\\t\\t<tr>\\n\\t\\t\\t\\t<th>Foto</th>\\n\\t\\t\\t\\t<th>Nome</th>\\n\\t\\t\\t\\t<th>Rating</th>\\n\\t\\t\\t</tr>\\n\\t\\t\\t\', escape=False)\nfor prof in profs:\n    response.write(\'\\n\\t\\t\\t<tr>\\n\\t\\t\\t\\t<td><img width="50px" src="\', escape=False)\n    response.write(URL(\'download\', args=prof.picture))\n    response.write(\'"></td>\\n\\t\\t\\t\\t<td>\', escape=False)\n    response.write(prof.long_name)\n    response.write(\'</td>\\n\\t\\t\\t\\t<td>\', escape=False)\n    response.write(prof.grade ou \'-\')\n    response.write(\'</td>\\n\\t\\t\\t</tr>\\n\\t\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object>"
+p12
+sS'text'
+p13
+S'"    response.write(prof.grade ou \'-\')\\n"'
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S"'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'"
+p36
+sS'lineno'
+p37
+S'8'
+sS'msg'
+p38
+S"'invalid syntax'"
+p39
+sS'__doc__'
+p40
+S"'Invalid syntax.'"
+p41
+sS'__getitem__'
+p42
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object>"
+p43
+sS'__setstate__'
+p44
+S'<built-in method __setstate__ of exceptions.SyntaxError object>'
+p45
+sS'__getattribute__'
+p46
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object>"
+p47
+sS'print_file_and_line'
+p48
+S'None'
+p49
+sS'args'
+p50
+S'(\'invalid syntax\', (\'/home/tiago/ForCA/applications/ForCA/views/profs/list.html\', 8, 32, "    response.write(prof.grade ou \'-\')\\n"))'
+p51
+sS'__subclasshook__'
+p52
+S'<built-in method __subclasshook__ of type object>'
+p53
+sS'offset'
+p54
+S'32'
+p55
+sS'__unicode__'
+p56
+S'<built-in method __unicode__ of exceptions.SyntaxError object>'
+p57
+sS'__delattr__'
+p58
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object>"
+p59
+sS'__repr__'
+p60
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object>"
+p61
+sS'__hash__'
+p62
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object>"
+p63
+ssS'evalue'
+p64
+S'invalid syntax (list.html, line 8)'
+p65
+sS'request'
+p66
+(dp67
+S'function'
+p68
+S"'list'"
+p69
+sS'body'
+p70
+S'<cStringIO.StringO object>'
+p71
+sS'wsgi'
+p72
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p73
+sS'extension'
+p74
+S"'html'"
+p75
+sS'vars'
+p76
+S'<Storage {}>'
+p77
+sS'cid'
+p78
+S'None'
+p79
+sS'url'
+p80
+S"'/ForCA/profs/list'"
+p81
+sg50
+S'[]'
+p82
+sS'controller'
+p83
+S"'profs'"
+p84
+sS'cookies'
+p85
+S"<SimpleCookie: session_id_ForCA='127-0-0-1-4be4d...'127-0-0-1-27aed1a3-935d-4059-9eef-fa8b22024cd8'>"
+p86
+sS'application'
+p87
+S"'ForCA'"
+p88
+sS'ajax'
+p89
+S'False'
+p90
+sS'client'
+p91
+S"'127.0.0.1'"
+p92
+sS'env'
+p93
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...te', 'query_string': '', 'wsgi_run_once': False}>"
+p94
+sS'raw_args'
+p95
+S'None'
+p96
+sS'get_vars'
+p97
+S'<Storage {}>'
+p98
+sS'folder'
+p99
+S"'/home/tiago/ForCA/applications/ForCA/'"
+p100
+sS'now'
+p101
+S'datetime.datetime(2010, 8, 26, 21, 47, 56, 432652)'
+p102
+sS'post_vars'
+p103
+S'<Storage {}>'
+p104
+ssS'frames'
+p105
+(lp106
+(dp107
+S'file'
+p108
+S'/home/tiago/ForCA/gluon/restricted.py'
+p109
+sS'dump'
+p110
+(dp111
+S'code'
+p112
+S'r"response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>For...t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)"'
+p113
+sS'layer'
+p114
+S"'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'"
+p115
+sS'global compile2'
+p116
+S'<function compile2>'
+p117
+sS'ccode'
+p118
+S'undefined'
+p119
+ssS'lnum'
+p120
+I184
+sS'lines'
+p121
+(dp122
+I179
+S''
+sI180
+S'    try:'
+p123
+sI181
+S'        if type(code) == types.CodeType:'
+p124
+sI182
+S'            ccode = code'
+p125
+sI183
+S'        else:'
+p126
+sI184
+S'            ccode = compile2(code,layer)'
+p127
+sI185
+S''
+sI186
+S'        exec ccode in environment'
+p128
+sI187
+S'    except HTTP:'
+p129
+sI188
+S'        raise'
+p130
+ssS'call'
+p131
+S'(code=r"response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>For...t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/tiago/ForCA/applications/ForCA/views/profs/list.html\')'
+p132
+sS'func'
+p133
+S'restricted'
+p134
+sa(dp135
+g108
+S'/home/tiago/ForCA/gluon/restricted.py'
+p136
+sg110
+(dp137
+S'builtincompile'
+p138
+S'<built-in function compile>'
+p139
+sS'code'
+p140
+S'r"response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>For...t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)"'
+p141
+sS'code.rstrip'
+p142
+S'<built-in method rstrip of str object>'
+p143
+sS').replace'
+p144
+g119
+sS'layer'
+p145
+S"'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'"
+p146
+ssg120
+I171
+sg121
+(dp147
+I166
+S''
+sI167
+S'def compile2(code,layer):'
+p148
+sI168
+S'    """'
+p149
+sI169
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p150
+sI170
+S'    """'
+p151
+sI171
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p152
+sI172
+S''
+sI173
+S"def restricted(code, environment={}, layer='Unknown'):"
+p153
+sI174
+S'    """'
+p154
+sI175
+S'    runs code in environment and returns the output. if an exception occurs'
+p155
+ssg131
+S'(code=r"response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>For...t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)", layer=\'/home/tiago/ForCA/applications/ForCA/views/profs/list.html\')'
+p156
+sg133
+S'compile2'
+p157
+sasS'pyver'
+p158
+S'Python 2.6.5: /usr/bin/python'
+p159
+sS'session'
+p160
+(dp161
+S'_formkey[login]'
+p162
+S"'c37e1159-ee83-48f0-9161-329dd06ebb70'"
+p163
+sS'auth'
+p164
+S'None'
+p165
+ssS'etype'
+p166
+S"<type 'exceptions.SyntaxError'>"
+p167
+sS'date'
+p168
+S'Thu Aug 26 21:47:56 2010'
+p169
+sS'response'
+p170
+(dp171
+S'status'
+p172
+S'200'
+p173
+sg70
+S'<cStringIO.StringO object>'
+p174
+sg85
+S"<SimpleCookie: session_id_ForCA='127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'>"
+p175
+sS'_vars'
+p176
+S"{'profs': <gluon.sql.Rows object>}"
+p177
+sS'title'
+p178
+S"'ForCA'"
+p179
+sS'session_file'
+p180
+S"<open file '/home/tiago/ForCA/applications/ForCA...be4d4c9-7fb7-40f6-b2c5-ca52a8130cae', mode 'rb+'>"
+p181
+sS'flash'
+p182
+S"''"
+p183
+sS'_custom_rollback'
+p184
+S'None'
+p185
+sS'session_id'
+p186
+S"'127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'"
+p187
+sS'headers'
+p188
+S"<Storage {'Expires': 'Fri, 27 Aug 2010 00:47:56 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p189
+sS'meta'
+p190
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p191
+sS'session_filename'
+p192
+S"'/home/tiago/ForCA/applications/ForCA/sessions/127-0-0-1-4be4d4c9-7fb7-40f6-b2c5-ca52a8130cae'"
+p193
+sS'postprocessing'
+p194
+S'[]'
+p195
+sS'menu'
+p196
+S"[(<lazyT 'Index'>, False, '/ForCA/default/index', []), (<lazyT 'Edit'>, False, '/admin/default/design/ForCA', [(<lazyT 'Controller'>, False, '/admin/default/edit/ForCA/controllers/profs.py'), (<lazyT 'View'>, False, '/admin/default/edit/ForCA/views/profs/list.html'), (<lazyT 'Layout'>, False, '/admin/default/edit/ForCA/views/layout.html'), (<lazyT 'Stylesheet'>, False, '/admin/default/edit/ForCA/static/base.css'), (<lazyT 'DB Model'>, False, '/admin/default/edit/ForCA/models/db.py'), (<lazyT 'Menu Model'>, False, '/admin/default/edit/ForCA/models/menu.py'), (<lazyT 'Database'>, False, '/ForCA/appadmin/index')])]"
+p197
+sS'_view_environment'
+p198
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p199
+sS'subtitle'
+p200
+S"<lazyT 'customize me!'>"
+p201
+sS'session_id_name'
+p202
+S"'session_id_ForCA'"
+p203
+sS'_custom_commit'
+p204
+S'None'
+p205
+sS'_caller'
+p206
+S'<function <lambda>>'
+p207
+sS'files'
+p208
+S'[]'
+p209
+sS'view'
+p210
+S"'profs/list.html'"
+p211
+ssS'locals'
+p212
+(dp213
+g3
+S"'/home/tiago/ForCA/applications/ForCA/views/profs/list.html'"
+p214
+sg5
+S'r"response.write(\'<html>\\n\\t<head>\\n\\t\\t<title>For...t</table>\\n\\t</body>\\n</html>\\n\\n\', escape=False)"'
+p215
+sssS'traceback'
+p216
+S'Traceback (most recent call last):\n  File "/home/tiago/ForCA/gluon/restricted.py", line 184, in restricted\n    ccode = compile2(code,layer)\n  File "/home/tiago/ForCA/gluon/restricted.py", line 171, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/tiago/ForCA/applications/ForCA/views/profs/list.html", line 8\n    response.write(prof.grade ou \'-\')\n                               ^\nSyntaxError: invalid syntax\n'
+p217
+s.

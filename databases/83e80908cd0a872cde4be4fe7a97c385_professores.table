@@ -7,20 +7,24 @@ sS'short_name'
 p4
 S'VARCHAR(32)'
 p5
-sS'email'
+sS'rating'
 p6
-S'VARCHAR(64) NOT NULL'
+S'INTEGER'
 p7
-sS'long_name'
+sS'email'
 p8
-S'VARCHAR(128) NOT NULL'
+S'VARCHAR(64) NOT NULL'
 p9
-sS'password'
+sS'long_name'
 p10
-S'VARCHAR(32)'
+S'VARCHAR(128) NOT NULL'
 p11
-sS'id'
+sS'password'
 p12
-S'SERIAL PRIMARY KEY'
+S'VARCHAR(32)'
 p13
+sS'id'
+p14
+S'SERIAL PRIMARY KEY'
+p15
 s.

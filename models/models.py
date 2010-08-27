@@ -22,6 +22,8 @@ db.define_table(
 		Field('short_name', 'string', length=32),
 		Field('long_name', 'string', length=128, required=True, notnull=True),
 		Field('password', 'string', length=32),
+		Field('rating', 'integer', length=1,
+			requires = IS_INT_IN_RANGE(1,5)),
 		Field('picture', 'upload'))
 
 #Tabela Avaliacoes

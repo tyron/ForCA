@@ -142,3 +142,5 @@ CREATE TABLE avaliacoes(
 success!
 timestamp: 2010-08-25T20:40:37.283112
 ALTER TABLE professores ADD picture VARCHAR(512);
+timestamp: 2010-08-26T21:46:02.774421
+ALTER TABLE professores ADD rating INTEGER;
