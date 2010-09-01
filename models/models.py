@@ -1,4 +1,4 @@
-db = DAL('postgres://forca:xx@localhost/forca')
+db = DAL('postgres://web2py:xx@localhost/web2py')
 
 #Tabela Alunos
 db.define_table(
