@@ -144,3 +144,50 @@ timestamp: 2010-08-25T20:40:37.283112
 ALTER TABLE professores ADD picture VARCHAR(512);
 timestamp: 2010-08-26T21:46:02.774421
 ALTER TABLE professores ADD rating INTEGER;
+timestamp: 2010-09-01T00:34:11.953522
+CREATE TABLE alunos(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL,
+    name VARCHAR(128),
+    password VARCHAR(32) NOT NULL
+);
+success!
+timestamp: 2010-09-01T00:35:17.678263
+CREATE TABLE disciplinas(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    code VARCHAR(8) NOT NULL
+);
+success!
+timestamp: 2010-09-01T00:35:17.761577
+CREATE TABLE professores(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL,
+    short_name VARCHAR(32),
+    long_name VARCHAR(128) NOT NULL,
+    password VARCHAR(32),
+    rating INTEGER,
+    picture VARCHAR(512)
+);
+success!
+timestamp: 2010-09-01T00:35:17.921075
+CREATE TABLE avaliacoes(
+    id SERIAL PRIMARY KEY,
+    aluno_id INTEGER REFERENCES alunos(id) ON DELETE CASCADE,
+    disciplina_id INTEGER REFERENCES disciplinas(id) ON DELETE CASCADE,
+    professor_id INTEGER REFERENCES professores(id) ON DELETE CASCADE,
+    year INTEGER,
+    semester INTEGER,
+    grade INTEGER NOT NULL,
+    geral_grade INTEGER,
+    geral_comment VARCHAR(2048),
+    didatica_grade INTEGER,
+    didatica_comment VARCHAR(2048),
+    dinamica_grade INTEGER,
+    dinamica_comment INTEGER,
+    avaliacao_grade INTEGER,
+    avaliacao_comment VARCHAR(2048),
+    disponibilidade_grade INTEGER,
+    disponibilidade_comment VARCHAR(2048)
+);
+success!
