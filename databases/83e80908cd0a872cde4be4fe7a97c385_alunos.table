@@ -1,18 +1,30 @@
 (dp1
-S'password'
+S'picture'
 p2
-S'VARCHAR(32) NOT NULL'
+S'VARCHAR(512)'
 p3
-sS'id'
+sS'short_name'
 p4
-S'SERIAL PRIMARY KEY'
+S'VARCHAR(32)'
 p5
-sS'name'
+sS'grade'
 p6
-S'VARCHAR(128)'
+S'INTEGER'
 p7
-sS'email'
+sS'id'
 p8
-S'VARCHAR(64) NOT NULL'
+S'SERIAL PRIMARY KEY'
 p9
+sS'full_name'
+p10
+S'VARCHAR(128) NOT NULL'
+p11
+sS'password'
+p12
+S'VARCHAR(32) NOT NULL'
+p13
+sS'email'
+p14
+S'VARCHAR(64) NOT NULL UNIQUE'
+p15
 s.

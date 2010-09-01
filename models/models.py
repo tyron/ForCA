@@ -12,14 +12,16 @@ db.define_table(
 		Field('password', 'password', length=32, required=True, notnull=True),
 		Field('grade', 'integer', length=1,
 			requires = IS_INT_IN_RANGE(1,5)),
-		Field('picture', 'upload'))
+		Field('picture', 'upload'),
+		migrate="alunos.migrate")
 
 #Tabela Disciplinas
 db.define_table(
 		'disciplinas',
 		Field('name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
-		Field('code', 'string', length=8, required=True, notnull=True, unique=True))
+		Field('code', 'string', length=8, required=True, notnull=True, unique=True),
+		migrate="disciplinas.migrate")
 
 #Tabela Professores
 db.define_table(
@@ -30,19 +32,11 @@ db.define_table(
 			requires = IS_EMAIL()),
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
-		Field('password', 'string', length=32),
+		Field('password', 'password', length=32),
 		Field('grade', 'integer', length=1,
 			requires = IS_INT_IN_RANGE(1,5)),
-		Field('picture', 'upload'))
-
-#Tabela Karma
-db.define_table(
-		'karma',
-		Field('aluno_id', db.alunos, required=True, notnull=True,
-			requires = IS_IN_DB(db, db.alunos.id, '')),
-		Field('avaliacao_id', db.avaliacoes, requires=True, notnull=True,
-			requires = IS_IN_DB(db, db.avaliacoes.id, '')),
-		Field('value', 'boolean'))
+		Field('picture', 'upload'),
+		migrate="professores.migrate")
 
 #Tabela Avaliacoes
 db.define_table(
@@ -63,5 +57,16 @@ db.define_table(
 			requires = IS_INT_IN_RANGE(1,5)),
 		Field('comment', 'string', length=4096),
 		Field('karma', 'integer', length=8, default='0'),
-		Field('reply', 'string', length=4096))
+		Field('reply', 'string', length=4096),
+		migrate="avaliacoes.migrate")
+
+#Tabela Karma
+db.define_table(
+		'karmas',
+		Field('aluno_id', db.alunos, required=True, notnull=True,
+			requires = IS_IN_DB(db, db.alunos.id, '')),
+		Field('avaliacao_id', db.avaliacoes, required=True, notnull=True,
+			requires = IS_IN_DB(db, db.avaliacoes.id, '')),
+		Field('value', 'boolean'),
+		migrate="karma.migrate")
 
