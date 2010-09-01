@@ -1,0 +1,42 @@
+(dp1
+S'comment'
+p2
+S'VARCHAR(4096)'
+p3
+sS'grade'
+p4
+S'INTEGER NOT NULL'
+p5
+sS'professor_id'
+p6
+S'INTEGER REFERENCES professores(id) ON DELETE CASCADE'
+p7
+sS'disciplina_id'
+p8
+S'INTEGER REFERENCES disciplinas(id) ON DELETE CASCADE'
+p9
+sS'semester'
+p10
+S'CHAR(1)'
+p11
+sS'karma'
+p12
+S'INTEGER'
+p13
+sS'year'
+p14
+S'INTEGER'
+p15
+sS'reply'
+p16
+S'VARCHAR(4096)'
+p17
+sS'id'
+p18
+S'SERIAL PRIMARY KEY'
+p19
+sS'aluno_id'
+p20
+S'INTEGER REFERENCES alunos(id) ON DELETE CASCADE'
+p21
+s.
