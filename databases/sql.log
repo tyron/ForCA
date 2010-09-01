@@ -522,3 +522,55 @@ CREATE TABLE karmas(
     value CHAR(1)
 );
 success!
+timestamp: 2010-09-01T11:03:22.383164
+CREATE TABLE alunos(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL UNIQUE,
+    full_name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    password VARCHAR(32) NOT NULL,
+    grade INTEGER,
+    picture VARCHAR(512)
+);
+success!
+timestamp: 2010-09-01T11:03:22.733184
+CREATE TABLE disciplinas(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    code VARCHAR(8) NOT NULL UNIQUE
+);
+success!
+timestamp: 2010-09-01T11:03:22.758807
+CREATE TABLE professores(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL UNIQUE,
+    full_name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    password VARCHAR(32),
+    grade INTEGER,
+    picture VARCHAR(512)
+);
+success!
+timestamp: 2010-09-01T11:03:22.772210
+CREATE TABLE avaliacoes(
+    id SERIAL PRIMARY KEY,
+    aluno_id INTEGER REFERENCES alunos(id) ON DELETE CASCADE,
+    disciplina_id INTEGER REFERENCES disciplinas(id) ON DELETE CASCADE,
+    professor_id INTEGER REFERENCES professores(id) ON DELETE CASCADE,
+    year INTEGER,
+    semester CHAR(1),
+    grade INTEGER NOT NULL,
+    comment VARCHAR(4096),
+    karma INTEGER,
+    reply VARCHAR(4096)
+);
+success!
+timestamp: 2010-09-01T11:03:22.851803
+CREATE TABLE karmas(
+    id SERIAL PRIMARY KEY,
+    aluno_id INTEGER REFERENCES alunos(id) ON DELETE CASCADE,
+    avaliacao_id INTEGER REFERENCES avaliacoes(id) ON DELETE CASCADE,
+    value CHAR(1)
+);
+success!
