@@ -144,6 +144,7 @@ timestamp: 2010-08-25T20:40:37.283112
 ALTER TABLE professores ADD picture VARCHAR(512);
 timestamp: 2010-08-26T21:46:02.774421
 ALTER TABLE professores ADD rating INTEGER;
+<<<<<<< HEAD
 timestamp: 2010-09-01T00:34:11.953522
 CREATE TABLE alunos(
     id SERIAL PRIMARY KEY,
@@ -171,12 +172,109 @@ CREATE TABLE professores(
 );
 success!
 timestamp: 2010-09-01T00:35:17.921075
+=======
+timestamp: 2010-08-31T23:16:34.590530
+ALTER TABLE alunos ADD picture VARCHAR(512);
+timestamp: 2010-08-31T23:16:34.792376
+ALTER TABLE alunos ADD short_name VARCHAR(32);
+timestamp: 2010-08-31T23:16:34.793844
+ALTER TABLE alunos ADD grade INTEGER;
+timestamp: 2010-08-31T23:16:34.794735
+ALTER TABLE alunos ADD full_name VARCHAR(128) NOT NULL;
+timestamp: 2010-08-31T23:16:34.795627
+ALTER TABLE alunos ADD email__tmp VARCHAR(64) NOT NULL UNIQUE;
+UPDATE alunos SET email__tmp=email;
+ALTER TABLE alunos DROP COLUMN email;
+ALTER TABLE alunos ADD email VARCHAR(64) NOT NULL UNIQUE;
+UPDATE alunos SET email=email__tmp;
+ALTER TABLE alunos DROP COLUMN email__tmp;
+timestamp: 2010-08-31T23:16:34.960503
+ALTER TABLE alunos DROP COLUMN name;
+timestamp: 2010-08-31T23:16:34.972724
+ALTER TABLE disciplinas ADD code__tmp VARCHAR(8) NOT NULL UNIQUE;
+UPDATE disciplinas SET code__tmp=code;
+ALTER TABLE disciplinas DROP COLUMN code;
+ALTER TABLE disciplinas ADD code VARCHAR(8) NOT NULL UNIQUE;
+UPDATE disciplinas SET code=code__tmp;
+ALTER TABLE disciplinas DROP COLUMN code__tmp;
+timestamp: 2010-08-31T23:16:35.116880
+ALTER TABLE disciplinas ADD short_name VARCHAR(32);
+timestamp: 2010-08-31T23:16:35.119817
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:16:35.120857
+ALTER TABLE professores ADD full_name VARCHAR(128) NOT NULL;
+timestamp: 2010-08-31T23:24:12.293478
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:24:44.693196
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:42:53.763907
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:43:24.711033
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:44:29.776152
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:46:00.824976
+ALTER TABLE professores ADD full_name VARCHAR(128) NOT NULL;
+timestamp: 2010-08-31T23:48:21.604571
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:48:34.279989
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:51:01.509909
+CREATE TABLE professoress(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL UNIQUE,
+    full_name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    password VARCHAR(32),
+    grade INTEGER,
+    picture VARCHAR(512)
+);
+success!
+timestamp: 2010-08-31T23:51:52.410032
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:53:17.432655
+ALTER TABLE professores ADD grade INTEGER;
+timestamp: 2010-08-31T23:58:31.642122
+CREATE TABLE professores(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL UNIQUE,
+    full_name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    password VARCHAR(32),
+    grade INTEGER,
+    picture VARCHAR(512)
+);
+success!
+timestamp: 2010-08-31T23:58:31.834049
+ALTER TABLE avaliacoes ADD comment VARCHAR(4096);
+timestamp: 2010-08-31T23:59:45.093071
+CREATE TABLE alunos(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(64) NOT NULL UNIQUE,
+    full_name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    password VARCHAR(32) NOT NULL,
+    grade INTEGER,
+    picture VARCHAR(512)
+);
+success!
+timestamp: 2010-08-31T23:59:45.271359
+CREATE TABLE disciplinas(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    short_name VARCHAR(32),
+    code VARCHAR(8) NOT NULL UNIQUE
+);
+success!
+timestamp: 2010-08-31T23:59:45.418855
+>>>>>>> 20cdeaa28fd2b5d916b4dbfb6967adcb03198501
 CREATE TABLE avaliacoes(
     id SERIAL PRIMARY KEY,
     aluno_id INTEGER REFERENCES alunos(id) ON DELETE CASCADE,
     disciplina_id INTEGER REFERENCES disciplinas(id) ON DELETE CASCADE,
     professor_id INTEGER REFERENCES professores(id) ON DELETE CASCADE,
     year INTEGER,
+<<<<<<< HEAD
     semester INTEGER,
     grade INTEGER NOT NULL,
     geral_grade INTEGER,
@@ -189,5 +287,20 @@ CREATE TABLE avaliacoes(
     avaliacao_comment VARCHAR(2048),
     disponibilidade_grade INTEGER,
     disponibilidade_comment VARCHAR(2048)
+=======
+    semester CHAR(1),
+    grade INTEGER NOT NULL,
+    comment VARCHAR(4096),
+    karma INTEGER,
+    reply VARCHAR(4096)
+);
+success!
+timestamp: 2010-09-01T00:00:23.380128
+CREATE TABLE karmas(
+    id SERIAL PRIMARY KEY,
+    aluno_id INTEGER REFERENCES alunos(id) ON DELETE CASCADE,
+    avaliacao_id INTEGER REFERENCES avaliacoes(id) ON DELETE CASCADE,
+    value CHAR(1)
+>>>>>>> 20cdeaa28fd2b5d916b4dbfb6967adcb03198501
 );
 success!

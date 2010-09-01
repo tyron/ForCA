@@ -1,14 +1,18 @@
 (dp1
 S'code'
 p2
-S'VARCHAR(8) NOT NULL'
+S'VARCHAR(8) NOT NULL UNIQUE'
 p3
 sS'id'
 p4
 S'SERIAL PRIMARY KEY'
 p5
-sS'name'
+sS'short_name'
 p6
-S'VARCHAR(128) NOT NULL'
+S'VARCHAR(32)'
 p7
+sS'name'
+p8
+S'VARCHAR(128) NOT NULL'
+p9
 s.

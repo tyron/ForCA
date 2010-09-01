@@ -8,12 +8,14 @@
 				<th>Foto</th>
 				<th>Nome</th>
 				<th>Rating</th>
+				<th>E-mail</th>
 			</tr>
 			{{for prof in profs:}}
 			<tr>
 				<td><img width="50px" src="{{=URL('download', args=prof.picture)}}"></td>
 				<td>{{=prof.long_name}}</td>
 				<td>{{=prof.rating or '-'}}</td>
+				<td>{{=prof.email}}</td>
 			</tr>
 			{{pass}}
 		</table>
