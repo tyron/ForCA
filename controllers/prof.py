@@ -4,7 +4,7 @@ def list():
 	'''
 	Exibe a lista de professores
 	'''
-	return dict(profs=db().select(db.professores.ALL).sort(lambda profs: profs.long_name))
+	return dict(profs=db().select(db.professores.ALL).sort(lambda profs: profs.full_name))
 
 def download():
     """
