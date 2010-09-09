@@ -73,10 +73,13 @@ db.define_table(
 		migrate='karmas.table')
 
 #Tabelas de cadastro e login de usuarios
+
+auth = Auth(globals(), db)
+
 db.define_table(
 		auth.settings.table_user_name,
-		Field('first_name', length=128, default=''),
-		Field('last_name', length=128, default=''),
+		Field('first_name', length=128, default='', label="Nome completo"),
+		Field('last_name', length=128, default='', label="Nome para exibição"),
 		Field('email', length=128, default='', unique=True),
 		Field('password', 'password', length=512,
 			readable=False, label='Senha'),
@@ -100,7 +103,6 @@ forca_auth.email.requires = \
 
 #auth settings
 auth.settings.table_user = forca_auth
-auth.settings.mailer = mail
 auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 
@@ -112,6 +114,7 @@ mail = Mail(globals())
 mail.settings.server = 'logging'
 mail.settings.sender = 'forcaufrgs@gmail.com'
 mail.settings.login = 'forcaufrgs@gmail.com:f0rc4!@#'
+auth.settings.mailer = mail
 
 #mensagens do auth
 auth.messages.submit_button = 'Enviar'
