@@ -13,8 +13,8 @@
 			{{for prof in profs:}}
 			<tr>
 				<td><img width="50px" src="{{=URL('download', args=prof.picture)}}"></td>
-				<td>{{=prof.long_name}}</td>
-				<td>{{=prof.rating or '-'}}</td>
+				<td>{{=prof.full_name}}</td>
+				<td>{{=prof.grade or '-'}}</td>
 				<td>{{=prof.email}}</td>
 			</tr>
 			{{pass}}
