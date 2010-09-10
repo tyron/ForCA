@@ -39,6 +39,16 @@ auth.settings.create_user_groups = False
 
 auth.define_tables()
 
+#definicao de categoria por email
+def is_professor(form):
+	email = form.vars.email
+	if len(db(db.professores.email==email).select()) > 0:
+		auth.add_membership(2,int(form.vars.id))
+	else:
+		auth.add_membership(1,int(form.vars.id))
+
+auth.settings.register_onaccept.append(is_professor)
+
 #definicao das configuracoes de e-mail
 mail = Mail(globals())
 #mail.settings.server = 'smtp.gmail.com:465'
