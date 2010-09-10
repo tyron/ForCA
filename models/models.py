@@ -1,5 +1,3 @@
-from gluon.tools import Mail, Auth
-
 db = DAL('postgres://forca:xx@localhost/forca')
 
 #Tabela Alunos
