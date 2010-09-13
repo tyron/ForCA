@@ -10,7 +10,7 @@ db.define_table(
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
 		Field('password', 'password', length=32, required=True, notnull=True),
-		Field('grade', 'integer', length=1,
+		Field('grade', 'integer', length=1, writable=False, readable=False,
 			requires = IS_INT_IN_RANGE(1,5)),
 		Field('picture', 'upload'),
 		migrate='alunos.table')
@@ -33,7 +33,7 @@ db.define_table(
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
 		Field('password', 'password', length=32),
-		Field('grade', 'integer', length=1,
+		Field('grade', 'integer', length=1, writable=False, readable=False,
 			requires = IS_INT_IN_RANGE(1,5)),
 		Field('picture', 'upload'),
 		migrate='professores.table')
@@ -42,8 +42,7 @@ db.define_table(
 db.define_table(
 		'avaliacoes',
 		Field('aluno_id', db.alunos, required=True, notnull=True,
-			writable = False, readable = False,
-			requires = IS_IN_DB(db, db.alunos.id, '')),
+			writable = False, readable = False),
 		Field('disciplina_id', db.disciplinas, required=True, notnull=True,
 			writable = False, readable = False,
 			requires = IS_IN_DB(db, db.disciplinas.id, '')),
@@ -55,10 +54,20 @@ db.define_table(
 		Field('semester', 'boolean'),
 		Field('grade', 'integer', length=1, required=True, notnull=True,
 			requires = IS_INT_IN_RANGE(1,5)),
-		Field('comment', 'string', length=4096),
-		Field('karma', 'integer', length=8, default='0'),
-		Field('reply', 'string', length=4096),
+		Field('comment', 'text'),
+		Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
+		Field('reply', 'text', writable=False, readable=False),
 		migrate='avaliacoes.table')
+
+db.avaliacoes.aluno_id.requires = [
+	IS_IN_DB(db, db.alunos.id, '',
+		error_message = 'Aluno não cadastrado em nossa base de dados'),
+	IS_NOT_IN_DB(db(
+		(db.avaliacoes.disciplina_id == request.vars.disciplina_id) &
+		(db.avaliacoes.professor_id == request.vars.professor_id)),
+	'avaliacoes.aluno_id',
+	error_message = 'Você já postou uma avaliação para este professor nesta disciplina')
+	]
 
 #Tabela Karma
 db.define_table(
