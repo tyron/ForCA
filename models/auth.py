@@ -14,7 +14,7 @@ db.define_table(
 			readable=False, label='Senha'),
 		Field('registration_key', length=512,
 			writable=False, readable=False, default=''),
-		Field('reset_password_pkey', length=512,
+		Field('reset_password_key', length=512,
 			writable=False, readable=False, default=''),
 		Field('registration_id', length=512,
 			writable=False, readable=False, default=''))
@@ -39,23 +39,36 @@ auth.settings.create_user_groups = False
 
 auth.define_tables()
 
+#criacao dos roles padrao
+aluno_group_id = auth.add_group('Aluno', 'Aluno do Instituto de Informática')
+prof_group_id = auth.add_group('Professor', 'Professor do Instituto de Informática')
+admin_group_id = auth.add_group('Admin', 'Administrador do sistema')
+
 #definicao de categoria por email
 def is_professor(form):
 	email = form.vars.email
 	if len(db(db.professores.email==email).select()) > 0:
-		auth.add_membership(2,int(form.vars.id))
+		auth.add_membership(prof_group_id,int(form.vars.id))
 	else:
-		auth.add_membership(1,int(form.vars.id))
+		auth.add_membership(aluno_group_id,int(form.vars.id))
 
 auth.settings.register_onaccept.append(is_professor)
 
 #definicao das configuracoes de e-mail
 mail = Mail(globals())
-#mail.settings.server = 'smtp.gmail.com:465'
-mail.settings.server = 'logging'
+mail.settings.server = 'smtp.gmail.com:587'
+#mail.settings.server = 'logging'
+mail.settings.login = None or 'forcaufrgs@gmail.com:f0rc4!@#'
 mail.settings.sender = 'forcaufrgs@gmail.com'
-mail.settings.login = 'forcaufrgs@gmail.com:f0rc4!@#'
 auth.settings.mailer = mail
+auth.messages.verify_email = 'Clique no link http://' + \
+		request.env.http_host + \
+		URL(r=request,f='user',args=['verify_email']) + \
+		'/%(key)s para confirmar seu cadastro.'
+auth.messages.reset_password = 'Clique no link http://' + \
+		request.env.http_host + \
+		URL(r=request,f='user',args=['reset_password']) + \
+		'/%(key)s para redefinir sua senha.'
 
 #mensagens do auth
 auth.messages.submit_button = 'Enviar'
@@ -82,8 +95,8 @@ auth.messages.new_password_sent = 'Uma nova senha foi enviada para o seu e-mail'
 auth.messages.password_changed = 'A senha foi trocada'
 auth.messages.retrieve_password = 'Sua senha é: %(password)s'
 auth.messages.retrieve_password_subject = 'Recuperação de senha'
-auth.messages.reset_password_subject = 'Password reset'
-auth.messages.invalid_reset_password = 'Invalid reset password'
+auth.messages.reset_password_subject = 'ForCA - Redefinição de senha'
+auth.messages.invalid_reset_password = 'Redefinição de senha inválida'
 auth.messages.profile_updated = 'Profile updated'
 auth.messages.new_password = 'New password'
 auth.messages.old_password = 'Old password'
