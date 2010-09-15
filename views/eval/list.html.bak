@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>ForCA - Avaliações</title>
+    </head>
+    
+    <style type="text/css">
+        .tabela{border-style: solid; border-width: 3px; border-color: #000000; background-color: #7CFC00; font-family: verdana, arial; font-size: 10pt;} 
+    </style>
+    
+    <body>
+        {{for eval in evals:}}
+           <table width="400" class="tabela"}}>
+              <tr>
+                 <th align="left">Professor - Disciplina:   </th>
+                 <td>{{=eval.professores.full_name}} - {{=eval.disciplinas.short_name}}</td>
+              </tr>
+                 <th align="left">Aluno:   </th>
+                 <td>{{=eval.alunos.full_name}}</td>
+              </tr>
+                 <th align="left">Nota:   </th>
+                 <td>{{=eval.avaliacoes.grade}}</td>
+              </tr>
+                 <th align="left">Comentário:   </th>
+                 <td>{{=eval.avaliacoes.comment}}</td>
+              </tr>
+                 <th align="left">Resposta do professor:   </th>
+                 <td>{{=eval.avaliacoes.reply or '-'}}</td>
+              </tr>
+           </table>
+           <br><br>
+        {{pass}}
+    </body>
+</html>
