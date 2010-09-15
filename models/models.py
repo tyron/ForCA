@@ -3,13 +3,11 @@ db = DAL('postgres://forca:xx@localhost/forca')
 #Tabela Alunos
 db.define_table(
 		'alunos',
-		#Field('auth_user_id', db.auth_user,
-		#	requires = IS_IN_DB(db, db.auth_user.id, '')),
+		Field('user_id', 'integer', length=32),
 		Field('email', 'string', length=64, required=True, notnull=True, unique=True,
 			requires = IS_EMAIL()),
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
-		Field('password', 'password', length=32, required=True, notnull=True),
 		Field('grade', 'integer', length=1, writable=False, readable=False,
 			requires = IS_INT_IN_RANGE(1,5)),
 		Field('picture', 'upload'),
@@ -26,13 +24,11 @@ db.define_table(
 #Tabela Professores
 db.define_table(
 		'professores',
-		#Field('auth_user_id', db.auth_user,
-		#	requires = IS_IN_DB(db, db.auth_user.id, '')),
+		Field('user_id', 'integer', length=32),
 		Field('email', 'string', length=64, required=True, notnull=True, unique=True,
 			requires = IS_EMAIL()),
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
-		Field('password', 'password', length=32),
 		Field('grade', 'integer', length=1, writable=False, readable=False,
 			requires = IS_INT_IN_RANGE(1,5)),
 		Field('picture', 'upload'),

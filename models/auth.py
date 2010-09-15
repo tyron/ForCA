@@ -39,25 +39,28 @@ auth.settings.create_user_groups = False
 
 auth.define_tables()
 
-#criacao dos roles padrao
-aluno_group_id = auth.add_group('Aluno', 'Aluno do Instituto de Informática')
-prof_group_id = auth.add_group('Professor', 'Professor do Instituto de Informática')
-admin_group_id = auth.add_group('Admin', 'Administrador do sistema')
+if not auth.id_group('Aluno'):
+	auth.add_group('Aluno', 'Aluno do Instituto de Informática')
+if not auth.id_group('Professor'):
+	auth.add_group('Professor', 'Professor do Instituto de Informática')
+if not auth.id_group('Admin'):
+	auth.add_group('Admin', 'Administrador do sistema')
 
 #definicao de categoria por email
 def is_professor(form):
 	email = form.vars.email
 	if len(db(db.professores.email==email).select()) > 0:
-		auth.add_membership(prof_group_id,int(form.vars.id))
+		auth.add_membership(auth.id_group('Professor'), int(form.vars.id))
+		prof_create(form.vars)
 	else:
-		auth.add_membership(aluno_group_id,int(form.vars.id))
+		auth.add_membership(auth.id_group('Aluno'), int(form.vars.id))
 
 auth.settings.register_onaccept.append(is_professor)
 
 #definicao das configuracoes de e-mail
 mail = Mail(globals())
-mail.settings.server = 'smtp.gmail.com:587'
-#mail.settings.server = 'logging'
+#mail.settings.server = 'smtp.gmail.com:587'
+mail.settings.server = 'logging'
 mail.settings.login = None or 'forcaufrgs@gmail.com:f0rc4!@#'
 mail.settings.sender = 'forcaufrgs@gmail.com'
 auth.settings.mailer = mail
