@@ -8,10 +8,12 @@
 ## - call exposes all registered services (none by default)
 #########################################################################  
 
+@auth.requires_login()
 def index():
     """
     """
-    return dict(form=auth())
+    redirect(URL('profile','home'))
+    return dict()
 
 
 def user():
