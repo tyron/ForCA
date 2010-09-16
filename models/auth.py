@@ -54,6 +54,7 @@ def is_professor(form):
 		prof_create(form.vars)
 	else:
 		auth.add_membership(auth.id_group('Aluno'), int(form.vars.id))
+		aluno_create(form.vars)
 
 auth.settings.register_onaccept.append(is_professor)
 

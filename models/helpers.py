@@ -1,6 +1,6 @@
 def prof_create(data):
 	'''
-	Insere um registro na tabela 'professores'
+	Adiciona o user_id ao campo da tabela 'professores'
 	'''
 	db(db.professores.email==data.email).update(
 			user_id    = data.id

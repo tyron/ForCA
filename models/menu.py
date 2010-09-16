@@ -16,8 +16,9 @@ response.meta.keywords = 'bla bla bla'
 ##########################################
 
 response.menu = [
-    (T('Início'), False, URL(request.application,'default','index'), []),
-    (T('Minha página'), False, URL(request.application,'profile','home'), [])
+    (T('Início'),      False, URL(request.application,'default','index'), []),
+		(T('Professores'), False, URL(request.application,'prof','list'),     []),
+		(T('Disciplinas'), False, URL(request.application,'disc','list'),     [])
     ]
 
 ##########################################

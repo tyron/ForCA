@@ -1,3 +1,6 @@
 {{extend 'layout.html'}}
-Olá, {{=session.auth.user.last_name}}!
+<h1>Olá, {{=name}}!</h1>
+<ul>
+	<li><h3>Você já postou {{=len(evals)}} {{=('avaliação' if len(evals) == 1 else 'avaliações')}}.</h3></li>
+</ul>
 {{pass}}
