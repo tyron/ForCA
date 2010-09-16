@@ -5,7 +5,7 @@
 #########################################################################
 
 response.title = request.application
-response.subtitle = T('customize me!')
+response.subtitle = T('Fórum Colaborativo de Avaliação')
 response.meta.author = 'you'
 response.meta.description = 'describe your app'
 response.meta.keywords = 'bla bla bla'
