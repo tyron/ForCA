@@ -1,6 +1,10 @@
 from gluon.tools import Auth, Mail
 
-db = DAL('postgres://forca:xx@localhost/forca')
+if request.env.web2py_runtime_gae:
+	db = DAL('gae')
+	session.connect(request, response, db)
+else:
+	db = DAL('postgres://forca:xx@localhost/forca')
 
 #Tabelas de cadastro e login de usuarios
 auth = Auth(globals(), db)

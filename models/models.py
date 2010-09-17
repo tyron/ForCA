@@ -1,4 +1,8 @@
-db = DAL('postgres://forca:xx@localhost/forca')
+if request.env.web2py_runtime_gae:
+	db = DAL('gae')
+	session.connect(request, response, db)
+else:
+	db = DAL('postgres://forca:xx@localhost/forca')
 
 #Tabela Alunos
 db.define_table(
