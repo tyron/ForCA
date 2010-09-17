@@ -1,24 +1,21 @@
-<html>
-	<head>
-		<title>ForCA - Lista de professores</title>
-	</head>
-	<body>
-		<table>
-			<tr>
-				<th>Foto</th>
-				<th>Nome</th>
-				<th>Rating</th>
-				<th>E-mail</th>
-			</tr>
-			{{for prof in profs:}}
-			<tr>
-				<td><img width="50px" src="{{=URL('download', args=prof.picture)}}"></td>
-				<td>{{=prof.full_name}}</td>
-				<td>{{=prof.grade or '-'}}</td>
-				<td>{{=prof.email}}</td>
-			</tr>
-			{{pass}}
-		</table>
-	</body>
-</html>
+{{extend 'layout.html'}}
+<table>
+	<tr>
+		<th>Foto</th>
+		<th>Nome</th>
+		<th>Rating</th>
+	</tr>
+	{{for prof in profs:}}
+	<tr>
+		<td>
+			{{=A(IMG(_width='50px', _src=URL('download', args=prof.picture)), 
+			_href=URL('home', vars=dict(id=prof.id)))}}
+		</td>
+		<td>{{=A(prof.full_name, _href=URL('home', vars=dict(id=prof.id)))}}</td>
+		<td>
+			{{=prof.grade or '-'}}
+		</td>
+	</tr>
+	{{pass}}
+</table>
 

@@ -1,6 +1,6 @@
 def prof_create(data):
 	'''
-	Insere um registro na tabela 'professores'
+	Adiciona o user_id ao campo da tabela 'professores'
 	'''
 	db(db.professores.email==data.email).update(
 			user_id    = data.id
@@ -19,3 +19,10 @@ def aluno_create(data):
 	)
 	db.commit()
 
+def get_aluno_id():
+	'''
+	Retorna o aluno_id do usuario logado
+	'''
+	user_id = session.auth.user.id
+	aluno_id = db(db.alunos.user_id == user_id).select().first().id
+	return aluno_id

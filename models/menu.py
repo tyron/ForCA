@@ -5,7 +5,7 @@
 #########################################################################
 
 response.title = request.application
-response.subtitle = T('customize me!')
+response.subtitle = T('Fórum Colaborativo de Avaliação')
 response.meta.author = 'you'
 response.meta.description = 'describe your app'
 response.meta.keywords = 'bla bla bla'
@@ -16,7 +16,9 @@ response.meta.keywords = 'bla bla bla'
 ##########################################
 
 response.menu = [
-    (T('Index'), False, URL(request.application,'default','index'), [])
+    (T('Início'),      False, URL(request.application,'default','index'), []),
+		(T('Professores'), False, URL(request.application,'prof','list'),     []),
+		(T('Disciplinas'), False, URL(request.application,'disc','list'),     [])
     ]
 
 ##########################################
