@@ -5,7 +5,7 @@ def index():
 	profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
 	return dict(profs=profs)	
 
-def aval_add():
+def create():
 	form_add=SQLFORM(db.avaliacoes, _action="aval_list")
 	if form_add.accepts(request.vars, session):
 		response.flash = 'Avaliação realizada com sucesso'
@@ -14,12 +14,12 @@ def aval_add():
 	form_add.aluno_id = request.vars['id']
 	return dict(form_add=form_add)
 
-def aval_list():
+def eval_list():
 	avals = db(db.avaliacoes.id==request.args(0)).select()
 	prof = db(db.professores.id==request.args(0)).select().first()
 	return dict(avals=avals, prof=prof)
 
-def aval_up():
+def update():
 	record = db.avaliacoes(request.args(0)) 
 	form_up=SQLFORM(db.avaliacoes, request.args(0), deletable=True)
 	if form_up.accepts(request.vars, session):
