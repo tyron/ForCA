@@ -8,11 +8,12 @@ def list():
 
 def home():
 	'''
-	bla
+	Perfil do professor
 	'''
-	prof_id = request.vars['id']
+	prof_id = request.vars['prof_id']
 	aluno_id = get_aluno_id()
-	return dict(prof_id = prof_id, aluno_id = aluno_id)
+	prof_name = db(db.professores.id==prof_id).select().first().full_name
+	return dict(prof_id = prof_id, aluno_id = aluno_id, prof_name=prof_name)
 
 def download():
     """

@@ -6,17 +6,24 @@ def index():
 	return dict(profs=profs)	
 
 def create():
-	form_add=SQLFORM(db.avaliacoes, _action="aval_list")
+	'''
+	Função cria uma avaliação para um determinado professor.
+	'''
+
+	form_add=SQLFORM(db.avaliacoes, fields=['disciplina_id','year','semester','grade','comment'], labels={'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '})
+	form_add.vars.professor_id = request.vars['prof_id']
+	form_add.vars.aluno_id = get_aluno_id()
+
 	if form_add.accepts(request.vars, session):
-		response.flash = 'Avaliação realizada com sucesso'
+		session.flash = 'Avaliação realizada com sucesso'
+		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
 	else:
-		response.flash = 'Por favor, preencha a sua avaliação'
-	form_add.aluno_id = request.vars['id']
+		response.flash = 'Por favor, preencha a sua avaliação'	
 	return dict(form_add=form_add)
 
-def eval_list():
+def eval_list(prof_id):
 	avals = db(db.avaliacoes.id==request.args(0)).select()
-	prof = db(db.professores.id==request.args(0)).select().first()
+	#prof = db(db.professores.id==request.args(0)).select().first()
 	return dict(avals=avals, prof=prof)
 
 def update():

@@ -1,3 +1,5 @@
 {{extend 'layout.html'}}
+<h2>{{=prof_name}}</h2>
+
 {{=A('Adicionar Avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof_id)))}}
 
