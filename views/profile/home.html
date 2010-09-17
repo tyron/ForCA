@@ -1,6 +1,10 @@
 {{extend 'layout.html'}}
+sd
 <h1>Olá, {{=name}}!</h1>
 <ul>
+	{{if len(evals) > 0:}}
 	<li><h3>Você já postou {{=len(evals)}} {{=('avaliação' if len(evals) == 1 else 'avaliações')}}.</h3></li>
+	{{else:}}
+	<li><h3>Você ainda não postou nenhuma avaliação.</h3></li>
 </ul>
 {{pass}}
