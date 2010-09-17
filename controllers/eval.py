@@ -11,6 +11,7 @@ def aval_add():
 		response.flash = 'Avaliação realizada com sucesso'
 	else:
 		response.flash = 'Por favor, preencha a sua avaliação'
+	form_add.aluno_id = request.vars['id']
 	return dict(form_add=form_add)
 
 def aval_list():
