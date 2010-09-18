@@ -9,7 +9,7 @@ def create():
 	'''
 	Função cria uma avaliação para um determinado professor.
 	'''
-
+#
 	form_add=SQLFORM(db.avaliacoes, fields=['disciplina_id','year','semester','grade','comment'], labels={'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '})
 	form_add.vars.professor_id = request.vars['prof_id']
 	form_add.vars.aluno_id = get_aluno_id()
