@@ -13,7 +13,9 @@ def home():
 	prof_id = request.vars['prof_id']
 	aluno_id = get_aluno_id()
 	prof_name = db(db.professores.id==prof_id).select().first().full_name
-	return dict(prof_id = prof_id, aluno_id = aluno_id, prof_name=prof_name)
+	avals = db(db.avaliacoes.professor_id==prof_id).select()
+	discs = db().select(db.disciplinas.ALL)
+	return dict(prof_id = prof_id, aluno_id = aluno_id, prof_name=prof_name, avals = avals, discs = discs)
 
 def download():
     """
