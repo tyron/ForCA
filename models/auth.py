@@ -43,12 +43,12 @@ auth.settings.create_user_groups = False
 
 auth.define_tables()
 
-if not auth.id_group('Aluno'):
-	auth.add_group('Aluno', 'Aluno do Instituto de Informática')
-if not auth.id_group('Professor'):
-	auth.add_group('Professor', 'Professor do Instituto de Informática')
-if not auth.id_group('Admin'):
-	auth.add_group('Admin', 'Administrador do sistema')
+#if not auth.id_group('Aluno'):
+#	auth.add_group('Aluno', 'Aluno do Instituto de Informática')
+#if not auth.id_group('Professor'):
+#	auth.add_group('Professor', 'Professor do Instituto de Informática')
+#if not auth.id_group('Admin'):
+#	auth.add_group('Admin', 'Administrador do sistema')
 
 #definicao de categoria por email
 def is_professor(form):

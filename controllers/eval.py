@@ -9,11 +9,14 @@ def create():
 	'''
 	Função cria uma avaliação para um determinado professor.
 	'''
-	form_add=SQLFORM(db.avaliacoes, fields=['disciplina_id','year','semester','grade','comment'], labels={'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '})
+	form_add=SQLFORM(db.avaliacoes,
+			fields = ['disciplina_id','year','semester','grade','comment'], 
+			labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '},
+			hidden = dict(aluno_id=get_aluno_id(), professor_id=request.vars['prof_id']))
 	form_add.vars.professor_id = request.vars['prof_id']
 	form_add.vars.aluno_id = get_aluno_id()
 
-	if form_add.accepts(request.vars, session):
+	if form_add.accepts(request.vars, session, onvalidation=check_unique_eval):
 		session.flash = 'Avaliação realizada com sucesso'
 		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
 	else:
@@ -25,7 +28,9 @@ def update():
 	Função faz update de registro já existente
 	'''
 	record = db.avaliacoes(request.vars['aval_id']) 
-	form_up=SQLFORM(db.avaliacoes, record, fields=['year','semester','grade','comment'], labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
+	form_up=SQLFORM(db.avaliacoes, record, 
+			fields=['year','semester','grade','comment'], 
+			labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
 	form_up.vars.disciplina_id=request.vars['aval_id']
 
 	if form_up.accepts(request.vars, session):

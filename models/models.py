@@ -1,3 +1,5 @@
+from datetime import datetime
+
 if request.env.web2py_runtime_gae:
 	db = DAL('gae')
 	session.connect(request, response, db)
@@ -12,8 +14,8 @@ db.define_table(
 			requires = IS_EMAIL()),
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
-		Field('grade', 'integer', length=1, writable=False, readable=False,
-			requires = IS_INT_IN_RANGE(1,5)),
+		Field('grade', 'string', length=1, writable=False, readable=False,
+			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'])),
 		Field('picture', 'upload'),
 		migrate='alunos.table')
 
@@ -33,8 +35,8 @@ db.define_table(
 			requires = IS_EMAIL()),
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
-		Field('grade', 'integer', length=1, writable=False, readable=False,
-			requires = IS_INT_IN_RANGE(1,5)),
+		Field('grade', 'string', length=2, writable=False, readable=False,
+			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=False)),
 		Field('picture', 'upload'),
 		migrate='professores.table')
 
@@ -49,18 +51,19 @@ db.define_table(
 		Field('professor_id', db.professores, required=True, notnull=True,
 			readable = False,
 			requires = IS_IN_DB(db, db.professores.id, '%(full_name)s')),
-		Field('year', 'integer', length=4,
-			requires = IS_INT_IN_RANGE(1970,9999)),
-		Field('semester', 'boolean'),
-		Field('grade', 'integer', length=1, required=True, notnull=True,
-			requires = IS_INT_IN_RANGE(1,5)),
+		Field('year', 'integer', length=4, default=datetime.now().year, 
+			requires = IS_IN_SET(range(1990, datetime.now().year), zero=False)),
+		Field('semester', 'integer', length=1,
+			requires = IS_IN_SET(['1', '2'], zero=False)),
+		Field('grade', 'string', length=1, writable=False, readable=False, default='A',
+			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'])),
 		Field('comment', 'text'),
 		Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
 		Field('reply', 'text', writable=False, readable=False),
 		migrate='avaliacoes.table')
 
 db.avaliacoes.aluno_id.requires = [
-	IS_IN_DB(db, db.alunos.id, '',
+	IS_IN_DB(db, db.alunos.id, '%(full_name)s',
 		error_message = 'Aluno não cadastrado em nossa base de dados'),
 	IS_NOT_IN_DB(db(
 		(db.avaliacoes.disciplina_id == request.vars.disciplina_id) &
