@@ -36,7 +36,7 @@ db.define_table(
 		Field('full_name', 'string', length=128, required=True, notnull=True),
 		Field('short_name', 'string', length=32),
 		Field('grade', 'string', length=2, writable=False, readable=False,
-			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=False)),
+			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
 		Field('picture', 'upload'),
 		migrate='professores.table')
 
@@ -52,11 +52,11 @@ db.define_table(
 			readable = False,
 			requires = IS_IN_DB(db, db.professores.id, '%(full_name)s')),
 		Field('year', 'integer', length=4, default=datetime.now().year, 
-			requires = IS_IN_SET(range(1990, datetime.now().year), zero=False)),
+			requires = IS_IN_SET(range(1990, datetime.now().year+1), zero=None)),
 		Field('semester', 'integer', length=1,
-			requires = IS_IN_SET(['1', '2'], zero=False)),
+			requires = IS_IN_SET(['1', '2'], zero=None)),
 		Field('grade', 'string', length=1, writable=False, readable=False, default='A',
-			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'])),
+			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
 		Field('comment', 'text'),
 		Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
 		Field('reply', 'text', writable=False, readable=False),

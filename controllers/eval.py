@@ -5,24 +5,29 @@ def index():
 	profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
 	return dict(profs=profs)	
 
+@auth.requires_login()
 def create():
 	'''
 	Função cria uma avaliação para um determinado professor.
 	'''
+	prof_id = request.vars['prof_id']
+	prof_name = db(db.professores.id==prof_id).select().first().short_name
+
 	form_add=SQLFORM(db.avaliacoes,
 			fields = ['disciplina_id','year','semester','grade','comment'], 
 			labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '},
-			hidden = dict(aluno_id=get_aluno_id(), professor_id=request.vars['prof_id']))
-	form_add.vars.professor_id = request.vars['prof_id']
+			hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
+	form_add.vars.professor_id = prof_id
 	form_add.vars.aluno_id = get_aluno_id()
 
 	if form_add.accepts(request.vars, session, onvalidation=check_unique_eval):
 		session.flash = 'Avaliação realizada com sucesso'
-		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
+		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
 	else:
 		response.flash = 'Por favor, preencha a sua avaliação'	
-	return dict(form_add=form_add)
+	return dict(prof_name=prof_name, form_add=form_add)
 
+@auth.requires_login()
 def update():
 	'''
 	Função faz update de registro já existente

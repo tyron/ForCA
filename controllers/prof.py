@@ -19,8 +19,8 @@ def home():
 		eval['id']       = raw_eval['id']
 		eval['aluno']    = db(db.alunos.id==raw_eval['aluno_id']).select().first()
 		eval['disc']     = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first()
-		eval['semester'] = str(raw_eval['year'])+'/'+str(2 if raw_eval['semester'] else 1)
-		eval['grade']    = get_grade(int(raw_eval['grade']))
+		eval['semester'] = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
+		eval['grade']    = raw_eval['grade']
 		eval['comment']  = raw_eval['comment']
 		evals.append(eval)
 	return dict(prof_id = prof_id, prof_name = prof_name, evals = evals)
