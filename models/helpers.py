@@ -49,8 +49,7 @@ def harmonic_mean(listerms):
 def update_grade(prof_id):
 	prof_evals = db(db.avaliacoes.professor_id==prof_id)
 	prof_raw_grades = prof_evals.select(db.avaliacoes.grade)
-	if len(prof_raw_grades) < 1:
-		a = 1
+	if len(prof_raw_grades) <= 1:
 		return None
 	prof_grades = map(lambda x: get_grade_value(x['grade']), prof_raw_grades.as_list())
 	new_grade = get_grade_letter(harmonic_mean(prof_grades))

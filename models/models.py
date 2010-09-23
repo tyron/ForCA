@@ -55,7 +55,7 @@ db.define_table(
 			requires = IS_IN_SET(range(1990, datetime.now().year+1), zero=None)),
 		Field('semester', 'integer', length=1,
 			requires = IS_IN_SET(['1', '2'], zero=None)),
-		Field('grade', 'string', length=1, writable=False, readable=False,
+		Field('grade', 'string', length=2, readable=False,
 			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
 		Field('comment', 'text'),
 		Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
