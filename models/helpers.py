@@ -27,12 +27,36 @@ def get_aluno_id():
 	aluno_id = db(db.alunos.user_id == user_id).select().first().id
 	return aluno_id
 
-def get_grade_letter(intgrade):
-	grade_list = ['A', 'B', 'C', 'D', 'FF']
-	return grade_list[intgrade]
+def get_grade_letter(numgrade):
+	if numgrade >= 9:
+		return 'A'
+	elif numgrade >= 7.5:
+		return 'B'
+	elif numgrade >= 6:
+		return 'C'
+	elif numgrade >= 3:
+		return 'D'
+	return 'FF'
 
 def get_grade_value(strgrade):
-	grade_dict = {'A': 10, 'B': 8, 'C': 6, 'D': 2, 'FF': 0}
+	grade_dict = {'A': 10, 'B': 8, 'C': 6, 'D': 3, 'FF': 1}
+	return grade_dict[strgrade]
+
+def harmonic_mean(listerms):
+	numterms = len(listerms)
+	return numterms / sum(map(lambda x: 1.0/x, listerms))
+
+def update_grade(prof_id):
+	prof_evals = db(db.avaliacoes.professor_id==prof_id)
+	prof_raw_grades = prof_evals.select(db.avaliacoes.grade)
+	if len(prof_raw_grades) < 1:
+		a = 1
+		return None
+	prof_grades = map(lambda x: get_grade_value(x['grade']), prof_raw_grades.as_list())
+	new_grade = get_grade_letter(harmonic_mean(prof_grades))
+	db(db.professores.id==prof_id).update(grade=new_grade)
+	db.commit()
+	return new_grade
 
 def check_unique_eval(form):
 	aluno_id      = form.vars['aluno_id']

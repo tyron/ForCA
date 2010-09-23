@@ -22,6 +22,7 @@ def create():
 
 	if form_add.accepts(request.vars, session, onvalidation=check_unique_eval):
 		session.flash = 'Avaliação realizada com sucesso'
+		update_grade(prof_id)
 		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
 	else:
 		response.flash = 'Por favor, preencha a sua avaliação'	
@@ -32,15 +33,17 @@ def update():
 	'''
 	Função faz update de registro já existente
 	'''
-	record = db.avaliacoes(request.vars['aval_id']) 
+	prof_id = request.vars['prof_id']
+	record = db.avaliacoes(request.vars['eval_id']) 
 	form_up=SQLFORM(db.avaliacoes, record, 
 			fields=['year','semester','grade','comment'], 
 			labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
-	form_up.vars.disciplina_id=request.vars['aval_id']
+	form_up.vars.disciplina_id=request.vars['eval_id']
 
 	if form_up.accepts(request.vars, session):
 		session.flash = 'Avaliação editada com sucesso'
-		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
+		update_grade(prof_id)
+		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
 	return dict(form_up=form_up)
 
 def list():
