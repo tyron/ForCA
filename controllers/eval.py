@@ -33,8 +33,8 @@ def update():
 	'''
 	Função faz update de registro já existente
 	'''
-	prof_id = request.vars['prof_id']
-	record = db.avaliacoes(request.vars['eval_id']) 
+	record = db.avaliacoes(request.vars['eval_id'])
+	prof_id = record.professor_id
 	form_up=SQLFORM(db.avaliacoes, record, 
 			fields=['year','semester','grade','comment'], 
 			labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)

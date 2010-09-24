@@ -18,6 +18,6 @@ def home():
     disc_id = request.vars['disc_id']
     aluno_id = get_aluno_id()
     disc_name = db(db.disciplinas.id==disc_id).select().first().name
-    avals = db(db.avaliacoes.disciplina_id==disc_id).select()
+    evals = db(db.avaliacoes.disciplina_id==disc_id).select()
     profs = db().select(db.professores.ALL)
-    return dict(disc_id = disc_id, aluno_id = aluno_id, disc_name=disc_name, avals = avals, profs = profs)
+    return dict(disc_id = disc_id, aluno_id = aluno_id, disc_name=disc_name, evals = evals, profs = profs)
