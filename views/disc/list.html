@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<table>
+	<tr>
+		<th>Código</th>
+		<th>Nome</th>
+	</tr>
+	{{for disc in discs:}}
+	<tr>
+		<td>{{=disc.code}}</td>
+		<td>{{=A(disc.name, _href=URL('home', vars=dict(disc_id=disc.id)))}}</td>
+	</tr>
+	{{pass}}
+</table>
+
