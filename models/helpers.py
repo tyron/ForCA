@@ -42,17 +42,6 @@ def get_grade_value(strgrade):
 	grade_dict = {'A': 10, 'B': 8, 'C': 6, 'D': 3, 'FF': 1}
 	return grade_dict[strgrade]
 
-def get_grade_color(strgrade):
-	if strgrade == 'A':
-		return '#BCEFA5'
-	elif strgrade == 'B':
-		return '#CFEFA5'
-	elif strgrade == 'C':
-		return '#EAEFA5'
-	elif strgrade == 'D':
-		return '#EFCBA5'
-	return '#EFA5A5'
-
 def harmonic_mean(listerms):
 	numterms = len(listerms)
 	return numterms / sum(map(lambda x: 1.0/x, listerms))

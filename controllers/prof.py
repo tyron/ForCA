@@ -24,6 +24,7 @@ def home():
 	for raw_eval in raw_evals:
 		eval = {}
 		eval['id']       = raw_eval['id']
+		eval['aluno_user_id'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
 		eval['aluno_name']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
 		eval['disc_name']     = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
 		eval['semester'] = str(raw_eval['year'])+'/'+str(raw_eval['semester'])

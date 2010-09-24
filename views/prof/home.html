@@ -49,7 +49,11 @@
 				</table>
 			</td>
 		</tr>
-			{{=A('Editar', _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}<br />
+		{{if session.auth:}}
+			{{if eval['aluno_user_id'] == session.auth.user.id:}}
+				{{=A('Editar', _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}<br />
+			{{pass}}
+		{{pass}}
 		</tr>
 	</table>
 </div><br/>
