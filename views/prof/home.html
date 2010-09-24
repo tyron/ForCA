@@ -3,8 +3,8 @@
 <h3> Avaliações </h3>
 
 {{for eval in evals:}}
-  <b>Aluno: </b>{{=eval['aluno'].full_name}}<br />
-	<b>Disciplina: </b>{{=eval['disc'].name}}<br />
+  <b>Aluno: </b>{{=eval['aluno_name']}}<br />
+	<b>Disciplina: </b>{{=eval['disc_name']}}<br />
 	<b>Semestre: </b>{{=eval['semester']}}<br />
 	<b>Nota: </b>{{=eval['grade']}}<br />
 	<b>Comentário: </b>{{=eval['comment']}}<br />
