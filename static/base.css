@@ -304,3 +304,28 @@ div.error {
     padding: 3px;
 
 }
+
+div.gradeA {
+    border: 1px solid #666;
+    background-color: #BCEFA5;
+}
+
+div.gradeB {
+    border: 1px solid #666;
+    background-color: #CFEFA5;
+}
+
+div.gradeC {
+    border: 1px solid #666;
+    background-color: #EAEFA5;
+}
+
+div.gradeD {
+    border: 1px solid #666;
+    background-color: #EFCBA5;
+}
+
+div.gradeFF {
+    border: 1px solid #666;
+    background-color: #EFA5A5;
+}

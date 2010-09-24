@@ -1,15 +1,59 @@
 {{extend 'layout.html'}}
-<h2>{{=prof_name}}</h2>
+
+<table>
+	<tr>
+		<td rowspan='2'>
+			{{=A(IMG(_width='50px', _src=URL('download', args=prof.picture)), 
+			_href=URL('home', vars=dict(id=prof.id)))}}
+		</td>
+		<td>
+			<table>
+				<tr>
+					<h2>{{=prof.full_name}}</h2>
+				</tr>
+				<tr>
+					{{=prof.email}}
+				</tr>
+			</table>
+		</td>
+		<td>
+			<div style="font-size:50px">
+				<b>{{=prof.grade}}</b>
+			</div>
+		</td>
+	</tr>
+</table>
+<br/>
 <h3> Avaliações </h3>
+<br/>
 
 {{for eval in evals:}}
-  <b>Aluno: </b>{{=eval['aluno_name']}}<br />
-	<b>Disciplina: </b>{{=eval['disc_name']}}<br />
-	<b>Semestre: </b>{{=eval['semester']}}<br />
-	<b>Nota: </b>{{=eval['grade']}}<br />
-	<b>Comentário: </b>{{=eval['comment']}}<br />
-	{{=A('Editar Avaliação', _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof_id)))}}<br /><br />
-{{pass}}<br /><br />
+<div class='grade{{=eval['grade']}}'>
+	<table>
+		<tr>
+			<td rowspan='4'>
+				<div style='font-size:xx-large'>
+					<b>{{=eval['grade']}}</b>
+				</div>
+			</td>
+			<td>
+				<table>
+					<tr>
+							<b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['disc_name']}}</b> em <b>{{=eval['semester']}}</b>:
+					</tr>
+					<tr>
+						<td>
+							<i>{{=eval['comment'] or 'sem comentário'}}</i><br />
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+			{{=A('Editar', _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}<br />
+		</tr>
+	</table>
+</div><br/>
+{{pass}}<br/>
 
-{{=A('Adicionar Avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof_id)))}}
+{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
 
