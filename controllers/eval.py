@@ -38,12 +38,13 @@ def update():
 	form_up=SQLFORM(db.avaliacoes, record, 
 			fields=['year','semester','grade','comment'], 
 			labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
-	form_up.vars.disciplina_id=request.vars['eval_id']
 
 	if form_up.accepts(request.vars, session):
 		session.flash = 'Avaliação editada com sucesso'
 		update_grade(prof_id)
 		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+	else:
+		response.flash = 'Por favor, preencha a sua avaliação'	
 	return dict(form_up=form_up)
 
 def list():
