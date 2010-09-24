@@ -18,13 +18,13 @@
 		</td>
 		<td>
 			<div style="font-size:50px">
-				<b>{{=prof.grade}}</b>
+				<b>{{=prof.grade or ''}}</b>
 			</div>
 		</td>
 	</tr>
 </table>
 <br/>
-<h3> Avaliações </h3>
+<i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>
 
 {{for eval in evals:}}
