@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+<h2>{{=disc_name}}</h2>
+<h3> Avaliações </h3>
+{{for aval in avals:}}
+    {{for prof in profs:}}
+        {{if prof.id==aval.professor_id:}}
+            <b>Professor: </b>{{=prof.name}}<br />
+        {{pass}}
+    {{pass}}
+
+    <b>Ano: </b>{{=aval.year}}<br />
+    <b>Semestre: </b>{{=aval.semester}}<br />
+    <b>Nota: </b>{{=aval.grade}}<br />
+    <b>Comentário: </b>{{=aval.comment}}<br />
+    {{=A('Editar Avaliação', _href=URL(request.application, 'eval', 'update', vars=dict(aval_id=aval.id, disc_id=disc_id)))}}<br /><br />
+{{pass}}<br /><br />
+
+{{=A('Adicionar Avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc_id)))}}

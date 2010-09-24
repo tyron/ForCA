@@ -2,8 +2,8 @@ from gluon.tools import Crud
 crud = Crud(globals(), db)
 
 def index():
-	profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
-	return dict(profs=profs)	
+    profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
+    return dict(profs=profs)    
 
 @auth.requires_login()
 def create():
@@ -47,12 +47,19 @@ def update():
 		response.flash = 'Por favor, preencha a sua avaliação'	
 	return dict(form_up=form_up)
 
-def list():
+def list(prof_id = None, disc_id = None):
     '''
     Exibe a lista de avalições (já faz o join com tabela de professores, alunos e disciplinas).
-    '''
-    
-    evals = db((db.avaliacoes.professor_id == db.professores.id)&(db.avaliacoes.aluno_id == db.alunos.id)&(db.avaliacoes.disciplina_id == db.disciplinas.id))#Faz o join
+    '''  
+    if((prof_id != None)&(disc_id != None)):
+        evals = db((db.avaliacoes.professor_id == prof_id)&(db.avaliacoes.disciplina_id == disc_id)&(db.avaliacoes.professor_id == db.professores.id)&(db.avaliacoes.disciplina_id == db.disciplinas.id)&(db.avaliacoes.aluno_id == db.alunos.id))#Faz o join
+    elif(prof != None):
+        evals = db((db.avaliacoes.professor_id == prof_id)&(db.avaliacoes.professor_id == db.professores.id)&(db.avaliacoes.disciplina_id == db.disciplinas.id)&(db.avaliacoes.aluno_id == db.alunos.id))#Faz o join
+    elif(disc_id != None):
+        evals = db((db.avaliacoes.disciplina_id == disc_id)&(db.avaliacoes.professor_id == db.professores.id)&(db.avaliacoes.disciplina_id == db.disciplinas.id)&(db.avaliacoes.aluno_id == db.alunos.id))#Faz o join
+    else:
+        evals = db((db.avaliacoes.professor_id == db.professores.id)&(db.avaliacoes.disciplina_id == db.disciplinas.id)&(db.avaliacoes.aluno_id == db.alunos.id))#Faz o join 
+         
     evals = evals.select(db.avaliacoes.grade,db.avaliacoes.comment,db.avaliacoes.reply,db.professores.full_name,db.alunos.full_name,db.disciplinas.short_name,orderby = db.professores.full_name)#Seleciona as colunas desejadas
     
     return dict(evals = evals)

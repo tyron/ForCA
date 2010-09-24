@@ -8,10 +8,10 @@ def create():
 	return dict(form=form)
 
 def list():
-	'''
-	Exibe a lista de professores
-	'''
-	return dict(profs=db().select(db.professores.ALL).sort(lambda profs: profs.full_name))
+    '''
+    Exibe a lista de professores
+    '''
+    return dict(profs=db().select(db.professores.ALL).sort(lambda profs: profs.full_name))
 
 def home():
 	'''
@@ -39,5 +39,3 @@ def download():
     http://..../[app]/default/download/[filename]
     """
     return response.download(request,db)
-
-
