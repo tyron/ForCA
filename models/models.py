@@ -53,7 +53,7 @@ db.define_table(
 			requires = IS_IN_DB(db, db.professores.id, '%(full_name)s')),
 		Field('year', 'integer', length=4, default=datetime.now().year, 
 			requires = IS_IN_SET(range(1990, datetime.now().year+1), zero=None)),
-		Field('semester', 'integer', length=1,
+		Field('semester', 'integer', length=1, default=(1 if datetime.now().month <= 6 else 2),
 			requires = IS_IN_SET(['1', '2'], zero=None)),
 		Field('grade', 'string', length=2, readable=False,
 			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
