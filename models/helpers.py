@@ -46,13 +46,17 @@ def harmonic_mean(listerms):
 	numterms = len(listerms)
 	return numterms / sum(map(lambda x: 1.0/x, listerms))
 
+def grade_average(eval_rows):
+	raw_grades = eval_rows.select(db.avaliacoes.grade)
+	if len(raw_grades) < 1:
+		return None
+	grades = map(lambda x: get_grade_value(x['grade']), raw_grades.as_list())
+	average = get_grade_letter(harmonic_mean(grades))
+	return average
+
 def update_grade(prof_id):
 	prof_evals = db(db.avaliacoes.professor_id==prof_id)
-	prof_raw_grades = prof_evals.select(db.avaliacoes.grade)
-	if len(prof_raw_grades) < 1:
-		return None
-	prof_grades = map(lambda x: get_grade_value(x['grade']), prof_raw_grades.as_list())
-	new_grade = get_grade_letter(harmonic_mean(prof_grades))
+	new_grade = grade_average(prof_evals)
 	db(db.professores.id==prof_id).update(grade=new_grade)
 	db.commit()
 	return new_grade
