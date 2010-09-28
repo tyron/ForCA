@@ -73,3 +73,9 @@ def check_unique_eval(form):
 		form.errors.disciplina_id = 'Você já postou uma avaliação para este\
 				professor nesta disciplina'
 	return check.count() == 0
+
+def has_karmed(aluno_id, eval_id):
+	return db(
+			(db.karmas.aluno_id==aluno_id) &
+			(db.karmas.avaliacao_id==eval_id)
+			).count()

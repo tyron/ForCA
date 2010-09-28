@@ -79,5 +79,6 @@ db.define_table(
 			requires = IS_IN_DB(db, db.alunos.id, '')),
 		Field('avaliacao_id', db.avaliacoes, required=True, notnull=True,
 			requires = IS_IN_DB(db, db.avaliacoes.id, '')),
-		Field('value', 'boolean'),
+		Field('value', 'integer', length=1,
+			requires = IS_IN_SET([-1, 1], zero=None)),
 		migrate='karmas.table')
