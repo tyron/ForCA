@@ -19,7 +19,7 @@ def home():
 	'''
 	prof_id = request.vars['prof_id']
 	prof = db(db.professores.id==prof_id).select(db.professores.ALL).first()
-	raw_evals = db(db.avaliacoes.professor_id==prof_id).select()
+	raw_evals = db(db.avaliacoes.professor_id==prof_id).select(orderby=~db.avaliacoes.karma)
 	evals = []
 	for raw_eval in raw_evals:
 		eval = {}
