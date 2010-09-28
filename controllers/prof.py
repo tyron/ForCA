@@ -1,4 +1,4 @@
-#profs controller
+from operator import itemgetter
 
 @auth.requires_login()
 def create():
@@ -19,7 +19,7 @@ def home():
 	'''
 	prof_id = request.vars['prof_id']
 	prof = db(db.professores.id==prof_id).select(db.professores.ALL).first()
-	raw_evals = db(db.avaliacoes.professor_id==prof_id).select(orderby=~db.avaliacoes.karma)
+	raw_evals = db(db.avaliacoes.professor_id==prof_id).select()
 	evals = []
 	for raw_eval in raw_evals:
 		eval = {}
@@ -33,7 +33,7 @@ def home():
 		eval['karma']         = raw_eval['karma']
 		eval['comment']       = raw_eval['comment']
 		evals.append(eval)
-	return dict(prof = prof, evals = evals)
+	return dict(prof = prof, evals = sorted(evals, key=itemgetter('karma'), reverse=True))
 
 def download():
     """
