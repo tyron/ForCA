@@ -67,6 +67,23 @@ def update():
 		response.flash = 'Por favor, preencha a sua avaliação'	
 	return dict(form_up=form_up)
 
+@auth.requires_login()
+def delete():
+	'''
+	Função que deleta uma avaliação existente
+	'''
+	eval_id = request.vars['eval_id']
+	eval = db.avaliacoes[eval_id]
+	prof_id = eval.professor_id
+	db(db.avaliacoes.id==eval_id).delete()
+	db.commit()
+	update_grade(prof_id)
+	session.flash = 'Avaliação excluída com sucesso'
+	if 'prof_id' in request.vars:
+		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
+	elif 'disc_id' in request.vars:
+		redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+
 def list(prof_id = None, disc_id = None):
     '''
     Exibe a lista de avalições (já faz o join com tabela de professores, alunos e disciplinas).
