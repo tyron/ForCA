@@ -1,5 +1,11 @@
 {{extend 'layout.html'}}
-<h2>{{=prof_name}} - Adicionar Avaliação </h2>
+<h2>
+	{{if 'prof_name' in locals():}}
+		{{=prof_name}}
+	{{else:}}
+		{{=disc_name}}
+	{{pass}}
+	- Adicionar Avaliação </h2>
 {{=form_add}}
 {{pass}}
 

@@ -52,13 +52,13 @@
 						jQuery('#minus{{=eval['id']}}').fadeOut();">
 						{{=IMG(_src=URL('static', 'thumb-down.png'))}}</span>
 				{{else:}}
-				<span style="float:right" class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">{{=eval['karma']}}</span>
+					<span style="float:right" class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">{{=eval['karma']}}</span>
 				{{pass}}
 			</b>
 		</div>
 		{{if session.auth:}}
 			{{if eval['aluno_user_id'] == session.auth.user.id:}}
-				{{if 'prof' in request.vars:}}
+				{{if 'prof_id' in request.vars:}}
 					{{=A('Editar', _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}<br/>
 				{{else:}}
 					{{=A('Editar', _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}<br/>
@@ -70,7 +70,7 @@
 </div><br/>
 {{pass}}<br/>
 
-{{if 'prof' in request.vars:}}
+{{if 'prof_id' in request.vars:}}
 	{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
 {{else:}}
 	{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
