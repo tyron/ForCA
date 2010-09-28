@@ -23,9 +23,12 @@ def get_aluno_id():
 	'''
 	Retorna o aluno_id do usuario logado
 	'''
-	user_id = session.auth.user.id
-	aluno_id = db(db.alunos.user_id == user_id).select().first().id
-	return aluno_id
+	try:
+		user_id = session.auth.user.id
+		aluno_id = db(db.alunos.user_id == user_id).select().first().id
+		return aluno_id
+	except:
+		return 0
 
 def get_grade_letter(numgrade):
 	if numgrade >= 9:

@@ -1,5 +1,4 @@
 {{extend 'layout.html'}}
-
 <table>
 	<tr>
 		<td rowspan='2'>
@@ -51,7 +50,7 @@
 		</tr>
 		<div style='float:right'>
 			<b>
-				{{if not has_karmed(get_aluno_id(), eval['id']) and get_aluno_id()!=eval['aluno_id']:}}
+				{{if not has_karmed(get_aluno_id(), eval['id']) and get_aluno_id() and get_aluno_id()!=eval['aluno_id']:}}
 					<form><input type="hidden" id="karma{{=eval['id']}}"/></form>
 
 					<span id="plus{{=eval['id']}}" style="float:right" 
