@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-#profs controller
-=======
->>>>>>> disc_eval
 from operator import itemgetter
 
 @auth.requires_login()
