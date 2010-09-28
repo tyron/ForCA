@@ -61,7 +61,8 @@
 						{{=IMG(_src=URL('static', 'thumb-up.png'))}}
 					</span>
 
-					<span style="float:right" id='karma_count{{=eval['id']}}'>{{=eval['karma']}}</span>
+					<span style="float:right" id="karma_count{{=eval['id']}}" 
+						class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">{{=eval['karma']}}</span>
 
 					<span id="minus{{=eval['id']}}" style="float:right" 
 						onclick="ajax('{{=URL(request.application, 'karma', 'down', vars=dict(eval_id=eval['id']))}}', 
@@ -70,7 +71,7 @@
 						jQuery('#minus{{=eval['id']}}').fadeOut();">
 						{{=IMG(_src=URL('static', 'thumb-down.png'))}}</span>
 				{{else:}}
-				<span style="float:right">{{=eval['karma']}}</span>
+				<span style="float:right" class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">{{=eval['karma']}}</span>
 				{{pass}}
 			</b>
 		</div>
