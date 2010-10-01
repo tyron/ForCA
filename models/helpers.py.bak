@@ -96,4 +96,6 @@ def get_evals(prof_id = None, disc_id = None):
     else:
         evals = db()
          
-    return evals.select()
+    evals = evals.select()
+    
+    return dict(evals = evals)
