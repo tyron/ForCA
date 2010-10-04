@@ -42,7 +42,7 @@ INSERT INTO disciplinas (id, code, name, short_name) VALUES ('40','MAT02219','PR
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('41','INF01006','PROJETO DE BANCO DE DADOS','PBD');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('42','INF01021','PROJETO DE HIPERDOCUMENTOS','HIPERDOCUMENTOS');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('43','INF01019','PROJETO EM COMPUTAÇÃO GRÁFICA','PCG');
-INSERT INTO disciplinas (id, code, name, short_name) VALUES ('44','INF01154','REDES DE COMPUTADORES N','REDES');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('44','INF0854','REDES DE COMPUTADORES N','REDES');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('45','INF01017','REDES NEURAIS E SISTEMAS FUZZY','SISTEMAS FUZZY');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('46','INF01045','SEGURANÇA EM SISTEMAS DE COMPUTAÇÃO','SEGURANÇA');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('47','INF05516','SEMÂNTICA FORMAL N','SEMÂNTICA');
@@ -59,5 +59,18 @@ INSERT INTO disciplinas (id, code, name, short_name) VALUES ('57','INF01182','T�
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('58','INF05013','TÓPICOS ESPECIAIS EM COMPUTAÇÃO XV','TÓPICOS ESP. XV');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('59','INF01062','TÓPICOS ESPECIAIS EM COMPUTAÇÃO XVI','TÓPICOS ESP. XVI');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('60','INF05016','TÓPICOS ESPECIAIS EM COMPUTAÇÃO XXI','TÓPICOS ESP. XXI');
-
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('61','INF01023','ARQUITETURA E DESEMPENHO DE BANCO DE DADOS','ARQ E DESEMP BD');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('62','INF01009','COMPUTAÇÃO GRÁFICA','CG');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('63','MAT01032','CÁLCULO NUMÉRICO','CÁLC. NUM.');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('64','INF01210','INTRODUÇÃO À INFORMÁTICA','INTROD. INF.');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('65','INF01240','INTRODUÇÃO À PROGRAMAÇÃO','INTROD. PROG.');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('66','INF01034','ROBÓTICA II','ROBÓTICA');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('67','INF01037','COMPUTAÇÃO EVOLUTIVA','COMP. EVOL.');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('68','INF01191','ARQUITETURAS AVANÇADAS DE COMPUTADORES','ARQ. AVANÇADAS');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('69','INF01049','INTRODUÇÃO À PESQUISA EM INFORMÁTICA','INTROD PESQ INF');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('70','INF01014','SISTEMAS DE BANCO DE DADOS DISTRIBUÍDOS','SIST. BD. DISTRIB.');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('71','INF01056','DESAFIOS DE PROGRAMAÇÃO','DESAFIOS');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('72','INF01002','PROTOCOLOS DE COMUNICAÇÃO','PROTOCOLOS');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('73','INF01003','ENGENHARIA DE SOFTWARE II','ENG. SOFT. II');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES ('74','INF01146','AVALIAÇÃO DE DESEMPENHO','AVAL. DESEMP.');
 

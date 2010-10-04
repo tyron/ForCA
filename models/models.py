@@ -72,6 +72,25 @@ db.avaliacoes.aluno_id.requires = [
 	error_message = 'Você já postou uma avaliação para este professor nesta disciplina')
 	]
 
+#Tabela Prof x Disc
+db.define_table(
+		'profs_discs',
+		Field('professor_id', db.professores, required=True, notnull=True,
+			readable = False,
+			requires = IS_IN_DB(db, db.professores.id, '%(full_name)s')),
+		Field('disciplina_id', db.disciplinas, required=True, notnull=True,
+			readable = False,
+			requires = IS_IN_DB(db, db.disciplinas.id, '%(name)s')),
+			migrate='profs_discs.table')
+			
+db.profs_discs.professor_id.requires = [
+	IS_NOT_IN_DB(db(
+		(db.profs_discs.disciplina_id == request.vars.disciplina_id) &
+		(db.profs_discs.professor_id == request.vars.professor_id)),
+	'profs_discs.professor_id',
+	error_message = 'Voce já adiciou este professor para esta disciplina')
+	]
+
 #Tabela Karma
 db.define_table(
 		'karmas',
