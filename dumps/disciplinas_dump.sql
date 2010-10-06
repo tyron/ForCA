@@ -61,7 +61,6 @@ INSERT INTO disciplinas (id, code, name, short_name) VALUES ('59','INF01062','T�
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('60','INF05016','TÓPICOS ESPECIAIS EM COMPUTAÇÃO XXI','TÓPICOS ESP. XXI');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('61','INF01023','ARQUITETURA E DESEMPENHO DE BANCO DE DADOS','ARQ E DESEMP BD');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('62','INF01009','COMPUTAÇÃO GRÁFICA','CG');
-INSERT INTO disciplinas (id, code, name, short_name) VALUES ('63','MAT01032','CÁLCULO NUMÉRICO','CÁLC. NUM.');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('64','INF01210','INTRODUÇÃO À INFORMÁTICA','INTROD. INF.');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('65','INF01240','INTRODUÇÃO À PROGRAMAÇÃO','INTROD. PROG.');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES ('66','INF01034','ROBÓTICA II','ROBÓTICA');

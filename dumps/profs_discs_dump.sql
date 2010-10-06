@@ -25,7 +25,7 @@ INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('23',35,61);--
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('24',36,52);-- #Geyer
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('25',36,2);-- #Geyer
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('26',37,6);-- #Jung
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('27',37,63);-- #Jung
+INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('27',37,8);-- #Jung
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('28',12,2);-- #Cora
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('29',12,41);-- #Cora
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('30',12,64);-- #Cora
@@ -68,7 +68,6 @@ INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('66',45,37);--
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('67',45,2); --#Wives
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('68',18,22);-- #Leila
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('69',18,9); --#Leila
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('70',18,9);-- #Leila
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('71',18,47);-- #Leila
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('72',18,12);-- #Leila
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('73',46,27);-- #Lisandro
@@ -158,10 +157,10 @@ INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('156',65,32);-
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('157',65,51);-- #Cechin
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('158',65,44);-- #Cechin
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('159',65,74);-- #Cechin
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('160',41,26);-- #Taisy
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('161',41,4);-- #Taisy
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('162',41,3);-- #Taisy
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('163',30,55);-- #Tiaraju
+INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('160',30,26);-- #Taisy
+INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('161',30,4);-- #Taisy
+INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('162',30,3);-- #Taisy
+INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('163',31,55);-- #Tiaraju
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('164',66,44);-- #Valter Roesler
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('165',67,21);-- #Viviane
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('166',67,2);-- #Viviane
