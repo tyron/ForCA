@@ -13,15 +13,15 @@
         </td>
     </tr>
 </table>
-<br/>
 <table>
     <tr>
        <th><h3>Súmula</h3></th>
     </tr>
     <tr>
-        <td>{{=disc.resume}}</td>
+        <td>{{=disc.resume or ''}}</td>
     </tr>
 </table>
+<br/>
 <table>
     <tr>
         <th>Professor</th>

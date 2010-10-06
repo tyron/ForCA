@@ -19,8 +19,7 @@ def home():
     '''
     disc_id = request.vars['disc_id']
     disc = db(db.disciplinas.id==disc_id).select(db.disciplinas.ALL).first()
-    #Lista de avaliações
-    raw_evals = db(db.avaliacoes.disciplina_id==disc_id).select()
+    raw_evals = get_evals(None,disc_id)
     evals = []
     for raw_eval in raw_evals:
         eval = {}
@@ -41,9 +40,9 @@ def home():
         prof = {}
         prof['id']        = raw_prof['professor_id']
         prof['full_name'] = db(db.professores.id==raw_prof['professor_id']).select().first().full_name
-        evals_prof_disc   = db((db.avaliacoes.disciplina_id==disc_id)&(db.avaliacoes.professor_id==raw_prof['professor_id']))
+        evals_prof_disc   = get_evals(raw_prof['professor_id'],disc_id)
         prof['grade']     = grade_average(evals_prof_disc) 
         profs.append(prof)
          
         
-    return dict(disc = disc, evals = sorted(evals, key=itemgetter('karma'), reverse=True), profs = sorted(profs, key=itemgetter('full_name'), reverse=False))
+    return dict(disc = disc, evals = sorted(evals, key=itemgetter('karma'), reverse=True), profs = sorted(profs, key=itemgetter('grade'), reverse=False))
