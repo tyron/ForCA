@@ -7,9 +7,14 @@
                     <h2>{{=disc.short_name}}</h2>
                 </tr>
                 <tr>
-                    {{=disc.name}}
+                    {{=disc.full_name}}
                 </tr>
             </table>
+        </td>
+        <td>
+            <div style="font-size:50px">
+                <b>{{=disc_grade or ''}}</b>
+            </div>
         </td>
     </tr>
 </table>
@@ -18,7 +23,7 @@
        <th><h3>Súmula</h3></th>
     </tr>
     <tr>
-        <td>{{=disc.resume or ''}}</td>
+        <td>{{=disc.resume or '-'}}</td>
     </tr>
 </table>
 <br/>

@@ -19,7 +19,7 @@ def home():
     '''
     disc_id = request.vars['disc_id']
     disc = db(db.disciplinas.id==disc_id).select(db.disciplinas.ALL).first()
-    raw_evals = get_evals(None,disc_id)
+    raw_evals = get_evals(None,disc_id).select()
     evals = []
     for raw_eval in raw_evals:
         eval = {}
