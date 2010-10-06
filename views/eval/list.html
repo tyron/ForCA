@@ -11,9 +11,17 @@
 				<table>
 					<tr>
 						{{if 'disc_name' in eval:}}
-							<b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['disc_name']}}</b>
+							{{if eval['anonimo'] == True:}}
+							    <b><i>Anônimo</i></b>, sobre <b>{{=eval['disc_name']}}</b>
+							{{else:}}
+	   						    <b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['disc_name']}}</b>
+							{{pass}}
 						{{else:}}
-							<b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['prof_name']}}</b>
+							{{if eval['anonimo'] == True:}}
+							    <b><i>Anônimo</i></b>, sobre <b>{{=eval['prof_name']}}</b>
+							{{else:}}
+							    <b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['prof_name']}}</b>
+							{{pass}}
 						{{pass}}
 						{{if 'semester' in eval:}}
 							em <b>{{=eval['semester']}}</b>:

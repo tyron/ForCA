@@ -171,5 +171,5 @@ INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('169',33,34);-
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('170',39,37);-- #Érika
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('171',39,32);-- #Érika
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('172',39,31);-- #Érika
-
+INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('178',57,44);-- #Marinho
 

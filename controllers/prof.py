@@ -32,6 +32,7 @@ def home():
         eval['grade']         = raw_eval['grade']
         eval['karma']         = raw_eval['karma']
         eval['comment']       = raw_eval['comment']
+	eval['anonimo']       = raw_eval['anonimo']
         evals.append(eval)
     return dict(prof = prof, evals = sorted(evals, key=itemgetter('karma'), reverse=True))
 

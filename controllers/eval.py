@@ -14,8 +14,8 @@ def create():
         prof_id = request.vars['prof_id']
         prof_name = db(db.professores.id==prof_id).select().first().short_name
         form_add=SQLFORM(db.avaliacoes,
-                fields = ['disciplina_id','year','semester','grade','comment'], 
-                labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '},
+                fields = ['disciplina_id','year','semester','grade','comment', 'anonimo'], 
+                labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
                 hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
         form_add.vars.professor_id = prof_id
 
@@ -23,8 +23,8 @@ def create():
         disc_id = request.vars['disc_id']
         disc_name = db(db.disciplinas.id==disc_id).select().first().short_name
         form_add=SQLFORM(db.avaliacoes,
-                fields = ['professor_id','year','semester','grade','comment'],
-                labels = {'professor_id':'Professor: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '},
+                fields = ['professor_id','year','semester','grade','comment', 'anonimo'],
+                labels = {'professor_id':'Professor: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo:': 'Anonimo:'},
                 hidden = dict(aluno_id=get_aluno_id(), disciplina_id=disc_id))
         form_add.vars.disciplina_id = disc_id
 

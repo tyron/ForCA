@@ -61,6 +61,7 @@ db.define_table(
         Field('comment', 'text'),
         Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
         Field('reply', 'text', writable=False, readable=False),
+	Field('anonimo', 'boolean', required=True, default=False, writable=True, readable=True),
         migrate='avaliacoes.table')
 
 db.avaliacoes.aluno_id.requires = [

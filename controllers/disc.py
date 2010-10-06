@@ -35,6 +35,7 @@ def home():
         eval['grade']         = raw_eval['grade']
         eval['karma']         = raw_eval['karma']
         eval['comment']       = raw_eval['comment']
+	eval['anonimo']       = raw_eval['anonimo']
         evals.append(eval)
     #Lista de professores que dão a disciplina
     raw_profs = db(db.profs_discs.disciplina_id==disc_id).select()
