@@ -1,4 +1,42 @@
-
 {{extend 'layout.html'}}
-<h1>This is the disc/home.html template</h1>
-{{=BEAUTIFY(response._vars)}}
+<table>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <h2>{{=disc.short_name}}</h2>
+                </tr>
+                <tr>
+                    {{=disc.name}}
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br/>
+<table>
+    <tr>
+       <th><h3>Súmula</h3></th>
+    </tr>
+    <tr>
+        <td>{{=disc.resume}}</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Professor</th>
+        <th>Rating</th>
+    </tr>
+    {{for prof in profs:}}
+    <tr>
+        <td>{{=A(prof['full_name'], _href=URL(request.application,'prof','home',vars=dict(prof_id=prof['id'])))}}</td>
+        <td>
+            {{=prof['grade'] or '-'}}
+        </td>
+    </tr>
+    {{pass}}
+</table>
+<br/>
+<i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
+<br/>
+{{include "eval/list.html"}}
