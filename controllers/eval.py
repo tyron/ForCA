@@ -2,48 +2,51 @@ from gluon.tools import Crud
 crud = Crud(globals(), db)
 
 def index():
-    profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
-    return dict(profs=profs)    
+	profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
+	return dict(profs=profs)    
 
 @auth.requires_login()
 def create():
-    '''
-    Função cria uma avaliação para um determinado professor.
-    '''
-    if 'prof_id' in request.vars:
-        prof_id = request.vars['prof_id']
-        prof_name = db(db.professores.id==prof_id).select().first().short_name
-        form_add=SQLFORM(db.avaliacoes,
-                fields = ['disciplina_id','year','semester','grade','comment', 'anonimo'], 
-                labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
-                hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
-        form_add.vars.professor_id = prof_id
+	'''
+	Função cria uma avaliação para um determinado professor.
+	'''
+	if 'prof_id' in request.vars:
+		prof_id = request.vars['prof_id']
+		prof_name = db(db.professores.id==prof_id).select().first().short_name
+		form_add=SQLFORM(db.avaliacoes,
+			fields = ['disciplina_id','year','semester','grade','comment', 'anonimo'], 
+			labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
+			hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
+		form_add.vars.professor_id = prof_id
+		form_add[0][0] = disc_biased_dropdown(prof_id)
 
-    elif 'disc_id' in request.vars:
-        disc_id = request.vars['disc_id']
-        disc_name = db(db.disciplinas.id==disc_id).select().first().short_name
-        form_add=SQLFORM(db.avaliacoes,
-                fields = ['professor_id','year','semester','grade','comment', 'anonimo'],
-                labels = {'professor_id':'Professor: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo:': 'Anonimo:'},
-                hidden = dict(aluno_id=get_aluno_id(), disciplina_id=disc_id))
-        form_add.vars.disciplina_id = disc_id
+	elif 'disc_id' in request.vars:
+		disc_id = request.vars['disc_id']
+		disc_name = db(db.disciplinas.id==disc_id).select().first().short_name
+		form_add=SQLFORM(db.avaliacoes,
+			fields = ['professor_id','year','semester','grade','comment', 'anonimo'],
+			labels = {'professor_id':'Professor: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo:': 'Anonimo:'},
+			hidden = dict(aluno_id=get_aluno_id(), disciplina_id=disc_id))
+		form_add.vars.disciplina_id = disc_id
+		form_add[0][0] = prof_biased_dropdown(disc_id)
 
-    form_add.vars.aluno_id = get_aluno_id()
+	form_add.vars.aluno_id = get_aluno_id()
 
-    if form_add.accepts(request.vars, session, onvalidation=check_unique_eval):
-        session.flash = 'Avaliação realizada com sucesso'
-        if 'prof_id' in request.vars:
-            update_grade(prof_id)
-            redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        else:
-            update_grade(request.vars['professor_id'])
-            redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
-    else:
-        response.flash = 'Por favor, preencha a sua avaliação'
-    if 'prof_id' in request.vars:
-        return dict(prof_name=prof_name, form_add=form_add)
-    else:
-        return dict(disc_name=disc_name, form_add=form_add)
+	if form_add.accepts(request.vars, session, onvalidation=check_unique_eval):
+		session.flash = 'Avaliação realizada com sucesso'
+		if 'prof_id' in request.vars:
+			update_grade(prof_id)
+			redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+		else:
+			update_grade(request.vars['professor_id'])
+			redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
+	else:
+		response.flash = 'Por favor, preencha a sua avaliação'
+
+	if 'prof_id' in request.vars:
+		return dict(prof_name=prof_name, form_add=form_add)
+	else:
+		return dict(disc_name=disc_name, form_add=form_add)
 
 @auth.requires_login()
 def update():
