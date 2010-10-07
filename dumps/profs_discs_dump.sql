@@ -14,7 +14,6 @@ INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('12',34,38);--
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('13',10,24);-- #Carla
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('14',10,31);-- #Carla
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('15',10,43);-- #Carla
-INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('16',10,31);-- #Carla
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('17',10,62);-- #Carla
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('18',3,23);-- #Heuser
 INSERT INTO profs_discs (id, professor_id, disciplina_id) VALUES ('19',3,41);-- #Heuser
