@@ -50,25 +50,25 @@ def create():
 
 @auth.requires_login()
 def update():
-    '''
-    Função faz update de registro já existente
-    '''
-    record = db.avaliacoes(request.vars['eval_id'])
-    prof_id = record.professor_id
-    form_up=SQLFORM(db.avaliacoes, record, 
-            fields=['year','semester','grade','comment'], 
-            labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
+	'''
+	Função faz update de registro já existente
+	'''
+	record = db.avaliacoes(request.vars['eval_id'])
+	prof_id = record.professor_id
+	form_up=SQLFORM(db.avaliacoes, record, 
+		fields=['year','semester','grade','comment'], 
+		labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
 
-    if form_up.accepts(request.vars, session):
-        session.flash = 'Avaliação editada com sucesso'
-        update_grade(prof_id)
-        if 'prof_id' in request.vars:
-            redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        else:
-            redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-    else:
-        response.flash = 'Por favor, preencha a sua avaliação'  
-    return dict(form_up=form_up)
+	if form_up.accepts(request.vars, session):
+		session.flash = 'Avaliação editada com sucesso'
+		update_grade(prof_id)
+		if 'prof_id' in request.vars:
+			redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+		else:
+			redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+	else:
+		response.flash = 'Por favor, preencha a sua avaliação'  
+	return dict(form_up=form_up)
 
 def reply():
 	'''
