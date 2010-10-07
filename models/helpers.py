@@ -30,6 +30,17 @@ def get_aluno_id():
 	except:
 		return 0
 
+def get_prof_id():
+	'''
+	Retorna o professor_id do usuario logado
+	'''
+	try:
+		user_id = session.auth.user.id
+		prof_id = db(db.professores.user_id == user_id).select().first().id
+		return prof_id
+	except:
+		return 0
+
 def get_grade_letter(numgrade):
 	if numgrade >= 9:
 		return 'A'

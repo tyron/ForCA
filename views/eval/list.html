@@ -80,14 +80,12 @@
 						_href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
 				{{pass}}
 			{{pass}}
+			{{if get_prof_id() == eval['prof_id']:}}
+				responder
+			{{pass}}
 		{{pass}}
 		</tr>
 	</table>
 </div><br/>
 {{pass}}<br/>
 
-{{if 'prof_id' in request.vars:}}
-	{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
-{{else:}}
-	{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
-{{pass}}

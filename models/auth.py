@@ -43,12 +43,12 @@ auth.settings.create_user_groups = False
 
 auth.define_tables()
 
-#if not auth.id_group('Aluno'):
-#	auth.add_group('Aluno', 'Aluno do Instituto de Informática')
-#if not auth.id_group('Professor'):
-#	auth.add_group('Professor', 'Professor do Instituto de Informática')
-#if not auth.id_group('Admin'):
-#	auth.add_group('Admin', 'Administrador do sistema')
+if not auth.id_group('Aluno'):
+	auth.add_group('Aluno', 'Aluno do Instituto de Informática')
+if not auth.id_group('Professor'):
+	auth.add_group('Professor', 'Professor do Instituto de Informática')
+if not auth.id_group('Admin'):
+	auth.add_group('Admin', 'Administrador do sistema')
 
 #definicao de categoria por email
 def is_professor(form):
@@ -65,8 +65,8 @@ auth.settings.register_onaccept.append(is_professor)
 #definicao das configuracoes de e-mail
 mail = Mail(globals())
 
-mail.settings.server = 'smtp.gmail.com:587' or 'gae'
-#mail.settings.server = 'logging'
+#mail.settings.server = 'smtp.gmail.com:587' or 'gae'
+mail.settings.server = 'logging'
 mail.settings.login = None or 'forcaufrgs@gmail.com:f0rc4!@#'
 mail.settings.sender = 'forcaufrgs@gmail.com'
 

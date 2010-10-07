@@ -27,3 +27,11 @@
 <br/>
 
 {{include "eval/list.html"}}
+
+{{if not auth.has_membership('Professor'):}}
+	{{if 'prof_id' in request.vars:}}
+		{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
+	{{else:}}
+		{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
+	{{pass}}
+{{pass}}
