@@ -30,6 +30,44 @@ def get_aluno_id():
 	except:
 		return 0
 
+#########################################
+#              Aluno getters            #
+#########################################
+
+def get_aluno_full_name(aluno_id):
+	'''
+	Retorna o nome completo do aluno referenciado por aluno_id
+	'''
+	aluno = db(db.alunos.id==aluno_id).select().first()
+	return aluno.full_name
+
+def get_posted_evals(aluno_id):
+	'''
+	Retorna todas as avaliacoes postadas por um aluno
+	'''
+	aluno_evals = db(db.avaliacoes.aluno_id==aluno_id).select()
+	return aluno_evals
+
+def get_karma_avg(aluno_id):
+	'''
+	Retorna a media de karmas recebidos pelas avaliacoes
+	postadas pelo aluno referenciado por aluno_id
+	'''
+	aluno_evals = get_posted_evals(aluno_id)
+	karmas = []
+	for eval in aluno_evals:
+		if eval.karma:
+			karmas.append(eval.karma)
+	if karmas:
+		karmas_avg = sum(karmas)/float(len(karmas))
+	else:
+		karmas_avg = 0
+	return karmas_avg
+
+#########################################
+#              Prof getters             #
+#########################################
+
 def get_prof_id():
 	'''
 	Retorna o professor_id do usuario logado
@@ -40,6 +78,24 @@ def get_prof_id():
 		return prof_id
 	except:
 		return 0
+
+def get_prof_name(prof_id):
+	'''
+	Retorna o nome completo do professor referenciado por prof_id
+	'''
+	prof = db(db.professores.id==prof_id).select().first()
+	return prof.full_name
+
+#########################################
+#              Disc getters             #
+#########################################
+
+def get_disc_name(disc_id):
+	'''
+	Retorna o nome da disciplina referenciada por disc_id
+	'''
+	disc = db(db.disciplinas.id==disc_id).select().first()
+	return disc.name
 
 def get_grade_letter(numgrade):
 	if numgrade >= 9:

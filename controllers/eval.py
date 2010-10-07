@@ -74,9 +74,9 @@ def reply():
 	'''
 	Função para postagem de resposta por parte de professor
 	'''
-	record = db.avaliacoes(request.vars['eval_id'])
+	eval = db.avaliacoes(request.vars['eval_id'])
 	prof_id = request.vars['prof_id']
-	form_reply = SQLFORM(db.avaliacoes, record,
+	form_reply = SQLFORM(db.avaliacoes, eval,
 			fields = ['reply'],
 			labels = {'reply':'Resposta: '},
 			showid = False)
@@ -87,7 +87,7 @@ def reply():
 	else:
 		response.flash = 'Por favor, preencha a sua resposta'
 
-	return dict(form_reply = form_reply)
+	return dict(form_reply = form_reply, eval = eval)
 
 @auth.requires_login()
 def delete():
