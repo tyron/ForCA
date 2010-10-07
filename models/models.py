@@ -60,7 +60,7 @@ db.define_table(
 			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
 		Field('comment', 'text'),
 		Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
-		Field('reply', 'text', writable=False, readable=False),
+		Field('reply', 'text', readable=False),
 		Field('anonimo', 'boolean', required=True, default=False, writable=True, readable=True),
 		migrate='avaliacoes.table')
 
