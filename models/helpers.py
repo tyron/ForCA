@@ -50,7 +50,7 @@ def get_posted_evals(aluno_id):
 
 def get_karma_avg(aluno_id):
 	'''
-	Retorna a media de karmas recebidos pelas avaliacoes
+	Retorna a soma de karmas recebidos pelas avaliacoes
 	postadas pelo aluno referenciado por aluno_id
 	'''
 	aluno_evals = get_posted_evals(aluno_id)
@@ -58,11 +58,7 @@ def get_karma_avg(aluno_id):
 	for eval in aluno_evals:
 		if eval.karma:
 			karmas.append(eval.karma)
-	if karmas:
-		karmas_avg = sum(karmas)/float(len(karmas))
-	else:
-		karmas_avg = 0
-	return karmas_avg
+	return sum(karmas)
 
 #########################################
 #              Prof getters             #
