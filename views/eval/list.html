@@ -84,7 +84,7 @@
 		</tr>
 		<div style="float:right"><br/><br/><br/>
 			{{if get_prof_id() == eval['prof_id']:}}
-				{{=A('Responder', _href=URL(request.application, 'eval', 'reply', vars=dict(prof_id=prof.id, eval_id=eval['id'])))}}
+				{{=A('Responder', _href=URL(request.application, 'eval', 'reply', vars=dict(prof_id=eval['prof_id'], eval_id=eval['id'])))}}
 			{{pass}}
 		</div>
 	</table>

@@ -75,7 +75,7 @@ def reply():
 	Função para postagem de resposta por parte de professor
 	'''
 	eval = db.avaliacoes(request.vars['eval_id'])
-	prof_id = request.vars['prof_id']
+	prof_id = eval.professor_id
 	form_reply = SQLFORM(db.avaliacoes, eval,
 			fields = ['reply'],
 			labels = {'reply':'Resposta: '},
