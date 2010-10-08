@@ -165,11 +165,11 @@ def disc_biased_dropdown(prof_id):
 			left = db.profs_discs.on(
 				(db.disciplinas.id==db.profs_discs.disciplina_id)&
 				(db.profs_discs.professor_id==prof_id)),
-			orderby=db.profs_discs.professor_id|db.disciplinas.id)
+			orderby=db.profs_discs.professor_id|db.disciplinas.name)
 	key = [row.id for row in rows]
 	value = [row.name for row in rows]
 	form = SQLFORM.factory(
-			Field('disciplina_id', requires=IS_IN_SET(key,value,zero=None)))
+			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key,value,zero=None)))
 	return form[0][0]
 
 def prof_biased_dropdown(disc_id):
@@ -177,9 +177,9 @@ def prof_biased_dropdown(disc_id):
 			left = db.profs_discs.on(
 				(db.professores.id==db.profs_discs.professor_id)&
 				(db.profs_discs.disciplina_id==disc_id)),
-			orderby=db.profs_discs.disciplina_id|db.professores.id)
+			orderby=db.profs_discs.disciplina_id|db.professores.full_name)
 	key = [row.id for row in rows]
 	value = [row.full_name for row in rows]
 	form = SQLFORM.factory(
-			Field('professor_id', requires=IS_IN_SET(key,value,zero=None)))
+			Field('professor_id', label="Professor", requires=IS_IN_SET(key,value,zero=None)))
 	return form[0][0]
