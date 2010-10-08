@@ -8,7 +8,4 @@
     {{else:}}
     <li><h3>Você ainda não postou nenhuma avaliação.</h3></li>
 </ul>
-
-{{include "eval/list.html"}}
-
 {{pass}}
