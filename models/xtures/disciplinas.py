@@ -44,7 +44,7 @@ if db(db.disciplinas.id > 0).count() == 0:
 	db.disciplinas.insert(id=42, code='INF01006', name='PROJETO DE BANCO DE DADOS', short_name='PBD')
 	db.disciplinas.insert(id=43, code='INF01021', name='PROJETO DE HIPERDOCUMENTOS', short_name='HIPERDOCUMENTOS')
 	db.disciplinas.insert(id=44, code='INF01019', name='PROJETO EM COMPUTAÇÃO GRÁFICA', short_name='PCG')
-	db.disciplinas.insert(id=45, code='INF0854', name='REDES DE COMPUTADORES N', short_name='REDES')
+	db.disciplinas.insert(id=45, code='INF01154', name='REDES DE COMPUTADORES N', short_name='REDES')
 	db.disciplinas.insert(id=46, code='INF01017', name='REDES NEURAIS E SISTEMAS FUZZY', short_name='SISTEMAS FUZZY')
 	db.disciplinas.insert(id=47, code='INF01045', name='SEGURANÇA EM SISTEMAS DE COMPUTAÇÃO', short_name='SEGURANÇA')
 	db.disciplinas.insert(id=48, code='INF05516', name='SEMÂNTICA FORMAL N', short_name='SEMÂNTICA')

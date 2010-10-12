@@ -500,7 +500,7 @@ if db(db.profs_discs.id > 0).count() == 0:
 		disciplina_id=get_disc_id_from_code('INF05516'))
 	db.profs_discs.insert(
 		professor_id=get_prof_id_from_email('afmoreira@inf.ufrgs.br'),
-		disciplina_id=get_disc_id_from_code('INF01101'))
+		disciplina_id=get_disc_id_from_code('INF01107'))
 	db.profs_discs.insert(
 		professor_id=get_prof_id_from_email('afmoreira@inf.ufrgs.br'),
 		disciplina_id=get_disc_id_from_code('INF05005'))
