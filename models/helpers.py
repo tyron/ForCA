@@ -164,40 +164,40 @@ def get_evals(prof_id = None, disc_id = None):
 # Biased dropdowns: the pretty way      #
 #########################################
 
-#def disc_biased_dropdown(prof_id):
-#	rows = db().select(db.disciplinas.id, db.disciplinas.name,
-#			left = db.profs_discs.on(
-#				(db.disciplinas.id==db.profs_discs.disciplina_id)&
-#				(db.profs_discs.professor_id==prof_id)),
-#			orderby=db.profs_discs.professor_id|db.disciplinas.name)
-#	key = [row.id for row in rows]
-#	value = [row.name for row in rows]
-#	form = SQLFORM.factory(
-#			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key,value,zero=None)))
-#	return form[0][0]
+def disc_biased_dropdown(prof_id):
+	rows = db().select(db.disciplinas.id, db.disciplinas.name,
+			left = db.profs_discs.on(
+				(db.disciplinas.id==db.profs_discs.disciplina_id)&
+				(db.profs_discs.professor_id==prof_id)),
+			orderby=db.profs_discs.professor_id|db.disciplinas.name)
+	key = [row.id for row in rows]
+	value = [row.name for row in rows]
+	form = SQLFORM.factory(
+			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key,value,zero=None)))
+	return form[0][0]
 
-#def prof_biased_dropdown(disc_id):
-#	rows = db().select(db.professores.id, db.professores.full_name,
-#			left = db.profs_discs.on(
-#				(db.professores.id==db.profs_discs.professor_id)&
-#				(db.profs_discs.disciplina_id==disc_id)),
-#			orderby=db.profs_discs.disciplina_id|db.professores.full_name)
-#	key = [row.id for row in rows]
-#	value = [row.full_name for row in rows]
-#	form = SQLFORM.factory(
-#			Field('professor_id', label="Professor", requires=IS_IN_SET(key,value,zero=None)))
-#	return form[0][0]
+def prof_biased_dropdown(disc_id):
+	rows = db().select(db.professores.id, db.professores.full_name,
+			left = db.profs_discs.on(
+				(db.professores.id==db.profs_discs.professor_id)&
+				(db.profs_discs.disciplina_id==disc_id)),
+			orderby=db.profs_discs.disciplina_id|db.professores.full_name)
+	key = [row.id for row in rows]
+	value = [row.full_name for row in rows]
+	form = SQLFORM.factory(
+			Field('professor_id', label="Professor", requires=IS_IN_SET(key,value,zero=None)))
+	return form[0][0]
 
 #########################################
 # Biased dropdowns: the GAE way         #
 #########################################
 
-def disc_biased_dropdown(prof_id):
+def gae_disc_biased_dropdown(prof_id):
 	discs = db(db.disciplinas.id>0).select(db.disciplinas.id, db.disciplinas.name)
 	pds = db(db.profs_discs.id>0).select(db.profs_discs.disciplina_id, db.profs_discs.professor_id).as_list()
 	results = []
 	for disc in discs:
-		if {'professor_id': prof_id, 'disciplina_id': disc.id} in pds:
+		if {'professor_id': int(prof_id), 'disciplina_id': disc.id} in pds:
 			results.append([disc.id, disc.name, 1])
 		else:
 			results.append([disc.id, disc.name, 0])
@@ -207,12 +207,12 @@ def disc_biased_dropdown(prof_id):
 			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key, value, zero=None)))
 	return form[0][0]
 
-def prof_biased_dropdown(disc_id):
+def gae_prof_biased_dropdown(disc_id):
 	profs = db(db.professores.id>0).select(db.professores.id, db.professores.full_name)
 	pds = db(db.profs_discs.id>0).select(db.profs_discs.disciplina_id, db.profs_discs.professor_id).as_list()
 	results = []
 	for prof in profs:
-		if {'disciplina_id': disc_id, 'professor_id': prof.id} in pds:
+		if {'disciplina_id': int(disc_id), 'professor_id': prof.id} in pds:
 			results.append([prof.id, prof.full_name, 1])
 		else:
 			results.append([prof.id, prof.full_name, 0])
