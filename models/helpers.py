@@ -82,6 +82,13 @@ def get_prof_name(prof_id):
 	prof = db(db.professores.id==prof_id).select().first()
 	return prof.full_name
 
+def get_prof_id_from_email(prof_email):
+	'''
+	Retorna o id no datastore do professor cujo e-mail eh prof_email
+	'''
+	prof = db(db.professores.email==prof_email).select().first()
+	return prof.id
+
 #########################################
 #              Disc getters             #
 #########################################
@@ -92,6 +99,13 @@ def get_disc_name(disc_id):
 	'''
 	disc = db(db.disciplinas.id==disc_id).select().first()
 	return disc.name
+
+def get_disc_id_from_code(disc_code):
+	'''
+	Retorna o id no datastore da disciplina cujo codigo eh disc_code
+	'''
+	disc = db(db.disciplinas.code==disc_code).select().first()
+	return disc.id
 
 def get_grade_letter(numgrade):
 	if numgrade >= 9:

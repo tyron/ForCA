@@ -1,174 +1,518 @@
 
 if db(db.profs_discs.id > 0).count() == 0:
-	db.profs_discs.insert(id=1, professor_id=8, disciplina_id=3)
-	db.profs_discs.insert(id=2, professor_id=8, disciplina_id=4)
-	db.profs_discs.insert(id=3, professor_id=8, disciplina_id=44)
-	db.profs_discs.insert(id=4, professor_id=8, disciplina_id=52)
-	db.profs_discs.insert(id=5, professor_id=32, disciplina_id=33)
-	db.profs_discs.insert(id=6, professor_id=9, disciplina_id=30)
-	db.profs_discs.insert(id=7, professor_id=9, disciplina_id=34)
-	db.profs_discs.insert(id=8, professor_id=9, disciplina_id=35)
-	db.profs_discs.insert(id=9, professor_id=9, disciplina_id=43)
-	db.profs_discs.insert(id=10, professor_id=34, disciplina_id=3)
-	db.profs_discs.insert(id=11, professor_id=34, disciplina_id=54)
-	db.profs_discs.insert(id=12, professor_id=34, disciplina_id=48)
-	db.profs_discs.insert(id=13, professor_id=34, disciplina_id=38)
-	db.profs_discs.insert(id=14, professor_id=10, disciplina_id=24)
-	db.profs_discs.insert(id=15, professor_id=10, disciplina_id=31)
-	db.profs_discs.insert(id=16, professor_id=10, disciplina_id=43)
-	db.profs_discs.insert(id=17, professor_id=10, disciplina_id=62)
-	db.profs_discs.insert(id=18, professor_id=3, disciplina_id=23)
-	db.profs_discs.insert(id=19, professor_id=3, disciplina_id=41)
-	db.profs_discs.insert(id=20, professor_id=11, disciplina_id=3)
-	db.profs_discs.insert(id=21, professor_id=11, disciplina_id=32)
-	db.profs_discs.insert(id=22, professor_id=35, disciplina_id=23)
-	db.profs_discs.insert(id=23, professor_id=35, disciplina_id=61)
-	db.profs_discs.insert(id=24, professor_id=36, disciplina_id=52)
-	db.profs_discs.insert(id=25, professor_id=36, disciplina_id=2)
-	db.profs_discs.insert(id=26, professor_id=37, disciplina_id=6)
-	db.profs_discs.insert(id=27, professor_id=37, disciplina_id=8)
-	db.profs_discs.insert(id=28, professor_id=12, disciplina_id=2)
-	db.profs_discs.insert(id=29, professor_id=12, disciplina_id=41)
-	db.profs_discs.insert(id=30, professor_id=12, disciplina_id=64)
-	db.profs_discs.insert(id=31, professor_id=4, disciplina_id=21)
-	db.profs_discs.insert(id=32, professor_id=4, disciplina_id=47)
-	db.profs_discs.insert(id=33, professor_id=13, disciplina_id=66)
-	db.profs_discs.insert(id=34, professor_id=13, disciplina_id=67)
-	db.profs_discs.insert(id=35, professor_id=13, disciplina_id=13)
-	db.profs_discs.insert(id=36, professor_id=38, disciplina_id=56)
-	db.profs_discs.insert(id=37, professor_id=38, disciplina_id=12)
-	db.profs_discs.insert(id=38, professor_id=40, disciplina_id=54)
-	db.profs_discs.insert(id=39, professor_id=40, disciplina_id=4)
-	db.profs_discs.insert(id=40, professor_id=40, disciplina_id=48)
-	db.profs_discs.insert(id=41, professor_id=41, disciplina_id=68)
-	db.profs_discs.insert(id=42, professor_id=41, disciplina_id=54)
-	db.profs_discs.insert(id=43, professor_id=41, disciplina_id=64)
-	db.profs_discs.insert(id=44, professor_id=41, disciplina_id=38)
-	db.profs_discs.insert(id=45, professor_id=1, disciplina_id=3)
-	db.profs_discs.insert(id=46, professor_id=1, disciplina_id=38)
-	db.profs_discs.insert(id=47, professor_id=1, disciplina_id=54)
-	db.profs_discs.insert(id=48, professor_id=43, disciplina_id=18)
-	db.profs_discs.insert(id=49, professor_id=14, disciplina_id=26)
-	db.profs_discs.insert(id=50, professor_id=14, disciplina_id=54)
-	db.profs_discs.insert(id=51, professor_id=14, disciplina_id=32)
-	db.profs_discs.insert(id=52, professor_id=14, disciplina_id=3)
-	db.profs_discs.insert(id=53, professor_id=14, disciplina_id=69)
-	db.profs_discs.insert(id=54, professor_id=15, disciplina_id=25)
-	db.profs_discs.insert(id=55, professor_id=15, disciplina_id=43)
-	db.profs_discs.insert(id=56, professor_id=5, disciplina_id=10)
-	db.profs_discs.insert(id=57, professor_id=5, disciplina_id=70)
-	db.profs_discs.insert(id=58, professor_id=17, disciplina_id=42)
-	db.profs_discs.insert(id=59, professor_id=16, disciplina_id=32)
-	db.profs_discs.insert(id=60, professor_id=16, disciplina_id=3)
-	db.profs_discs.insert(id=61, professor_id=16, disciplina_id=4)
-	db.profs_discs.insert(id=62, professor_id=44, disciplina_id=71)
-	db.profs_discs.insert(id=63, professor_id=44, disciplina_id=24)
-	db.profs_discs.insert(id=64, professor_id=44, disciplina_id=43)
-	db.profs_discs.insert(id=65, professor_id=44, disciplina_id=11)
-	db.profs_discs.insert(id=66, professor_id=45, disciplina_id=37)
-	db.profs_discs.insert(id=67, professor_id=45, disciplina_id=2)
-	db.profs_discs.insert(id=68, professor_id=18, disciplina_id=22)
-	db.profs_discs.insert(id=69, professor_id=18, disciplina_id=9)
-	db.profs_discs.insert(id=71, professor_id=18, disciplina_id=47)
-	db.profs_discs.insert(id=72, professor_id=18, disciplina_id=12)
-	db.profs_discs.insert(id=73, professor_id=46, disciplina_id=27)
-	db.profs_discs.insert(id=74, professor_id=46, disciplina_id=72)
-	db.profs_discs.insert(id=75, professor_id=46, disciplina_id=44)
-	db.profs_discs.insert(id=76, professor_id=46, disciplina_id=2)
-	db.profs_discs.insert(id=77, professor_id=47, disciplina_id=24)
-	db.profs_discs.insert(id=78, professor_id=47, disciplina_id=21)
-	db.profs_discs.insert(id=79, professor_id=47, disciplina_id=64)
-	db.profs_discs.insert(id=80, professor_id=47, disciplina_id=65)
-	db.profs_discs.insert(id=81, professor_id=47, disciplina_id=65)
-	db.profs_discs.insert(id=82, professor_id=48, disciplina_id=12)
-	db.profs_discs.insert(id=83, professor_id=48, disciplina_id=39)
-	db.profs_discs.insert(id=84, professor_id=48, disciplina_id=22)
-	db.profs_discs.insert(id=85, professor_id=49, disciplina_id=28)
-	db.profs_discs.insert(id=86, professor_id=49, disciplina_id=72)
-	db.profs_discs.insert(id=87, professor_id=49, disciplina_id=44)
-	db.profs_discs.insert(id=88, professor_id=50, disciplina_id=22)
-	db.profs_discs.insert(id=89, professor_id=50, disciplina_id=35)
-	db.profs_discs.insert(id=90, professor_id=19, disciplina_id=38)
-	db.profs_discs.insert(id=91, professor_id=19, disciplina_id=54)
-	db.profs_discs.insert(id=92, professor_id=20, disciplina_id=29)
-	db.profs_discs.insert(id=93, professor_id=20, disciplina_id=30)
-	db.profs_discs.insert(id=94, professor_id=2, disciplina_id=35)
-	db.profs_discs.insert(id=95, professor_id=21, disciplina_id=2)
-	db.profs_discs.insert(id=96, professor_id=21, disciplina_id=37)
-	db.profs_discs.insert(id=97, professor_id=21, disciplina_id=37)
-	db.profs_discs.insert(id=98, professor_id=51, disciplina_id=10)
-	db.profs_discs.insert(id=99, professor_id=51, disciplina_id=25)
-	db.profs_discs.insert(id=100, professor_id=51, disciplina_id=62)
-	db.profs_discs.insert(id=101, professor_id=52, disciplina_id=2)
-	db.profs_discs.insert(id=102, professor_id=52, disciplina_id=50)
-	db.profs_discs.insert(id=103, professor_id=52, disciplina_id=29)
-	db.profs_discs.insert(id=104, professor_id=54, disciplina_id=33)
-	db.profs_discs.insert(id=105, professor_id=54, disciplina_id=53)
-	db.profs_discs.insert(id=106, professor_id=54, disciplina_id=31)
-	db.profs_discs.insert(id=107, professor_id=54, disciplina_id=73)
-	db.profs_discs.insert(id=108, professor_id=53, disciplina_id=51)
-	db.profs_discs.insert(id=109, professor_id=53, disciplina_id=3)
-	db.profs_discs.insert(id=110, professor_id=53, disciplina_id=53)
-	db.profs_discs.insert(id=111, professor_id=56, disciplina_id=35)
-	db.profs_discs.insert(id=112, professor_id=56, disciplina_id=39)
-	db.profs_discs.insert(id=113, professor_id=56, disciplina_id=47)
-	db.profs_discs.insert(id=114, professor_id=22, disciplina_id=64)
-	db.profs_discs.insert(id=115, professor_id=22, disciplina_id=65)
-	db.profs_discs.insert(id=116, professor_id=22, disciplina_id=21)
-	db.profs_discs.insert(id=117, professor_id=57, disciplina_id=51)
-	db.profs_discs.insert(id=118, professor_id=58, disciplina_id=13)
-	db.profs_discs.insert(id=119, professor_id=58, disciplina_id=18)
-	db.profs_discs.insert(id=120, professor_id=59, disciplina_id=11)
-	db.profs_discs.insert(id=121, professor_id=59, disciplina_id=51)
-	db.profs_discs.insert(id=122, professor_id=23, disciplina_id=9)
-	db.profs_discs.insert(id=123, professor_id=23, disciplina_id=34)
-	db.profs_discs.insert(id=124, professor_id=23, disciplina_id=55)
-	db.profs_discs.insert(id=125, professor_id=24, disciplina_id=29)
-	db.profs_discs.insert(id=126, professor_id=24, disciplina_id=45)
-	db.profs_discs.insert(id=127, professor_id=24, disciplina_id=30)
-	db.profs_discs.insert(id=128, professor_id=6, disciplina_id=38)
-	db.profs_discs.insert(id=129, professor_id=60, disciplina_id=51)
-	db.profs_discs.insert(id=130, professor_id=60, disciplina_id=34)
-	db.profs_discs.insert(id=131, professor_id=60, disciplina_id=35)
-	db.profs_discs.insert(id=132, professor_id=60, disciplina_id=47)
-	db.profs_discs.insert(id=133, professor_id=25, disciplina_id=32)
-	db.profs_discs.insert(id=134, professor_id=25, disciplina_id=3)
-	db.profs_discs.insert(id=135, professor_id=25, disciplina_id=4)
-	db.profs_discs.insert(id=136, professor_id=25, disciplina_id=46)
-	db.profs_discs.insert(id=137, professor_id=61, disciplina_id=21)
-	db.profs_discs.insert(id=138, professor_id=26, disciplina_id=15)
-	db.profs_discs.insert(id=139, professor_id=26, disciplina_id=16)
-	db.profs_discs.insert(id=140, professor_id=26, disciplina_id=54)
-	db.profs_discs.insert(id=141, professor_id=7, disciplina_id=15)
-	db.profs_discs.insert(id=142, professor_id=7, disciplina_id=16)
-	db.profs_discs.insert(id=143, professor_id=7, disciplina_id=54)
-	db.profs_discs.insert(id=144, professor_id=63, disciplina_id=1)
-	db.profs_discs.insert(id=145, professor_id=64, disciplina_id=56)
-	db.profs_discs.insert(id=146, professor_id=64, disciplina_id=12)
-	db.profs_discs.insert(id=147, professor_id=28, disciplina_id=48)
-	db.profs_discs.insert(id=148, professor_id=28, disciplina_id=54)
-	db.profs_discs.insert(id=149, professor_id=28, disciplina_id=38)
-	db.profs_discs.insert(id=150, professor_id=28, disciplina_id=68)
-	db.profs_discs.insert(id=151, professor_id=28, disciplina_id=15)
-	db.profs_discs.insert(id=152, professor_id=29, disciplina_id=19)
-	db.profs_discs.insert(id=153, professor_id=29, disciplina_id=27)
-	db.profs_discs.insert(id=154, professor_id=29, disciplina_id=73)
-	db.profs_discs.insert(id=155, professor_id=65, disciplina_id=3)
-	db.profs_discs.insert(id=156, professor_id=65, disciplina_id=32)
-	db.profs_discs.insert(id=157, professor_id=65, disciplina_id=51)
-	db.profs_discs.insert(id=158, professor_id=65, disciplina_id=44)
-	db.profs_discs.insert(id=159, professor_id=65, disciplina_id=74)
-	db.profs_discs.insert(id=160, professor_id=30, disciplina_id=26)
-	db.profs_discs.insert(id=161, professor_id=30, disciplina_id=4)
-	db.profs_discs.insert(id=162, professor_id=30, disciplina_id=3)
-	db.profs_discs.insert(id=163, professor_id=31, disciplina_id=55)
-	db.profs_discs.insert(id=164, professor_id=66, disciplina_id=44)
-	db.profs_discs.insert(id=165, professor_id=67, disciplina_id=21)
-	db.profs_discs.insert(id=166, professor_id=67, disciplina_id=2)
-	db.profs_discs.insert(id=167, professor_id=33, disciplina_id=47)
-	db.profs_discs.insert(id=168, professor_id=33, disciplina_id=20)
-	db.profs_discs.insert(id=169, professor_id=33, disciplina_id=34)
-	db.profs_discs.insert(id=170, professor_id=39, disciplina_id=37)
-	db.profs_discs.insert(id=171, professor_id=39, disciplina_id=32)
-	db.profs_discs.insert(id=172, professor_id=39, disciplina_id=31)
-	db.profs_discs.insert(id=178, professor_id=57, disciplina_id=44)
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('asc@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('asc@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01112'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('asc@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01154'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('asc@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01151'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('avillavicencio@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05005'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bazzan@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05004'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bazzan@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05005'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bazzan@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bazzan@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01019'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('andreis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('andreis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('andreis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01175'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('andreis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01113'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('carla@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01047'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('carla@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01043'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('carla@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01019'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('carla@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01009'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('heuser@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01145'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('heuser@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01006'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('calisboa@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('calisboa@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01107'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cirano@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01145'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cirano@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01023'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('geyer@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01151'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('geyer@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('crjung@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('MAT01353'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('crjung@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('MAT01032'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cora@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cora@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01006'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cora@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01210'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('daltro@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01203'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('daltro@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05516'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('barone@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01034'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('barone@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01037'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('barone@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01140'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('prestes@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05512'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('prestes@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05515'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fglima@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fglima@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01112'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fglima@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01175'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fernando@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01191'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fernando@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fernando@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01210'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('fernando@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01113'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('flavio@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('flavio@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01113'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('flavio@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('brodbeck@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01032'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('ingrid@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01209'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('ingrid@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('ingrid@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01107'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('ingrid@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('ingrid@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01049'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('jacobs@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01046'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('jacobs@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01019'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('palazzo@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01124'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('palazzo@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01014'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('valdeni@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01021'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('netto@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01107'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('netto@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('netto@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01112'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('comba@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01056'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('comba@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01047'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('comba@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01019'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('comba@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01147'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('wives@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01121'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('wives@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('leila@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('leila@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05006'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('leila@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05516'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('leila@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05515'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('granville@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01016'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('granville@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01002'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('granville@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01154'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('granville@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nedel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01047'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nedel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01203'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nedel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01210'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nedel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01240'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nedel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01240'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('buriol@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05515'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('buriol@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05010'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('buriol@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('paschoal@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01015'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('paschoal@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01002'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('paschoal@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01154'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('lmduarte@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('lmduarte@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('carro@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01113'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('carro@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('alvares@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01048'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('alvares@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05004'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('lamb@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bercht@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bercht@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01121'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bercht@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01121'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('oliveira@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01124'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('oliveira@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01046'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('oliveira@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01009'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('marabel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('marabel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01038'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('marabel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01048'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mpimenta@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01022'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mpimenta@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01120'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mpimenta@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01043'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mpimenta@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01003'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('johann@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01142'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('johann@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('johann@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01120'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mrpritt@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mrpritt@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05010'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('mrpritt@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05516'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('souto@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01210'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('souto@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01240'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('souto@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01203'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('marinho@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01142'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('newton@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01140'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('newton@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01032'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nicolas@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01147'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('nicolas@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01142'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('blauth@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05006'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('blauth@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05005'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('blauth@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05501'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('engel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01048'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('engel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01017'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('engel@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05004'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('navaux@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01113'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01142'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05005'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05008'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05516'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('weber@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01107'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('weber@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('weber@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01112'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('weber@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01045'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('galante@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01203'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('rpribas@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01185'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('rpribas@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01194'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('rpribas@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('reis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01185'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('reis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01194'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('reis@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cabral@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('MAT01355'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('rdasilva@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05512'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('rdasilva@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05515'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bampi@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01175'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bampi@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01118'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bampi@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01113'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bampi@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01191'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('bampi@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01185'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('zirbes@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01127'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('zirbes@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01016'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('zirbes@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01003'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cechin@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cechin@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01107'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cechin@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01142'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cechin@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01154'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('cechin@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01146'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('taisy@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01209'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('taisy@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01112'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('taisy@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01108'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('diverio@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05501'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('roesler@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01154'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('viviane@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01203'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('viviane@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01202'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('afmoreira@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05516'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('afmoreira@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01101'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('afmoreira@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF05005'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('erika@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01121'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('erika@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01107'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('erika@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01043'))
+	db.profs_discs.insert(
+		professor_id=get_prof_id_from_email('marinho@inf.ufrgs.br'),
+		disciplina_id=get_disc_id_from_code('INF01154'))
