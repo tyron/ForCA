@@ -42,7 +42,7 @@ INSERT INTO disciplinas (id, code, name, short_name) VALUES (41,'MAT02219','PROB
 INSERT INTO disciplinas (id, code, name, short_name) VALUES (42,'INF01006','PROJETO DE BANCO DE DADOS','PBD');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES (43,'INF01021','PROJETO DE HIPERDOCUMENTOS','HIPERDOCUMENTOS');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES (44,'INF01019','PROJETO EM COMPUTAÇÃO GRÁFICA','PCG');
-INSERT INTO disciplinas (id, code, name, short_name) VALUES (45,'INF0854','REDES DE COMPUTADORES N','REDES');
+INSERT INTO disciplinas (id, code, name, short_name) VALUES (45,'INF01154','REDES DE COMPUTADORES N','REDES');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES (46,'INF01017','REDES NEURAIS E SISTEMAS FUZZY','SISTEMAS FUZZY');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES (47,'INF01045','SEGURANÇA EM SISTEMAS DE COMPUTAÇÃO','SEGURANÇA');
 INSERT INTO disciplinas (id, code, name, short_name) VALUES (48,'INF05516','SEMÂNTICA FORMAL N','SEMÂNTICA');
