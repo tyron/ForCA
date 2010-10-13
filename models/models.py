@@ -37,6 +37,7 @@ db.define_table(
 		Field('short_name', 'string', length=32),
 		Field('grade', 'string', length=2, writable=False, readable=False,
 			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
+		Field('site','string',length=64,readable=False),
 		Field('picture', 'upload'),
 		migrate='professores.table')
 

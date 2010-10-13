@@ -9,7 +9,7 @@ if db(db.professores.id > 0).count() == 0:
 
 for line in inp.readlines():
 	data = map(lambda x: x.strip(), line[83:-3].split(','))
-	out.write("\tdb.professores.insert(id="+str(data[0]).strip()+", email="+data[1]+", short_name="+data[2]+", full_name="+data[3]+")\n")
+	out.write("\tdb.professores.insert(id="+str(data[0]).strip()+", email="+data[1]+", short_name="+data[2]+", full_name="+data[3]+", site="+data[4]+")\n")
 
 inp.close()
 out.close()
