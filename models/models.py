@@ -83,6 +83,7 @@ db.define_table(
 		Field('disciplina_id', db.disciplinas, required=True, notnull=True,
 			readable = False,
 			requires = IS_IN_DB(db, db.disciplinas.id, '%(name)s')),
+		Field('count', 'integer', length=32, default='1', writable=False, readable=False),
 		migrate='profs_discs.table')
 
 db.profs_discs.professor_id.requires = [

@@ -18,7 +18,7 @@ def create():
 			labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
 			hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
 		form_add.vars.professor_id = prof_id
-		form_add[0][0] = disc_biased_dropdown(prof_id)
+#		form_add[0][0] = disc_biased_dropdown(prof_id)
 
 	elif 'disc_id' in request.vars:
 		disc_id = request.vars['disc_id']
@@ -28,7 +28,7 @@ def create():
 			labels = {'professor_id':'Professor: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo:': 'Anonimo:'},
 			hidden = dict(aluno_id=get_aluno_id(), disciplina_id=disc_id))
 		form_add.vars.disciplina_id = disc_id
-		form_add[0][0] = prof_biased_dropdown(disc_id)
+#		form_add[0][0] = prof_biased_dropdown(disc_id)
 
 	form_add.vars.aluno_id = get_aluno_id()
 
