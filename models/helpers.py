@@ -174,6 +174,16 @@ def get_evals(prof_id = None, disc_id = None):
 		evals = db()
 	return evals
 
+def update_profs_discs(prof_id, disc_id):
+	prof_disc = db((db.profs_discs.professor_id==prof_id)&(db.profs_discs.disciplina_id==disc_id)).select().first()
+	if not prof_disc:
+		db.profs_discs.insert(professor_id=prof_id, disciplina_id=disc_id)
+		return 0
+	count = prof_disc.count
+	db(db.profs_discs.id==prof_disc.id).update(count = count+1)
+	db.commit()
+	return count + 1
+
 #########################################
 # Biased dropdowns: the pretty way      #
 #########################################
