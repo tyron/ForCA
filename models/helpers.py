@@ -216,8 +216,8 @@ def gae_disc_biased_dropdown(prof_id):
 			results.append([disc.id, disc.name, 1])
 		else:
 			results.append([disc.id, disc.name, 0])
-	key = [res[0] for res in sorted(results, key=lambda x: x[2], reverse=True)]
-	value = [res[1] for res in sorted(results, key=lambda x: x[2], reverse=True)]
+	key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+	value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
 	form = SQLFORM.factory(
 			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key, value, zero=None)))
 	return form[0][0]
@@ -232,8 +232,8 @@ def gae_prof_biased_dropdown(disc_id):
 			results.append([prof.id, prof.full_name, 1])
 		else:
 			results.append([prof.id, prof.full_name, 0])
-	key = [res[0] for res in sorted(results, key=lambda x: x[2], reverse=True)]
-	value = [res[1] for res in sorted(results, key=lambda x: x[2], reverse=True)]
+	key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+	value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
 	form = SQLFORM.factory(
 			Field('professor_id', label="Professor", requires=IS_IN_SET(key, value, zero=None)))
 	return form[0][0]
