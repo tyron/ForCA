@@ -218,12 +218,13 @@ def prof_biased_dropdown(disc_id):
 
 def gae_disc_biased_dropdown(prof_id):
 	discs = db(db.disciplinas.id>0).select(db.disciplinas.ALL)
-	pds = db(db.profs_discs.id>0).select(db.profs_discs.ALL).as_list()
-	pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, pds)
+	profs_discs = db(db.profs_discs.id>0).select(db.profs_discs.ALL).as_list()
+	pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, profs_discs)
 	results = []
 	for disc in discs:
-		if {'professor_id': int(prof_id), 'disciplina_id': disc.id} in pds:
-			results.append([disc.id, disc.name, 1])
+		dictkey = {'professor_id': int(prof_id), 'disciplina_id': disc.id}
+		if dictkey in pds:
+			results.append([disc.id, disc.name, profs_discs[pds.index(dictkey)]['count']])
 		else:
 			results.append([disc.id, disc.name, 0])
 	key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
@@ -234,12 +235,13 @@ def gae_disc_biased_dropdown(prof_id):
 
 def gae_prof_biased_dropdown(disc_id):
 	profs = db(db.professores.id>0).select(db.professores.ALL)
-	pds = db(db.profs_discs.id>0).select(db.profs_discs.ALL).as_list()
-	pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, pds)
+	profs_discs = db(db.profs_discs.id>0).select(db.profs_discs.ALL).as_list()
+	pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, profs_discs)
 	results = []
 	for prof in profs:
-		if {'disciplina_id': int(disc_id), 'professor_id': prof.id} in pds:
-			results.append([prof.id, prof.full_name, 1])
+		dictkey = {'disciplina_id': int(disc_id), 'professor_id': prof.id}
+		if dictkey in pds:
+			results.append([prof.id, prof.full_name, profs_discs[pds.index(dictkey)]['count']])
 		else:
 			results.append([prof.id, prof.full_name, 0])
 	key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
