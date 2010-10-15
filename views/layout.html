@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{{T.force('pt-br')}}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{=T.accepted_language or 'en'}}">
   <head>
 		<title>{{=response.title or request.application}}</title>
@@ -20,7 +21,7 @@
 	<div class="ez-box" id="header">
 	  {{try:}}{{=auth.navbar(action=URL(request.application,'default','user'))}}{{except:pass}}
           <h1>
-						<a href="">{{=request.application}}</a>
+						<a href="">{{=IMG(_src=URL('static', 'forca.png'), _border=0, _width=200)}}</a>
           </h1>            
           <h2>
 	    {{=response.subtitle or 'response.subtitle'}}
