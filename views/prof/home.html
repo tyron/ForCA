@@ -12,8 +12,8 @@
 				</tr>
 				<tr>
 					{{=prof.email}}<br />
-					{{if prof.site:}} 
-						{{=A(prof.site, _href=prof.site)}}
+					{{if prof:}} 
+						{{=A(prof.site, _href=prof.site, _target="_blank")}}
 					{{pass}}
 				</tr>
 			</table>
