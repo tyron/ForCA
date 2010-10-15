@@ -84,7 +84,7 @@ auth.messages.reset_password = 'Clique no link http://' + \
 #mensagens do auth
 auth.messages.submit_button = 'Enviar'
 auth.messages.verify_password = 'Confirmação de senha'
-auth.messages.delete_label = 'Marque para excluir:'
+auth.messages.delete_label = 'Marque para excluir'
 auth.messages.function_disabled = 'Função desabilitada'
 auth.messages.access_denied = 'Acesso negado'
 auth.messages.registration_verifying = 'Cadastro ainda não verificado'
