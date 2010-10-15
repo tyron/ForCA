@@ -20,7 +20,7 @@
 	<div class="ez-box" id="header">
 	  {{try:}}{{=auth.navbar(action=URL(request.application,'default','user'))}}{{except:pass}}
           <h1>
-						<a href="">{{=request.application}}</a>
+						<a href="">{{=IMG(_src=URL('static', 'forca.png'), _border=0, _width=200)}}</a>
           </h1>            
           <h2>
 	    {{=response.subtitle or 'response.subtitle'}}
