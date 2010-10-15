@@ -45,7 +45,7 @@ if db(db.professores.id > 0).count() == 0:
 	db.professores.insert(id=43, email='brodbeck@inf.ufrgs.br', short_name='Brodbeck', full_name='Henrique Jorge Brodbeck', site='http://www.inf.ufrgs.br/~brodbeck')
 	db.professores.insert(id=44, email='comba@inf.ufrgs.br', short_name='Comba', full_name='João Luiz Dihl Comba', site='http://www.inf.ufrgs.br/~comba')
 	db.professores.insert(id=45, email='wives@inf.ufrgs.br', short_name='Leandro', full_name='Leandro Krug Wives', site='http://www.inf.ufrgs.br/~wives')
-	db.professores.insert(id=46, email='granville@inf.ufrgs.br', short_name='Lisandro', full_name='Lisandro Zambenedetti Granville', site='http://www.inf.ufrgs.br/granville')
+	db.professores.insert(id=46, email='granville@inf.ufrgs.br', short_name='Lisandro', full_name='Lisandro Zambenedetti Granville', site='http://www.inf.ufrgs.br/~granville')
 	db.professores.insert(id=47, email='nedel@inf.ufrgs.br', short_name='Nedel', full_name='Luciana Porcher Nedel', site='http://www.inf.ufrgs.br/~nedel')
 	db.professores.insert(id=48, email='buriol@inf.ufrgs.br', short_name='Buriol', full_name='Luciana Salete Buriol', site='http://www.inf.ufrgs.br/~buriol')
 	db.professores.insert(id=49, email='paschoal@inf.ufrgs.br', short_name='Paschoal', full_name='Luciano Paschoal Gaspary', site='http://www.inf.ufrgs.br/~paschoal')
