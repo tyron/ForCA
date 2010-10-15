@@ -42,7 +42,7 @@
 				{{if not has_karmed(get_aluno_id(), eval['id']) and get_aluno_id() and get_aluno_id()!=eval['aluno_id']:}}
 					<form><input type="hidden" id="karma{{=eval['id']}}"/></form>
 
-					<span id="plus{{=eval['id']}}" style="float:right" 
+					<span id="plus{{=eval['id']}}" style="float:right; cursor:hand; cursor:pointer" 
 						onclick="ajax('{{=URL(request.application, 'karma', 'up', vars=dict(eval_id=eval['id']))}}', 
 						['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
 						jQuery('#plus{{=eval['id']}}').fadeOut();
@@ -53,7 +53,7 @@
 					<span style="float:right" id="karma_count{{=eval['id']}}" 
 						class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">{{=eval['karma']}}</span>
 
-					<span id="minus{{=eval['id']}}" style="float:right" 
+					<span id="minus{{=eval['id']}}" style="float:right; cursor:hand; cursor:pointer" 
 						onclick="ajax('{{=URL(request.application, 'karma', 'down', vars=dict(eval_id=eval['id']))}}', 
 						['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
 						jQuery('#plus{{=eval['id']}}').fadeOut();

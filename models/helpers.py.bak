@@ -82,6 +82,13 @@ def get_prof_name(prof_id):
     prof = db(db.professores.id==prof_id).select().first()
     return prof.full_name
 
+def get_prof_id_from_email(prof_email):
+	'''
+	Retorna o id no datastore do professor cujo e-mail eh prof_email
+	'''
+	prof = db(db.professores.email==prof_email).select().first()
+	return prof.id
+
 #########################################
 #              Disc getters             #
 #########################################
@@ -92,6 +99,13 @@ def get_disc_name(disc_id):
     '''
     disc = db(db.disciplinas.id==disc_id).select().first()
     return disc.name
+
+def get_disc_id_from_code(disc_code):
+	'''
+	Retorna o id no datastore da disciplina cujo codigo eh disc_code
+	'''
+	disc = db(db.disciplinas.code==disc_code).select().first()
+	return disc.id
 
 def get_grade_letter(numgrade):
     if numgrade >= 9:
@@ -160,7 +174,22 @@ def get_evals(prof_id = None, disc_id = None):
         evals = db(db.avaliacoes.aluno_id == get_aluno_id())
     return evals
 
+def update_profs_discs(prof_id, disc_id):
+	prof_disc = db((db.profs_discs.professor_id==prof_id)&(db.profs_discs.disciplina_id==disc_id)).select().first()
+	if not prof_disc:
+		db.profs_discs.insert(professor_id=prof_id, disciplina_id=disc_id)
+		return 0
+	count = prof_disc.count
+	db(db.profs_discs.id==prof_disc.id).update(count = count+1)
+	db.commit()
+	return count + 1
+
+#########################################
+# Biased dropdowns: the pretty way      #
+#########################################
+
 def disc_biased_dropdown(prof_id):
+<<<<<<< HEAD
     rows = db().select(db.disciplinas.id, db.disciplinas.name,
             left = db.profs_discs.on(
                 (db.disciplinas.id==db.profs_discs.disciplina_id)&
@@ -183,3 +212,65 @@ def prof_biased_dropdown(disc_id):
     form = SQLFORM.factory(
             Field('professor_id', requires=IS_IN_SET(key,value,zero=None)))
     return form[0][0]
+=======
+	rows = db().select(db.disciplinas.id, db.disciplinas.name,
+			left = db.profs_discs.on(
+				(db.disciplinas.id==db.profs_discs.disciplina_id)&
+				(db.profs_discs.professor_id==prof_id)),
+			orderby=db.profs_discs.professor_id|db.disciplinas.name)
+	key = [row.id for row in rows]
+	value = [row.name for row in rows]
+	form = SQLFORM.factory(
+			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key,value,zero=None)))
+	return form[0][0]
+
+def prof_biased_dropdown(disc_id):
+	rows = db().select(db.professores.id, db.professores.full_name,
+			left = db.profs_discs.on(
+				(db.professores.id==db.profs_discs.professor_id)&
+				(db.profs_discs.disciplina_id==disc_id)),
+			orderby=db.profs_discs.disciplina_id|db.professores.full_name)
+	key = [row.id for row in rows]
+	value = [row.full_name for row in rows]
+	form = SQLFORM.factory(
+			Field('professor_id', label="Professor", requires=IS_IN_SET(key,value,zero=None)))
+	return form[0][0]
+
+#########################################
+# Biased dropdowns: the GAE way         #
+#########################################
+
+def gae_disc_biased_dropdown(prof_id):
+	discs = db(db.disciplinas.id>0).select(db.disciplinas.ALL)
+	profs_discs = db(db.profs_discs.id>0).select(db.profs_discs.ALL).as_list()
+	pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, profs_discs)
+	results = []
+	for disc in discs:
+		dictkey = {'professor_id': int(prof_id), 'disciplina_id': disc.id}
+		if dictkey in pds:
+			results.append([disc.id, disc.name, profs_discs[pds.index(dictkey)]['count']])
+		else:
+			results.append([disc.id, disc.name, 0])
+	key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+	value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+	form = SQLFORM.factory(
+			Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key, value, zero=None)))
+	return form[0][0]
+
+def gae_prof_biased_dropdown(disc_id):
+	profs = db(db.professores.id>0).select(db.professores.ALL)
+	profs_discs = db(db.profs_discs.id>0).select(db.profs_discs.ALL).as_list()
+	pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, profs_discs)
+	results = []
+	for prof in profs:
+		dictkey = {'disciplina_id': int(disc_id), 'professor_id': prof.id}
+		if dictkey in pds:
+			results.append([prof.id, prof.full_name, profs_discs[pds.index(dictkey)]['count']])
+		else:
+			results.append([prof.id, prof.full_name, 0])
+	key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+	value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+	form = SQLFORM.factory(
+			Field('professor_id', label="Professor", requires=IS_IN_SET(key, value, zero=None)))
+	return form[0][0]
+>>>>>>> 14557e958ca6a23fbecb2d48882ba84757230a32

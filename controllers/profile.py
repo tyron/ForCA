@@ -1,9 +1,15 @@
 from operator import itemgetter
 
 @auth.requires_login()
-def home():
-    aluno_id = get_aluno_id()
-    #avaliacoes = get_posted_evals(aluno_id)
+def home():  
+   
+    if auth.has_membership('Professor'):
+        prof_id = get_prof_id()
+        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+    else:
+        aluno_id = get_aluno_id()
+        avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
+    
     avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
     '''
     Lista de avaliações feitas aluno

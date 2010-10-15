@@ -16,7 +16,6 @@ db.define_table(
 		Field('short_name', 'string', length=32),
 		Field('grade', 'string', length=1, writable=False, readable=False,
 			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'])),
-		Field('picture', 'upload'),
 		migrate='alunos.table')
 
 #Tabela Disciplinas
@@ -38,6 +37,7 @@ db.define_table(
 		Field('short_name', 'string', length=32),
 		Field('grade', 'string', length=2, writable=False, readable=False,
 			requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
+		Field('site','string',length=64,readable=False),
 		Field('picture', 'upload'),
 		migrate='professores.table')
 
@@ -62,6 +62,7 @@ db.define_table(
 		Field('karma', 'integer', length=8, default='0', writable=False, readable=False),
 		Field('reply', 'text', readable=False),
 		Field('anonimo', 'boolean', required=True, default=False, writable=True, readable=True),
+		Field('timestamp','datetime',length=32, default=datetime.now(), readable=False),
 		migrate='avaliacoes.table')
 
 db.avaliacoes.aluno_id.requires = [
@@ -83,6 +84,7 @@ db.define_table(
 		Field('disciplina_id', db.disciplinas, required=True, notnull=True,
 			readable = False,
 			requires = IS_IN_DB(db, db.disciplinas.id, '%(name)s')),
+		Field('count', 'integer', default='1', writable=False, readable=False), 
 		migrate='profs_discs.table')
 
 db.profs_discs.professor_id.requires = [

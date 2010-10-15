@@ -18,7 +18,7 @@ def create():
 			labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
 			hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
 		form_add.vars.professor_id = prof_id
-		form_add[0][0] = disc_biased_dropdown(prof_id)
+		form_add[0][0] = gae_disc_biased_dropdown(prof_id)
 
 	elif 'disc_id' in request.vars:
 		disc_id = request.vars['disc_id']
@@ -28,7 +28,7 @@ def create():
 			labels = {'professor_id':'Professor: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo:': 'Anonimo:'},
 			hidden = dict(aluno_id=get_aluno_id(), disciplina_id=disc_id))
 		form_add.vars.disciplina_id = disc_id
-		form_add[0][0] = prof_biased_dropdown(disc_id)
+		form_add[0][0] = gae_prof_biased_dropdown(disc_id)
 
 	form_add.vars.aluno_id = get_aluno_id()
 
@@ -36,9 +36,11 @@ def create():
 		session.flash = 'Avaliação realizada com sucesso'
 		if 'prof_id' in request.vars:
 			update_grade(prof_id)
+			update_profs_discs(prof_id, request.vars['disciplina_id'])
 			redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
 		else:
 			update_grade(request.vars['professor_id'])
+			update_profs_discs(request.vars['professor_id'], disc_id)
 			redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
 	else:
 		response.flash = 'Por favor, preencha a sua avaliação'

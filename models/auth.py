@@ -66,6 +66,7 @@ auth.settings.register_onaccept.append(is_professor)
 mail = Mail(globals())
 
 #mail.settings.server = 'smtp.gmail.com:587' or 'gae'
+#mail.settings.server = 'gae'
 mail.settings.server = 'logging'
 mail.settings.login = None or 'forcaufrgs@gmail.com:f0rc4!@#'
 mail.settings.sender = 'forcaufrgs@gmail.com'
