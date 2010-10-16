@@ -47,8 +47,10 @@ def home():
         prof['id']        = raw_prof['professor_id']
         prof['full_name'] = db(db.professores.id==raw_prof['professor_id']).select().first().full_name
         evals_prof_disc   = get_evals(raw_prof['professor_id'],disc_id)
-        if len(evals_prof_disc.select()) < 1: #Se não tem avaliação, a nota média recebe '-'
-            prof['grade'] = ''
+        #Se não tem avaliação, a nota média recebe '\' pra colocar os professores sem nota no fim, ao ordenar
+        #Se alguém souber um jeito sem gambiarra seria interessante, favor me contar depois (Thomas)
+        if len(evals_prof_disc.select()) < 1:
+            prof['grade'] = '\\'
         else:
             prof['grade'] = grade_average(evals_prof_disc) 
         profs.append(prof)

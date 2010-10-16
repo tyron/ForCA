@@ -15,7 +15,6 @@
 </table>
 
 {{if disc.resume != None:}}
-    <br/>
     <table>
         <tr>
            <th><h3>Súmula</h3></th>
@@ -37,13 +36,15 @@
             <tr>
                 <td>{{=A(prof['full_name'], _href=URL(request.application,'prof','home',vars=dict(prof_id=prof['id'])))}}</td>
                 <td>
-                    {{=prof['grade'] or '-'}}
+                    {{=prof['grade'] if not prof['grade'] == '\\' else '-'}}
                 </td>
             </tr>
         {{pass}}
-         <tr>
+        {{if disc_grade != None:}}
+        <tr>
             <th colspan=2>A média de todos professores em {{=disc.short_name}} é {{=disc_grade or '-'}}</th>
         </tr>
+        {{pass}}
     </table>
 {{pass}}
 
