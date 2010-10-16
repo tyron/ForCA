@@ -22,23 +22,24 @@ def home():
     counter = 0
     for raw_eval in raw_evals:
         eval = {}
-        eval['id']            = raw_eval['id']
-        eval['prof_id']       = raw_eval['professor_id']
-        eval['disc_id']       = raw_eval['disciplina_id']
-        eval['aluno_user_id'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
-        eval['aluno_id']      = raw_eval['aluno_id']
-        eval['aluno_name']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-        eval['prof_name']     = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
-        eval['disc_name']     = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
-        eval['semester']      = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
-        eval['grade']         = raw_eval['grade']
-        eval['karma']         = raw_eval['karma']
-        eval['comment']       = raw_eval['comment']
-        eval['reply']         = raw_eval['reply']
-        eval['anonimo']       = raw_eval['anonimo']
-        eval['timestamp']     = raw_eval['timestamp']
+        eval['id']              = raw_eval['id']
+        eval['prof_id']         = raw_eval['professor_id']
+        eval['disc_id']         = raw_eval['disciplina_id']
+        eval['aluno_user_id']   = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
+        eval['aluno_id']        = raw_eval['aluno_id']
+        eval['aluno_name']      = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
+        eval['prof_name']       = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
+        eval['disc_name']       = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
+        eval['semester']        = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
+        eval['grade']           = raw_eval['grade']
+        eval['karma']           = raw_eval['karma']
+        eval['comment']         = raw_eval['comment']
+        eval['reply']           = raw_eval['reply']
+        eval['anonimo']         = raw_eval['anonimo']
+        eval['timestamp_eval']  = raw_eval['timestamp_eval']
+        eval['timestamp_reply'] = raw_eval['timestamp_reply']
         evals.append(eval)
-        counter = counter+1
+        counter += 1
         if counter>2:
             break
     '''
@@ -50,24 +51,25 @@ def home():
     counter = 0
     for raw_eval in raw_evals:
         eval = {}
-        eval['id']            = raw_eval['id']
-        eval['prof_id']       = raw_eval['professor_id']
-        eval['disc_id']       = raw_eval['disciplina_id']
-        eval['aluno_user_id'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
-        eval['aluno_id']      = raw_eval['aluno_id']
-        eval['aluno_name']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-        eval['prof_name']     = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
-        eval['disc_name']     = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
-        eval['semester']      = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
-        eval['grade']         = raw_eval['grade']
-        eval['karma']         = raw_eval['karma']
-        eval['comment']       = raw_eval['comment']
-        eval['reply']         = raw_eval['reply']
-        eval['anonimo']       = raw_eval['anonimo']
-        eval['timestamp']     = raw_eval['timestamp']
+        eval['id']              = raw_eval['id']
+        eval['prof_id']         = raw_eval['professor_id']
+        eval['disc_id']         = raw_eval['disciplina_id']
+        eval['aluno_user_id']   = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
+        eval['aluno_id']        = raw_eval['aluno_id']
+        eval['aluno_name']      = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
+        eval['prof_name']       = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
+        eval['disc_name']       = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
+        eval['semester']        = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
+        eval['grade']           = raw_eval['grade']
+        eval['karma']           = raw_eval['karma']
+        eval['comment']         = raw_eval['comment']
+        eval['reply']           = raw_eval['reply']
+        eval['anonimo']         = raw_eval['anonimo']
+        eval['timestamp_eval']  = raw_eval['timestamp_eval']
+        eval['timestamp_reply'] = raw_eval['timestamp_reply']
         evals_replyed.append(eval)
-        counter = counter+1
+        counter += 1
         if counter>2:
             break    
  
-    return dict(name=session.auth.user.last_name, evals = sorted(evals, key=itemgetter('timestamp'), reverse=True), evals_replyed= sorted(evals_replyed, key=itemgetter('timestamp'), reverse=True), len_evals=len_evals, karma_avg=karma_avg, grade_avg=grade_avg)
+    return dict(name=session.auth.user.last_name, evals = sorted(evals, key=itemgetter('timestamp_eval'), reverse=True), evals_replyed= sorted(evals_replyed, key=itemgetter('timestamp_reply'), reverse=True), len_evals=len_evals, karma_avg=karma_avg, grade_avg=grade_avg)
