@@ -11,15 +11,14 @@ def home():
         avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
     
     avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
-    len_evals = len(avaliacoes.select())
+    len_evals_all = len(avaliacoes.select())
     karma_avg = get_karma_avg(aluno_id)
     grade_avg = grade_average(avaliacoes)
     '''
     Lista das últimas avaliações do aluno
     '''
-    raw_evals = avaliacoes.select()
+    raw_evals = avaliacoes.select(orderby=~db.avaliacoes.timestamp_eval, limitby=(0,3))
     evals = []
-    counter = 0
     for raw_eval in raw_evals:
         eval = {}
         eval['id']              = raw_eval['id']
@@ -36,19 +35,16 @@ def home():
         eval['comment']         = raw_eval['comment']
         eval['reply']           = raw_eval['reply']
         eval['anonimo']         = raw_eval['anonimo']
-        eval['timestamp']       = raw_eval['timestamp']
-        eval['reply_timestamp'] = raw_eval['reply_timestamp']
+        eval['timestamp_eval']  = raw_eval['timestamp_eval']
+        eval['timestamp_reply'] = raw_eval['timestamp_reply']
         evals.append(eval)
-        counter += 1
-        if counter>2:
-            break
+
     '''
     Lista das últimas avaliações do aluno, que foram respondidas
     '''
     avaliacoes = db((db.avaliacoes.aluno_id==aluno_id) & (db.avaliacoes.reply!=None))
-    raw_evals = avaliacoes.select()
+    raw_evals = avaliacoes.select(orderby=~db.avaliacoes.timestamp_reply, limitby=(0,3))
     evals_replyed = []
-    counter = 0
     for raw_eval in raw_evals:
         eval = {}
         eval['id']              = raw_eval['id']
@@ -65,11 +61,8 @@ def home():
         eval['comment']         = raw_eval['comment']
         eval['reply']           = raw_eval['reply']
         eval['anonimo']         = raw_eval['anonimo']
-        eval['timestamp']       = raw_eval['timestamp']
-        eval['reply_timestamp'] = raw_eval['reply_timestamp']
+        eval['timestamp_eval']  = raw_eval['timestamp_eval']
+        eval['timestamp_reply'] = raw_eval['timestamp_reply']
         evals_replyed.append(eval)
-        counter += 1
-        if counter>2:
-            break    
  
-    return dict(name=session.auth.user.last_name, evals = sorted(evals, key=itemgetter('timestamp'), reverse=True), evals_replyed= sorted(evals_replyed, key=itemgetter('reply_timestamp'), reverse=True), len_evals=len_evals, karma_avg=karma_avg, grade_avg=grade_avg)
+    return dict(name=session.auth.user.last_name, evals=evals, evals_replyed=evals_replyed, len_evals_all = len_evals_all, karma_avg=karma_avg, grade_avg=grade_avg)

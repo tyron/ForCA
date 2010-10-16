@@ -1,8 +1,8 @@
 {{extend 'layout.html'}}
 <h1>Olá, {{=name}}!</h1>
 <ul>
-    {{if len(evals) > 0:}}
-        <li><h3>Você já postou {{=len(evals)}} {{=('avaliação' if len(evals) == 1 else 'avaliações')}}.</h3></li>
+    {{if len_evals_all) > 0:}}
+        <li><h3>Você já postou {{=len_evals_all}} {{=('avaliação' if len_evals_all == 1 else 'avaliações')}}.</h3></li>
         <li><h3>O conceito médio de suas avaliações é {{=grade_avg}}.</h3></li>
         <li><h3>O saldo de suas avaliações é {{=karma_avg}}.</h3></li>
         <li><h3>Últimas avaliações:</h3></li><br>
