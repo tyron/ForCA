@@ -47,7 +47,10 @@ def home():
         prof['id']        = raw_prof['professor_id']
         prof['full_name'] = db(db.professores.id==raw_prof['professor_id']).select().first().full_name
         evals_prof_disc   = get_evals(raw_prof['professor_id'],disc_id)
-        prof['grade']     = grade_average(evals_prof_disc) 
+        if len(evals_prof_disc.select()) < 1: #Se não tem avaliação, a nota média recebe '-'
+            prof['grade'] = ''
+        else:
+            prof['grade'] = grade_average(evals_prof_disc) 
         profs.append(prof)
 
     return dict(disc = disc, disc_grade = disc_grade, evals = sorted(evals, key=itemgetter('karma'), reverse=True), profs = sorted(profs, key=itemgetter('grade'), reverse=False))
