@@ -11,7 +11,6 @@ def home():
         avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
     
     avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
-    len_evals = len(avaliacoes.select())
     karma_avg = get_karma_avg(aluno_id)
     grade_avg = grade_average(avaliacoes)
     '''
@@ -70,4 +69,4 @@ def home():
         if counter>2:
             break    
  
-    return dict(name=session.auth.user.last_name, evals = sorted(evals, key=itemgetter('timestamp'), reverse=True), evals_replyed= sorted(evals_replyed, key=itemgetter('timestamp'), reverse=True), len_evals=len_evals, karma_avg=karma_avg, grade_avg=grade_avg)
+    return dict(name=session.auth.user.last_name, evals = sorted(evals, key=itemgetter('timestamp'), reverse=True), evals_replyed= sorted(evals_replyed, key=itemgetter('timestamp'), reverse=True), karma_avg=karma_avg, grade_avg=grade_avg)
