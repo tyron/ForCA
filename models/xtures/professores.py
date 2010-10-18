@@ -7,7 +7,7 @@ if db(db.professores.id > 0).count() == 0:
 	db.professores.insert(id=5, email='palazzo@inf.ufrgs.br', short_name='Palazzo', full_name='José Palazzo Moreira de Oliveira', site='http://www.inf.ufrgs.br/~palazzo')
 	db.professores.insert(id=6, email='navaux@inf.ufrgs.br', short_name='Navaux', full_name='Philippe Olivier Alexandre Navaux', site='http://www.inf.ufrgs.br/~navaux')
 	db.professores.insert(id=7, email='reis@inf.ufrgs.br', short_name='Reis', full_name='Ricardo Augusto da Luz Reis')
-	db.professores.insert(id=8, email='asc@inf.ufrgs.br', short_name='Carissimi', full_name='Alexandre da Silva Carissimi', site='http://www.inf.ufrgs.br/~asc')
+	db.professores.insert(id=8, email='asc@inf.ufrgs.br', short_name='Carissimi', full_name='Alexandre da Silva Carissimi', site='http://www.inf.ufrgs.br/~asc', picture='professores.picture.9162850d94a79ce7.6173632e6a7067.jpg')
 	db.professores.insert(id=9, email='bazzan@inf.ufrgs.br', short_name='Bazzan', full_name='Ana Lucia Cetertich Bazzan', site='http://www.inf.ufrgs.br/~bazzan')
 	db.professores.insert(id=10, email='carla@inf.ufrgs.br', short_name='Carla', full_name='Carla Maria Dal Sasso Freitas', site='http://www.inf.ufrgs.br/~carla')
 	db.professores.insert(id=11, email='calisboa@inf.ufrgs.br', short_name='Lisboa', full_name='Carlos Arthur Lang Lisboa', site='http://www.inf.ufrgs.br/~calisboa')
