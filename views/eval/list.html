@@ -11,7 +11,9 @@
                 <table>
                     <tr>
                         {{if 'disc_name' in eval and 'prof_name' in eval:}}
-                            Sobre <b>{{=eval['prof_name']}}</b> em <b>{{=eval['disc_name']}}</b>
+                            Sobre <b>{{=A(eval['prof_name'],
+					 _href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b> em <b>{{=A(eval['disc_name'], 
+								_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
                         {{elif 'disc_name' in eval:}}
                             {{if eval['anonimo'] == True:}}
                                 <b><i>Anônimo</i></b>, sobre <b>{{=eval['disc_name']}}</b>
