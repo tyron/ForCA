@@ -16,15 +16,21 @@
 								_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
                         {{elif 'disc_name' in eval:}}
                             {{if eval['anonimo'] == True:}}
-                                <b><i>Anônimo</i></b>, sobre <b>{{=eval['disc_name']}}</b>
+                                <b><i>Anônimo</i></b>, sobre <b>{{=A(eval['disc_name'], 
+								_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
                             {{else:}}
-                                <b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['disc_name']}}</b>
+                                <b>{{=A(eval['aluno_name'], 
+					_href=URL(request.application,'profile','home'))}}</b>, sobre <b>{{=A(eval['disc_name'], 
+								_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
                             {{pass}}
                         {{else:}}
                             {{if eval['anonimo'] == True:}}
-                                <b><i>Anônimo</i></b>, sobre <b>{{=eval['prof_name']}}</b>
+                                <b><i>Anônimo</i></b>, sobre <b>{{=A(eval['prof_name'],
+								_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b>
                             {{else:}}
-                                <b>{{=eval['aluno_name']}}</b>, sobre <b>{{=eval['prof_name']}}</b>
+                                <b>{{=A(eval['aluno_name'], 
+					_href=URL(request.application,'profile','home'))}}</b>, sobre <b>{{=A(eval['prof_name'],
+								_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b>
                             {{pass}}
                         {{pass}}
                         {{if 'semester' in eval:}}

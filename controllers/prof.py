@@ -28,6 +28,7 @@ def home():
 		eval['aluno_id']      = raw_eval['aluno_id']
 		eval['aluno_name']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
 		eval['prof_id']       = raw_eval['professor_id']
+		eval['disc_id']	      = raw_eval['disciplina_id']
 		eval['disc_name']     = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
 		eval['semester']      = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
 		eval['grade']         = raw_eval['grade']
