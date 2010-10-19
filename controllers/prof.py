@@ -7,6 +7,7 @@ def create():
 		session.flash = 'Professor criado com sucesso'
 	return dict(form=form)
 
+@auth.requires_membership('admin')
 def edit():
 	prof_id = request.vars['prof_id']
 	prof = db(db.professores.id==prof_id).select().first()
