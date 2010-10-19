@@ -1,16 +1,11 @@
 {{extend 'layout.html'}}
 <table>
 	<tr>
-		<th>Foto</th>
 		<th>Nome</th>
-		<th>Rating</th>
+		<th>Média</th>
 	</tr>
 	{{for prof in profs:}}
 	<tr>
-		<td>
-			{{=A(IMG(_width='50px', _src=URL('download', args=prof.picture)), 
-			_href=URL('home', vars=dict(prof_id=prof.id)))}}
-		</td>
 		<td>{{=A(prof.full_name, _href=URL('home', vars=dict(prof_id=prof.id)))}}</td>
 		<td>
 			{{=prof.grade or '-'}}

@@ -1,17 +1,27 @@
 from operator import itemgetter
 
-@auth.requires_login()
+@auth.requires_membership('admin')
 def create():
-    form = SQLFORM(db.professores)
-    if form.accepts(request.vars, session):
-        session.flash = 'ok'
-    return dict(form=form)
+	form = SQLFORM(db.professores)
+	if form.accepts(request.vars, session):
+		session.flash = 'Professor criado com sucesso'
+	return dict(form=form)
+
+@auth.requires_membership('admin')
+def edit():
+	prof_id = request.vars['prof_id']
+	prof = db(db.professores.id==prof_id).select().first()
+	form = SQLFORM(db.professores, prof)
+	if form.accepts(request.vars, session):
+		session.flash = 'Professor atualizado com sucesso'
+		redirect(URL(request.application, 'prof', 'list'))
+	return dict(form=form)
 
 def list():
-    '''
-    Exibe a lista de professores
-    '''
-    return dict(profs=db().select(db.professores.ALL).sort(lambda profs: profs.full_name))
+	'''
+	Exibe a lista de professores
+	'''
+	return dict(profs=db().select(db.professores.ALL).sort(lambda profs: profs.full_name))
 
 def home():
 	'''
