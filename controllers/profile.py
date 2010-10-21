@@ -7,9 +7,11 @@ def home():
         prof_id = get_prof_id()
         redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
     else:
-        aluno_id = get_aluno_id()
-        avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
-    
+	if request.vars:
+		aluno_id = request.vars['aluno_id']
+	else: aluno_id = get_aluno_id()
+
+    name = get_aluno_full_name(aluno_id)
     avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
     len_evals_all = len(avaliacoes.select())
     karma_avg = get_karma_avg(aluno_id)
@@ -65,4 +67,4 @@ def home():
         eval['timestamp_reply'] = raw_eval['timestamp_reply']
         evals_replyed.append(eval)
  
-    return dict(name=session.auth.user.last_name, evals=evals, evals_replyed=evals_replyed, len_evals_all = len_evals_all, karma_avg=karma_avg, grade_avg=grade_avg)
+    return dict(name=name, evals=evals, evals_replyed=evals_replyed, len_evals_all = len_evals_all, karma_avg=karma_avg, grade_avg=grade_avg)

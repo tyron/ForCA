@@ -20,7 +20,7 @@
 								_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
                             {{else:}}
                                 <b>{{=A(eval['aluno_name'], 
-					_href=URL(request.application,'profile','home'))}}</b>, sobre <b>{{=A(eval['disc_name'], 
+					_href=URL(request.application,'profile','home',vars=dict(aluno_id=eval['aluno_id'])))}}</b>, sobre <b>{{=A(eval['disc_name'], 
 								_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
                             {{pass}}
                         {{else:}}
@@ -29,7 +29,7 @@
 								_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b>
                             {{else:}}
                                 <b>{{=A(eval['aluno_name'], 
-					_href=URL(request.application,'profile','home'))}}</b>, sobre <b>{{=A(eval['prof_name'],
+					_href=URL(request.application,'profile','home',vars=dict(aluno_id=eval['aluno_id'])))}}</b>, sobre <b>{{=A(eval['prof_name'],
 								_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b>
                             {{pass}}
                         {{pass}}
