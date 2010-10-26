@@ -7,12 +7,14 @@
 {{pass}}
 
 {{if page:}}
-	<a href="{{=URL(args=[page-1], vars=vars)}}">{{=T('anterior')}}</a>
+	<a style="float:left" href="{{=URL(args=[page-1], vars=vars)}}">{{=T('<anterior')}}</a>
 {{pass}}
 
 {{if len(evals) > per_page:}}
-	<a href="{{=URL(args=[page+1], vars=vars)}}">{{=T('próxima')}}</a>
+	<a style="float:right" href="{{=URL(args=[page+1], vars=vars)}}">{{=T('próxima>')}}</a>
 {{pass}}
+
+<br/>
 
 {{for i, eval in enumerate(evals):}}
 	{{if i==per_page: break}}
