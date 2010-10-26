@@ -28,23 +28,7 @@ def home():
 	disc_grade = grade_average(evals_disc)
 	#Lista de avaliações
 	raw_evals = evals_disc.select(limitby=limitby)
-	evals = []
-	for raw_eval in raw_evals:
-		eval = {}
-		eval['id']            = raw_eval['id']
-		eval['prof_id']       = raw_eval['professor_id']
-		eval['disc_id']       = raw_eval['disciplina_id']
-		eval['aluno_user_id'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
-		eval['aluno_id']      = raw_eval['aluno_id']
-		eval['aluno_name']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-		eval['prof_name']     = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
-		eval['semester']      = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
-		eval['grade']         = raw_eval['grade']
-		eval['karma']         = raw_eval['karma']
-		eval['comment']       = raw_eval['comment']
-		eval['reply']         = raw_eval['reply']
-		eval['anonimo']       = raw_eval['anonimo']
-		evals.append(eval)
+	evals = refine_evals(raw_evals)
 	#Lista de professores que dão a disciplina
 	raw_profs = db(db.profs_discs.disciplina_id==disc_id).select()
 	profs = []
