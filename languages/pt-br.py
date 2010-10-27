@@ -6,6 +6,7 @@
 '%s rows deleted': '%s linhas apagadas',
 '%s rows updated': '%s linhas atualizadas',
 '<anterior': '<anterior',
+'Anônimo': 'Anônimo',
 'Available databases and tables': 'Bancos de dados e tabelas disponíveis',
 'Cadastro ainda não verificado': 'Cadastro ainda não verificado',
 'Cannot be empty': 'Não pode ser vazio',

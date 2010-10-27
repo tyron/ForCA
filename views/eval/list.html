@@ -29,51 +29,44 @@
 										</div>
 								</td>
 								<td>
-										<table>
-												<tr>
-														{{if 'disc_name' in eval and 'prof_name' in eval:}}
-															Sobre <b>{{=A(eval['prof_name'],
-																_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b> em 
-																<b>{{=A(eval['disc_name'], 
-																_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
-														{{elif 'disc_name' in eval:}}
-															{{if eval['anonimo'] == True:}}
-																<b><i>Anônimo</i></b>, sobre <b>{{=A(eval['disc_name'], 
-																_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
-															{{else:}}
-																<b>{{=A(eval['aluno_name'], 
-																_href=URL(request.application,'profile','home',vars=dict(aluno_id=eval['aluno_id'])))}}</b>,
-																sobre <b>{{=A(eval['disc_name'], 
-																_href=URL(request.application,'disc','home',vars=dict(disc_id=eval['disc_id'])))}}</b>
-														{{pass}}
-														{{else:}}
-															{{if eval['anonimo'] == True:}}
-																<b><i>Anônimo</i></b>, sobre <b>{{=A(eval['prof_name'],
-																_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b>
-															{{else:}}
-																<b>{{=A(eval['aluno_name'], 
-																_href=URL(request.application,'profile','home',vars=dict(aluno_id=eval['aluno_id'])))}}</b>,
-																sobre <b>{{=A(eval['prof_name'],
-																_href=URL(request.application,'prof','home',vars=dict(prof_id=eval['prof_id'])))}}</b>
-															{{pass}}
-														{{pass}}
-														{{if 'semester' in eval:}}
-															{{if 'disc_name' in eval and 'prof_name' in eval:}}
-																<b> - </b>
-															{{else:}}
-																<b> em </b>
-															{{pass}} 
-															<b>{{=eval['semester']}}</b>:
-														{{else:}}
-															:
-														{{pass}}
-												</tr>
-												<tr>
-														<td>
-																<i>{{=eval['comment'] or 'sem comentário'}}</i><br />
-														</td>
-												</tr>
-										</table>
+									<table>
+										<tr>
+											{{if not eval['anonimo']:}}
+												{{if 'aluno_id' in request.vars:}}
+													{{=B(eval['aluno_short_name'])}}
+												{{else:}}
+													{{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+													'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+													{{pass}}
+											{{else:}}
+												{{=B(T('Anônimo'))}}
+											{{pass}}
+											sobre
+											{{if 'prof_id' in request.vars:}}
+												{{=B(eval['prof_short_name'])}}
+											{{else:}}
+												{{=B(A(eval['prof_name'], _href=URL(request.application, 'prof', 'home',
+												vars=dict(prof_id=eval['prof_id']))))}}
+											{{pass}}
+											por
+											{{if 'disc_id' in request.vars:}}
+												{{=B(eval['disc_short_name'])}}
+											{{else:}}
+												{{=B(A(eval['disc_name'], _href=URL(request.application, 'disc',
+												'home', vars=dict(disc_id=eval['disc_id']))))}}
+											{{pass}}
+											{{if 'semester' in eval:}}
+												em
+												{{=B(eval['semester'])}}
+											{{pass}}
+											:
+										</tr>
+										<tr>
+											<td>
+												<i>{{=eval['comment'] or T('sem comentário')}}</i><br />
+											</td>
+										</tr>
+									</table>
 								</td>
 						</tr>
 						<div style='float:right'>

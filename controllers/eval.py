@@ -73,6 +73,7 @@ def update():
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
 
+@auth.requires_membership('professor')
 def reply():
     '''
     Função para postagem de resposta por parte de professor
@@ -109,3 +110,9 @@ def delete():
         redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
     elif 'disc_id' in request.vars:
         redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+
+def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
+	'''
+	Retorna avaliações de acordo com diversos critérios e filtros
+	'''
+	pass

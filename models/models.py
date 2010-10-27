@@ -7,7 +7,7 @@ else:
     db = DAL('postgres://forca:xx@localhost/forca')
 
 #Tabela Alunos
-db.define_table(
+Alunos = db.define_table(
         'alunos',
         Field('user_id', 'integer', length=32),
         Field('email', 'string', length=64, required=True, notnull=True, unique=True,
@@ -19,7 +19,7 @@ db.define_table(
         migrate='alunos.table')
 
 #Tabela Disciplinas
-db.define_table(
+Disciplinas = db.define_table(
         'disciplinas',
         Field('name', 'string', length=128, required=True, notnull=True),
         Field('short_name', 'string', length=32),
@@ -28,7 +28,7 @@ db.define_table(
         migrate='disciplinas.table')
 
 #Tabela Professores
-db.define_table(
+Professores = db.define_table(
         'professores',
         Field('user_id', 'integer', length=32),
         Field('email', 'string', length=64, required=True, notnull=True, unique=True,
@@ -42,7 +42,7 @@ db.define_table(
         migrate='professores.table')
 
 #Tabela Avaliacoes
-db.define_table(
+Avaliacoes = db.define_table(
         'avaliacoes',
         Field('aluno_id', db.alunos, required=True, notnull=True,
             writable = False, readable = False),
@@ -77,7 +77,7 @@ db.avaliacoes.aluno_id.requires = [
 ]
 
 #Tabela Prof x Disc
-db.define_table(
+Profs_discs = db.define_table(
         'profs_discs',
         Field('professor_id', db.professores, required=True, notnull=True,
             readable = False,
@@ -97,7 +97,7 @@ db.profs_discs.professor_id.requires = [
 ]
 
 #Tabela Karma
-db.define_table(
+Karmas = db.define_table(
         'karmas',
         Field('aluno_id', db.alunos, required=True, notnull=True,
             requires = IS_IN_DB(db, db.alunos.id, '')),
