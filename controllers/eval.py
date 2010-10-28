@@ -147,13 +147,12 @@ def filter():
 		widget=SQLFORM.widgets.autocomplete(request, Alunos.full_name, id_field=Alunos.id)))
 	fields['aluno'] = aluno_auto.custom.widget['aluno_id']
 
-	semester_drop = SQLFORM.factory(Field('semester', requires=IS_IN_DB(db, Avaliacoes.semester)))
-	fields['semester'] = semester_drop.custom.widget['semester']
+	eval_factory = SQLFORM.factory(Avaliacoes)
 
-	year_drop = SQLFORM.factory(Field('year', requires=IS_IN_DB(db, Avaliacoes.year)))
-	fields['year'] = year_drop.custom.widget['year']
+	fields['semester'] = eval_factory.custom.widget['semester']
 
-	grade_drop = SQLFORM.factory(Field('grade', requires=IS_IN_DB(db, Avaliacoes.grade)))
-	fields['grade'] = grade_drop.custom.widget['grade']
+	fields['year'] = eval_factory.custom.widget['year']
+
+	fields['grade'] = eval_factory.custom.widget['grade']
 
 	return dict(page=page, per_page=10, evals = result, prof_auto=prof_auto, fields=fields)
