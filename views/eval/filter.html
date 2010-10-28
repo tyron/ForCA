@@ -18,6 +18,21 @@
 		<a style="float:right" href="{{=URL(args=[page+1], vars=vars)}}">{{=T('próxima>')}}</a>
 	{{pass}}
 
+	<form id='search' name='search'>
+		<table>
+			<tr>
+				<th>Professor</th>
+				<th>Disciplina</th>
+				<th>Aluno</th>
+			</tr>
+			<tr>
+				<td>{{=fields['prof']}}</td>
+				<td>{{=fields['disc']}}</td>
+				<td>{{=fields['aluno']}}</td>
+			</tr>
+		</table>
+	</form>
+
 	<br/>
 
 	{{for i, eval in enumerate(evals):}}

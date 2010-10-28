@@ -133,4 +133,27 @@ def filter():
 
 	result = refine_evals(query.select(limitby=limitby))
 
-	return dict(page=page, per_page=10, evals = result)
+	fields = {}
+
+	prof_auto = SQLFORM.factory(Field('prof_id', Professores, label=None,
+		widget=SQLFORM.widgets.autocomplete(request, Professores.full_name, id_field=Professores.id)))
+	fields['prof'] = prof_auto.custom.widget['prof_id']
+
+	disc_auto = SQLFORM.factory(Field('disc_id', Disciplinas,
+		widget=SQLFORM.widgets.autocomplete(request, Disciplinas.name, id_field=Disciplinas.id)))
+	fields['disc'] = disc_auto.custom.widget['disc_id']
+
+	aluno_auto = SQLFORM.factory(Field('aluno_id', Alunos,
+		widget=SQLFORM.widgets.autocomplete(request, Alunos.full_name, id_field=Alunos.id)))
+	fields['aluno'] = aluno_auto.custom.widget['aluno_id']
+
+	semester_drop = SQLFORM.factory(Field('semester', requires=IS_IN_DB(db, Avaliacoes.semester)))
+	fields['semester'] = semester_drop.custom.widget['semester']
+
+	year_drop = SQLFORM.factory(Field('year', requires=IS_IN_DB(db, Avaliacoes.year)))
+	fields['year'] = year_drop.custom.widget['year']
+
+	grade_drop = SQLFORM.factory(Field('grade', requires=IS_IN_DB(db, Avaliacoes.grade)))
+	fields['grade'] = grade_drop.custom.widget['grade']
+
+	return dict(page=page, per_page=10, evals = result, prof_auto=prof_auto, fields=fields)
