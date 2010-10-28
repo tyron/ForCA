@@ -1,6 +1,3 @@
-from gluon.tools import Crud
-crud = Crud(globals(), db)
-
 def index():
     profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
     return dict(profs=profs)    
@@ -111,8 +108,23 @@ def delete():
     elif 'disc_id' in request.vars:
         redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
 
-def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
+def list():
 	'''
 	Retorna avaliações de acordo com diversos critérios e filtros
 	'''
-	pass
+	query = db(Avaliacoes.id > 0)
+	if 'prof_id' in request.vars:
+		query = query(Avaliacoes.professor_id==request.vars['prof_id'])
+	if 'disc_id' in request.vars:
+		query = query(Avaliacoes.disciplina_id==request.vars['disc_id'])
+	if 'aluno_id' in request.vars:
+		query = query(Avaliacoes.aluno_id==request.vars['aluno_id'])
+	if 'semester' in request.vars:
+		query = query(Avaliacoes.semester==request.vars['semester'])
+	if 'year' in request.vars:
+		query = query(Avaliacoes.year==request.vars['year'])
+	if 'grade' in request.vars:
+		query = query(Avaliacoes.grade==request.vars['grade'])
+
+	result = query.select()
+	return dict(evals = result)
