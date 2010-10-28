@@ -126,6 +126,7 @@
 'record id': 'id do registro',
 'register': 'registrar',
 'selected': 'selecionado',
+'sem comentário': 'sem comentário',
 'state': 'estado',
 'table': 'tabela',
 'unable to parse csv file': 'não foi possível analisar arquivo csv',

@@ -108,10 +108,15 @@ def delete():
     elif 'disc_id' in request.vars:
         redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
 
-def list():
+def filter():
 	'''
 	Retorna avaliações de acordo com diversos critérios e filtros
 	'''
+	if len(request.args):
+		page = int(request.args[0])
+	else:
+		page = 0
+	limitby = (page*10, (page+1)*11)
 	query = db(Avaliacoes.id > 0)
 	if 'prof_id' in request.vars:
 		query = query(Avaliacoes.professor_id==request.vars['prof_id'])
@@ -126,5 +131,6 @@ def list():
 	if 'grade' in request.vars:
 		query = query(Avaliacoes.grade==request.vars['grade'])
 
-	result = query.select()
-	return dict(evals = result)
+	result = refine_evals(query.select(limitby=limitby))
+
+	return dict(page=page, per_page=10, evals = result)
