@@ -118,41 +118,66 @@ def filter():
 		page = 0
 	limitby = (page*10, (page+1)*11)
 	query = db(Avaliacoes.id > 0)
+
+	prof_df = disc_df = aluno_df = semester_df = year_df = grade_df = None
+
 	if 'prof_id' in request.vars and request.vars['prof_id']:
 		query = query(Avaliacoes.professor_id==request.vars['prof_id'])
+		prof_df = request.vars['prof_id']
 	if 'disc_id' in request.vars and request.vars['disc_id']:
 		query = query(Avaliacoes.disciplina_id==request.vars['disc_id'])
+		disc_df = request.vars['disc_id']
 	if 'aluno_id' in request.vars and request.vars['aluno_id']:
 		query = query(Avaliacoes.aluno_id==request.vars['aluno_id'])
+		aluno_df = request.vars['aluno_id']
 	if 'semester' in request.vars and request.vars['semester']:
 		query = query(Avaliacoes.semester==request.vars['semester'])
+		semester_df = request.vars['semester']
 	if 'year' in request.vars and request.vars['year']:
 		query = query(Avaliacoes.year==request.vars['year'])
+		year_df = request.vars['year']
 	if 'grade' in request.vars and request.vars['grade']:
 		query = query(Avaliacoes.grade==request.vars['grade'])
+		grade_df = request.vars['grade']
 
 	result = refine_evals(query.select(limitby=limitby))
 
 	fields = {}
 
-	prof_auto = SQLFORM.factory(Field('prof_id', Professores, label=None,
+	prof_auto = SQLFORM.factory(Field('prof_id', Professores, default=prof_df,
 		widget=SQLFORM.widgets.autocomplete(request, Professores.full_name, id_field=Professores.id)))
 	fields['prof'] = prof_auto.custom.widget['prof_id']
 
-	disc_auto = SQLFORM.factory(Field('disc_id', Disciplinas,
+	disc_auto = SQLFORM.factory(Field('disc_id', Disciplinas, default=disc_df,
 		widget=SQLFORM.widgets.autocomplete(request, Disciplinas.name, id_field=Disciplinas.id)))
 	fields['disc'] = disc_auto.custom.widget['disc_id']
 
-	aluno_auto = SQLFORM.factory(Field('aluno_id', Alunos,
+	aluno_auto = SQLFORM.factory(Field('aluno_id', Alunos, default=aluno_df,
 		widget=SQLFORM.widgets.autocomplete(request, Alunos.full_name, id_field=Alunos.id)))
 	fields['aluno'] = aluno_auto.custom.widget['aluno_id']
 
-	eval_factory = SQLFORM.factory(Avaliacoes)
+	fields['semester'] = SQLFORM.widgets.options.widget(Avaliacoes.semester, semester_df)
+	fields['semester'].insert(0, '')
+	if not semester_df:
+		for x in fields['semester']:
+			if '_selected' in x.attributes:
+				x.attributes['_selected'] = False
+		fields['semester'][0].attributes['_selected'] = 'selected'
 
-	fields['semester'] = eval_factory.custom.widget['semester']
+	fields['year'] = SQLFORM.widgets.options.widget(Avaliacoes.year, year_df)
+	fields['year'].insert(0, '')
+	if not year_df:
+		for x in fields['year']:
+			if '_selected' in x.attributes:
+				x.attributes['_selected'] = False
+		fields['year'][0].attributes['_selected'] = 'selected'
 
-	fields['year'] = eval_factory.custom.widget['year']
-
-	fields['grade'] = eval_factory.custom.widget['grade']
+	fields['grade'] = SQLFORM.widgets.options.widget(Avaliacoes.grade, grade_df)
+	fields['grade'].insert(0, '')
+	if grade_df == None:
+		for x in fields['grade']:
+			if '_selected' in x.attributes:
+				x.attributes['_selected'] = False
+		fields['grade'][0].attributes['_selected'] = 'selected'
 
 	return dict(page=page, per_page=10, evals = result, prof_auto=prof_auto, fields=fields)
