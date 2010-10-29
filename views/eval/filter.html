@@ -1,5 +1,31 @@
 {{extend 'layout.html'}}
 
+<form id='search' name='search' action="">
+	<table>
+		<tr>
+			<th>Professor</th>
+			<th>Disciplina</th>
+			<th>Aluno</th>
+		</tr>
+		<tr>
+			<td>{{=fields['prof']}}</td>
+			<td>{{=fields['disc']}}</td>
+			<td>{{=fields['aluno']}}</td>
+		</tr>
+		<tr>
+			<th>Semestre</th>
+			<th>Ano</th>
+			<th>Nota</th>
+		</tr>
+		<tr>
+			<td>{{=fields['semester']}}</td>
+			<td>{{=fields['year']}}</td>
+			<td>{{=fields['grade']}}</td>
+		</tr>
+	</table>
+	<input type="submit" value="Submit"/>
+</form>
+
 {{if len(evals):}}
 
 	{{vars = {} }}
@@ -18,31 +44,6 @@
 		<a style="float:right" href="{{=URL(args=[page+1], vars=vars)}}">{{=T('próxima>')}}</a>
 	{{pass}}
 
-	<form id='search' name='search'>
-		<table>
-			<tr>
-				<th>Professor</th>
-				<th>Disciplina</th>
-				<th>Aluno</th>
-			</tr>
-			<tr>
-				<td>{{=fields['prof']}}</td>
-				<td>{{=fields['disc']}}</td>
-				<td>{{=fields['aluno']}}</td>
-			</tr>
-			<tr>
-				<th>Semestre</th>
-				<th>Ano</th>
-				<th>Nota</th>
-			</tr>
-			<tr>
-				<td>{{=fields['semester']}}</td>
-				<td>{{=fields['year']}}</td>
-				<td>{{=fields['grade']}}</td>
-			</tr>
-		</table>
-	</form>
-
 	<br/>
 
 	{{for i, eval in enumerate(evals):}}
@@ -59,7 +60,7 @@
 									<table>
 										<tr>
 											{{if not eval['anonimo']:}}
-												{{if 'aluno_id' in request.vars:}}
+												{{if 'aluno_id' in request.vars and request.vars['aluno_id']:}}
 													{{=B(eval['aluno_short_name'])}}
 												{{else:}}
 													{{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
@@ -69,14 +70,14 @@
 												{{=B(T('Anônimo'))}}
 											{{pass}}
 											sobre
-											{{if 'prof_id' in request.vars:}}
+											{{if 'prof_id' in request.vars and request.vars['prof_id']:}}
 												{{=B(eval['prof_short_name'])}}
 											{{else:}}
 												{{=B(A(eval['prof_name'], _href=URL(request.application, 'prof', 'home',
 												vars=dict(prof_id=eval['prof_id']))))}}
 											{{pass}}
 											por
-											{{if 'disc_id' in request.vars:}}
+											{{if 'disc_id' in request.vars and request.vars['disc_id']:}}
 												{{=B(eval['disc_short_name'])}}
 											{{else:}}
 												{{=B(A(eval['disc_name'], _href=URL(request.application, 'disc',
@@ -125,18 +126,18 @@
 						</div>
 						{{if session.auth:}}
 								{{if eval['aluno_user_id'] == session.auth.user.id:}}
-										{{if 'prof_id' in request.vars:}}
+										{{if 'prof_id' in eval:}}
 												{{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-														_href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], prof_id=prof.id)),
+														_href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], prof_id=eval['prof_id'])),
 														_onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
 												{{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-														_href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
-										{{elif 'disc_id' in request.vars:}}
+														_href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=eval['prof_id'])))}}
+										{{elif 'disc_id' in eval:}}
 												{{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-														_href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], disc_id=disc.id)),
+														_href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], disc_id=eval['disc_id'])),
 														_onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
 												{{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-														_href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
+														_href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=eval['disc_id'])))}}
 										{{pass}}
 								{{pass}}
 						{{pass}}

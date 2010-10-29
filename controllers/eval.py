@@ -118,17 +118,17 @@ def filter():
 		page = 0
 	limitby = (page*10, (page+1)*11)
 	query = db(Avaliacoes.id > 0)
-	if 'prof_id' in request.vars:
+	if 'prof_id' in request.vars and request.vars['prof_id']:
 		query = query(Avaliacoes.professor_id==request.vars['prof_id'])
-	if 'disc_id' in request.vars:
+	if 'disc_id' in request.vars and request.vars['disc_id']:
 		query = query(Avaliacoes.disciplina_id==request.vars['disc_id'])
-	if 'aluno_id' in request.vars:
+	if 'aluno_id' in request.vars and request.vars['aluno_id']:
 		query = query(Avaliacoes.aluno_id==request.vars['aluno_id'])
-	if 'semester' in request.vars:
+	if 'semester' in request.vars and request.vars['semester']:
 		query = query(Avaliacoes.semester==request.vars['semester'])
-	if 'year' in request.vars:
+	if 'year' in request.vars and request.vars['year']:
 		query = query(Avaliacoes.year==request.vars['year'])
-	if 'grade' in request.vars:
+	if 'grade' in request.vars and request.vars['grade']:
 		query = query(Avaliacoes.grade==request.vars['grade'])
 
 	result = refine_evals(query.select(limitby=limitby))
