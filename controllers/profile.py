@@ -32,7 +32,7 @@ def home():
 		'''
 		Lista das últimas avaliações do aluno, que foram respondidas
 		'''
-		avaliacoes = db((db.avaliacoes.aluno_id==aluno_id) & (db.avaliacoes.reply!=None))
+		avaliacoes = db((db.avaliacoes.aluno_id==aluno_id) & (db.avaliacoes.timestamp_reply!=None))
 		raw_evals = avaliacoes.select(orderby=~db.avaliacoes.timestamp_reply, limitby=(0,3))
 		evals_replyed = refine_evals(raw_evals)
 
