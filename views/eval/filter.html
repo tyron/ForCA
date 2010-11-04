@@ -5,25 +5,22 @@
 		<tr>
 			<th>Professor</th>
 			<th>Disciplina</th>
-			<th>Aluno</th>
 		</tr>
 		<tr>
 			<td>{{=fields['prof']}}</td>
 			<td>{{=fields['disc']}}</td>
-			<td>{{=fields['aluno']}}</td>
 		</tr>
 		<tr>
-			<th>Semestre</th>
 			<th>Ano</th>
 			<th>Nota</th>
 		</tr>
 		<tr>
-			<td>{{=fields['semester']}}</td>
 			<td>{{=fields['year']}}</td>
 			<td>{{=fields['grade']}}</td>
+			<td><input type="submit" value="Buscar!" style="float:right"/></td>
 		</tr>
 	</table>
-	<input type="submit" value="Submit"/>
+	<br/><br/>
 </form>
 
 {{if len(evals):}}

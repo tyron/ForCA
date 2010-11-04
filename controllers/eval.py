@@ -144,25 +144,16 @@ def filter():
 
 	fields = {}
 
-	prof_auto = SQLFORM.factory(Field('prof_id', Professores, default=prof_df,
-		widget=SQLFORM.widgets.autocomplete(request, Professores.full_name, id_field=Professores.id)))
-	fields['prof'] = prof_auto.custom.widget['prof_id']
 
-	disc_auto = SQLFORM.factory(Field('disc_id', Disciplinas, default=disc_df,
-		widget=SQLFORM.widgets.autocomplete(request, Disciplinas.name, id_field=Disciplinas.id)))
-	fields['disc'] = disc_auto.custom.widget['disc_id']
+	prof_drop = SQLFORM.factory(
+			Field('prof_id', Professores, default=prof_df,
+				requires = IS_IN_DB(db, Professores.id, '%(full_name)s', zero = '')))
+	fields['prof'] = prof_drop.custom.widget.prof_id
 
-	aluno_auto = SQLFORM.factory(Field('aluno_id', Alunos, default=aluno_df,
-		widget=SQLFORM.widgets.autocomplete(request, Alunos.full_name, id_field=Alunos.id)))
-	fields['aluno'] = aluno_auto.custom.widget['aluno_id']
-
-	fields['semester'] = SQLFORM.widgets.options.widget(Avaliacoes.semester, semester_df)
-	fields['semester'].insert(0, '')
-	if not semester_df:
-		for x in fields['semester']:
-			if '_selected' in x.attributes:
-				x.attributes['_selected'] = False
-		fields['semester'][0].attributes['_selected'] = 'selected'
+	disc_drop = SQLFORM.factory(
+			Field('disc_id', Disciplinas, default=disc_df,
+				requires = IS_IN_DB(db, Disciplinas.id, '%(name)s', zero = '')))
+	fields['disc'] = disc_drop.custom.widget.disc_id
 
 	fields['year'] = SQLFORM.widgets.options.widget(Avaliacoes.year, year_df)
 	fields['year'].insert(0, '')
@@ -180,4 +171,4 @@ def filter():
 				x.attributes['_selected'] = False
 		fields['grade'][0].attributes['_selected'] = 'selected'
 
-	return dict(page=page, per_page=10, evals = result, prof_auto=prof_auto, fields=fields)
+	return dict(page=page, per_page=10, evals = result, fields=fields)
