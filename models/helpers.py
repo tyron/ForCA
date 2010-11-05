@@ -166,6 +166,13 @@ def get_refined_evals(prof_id=None, disc_id=None):
 #           Funções auxiliares          #
 #########################################
 
+def rem_acentos(str):
+    '''
+    Remove acentuação de uma string. Exemplo Não faça -> Nao faca
+    '''
+    from unicodedata import normalize
+    return normalize('NFKD', str.decode('utf-8')).encode('ASCII', 'ignore')
+    
 def get_grade_letter(numgrade):
     if numgrade >= 9:
         return 'A'

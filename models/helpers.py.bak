@@ -40,13 +40,6 @@ def get_aluno_full_name(aluno_id):
     '''
     aluno = db(db.alunos.id==aluno_id).select().first()
     return aluno.full_name
-    
-def get_aluno_email(aluno_id):
-    '''
-    Retorna o e-mail do aluno referenciado por aluno_id
-    '''
-    aluno = db(db.alunos.id==aluno_id).select().first()
-    return aluno.email
 
 def get_posted_evals(aluno_id):
     '''
@@ -145,7 +138,7 @@ def refine_evals(raw_evals):
         eval['aluno_user_id']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
         eval['aluno_id']         = raw_eval['aluno_id']
         eval['aluno_name']       = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-        eval['aluno_short_name'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
+        eval['aluno_short_name'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().short_name
         eval['prof_name']        = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
         eval['prof_short_name']  = db(db.professores.id==raw_eval['professor_id']).select().first().short_name
         eval['disc_name']        = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
@@ -173,6 +166,13 @@ def get_refined_evals(prof_id=None, disc_id=None):
 #           Funções auxiliares          #
 #########################################
 
+def rem_acentos(str):
+    '''
+    Remove acentuação de uma string. Exemplo Não faça -> Nao faca
+    '''
+    from unicodedata import normalize
+    return normalize('NFKD', str.decode('utf-8')).encode('ASCII', 'ignore')
+    
 def get_grade_letter(numgrade):
     if numgrade >= 9:
         return 'A'
