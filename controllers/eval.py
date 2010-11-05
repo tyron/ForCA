@@ -64,8 +64,10 @@ def update():
         update_timestamp_eval(record)
         if 'prof_id' in request.vars:
             redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        else:
+        elif 'disc_id' in request.vars:
             redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+        else:
+            redirect(URL(request.application, 'profile', 'home'))
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
@@ -107,6 +109,8 @@ def delete():
         redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
     elif 'disc_id' in request.vars:
         redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+    else:
+        redirect(URL(request.application, 'profile', 'home'))
 
 def filter():
 	'''
@@ -172,3 +176,9 @@ def filter():
 		fields['grade'][0].attributes['_selected'] = 'selected'
 
 	return dict(page=page, per_page=10, evals = result, fields=fields)
+
+def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
+    '''
+    Retorna avaliações de acordo com diversos critérios e filtros
+    '''
+    pass

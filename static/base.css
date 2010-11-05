@@ -343,3 +343,11 @@ div.gradeFF {
 .greenish {
 	color: #349C01;
 }
+
+.terms {
+	width: 100%;
+}
+
+.warning {
+	background-color: #E58989;
+}

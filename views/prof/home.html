@@ -1,46 +1,64 @@
 {{extend 'layout.html'}}
 <table>
-	<tr>
-		<td rowspan='2'>
-			{{if prof.picture:}}
-				{{=A(IMG(_width='100px', _src=URL('download', args=prof.picture)), 
-					_href=URL('home', vars=dict(id=prof.id)))}}
-			{{else:}}
-				{{=A(IMG(_width='100px', _src=URL(request.application, 'static/profs', 
-						prof.email.split('@')[0]+'.jpg')),
-					_href=URL('home', vars=dict(id=prof.id)))}}
-			{{pass}}
-		</td>
-		<td>
-			<table>
-				<tr>
-					<h2>{{=prof.full_name}}</h2>
-				</tr>
-				<tr>
-					{{=prof.email}}<br />
-					{{if prof.site:}} 
-						{{=A(prof.site, _href=prof.site, _target="_blank")}}
-					{{pass}}
-				</tr>
-			</table>
-		</td>
-		<td>
-			<div style="font-size:50px">
-				<b>{{=prof.grade or ''}}</b>
-			</div>
-		</td>
-	</tr>
+    <tr>
+        <td rowspan='2'>
+            {{if prof.picture:}}
+                {{=A(IMG(_width='100px', _src=URL('download', args=prof.picture)), 
+                    _href=URL('home', vars=dict(id=prof.id)))}}
+            {{else:}}
+                {{=A(IMG(_width='100px', _src=URL(request.application, 'static/profs', 
+                        prof.email.split('@')[0]+'.jpg')),
+                    _href=URL('home', vars=dict(id=prof.id)))}}
+            {{pass}}
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <h2>{{=prof.full_name}}</h2>
+                </tr>
+                <tr>
+                    {{=prof.email}}<br />
+                    {{if prof.site:}} 
+                        {{=A(prof.site, _href=prof.site, _target="_blank")}}
+                    {{pass}}
+                </tr>
+            </table>
+        </td>
+        <td>
+            <div style="font-size:50px">
+                <b>{{=prof.grade or ''}}</b>
+            </div>
+        </td>
+    </tr>
 </table>
+
+{{if len(discs)>0:}}
+    <br/>
+    <table>
+        <tr>
+            <th>Disciplina</th>
+            <th>Média nesta disciplina</th>
+        </tr>
+        {{for disc in discs:}}
+            <tr>
+                <td>{{=A(disc['name'], _href=URL(request.application,'disc','home',vars=dict(disc_id=disc['id'])))}}</td>
+                <td>
+                    {{=disc['grade'] if not disc['grade'] == '\\' else '-'}}
+                </td>
+            </tr>
+        {{pass}}
+    </table>
+{{pass}}
+
 <br/>
 <i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>
-
 {{include "eval/list.html"}}
 
 {{if not auth.has_membership('Professor'):}}
-	{{if 'prof_id' in request.vars:}}
-		{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
-	{{else:}}
-		{{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
-	{{pass}}
+    {{if 'prof_id' in request.vars:}}
+        {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
+    {{else:}}
+        {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
+    {{pass}}
 {{pass}}

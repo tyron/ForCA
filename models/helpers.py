@@ -126,41 +126,41 @@ def get_evals(prof_id = None, disc_id = None):
     return evals
 
 def refine_evals(raw_evals):
-	'''
-	Retorna uma lista de avaliações com campos refinados - referências resolvidas, campos tratados, etc
-	'''
-	evals = []
-	for raw_eval in raw_evals:
-		eval = {}
-		eval['id']               = raw_eval['id']
-		eval['prof_id']          = raw_eval['professor_id']
-		eval['disc_id']          = raw_eval['disciplina_id']
-		eval['aluno_user_id']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
-		eval['aluno_id']         = raw_eval['aluno_id']
-		eval['aluno_name']       = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-		eval['aluno_short_name'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-		eval['prof_name']        = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
-		eval['prof_short_name']  = db(db.professores.id==raw_eval['professor_id']).select().first().short_name
-		eval['disc_name']        = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
-		eval['disc_short_name']  = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().short_name
-		eval['semester']         = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
-		eval['grade']            = raw_eval['grade']
-		eval['karma']            = raw_eval['karma']
-		eval['comment']          = raw_eval['comment']
-		eval['reply']            = raw_eval['reply']
-		eval['anonimo']          = raw_eval['anonimo']
-		eval['timestamp_eval']   = raw_eval['timestamp_eval']
-		eval['timestamp_reply']  = raw_eval['timestamp_reply']
-		evals.append(eval)
-	return evals
+    '''
+    Retorna uma lista de avaliações com campos refinados - referências resolvidas, campos tratados, etc
+    '''
+    evals = []
+    for raw_eval in raw_evals:
+        eval = {}
+        eval['id']               = raw_eval['id']
+        eval['prof_id']          = raw_eval['professor_id']
+        eval['disc_id']          = raw_eval['disciplina_id']
+        eval['aluno_user_id']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
+        eval['aluno_id']         = raw_eval['aluno_id']
+        eval['aluno_name']       = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
+        eval['aluno_short_name'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().short_name
+        eval['prof_name']        = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
+        eval['prof_short_name']  = db(db.professores.id==raw_eval['professor_id']).select().first().short_name
+        eval['disc_name']        = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
+        eval['disc_short_name']  = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().short_name
+        eval['semester']         = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
+        eval['grade']            = raw_eval['grade']
+        eval['karma']            = raw_eval['karma']
+        eval['comment']          = raw_eval['comment']
+        eval['reply']            = raw_eval['reply']
+        eval['anonimo']          = raw_eval['anonimo']
+        eval['timestamp_eval']   = raw_eval['timestamp_eval']
+        eval['timestamp_reply']  = raw_eval['timestamp_reply']
+        evals.append(eval)
+    return evals
 
 def get_refined_evals(prof_id=None, disc_id=None):
-	'''
-	Seleciona as avaliações dados um prof_id ou disc_id e as refina, devolvendo avaliações tratadas
-	'''
-	raw_evals = get_evals(prof_id, disc_id).select()
-	evals = refine_evals(raw_evals)
-	return evals
+    '''
+    Seleciona as avaliações dados um prof_id ou disc_id e as refina, devolvendo avaliações tratadas
+    '''
+    raw_evals = get_evals(prof_id, disc_id).select()
+    evals = refine_evals(raw_evals)
+    return evals
 
 #########################################
 #           Funções auxiliares          #
