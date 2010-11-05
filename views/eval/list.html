@@ -31,9 +31,18 @@
                                 <td>
                                     <table>
                                         <tr>
-                                            {{if not eval['anonimo']:}}                                                
-                                                {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
-                                                'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+																						{{if not eval['anonimo']:}}
+																							{{if 'aluno_id' in request.vars:}}
+																								{{if eval['aluno_id'] == int(request.vars['aluno_id']):}}
+																									{{=B(eval['aluno_short_name'])}}
+																								{{else:}}
+	                                                {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+  	                                              'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+																								{{pass}}
+																							{{else:}}
+	                                            	{{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+  	                                          	'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+																							{{pass}}
                                             {{else:}}
                                                 {{=B(T('Anônimo'))}}
                                             {{pass}}
