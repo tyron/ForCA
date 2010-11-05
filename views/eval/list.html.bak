@@ -25,7 +25,11 @@
                         <tr>
                                 <td rowspan='4'>
                                         <div style='font-size:xx-large'>
+                                            {{if eval['grade']=="FF":}}
                                                 <b>{{=eval['grade']}}</b>
+                                            {{else:}}
+                                                <b>{{=eval['grade']}}&nbsp;</b>
+                                            {{pass}}
                                         </div>
                                 </td>
                                 <td>

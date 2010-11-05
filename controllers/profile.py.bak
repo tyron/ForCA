@@ -14,7 +14,7 @@ def home():
             aluno_id = get_aluno_id()
             
         #Verifica se quem ta acessando a página é o próprio aluno ou alguém de fora
-        if aluno_id == get_aluno_id():
+        if int(aluno_id) == get_aluno_id():
             perfil_proprio = True
         else: 
             perfil_proprio = False
