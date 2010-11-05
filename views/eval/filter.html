@@ -25,20 +25,12 @@
 
 {{if len(evals):}}
 
-	{{vars = {} }}
-	{{if 'disc_id' in request.vars:}}
-		{{vars['disc_id'] = evals[0]['disc_id']}}
-	{{pass}}
-	{{if 'prof_id' in request.vars:}}
-		{{vars['prof_id'] = evals[0]['prof_id']}}
-	{{pass}}
-
 	{{if page:}}
-		<a style="float:left" href="{{=URL(args=[page-1], vars=vars)}}">{{=T('<anterior')}}</a>
+		<a style="float:left" href="{{=URL(args=[page-1], vars=request.vars)}}">{{=T('<anterior')}}</a>
 	{{pass}}
 
 	{{if len(evals) > per_page:}}
-		<a style="float:right" href="{{=URL(args=[page+1], vars=vars)}}">{{=T('próxima>')}}</a>
+		<a style="float:right" href="{{=URL(args=[page+1], vars=request.vars)}}">{{=T('próxima>')}}</a>
 	{{pass}}
 
 	<br/>
@@ -57,29 +49,17 @@
 									<table>
 										<tr>
 											{{if not eval['anonimo']:}}
-												{{if 'aluno_id' in request.vars and request.vars['aluno_id']:}}
-													{{=B(eval['aluno_short_name'])}}
-												{{else:}}
-													{{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
-													'home', vars=dict(aluno_id=eval['aluno_id']))))}}
-													{{pass}}
+												{{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+												'home', vars=dict(aluno_id=eval['aluno_id']))))}}
 											{{else:}}
 												{{=B(T('Anônimo'))}}
 											{{pass}}
 											sobre
-											{{if 'prof_id' in request.vars and request.vars['prof_id']:}}
-												{{=B(eval['prof_short_name'])}}
-											{{else:}}
-												{{=B(A(eval['prof_name'], _href=URL(request.application, 'prof', 'home',
-												vars=dict(prof_id=eval['prof_id']))))}}
-											{{pass}}
+											{{=B(A(eval['prof_name'], _href=URL(request.application, 'prof', 'home',
+											vars=dict(prof_id=eval['prof_id']))))}}
 											por
-											{{if 'disc_id' in request.vars and request.vars['disc_id']:}}
-												{{=B(eval['disc_short_name'])}}
-											{{else:}}
-												{{=B(A(eval['disc_name'], _href=URL(request.application, 'disc',
-												'home', vars=dict(disc_id=eval['disc_id']))))}}
-											{{pass}}
+											{{=B(A(eval['disc_name'], _href=URL(request.application, 'disc',
+											'home', vars=dict(disc_id=eval['disc_id']))))}}
 											{{if 'semester' in eval:}}
 												em
 												{{=B(eval['semester'])}}
