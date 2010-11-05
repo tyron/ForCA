@@ -53,7 +53,7 @@ def home():
             disc['grade'] = grade_average(evals_prof_disc) 
         discs.append(disc)
    
-    return dict(prof=prof, page=page, per_page=10, evals=sorted(evals, key=itemgetter('karma'), reverse=True), discs = sorted(discs, key=itemgetter('grade'), reverse=False))
+    return dict(prof=prof, page=page, per_page=10, evals=sorted(evals, key=itemgetter('karma'), reverse=True), discs = sorted(discs, key=itemgetter('grade','name'), reverse=False))
 
 def download():
     """

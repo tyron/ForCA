@@ -165,7 +165,6 @@ def get_refined_evals(prof_id=None, disc_id=None):
 #########################################
 #           Funções auxiliares          #
 #########################################
-
 def rem_acentos(str):
     '''
     Remove acentuação de uma string. Exemplo Não faça -> Nao faca
@@ -288,8 +287,8 @@ def gae_disc_biased_dropdown(prof_id):
             results.append([disc.id, disc.name, profs_discs[pds.index(dictkey)]['count']])
         else:
             results.append([disc.id, disc.name, 0])
-    key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
-    value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+    key = [res[0] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
+    value = [res[1] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
     form = SQLFORM.factory(
             Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key, value, zero=None)))
     return form[0][0]
@@ -305,8 +304,8 @@ def gae_prof_biased_dropdown(disc_id):
             results.append([prof.id, prof.full_name, profs_discs[pds.index(dictkey)]['count']])
         else:
             results.append([prof.id, prof.full_name, 0])
-    key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
-    value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+    key = [res[0] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
+    value = [res[1] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
     form = SQLFORM.factory(
             Field('professor_id', label="Professor", requires=IS_IN_SET(key, value, zero=None)))
     return form[0][0]

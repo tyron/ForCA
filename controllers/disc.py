@@ -46,4 +46,4 @@ def home():
         profs.append(prof)
 
     return dict(disc = disc, disc_grade = disc_grade, evals = sorted(evals, key=itemgetter('karma'), reverse=True),\
-            page=page, per_page=10, profs = sorted(profs, key=itemgetter('grade'), reverse=False))
+            page=page, per_page=10, profs = sorted(profs, key=itemgetter('grade','full_name'), reverse=False))
