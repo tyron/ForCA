@@ -18,11 +18,7 @@ def home():
             perfil_proprio = True
         else: 
             perfil_proprio = False
-        
-        print aluno_id
-        print get_aluno_id()    
-        print perfil_proprio    
-        
+       
         if len(request.args):
             page = int(request.args[0])
         else:
