@@ -165,6 +165,7 @@ def get_refined_evals(prof_id=None, disc_id=None):
 #########################################
 #           Funções auxiliares          #
 #########################################
+
 def rem_acentos(str):
     '''
     Remove acentuação de uma string. Exemplo Não faça -> Nao faca

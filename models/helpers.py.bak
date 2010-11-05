@@ -304,8 +304,8 @@ def gae_prof_biased_dropdown(disc_id):
             results.append([prof.id, prof.full_name, profs_discs[pds.index(dictkey)]['count']])
         else:
             results.append([prof.id, prof.full_name, 0])
-    key = [res[0] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: rem_acentos(x[2]), reverse=True)]
-    value = [res[1] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: rem_acentos(x[2]), reverse=True)]
+    key = [res[0] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
+    value = [res[1] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
     form = SQLFORM.factory(
             Field('professor_id', label="Professor", requires=IS_IN_SET(key, value, zero=None)))
     return form[0][0]
