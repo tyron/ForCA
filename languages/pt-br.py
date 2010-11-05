@@ -1,5 +1,6 @@
 # coding: utf8
 {
+'\n	Ao clicar no botão "enviar" abaixo, você estará concordando com os termos de uso acima descritos': '\n	Ao clicar no botão "enviar" abaixo, você estará concordando com os termos de uso acima descritos',
 '"update" is an optional expression like "field1=\'newvalue\'". You cannot update or delete the results of a JOIN': '"update" é uma expressão opcional como "campo1=\'novovalor\'". Você não pode atualizar ou apagar os resultados de um JOIN',
 '%Y-%m-%d': '%Y-%m-%d',
 '%Y-%m-%d %H:%M:%S': '%Y-%m-%d %H:%M:%S',
@@ -7,6 +8,12 @@
 '%s rows updated': '%s linhas atualizadas',
 '<anterior': '<anterior',
 'Anônimo': 'Anônimo',
+'Ao completar seu registro você     estará concordando com os termos de uso acima.': 'Ao completar seu registro você     estará concordando com os termos de uso acima.',
+'Ao completar seu registro, clicando no botão    "enviar", você estará concordando com os termos de uso acima.': 'Ao completar seu registro, clicando no botão    "enviar", você estará concordando com os termos de uso acima.',
+'Ao completar seu registro, você     estará concordando com os termos de uso acima.': 'Ao completar seu registro, você     estará concordando com os termos de uso acima.',
+'Atenção': 'Atenção',
+'Atenção:': 'Atenção:',
+'Atenção: ': 'Atenção: ',
 'Available databases and tables': 'Bancos de dados e tabelas disponíveis',
 'Cadastro ainda não verificado': 'Cadastro ainda não verificado',
 'Cannot be empty': 'Não pode ser vazio',
@@ -68,6 +75,7 @@
 'Query:': 'Consulta:',
 'Record ID': 'Record ID',
 'Register': 'Registre-se',
+'Request reset password': 'Request reset password',
 'Role': 'Role',
 'Rows in table': 'Linhas na tabela',
 'Rows selected': 'Linhas selecionadas',
