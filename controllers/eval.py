@@ -75,7 +75,7 @@ def update():
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
 
-@auth.requires_membership('professor')
+@auth.requires_membership('Professor')
 def reply():
     '''
     Função para postagem de resposta por parte de professor
