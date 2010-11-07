@@ -60,6 +60,14 @@ def get_karma_avg(aluno_id):
             karmas.append(eval.karma)
     return sum(karmas)
 
+def get_link_to_aluno_home(aluno_id, name=None):
+	'''
+	Retorna um link para o profile/home do aluno referenciado por aluno_id
+	'''
+	if not name:
+		name = db(Alunos.id==aluno_id).select().first().full_name
+	return A(name, _href=URL(request.application, 'profile', 'home', vars=dict(aluno_id=aluno_id)))
+
 #########################################
 #              Prof getters             #
 #########################################
@@ -106,6 +114,11 @@ def get_disc_id_from_code(disc_code):
     '''
     disc = db(db.disciplinas.code==disc_code).select().first()
     return disc.id
+
+def get_link_to_disc_home(disc_id, name=None):
+	if not name:
+		name = db(Disciplinas.id==disc_id).select().first().name
+	return A(name, _href=URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
 
 #########################################
 #              Eval getters             #
