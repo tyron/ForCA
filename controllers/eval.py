@@ -80,8 +80,9 @@ def reply():
     '''
     Função para postagem de resposta por parte de professor
     '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
     eval = db.avaliacoes(request.vars['eval_id'])
-    prof_id = eval.professor_id
     form_reply = SQLFORM(db.avaliacoes, eval,
             fields = ['reply'],
             labels = {'reply':'Resposta: '},
@@ -89,12 +90,24 @@ def reply():
 
     if form_reply.accepts(request.vars, session):
         update_timestamp_reply(eval)
-        session.flash = 'Resposta postada com sucesso'
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+        session.flash = T('Resposta postada com sucesso')
+        redirect(session.jump_back)
     else:
-        response.flash = 'Por favor, preencha a sua resposta'
+        response.flash = T('Por favor, preencha a sua resposta')
 
     return dict(form_reply = form_reply, eval = eval)
+
+@auth.requires_membership('Professor')
+def reply_delete():
+	'''
+	Exclui uma resposta postada pelo professor a uma avaliacao
+	'''
+	if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+		session.jump_back = request.env.http_referer
+	db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
+	db.commit()
+	session.flash = T('Resposta excluída com sucesso')
+	redirect(session.jump_back)
 
 @auth.requires_login()
 def delete():

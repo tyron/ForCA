@@ -70,6 +70,7 @@
 'Old password': 'Old password',
 'Origin': 'Origin',
 'Os campos de senha não conferem': 'Os campos de senha não conferem',
+'Por favor, preencha a sua resposta': 'Por favor, preencha a sua resposta',
 'Powered by': 'Powered by',
 'Professores': 'Professores',
 'Profile': 'Profile',

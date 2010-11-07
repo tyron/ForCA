@@ -147,6 +147,7 @@ def refine_evals(raw_evals):
         eval = {}
         eval['id']               = raw_eval['id']
         eval['prof_id']          = raw_eval['professor_id']
+        eval['prof_user_id']     = db(db.professores.id==raw_eval['professor_id']).select().first().user_id
         eval['disc_id']          = raw_eval['disciplina_id']
         eval['aluno_user_id']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
         eval['aluno_id']         = raw_eval['aluno_id']

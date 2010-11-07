@@ -132,7 +132,15 @@
                         </div>
                 </table>
                         {{if eval['reply']:}}
-                        <div style="padding:10px; background-color:#999999;">
+												<div style="padding:10px; background-color:#999999;">
+													{{if eval['prof_user_id'] == session.auth.user.id:}}
+															{{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir resposta'), _title='Excluir resposta', 
+																		_href=URL(request.application, 'eval', 'reply_delete', vars=dict(eval_id=eval['id'])),
+																		_onclick="return confirm('Tem certeza de que deseja excluir a resposta?');")}}
+															{{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Editar resposta'), _title='Editar resposta',
+																		_href=URL(request.application, 'eval', 'reply', vars=dict(eval_id=eval['id'])))}}
+													{{pass}}
+													
                                 <b>Resposta: </b>
                                         {{=eval['reply']}}
                                 </div>
