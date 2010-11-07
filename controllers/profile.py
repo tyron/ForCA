@@ -3,7 +3,7 @@ from operator import itemgetter
 @auth.requires_login()
 def home():  
  
-	if auth.has_membership('Professor'):
+	if auth.has_membership('Professor') and not request.vars:
 		prof_id = get_prof_id()
 		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
 	else:

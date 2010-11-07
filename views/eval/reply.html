@@ -2,7 +2,8 @@
 <h2>Direito de resposta</h2>
 <span>
 {{if not eval.anonimo:}}
-	O aluno {{=B(get_aluno_full_name(eval.aluno_id))}}
+	O aluno {{=B(A(get_aluno_full_name(eval.aluno_id),
+	_href=URL(request.application, 'profile', 'home', vars=dict(aluno_id=eval.aluno_id))))}}
 {{else:}}
 	Um aluno que não quis se identificar
 {{pass}}
