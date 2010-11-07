@@ -55,7 +55,9 @@ def update():
     '''
     Função faz update de registro já existente
     '''
-    record = db.avaliacoes(request.vars['eval_id'])
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
+    record = Avaliacoes(request.vars['eval_id'])
     prof_id = record.professor_id
     form_up=SQLFORM(db.avaliacoes, record, 
         fields=['year','semester','grade','comment'], 
@@ -65,12 +67,7 @@ def update():
         session.flash = 'Avaliação editada com sucesso'
         update_grade(prof_id)
         update_timestamp_eval(record)
-        if 'prof_id' in request.vars:
-            redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        elif 'disc_id' in request.vars:
-            redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-        else:
-            redirect(URL(request.application, 'profile', 'home'))
+        redirect(session.jump_back)
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
@@ -114,6 +111,8 @@ def delete():
     '''
     Função que deleta uma avaliação existente
     '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
     eval_id = request.vars['eval_id']
     eval = db.avaliacoes[eval_id]
     prof_id = eval.professor_id
@@ -121,12 +120,7 @@ def delete():
     db.commit()
     update_grade(prof_id)
     session.flash = 'Avaliação excluída com sucesso'
-    if 'prof_id' in request.vars:
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
-    elif 'disc_id' in request.vars:
-        redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-    else:
-        redirect(URL(request.application, 'profile', 'home'))
+    redirect(session.jump_back)
 
 def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
     '''

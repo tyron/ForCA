@@ -103,25 +103,11 @@
                         </div>
                         {{if session.auth:}}
                                 {{if eval['aluno_user_id'] == session.auth.user.id:}}
-                                        {{if 'prof_id' in request.vars:}}
-                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-                                                        _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], prof_id=prof.id)),
-                                                        _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-                                                        _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
-                                        {{elif 'disc_id' in request.vars:}}
-                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-                                                        _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], disc_id=disc.id)),
-                                                        _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-                                                        _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
-                                        {{else:}}
-                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-                                                        _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
-                                                        _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-                                                        _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
-                                        {{pass}}
+																	{{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação')), _title=T('Excluir avaliação'), 
+																					_href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
+																					_onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+																	{{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação')), _title=T('Editar avaliação'),
+																					_href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
                                 {{pass}}
                         {{pass}}
                         </tr>
