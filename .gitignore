@@ -1,3 +1,4 @@
 databases/
 errors/
 sessions/
+*.swp

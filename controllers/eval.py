@@ -64,19 +64,22 @@ def update():
         update_timestamp_eval(record)
         if 'prof_id' in request.vars:
             redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        else:
+        elif 'disc_id' in request.vars:
             redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+        else:
+            redirect(URL(request.application, 'profile', 'home'))
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
 
-@auth.requires_membership('professor')
+@auth.requires_membership('Professor')
 def reply():
     '''
     Função para postagem de resposta por parte de professor
     '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
     eval = db.avaliacoes(request.vars['eval_id'])
-    prof_id = eval.professor_id
     form_reply = SQLFORM(db.avaliacoes, eval,
             fields = ['reply'],
             labels = {'reply':'Resposta: '},
@@ -84,12 +87,24 @@ def reply():
 
     if form_reply.accepts(request.vars, session):
         update_timestamp_reply(eval)
-        session.flash = 'Resposta postada com sucesso'
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+        session.flash = T('Resposta postada com sucesso')
+        redirect(session.jump_back)
     else:
-        response.flash = 'Por favor, preencha a sua resposta'
+        response.flash = T('Por favor, preencha a sua resposta')
 
     return dict(form_reply = form_reply, eval = eval)
+
+@auth.requires_membership('Professor')
+def reply_delete():
+	'''
+	Exclui uma resposta postada pelo professor a uma avaliacao
+	'''
+	if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+		session.jump_back = request.env.http_referer
+	db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
+	db.commit()
+	session.flash = T('Resposta excluída com sucesso')
+	redirect(session.jump_back)
 
 @auth.requires_login()
 def delete():
@@ -107,6 +122,8 @@ def delete():
         redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
     elif 'disc_id' in request.vars:
         redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+    else:
+        redirect(URL(request.application, 'profile', 'home'))
 
 def filter():
 	'''
@@ -144,7 +161,6 @@ def filter():
 
 	fields = {}
 
-
 	prof_drop = SQLFORM.factory(
 			Field('prof_id', Professores, default=prof_df,
 				requires = IS_IN_DB(db, Professores.id, '%(full_name)s', zero = '')))
@@ -172,3 +188,10 @@ def filter():
 		fields['grade'][0].attributes['_selected'] = 'selected'
 
 	return dict(page=page, per_page=10, evals = result, fields=fields)
+
+
+def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
+    '''
+    Retorna avaliações de acordo com diversos critérios e filtros
+    '''
+    pass
