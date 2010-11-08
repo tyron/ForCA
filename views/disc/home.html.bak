@@ -15,7 +15,6 @@
 </table>
 
 {{if disc.resume != None:}}
-    <br/>
     <table>
         <tr>
            <th><h3>Súmula</h3></th>
