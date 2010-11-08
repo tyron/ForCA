@@ -117,7 +117,7 @@
                                 {{pass}}
                         </div>
                 </table>
-                        {{if eval['reply']:}}
+                        {{if eval['reply'] and session.auth:}}
 												<div style="padding:10px; background-color:#999999;">
 													{{if eval['prof_user_id'] == session.auth.user.id:}}
 															{{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir resposta'), _title='Excluir resposta', 
