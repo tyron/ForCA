@@ -1,4 +1,9 @@
 {{extend 'layout.html'}}
+
+<script>
+	jQuery(document).ready(function(){jQuery('.profs_list').hide()});
+</script>
+
 <table>
     <tr>
         <td>
@@ -26,6 +31,7 @@
 {{pass}}
 
 {{if len(profs)>0:}}
+  <div class="profs_list">
     <br/>
     <table>
         <tr>
@@ -40,15 +46,16 @@
                 </td>
             </tr>
         {{pass}}
-        {{if disc_grade != None:}}
-        <tr>
-            <th colspan=2>A média de todos professores em {{=disc.short_name}} é {{=disc_grade or '-'}}</th>
-        </tr>
-        {{pass}}
-    </table>
+			</table>
+		</div>
+		{{if disc_grade != None:}}
+			<h4 class="profs_toggle cursored padded10" onclick="jQuery('.profs_list').slideToggle()">
+				A média de todos professores em {{=disc.short_name}} é {{=disc_grade or '-'}}
+				{{=IMG(_src=URL('static', 'plus.png'))}}
+			</h4>
+		{{pass}}
 {{pass}}
 
-<br/>
 <i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>
 {{include "eval/list.html"}}
