@@ -52,7 +52,9 @@ def update():
     '''
     Função faz update de registro já existente
     '''
-    record = db.avaliacoes(request.vars['eval_id'])
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
+    record = Avaliacoes(request.vars['eval_id'])
     prof_id = record.professor_id
     form_up=SQLFORM(db.avaliacoes, record, 
         fields=['year','semester','grade','comment'], 
@@ -62,23 +64,19 @@ def update():
         session.flash = 'Avaliação editada com sucesso'
         update_grade(prof_id)
         update_timestamp_eval(record)
-        if 'prof_id' in request.vars:
-            redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        elif 'disc_id' in request.vars:
-            redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-        else:
-            redirect(URL(request.application, 'profile', 'home'))
+        redirect(session.jump_back)
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
 
-@auth.requires_membership('professor')
+@auth.requires_membership('Professor')
 def reply():
     '''
     Função para postagem de resposta por parte de professor
     '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
     eval = db.avaliacoes(request.vars['eval_id'])
-    prof_id = eval.professor_id
     form_reply = SQLFORM(db.avaliacoes, eval,
             fields = ['reply'],
             labels = {'reply':'Resposta: '},
@@ -86,18 +84,32 @@ def reply():
 
     if form_reply.accepts(request.vars, session):
         update_timestamp_reply(eval)
-        session.flash = 'Resposta postada com sucesso'
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
+        session.flash = T('Resposta postada com sucesso')
+        redirect(session.jump_back)
     else:
-        response.flash = 'Por favor, preencha a sua resposta'
+        response.flash = T('Por favor, preencha a sua resposta')
 
     return dict(form_reply = form_reply, eval = eval)
+
+@auth.requires_membership('Professor')
+def reply_delete():
+	'''
+	Exclui uma resposta postada pelo professor a uma avaliacao
+	'''
+	if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+		session.jump_back = request.env.http_referer
+	db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
+	db.commit()
+	session.flash = T('Resposta excluída com sucesso')
+	redirect(session.jump_back)
 
 @auth.requires_login()
 def delete():
     '''
     Função que deleta uma avaliação existente
     '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
     eval_id = request.vars['eval_id']
     eval = db.avaliacoes[eval_id]
     prof_id = eval.professor_id
@@ -105,12 +117,7 @@ def delete():
     db.commit()
     update_grade(prof_id)
     session.flash = 'Avaliação excluída com sucesso'
-    if 'prof_id' in request.vars:
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
-    elif 'disc_id' in request.vars:
-        redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-    else:
-        redirect(URL(request.application, 'profile', 'home'))
+    redirect(session.jump_back)
 
 def filter():
 	'''
@@ -147,7 +154,6 @@ def filter():
 	result = refine_evals(query.select(limitby=limitby))
 
 	fields = {}
-
 
 	prof_drop = SQLFORM.factory(
 			Field('prof_id', Professores, default=prof_df,

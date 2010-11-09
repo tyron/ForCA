@@ -3,7 +3,7 @@ from operator import itemgetter
 @auth.requires_login()
 def home():  
  
-	if auth.has_membership('Professor'):
+	if auth.has_membership('Professor') and not request.vars:
 		prof_id = get_prof_id()
 		redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
 	else:
@@ -29,7 +29,7 @@ def home():
 
 		aluno = db(db.alunos.id==aluno_id).select(db.alunos.ALL).first()
 		avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
-		len_evals_all = len(avaliacoes.select(limitby=limitby))
+		len_evals_all = len(get_posted_evals(aluno_id))
 		karma_avg = get_karma_avg(aluno_id)
 		grade_avg = grade_average(avaliacoes)
 		'''
@@ -45,5 +45,5 @@ def home():
 		raw_evals = avaliacoes.select(orderby=~db.avaliacoes.timestamp_reply, limitby=(0,3))
 		evals_replyed = refine_evals(raw_evals)
 
-		return dict(aluno=aluno, perfil_proprio=perfil_proprio, evals=evals, evals_replyed=evals_replyed, len_evals_all = len_evals_all,\
-								karma_avg=karma_avg, grade_avg=grade_avg, page=page, per_page=10)
+		return dict(aluno=aluno, perfil_proprio=perfil_proprio, evals=evals, evals_replyed=evals_replyed,\
+								len_evals_all=len_evals_all, karma_avg=karma_avg, grade_avg=grade_avg, page=page, per_page=10)

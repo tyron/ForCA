@@ -60,6 +60,14 @@ def get_karma_avg(aluno_id):
             karmas.append(eval.karma)
     return sum(karmas)
 
+def get_link_to_aluno_home(aluno_id, name=None):
+	'''
+	Retorna um link para o profile/home do aluno referenciado por aluno_id
+	'''
+	if not name:
+		name = db(Alunos.id==aluno_id).select().first().full_name
+	return A(name, _href=URL(request.application, 'profile', 'home', vars=dict(aluno_id=aluno_id)))
+
 #########################################
 #              Prof getters             #
 #########################################
@@ -107,6 +115,11 @@ def get_disc_id_from_code(disc_code):
     disc = db(db.disciplinas.code==disc_code).select().first()
     return disc.id
 
+def get_link_to_disc_home(disc_id, name=None):
+	if not name:
+		name = db(Disciplinas.id==disc_id).select().first().name
+	return A(name, _href=URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
+
 #########################################
 #              Eval getters             #
 #########################################
@@ -134,6 +147,7 @@ def refine_evals(raw_evals):
         eval = {}
         eval['id']               = raw_eval['id']
         eval['prof_id']          = raw_eval['professor_id']
+        eval['prof_user_id']     = db(db.professores.id==raw_eval['professor_id']).select().first().user_id
         eval['disc_id']          = raw_eval['disciplina_id']
         eval['aluno_user_id']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
         eval['aluno_id']         = raw_eval['aluno_id']
@@ -166,6 +180,13 @@ def get_refined_evals(prof_id=None, disc_id=None):
 #           Funções auxiliares          #
 #########################################
 
+def rem_acentos(str):
+    '''
+    Remove acentuação de uma string. Exemplo Não faça -> Nao faca
+    '''
+    from unicodedata import normalize
+    return normalize('NFKD', str.decode('utf-8')).encode('ASCII', 'ignore')
+    
 def get_grade_letter(numgrade):
     if numgrade >= 9:
         return 'A'
@@ -281,8 +302,8 @@ def gae_disc_biased_dropdown(prof_id):
             results.append([disc.id, disc.name, profs_discs[pds.index(dictkey)]['count']])
         else:
             results.append([disc.id, disc.name, 0])
-    key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
-    value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+    key = [res[0] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
+    value = [res[1] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
     form = SQLFORM.factory(
             Field('disciplina_id', label="Disciplina", requires=IS_IN_SET(key, value, zero=None)))
     return form[0][0]
@@ -298,8 +319,8 @@ def gae_prof_biased_dropdown(disc_id):
             results.append([prof.id, prof.full_name, profs_discs[pds.index(dictkey)]['count']])
         else:
             results.append([prof.id, prof.full_name, 0])
-    key = [res[0] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
-    value = [res[1] for res in sorted(sorted(results, key=lambda x: x[1]), key=lambda x: x[2], reverse=True)]
+    key = [res[0] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
+    value = [res[1] for res in sorted(sorted(results, key=lambda x: rem_acentos(x[1])), key=lambda x: x[2], reverse=True)]
     form = SQLFORM.factory(
             Field('professor_id', label="Professor", requires=IS_IN_SET(key, value, zero=None)))
     return form[0][0]

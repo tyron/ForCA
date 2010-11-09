@@ -351,3 +351,11 @@ div.gradeFF {
 .warning {
 	background-color: #E58989;
 }
+
+.cursored {
+	cursor: pointer
+}
+
+.padded10 {
+	padding: 10px
+}
