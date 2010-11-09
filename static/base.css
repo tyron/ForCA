@@ -359,3 +359,11 @@ div.gradeFF {
 .padded10 {
 	padding: 10px
 }
+
+.odd {
+	background-color: #DDDDDD;
+}
+
+.even {
+	background-color: #EEEEEE;
+}

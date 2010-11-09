@@ -38,8 +38,8 @@
             <th>Professor</th>
             <th>Média nesta disciplina</th>
         </tr>
-        {{for prof in profs:}}
-            <tr>
+        {{for i, prof in enumerate(profs):}}
+        <tr class="{{=['even', 'odd'][i % 2]}}">
                 <td>{{=A(prof['full_name'], _href=URL(request.application,'prof','home',vars=dict(prof_id=prof['id'])))}}</td>
                 <td>
                     {{=prof['grade'] if not prof['grade'] == '\\' else '-'}}
