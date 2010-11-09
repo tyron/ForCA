@@ -1,4 +1,9 @@
 {{extend 'layout.html'}}
+
+<script>
+    jQuery(document).ready(function(){jQuery('.discs_list').hide()});
+</script>
+
 <table>
     <tr>
         <td rowspan='2'>
@@ -33,24 +38,29 @@
 </table>
 
 {{if len(discs)>0:}}
-    <br/>
-    <table>
+     <h4 class="discs_toggle cursored padded10" onclick="jQuery('.discs_list').slideToggle()">
+         {{=T('Disciplinas ministradas por ')}}{{=prof.short_name}}
+         {{=IMG(_src=URL('static', 'plus.png'))}}
+    </h4>
+    <div class="discs_list">
+        <table>
         <tr>
-            <th>Disciplina</th>
-            <th>Média nesta disciplina</th>
+            <th>{{=T('Disciplina')}}</th>
+            <th>{{=T('Média de')}} {{=prof.short_name}}</th>
         </tr>
-        {{for disc in discs:}}
-            <tr>
-                <td>{{=A(disc['name'], _href=URL(request.application,'disc','home',vars=dict(disc_id=disc['id'])))}}</td>
+        {{for i, disc in enumerate(discs):}}
+            <tr class="{{=['even', 'odd'][i % 2]}}">
+                <td>{{=A(disc['name'],
+                    _href=URL(request.application,'disc','home',vars=dict(disc_id=disc['id'])))}}</td>
                 <td>
-                    {{=disc['grade'] if not disc['grade'] == '\\' else '-'}}
+                    <b>{{=disc['grade'] if not disc['grade'] == '\\' else '-'}}</b>
                 </td>
             </tr>
         {{pass}}
-    </table>
+        </table>
+    </div>
 {{pass}}
 
-<br/>
 <i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>
 {{include "eval/list.html"}}
