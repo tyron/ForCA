@@ -136,32 +136,7 @@
                                                 {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
                                                         _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
                                         {{pass}}
-                                {{pass}}                                
-                                {{if 'prof_id' in request.vars:}}
-                                        {{if eh_favorita(eval['id']):}}
-                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
-                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
-                                        {{else:}}
-                                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Favoritar',
-                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
-                                        {{pass}}
-                                {{elif 'disc_id' in request.vars:}}
-                                        {{if eh_favorita(eval['id']):}}
-                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
-                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
-                                        {{else:}}
-                                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Favoritar',
-                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
-                                        {{pass}}                                        
-                                {{else:}}
-                                        {{if eh_favorita(eval['id']):}}
-                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
-                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'])))}}
-                                        {{else:}}
-                                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Favoritar',
-                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'])))}}
-                                        {{pass}}               
-                                {{pass}}                                 
+                                {{pass}}                                                        
                         {{pass}}
                         </tr>
                         <div style="float:right"><br/><br/><br/>
