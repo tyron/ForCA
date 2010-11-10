@@ -120,68 +120,68 @@ def delete():
     redirect(session.jump_back)
 
 def filter():
-	'''
-	Retorna avaliações de acordo com diversos critérios e filtros
-	'''
-	if len(request.args):
-		page = int(request.args[0])
-	else:
-		page = 0
-	limitby = (page*10, (page+1)*11)
-	query = db(Avaliacoes.id > 0)
+    '''
+    Retorna avaliações de acordo com diversos critérios e filtros
+    '''
+    if len(request.args) and 'submit' not in request.vars:
+        page = int(request.args[0])
+    else:
+        page = 0
+    limitby = (page*10, (page+1)*11)
+    query = db(Avaliacoes.id > 0)
 
-	prof_df = disc_df = aluno_df = semester_df = year_df = grade_df = None
+    prof_df = disc_df = aluno_df = semester_df = year_df = grade_df = None
 
-	if 'prof_id' in request.vars and request.vars['prof_id']:
-		query = query(Avaliacoes.professor_id==request.vars['prof_id'])
-		prof_df = request.vars['prof_id']
-	if 'disc_id' in request.vars and request.vars['disc_id']:
-		query = query(Avaliacoes.disciplina_id==request.vars['disc_id'])
-		disc_df = request.vars['disc_id']
-	if 'aluno_id' in request.vars and request.vars['aluno_id']:
-		query = query(Avaliacoes.aluno_id==request.vars['aluno_id'])
-		aluno_df = request.vars['aluno_id']
-	if 'semester' in request.vars and request.vars['semester']:
-		query = query(Avaliacoes.semester==request.vars['semester'])
-		semester_df = request.vars['semester']
-	if 'year' in request.vars and request.vars['year']:
-		query = query(Avaliacoes.year==request.vars['year'])
-		year_df = request.vars['year']
-	if 'grade' in request.vars and request.vars['grade']:
-		query = query(Avaliacoes.grade==request.vars['grade'])
-		grade_df = request.vars['grade']
+    if 'prof_id' in request.vars and request.vars['prof_id']:
+        query = query(Avaliacoes.professor_id==request.vars['prof_id'])
+        prof_df = request.vars['prof_id']
+    if 'disc_id' in request.vars and request.vars['disc_id']:
+        query = query(Avaliacoes.disciplina_id==request.vars['disc_id'])
+        disc_df = request.vars['disc_id']
+    if 'aluno_id' in request.vars and request.vars['aluno_id']:
+        query = query(Avaliacoes.aluno_id==request.vars['aluno_id'])
+        aluno_df = request.vars['aluno_id']
+    if 'semester' in request.vars and request.vars['semester']:
+        query = query(Avaliacoes.semester==request.vars['semester'])
+        semester_df = request.vars['semester']
+    if 'year' in request.vars and request.vars['year']:
+        query = query(Avaliacoes.year==request.vars['year'])
+        year_df = request.vars['year']
+    if 'grade' in request.vars and request.vars['grade']:
+        query = query(Avaliacoes.grade==request.vars['grade'])
+        grade_df = request.vars['grade']
 
-	result = refine_evals(query.select(limitby=limitby))
+    result = refine_evals(query.select(limitby=limitby))
 
-	fields = {}
+    fields = {}
 
-	prof_drop = SQLFORM.factory(
-			Field('prof_id', Professores, default=prof_df,
-				requires = IS_IN_DB(db, Professores.id, '%(full_name)s', zero = '')))
-	fields['prof'] = prof_drop.custom.widget.prof_id
+    prof_drop = SQLFORM.factory(
+        Field('prof_id', Professores, default=prof_df,
+            requires = IS_IN_DB(db, Professores.id, '%(full_name)s', zero = '')))
+    fields['prof'] = prof_drop.custom.widget.prof_id
 
-	disc_drop = SQLFORM.factory(
-			Field('disc_id', Disciplinas, default=disc_df,
-				requires = IS_IN_DB(db, Disciplinas.id, '%(name)s', zero = '')))
-	fields['disc'] = disc_drop.custom.widget.disc_id
+    disc_drop = SQLFORM.factory(
+        Field('disc_id', Disciplinas, default=disc_df,
+            requires = IS_IN_DB(db, Disciplinas.id, '%(name)s', zero = '')))
+    fields['disc'] = disc_drop.custom.widget.disc_id
 
-	fields['year'] = SQLFORM.widgets.options.widget(Avaliacoes.year, year_df)
-	fields['year'].insert(0, '')
-	if not year_df:
-		for x in fields['year']:
-			if '_selected' in x.attributes:
-				x.attributes['_selected'] = False
-		fields['year'][0].attributes['_selected'] = 'selected'
+    fields['year'] = SQLFORM.widgets.options.widget(Avaliacoes.year, year_df)
+    fields['year'].insert(0, '')
+    if not year_df:
+        for x in fields['year']:
+            if '_selected' in x.attributes:
+                x.attributes['_selected'] = False
+        fields['year'][0].attributes['_selected'] = 'selected'
 
-	fields['grade'] = SQLFORM.widgets.options.widget(Avaliacoes.grade, grade_df)
-	fields['grade'].insert(0, '')
-	if grade_df == None:
-		for x in fields['grade']:
-			if '_selected' in x.attributes:
-				x.attributes['_selected'] = False
-		fields['grade'][0].attributes['_selected'] = 'selected'
+    fields['grade'] = SQLFORM.widgets.options.widget(Avaliacoes.grade, grade_df)
+    fields['grade'].insert(0, '')
+    if grade_df == None:
+        for x in fields['grade']:
+            if '_selected' in x.attributes:
+                x.attributes['_selected'] = False
+        fields['grade'][0].attributes['_selected'] = 'selected'
 
-	return dict(page=page, per_page=10, evals = result, fields=fields)
+    return dict(page=page, per_page=10, evals = result, fields=fields)
 
 def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
     '''
