@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 
 <script>
-	jQuery(document).ready(function(){jQuery('.profs_list').hide()});
+    jQuery(document).ready(function(){jQuery('.profs_list').hide()});
 </script>
 
 <table>
@@ -31,29 +31,31 @@
 {{pass}}
 
 {{if len(profs)>0:}}
-  <div class="profs_list">
-    <br/>
-    <table>
+     <h4 class="profs_toggle cursored padded10" onclick="jQuery('.profs_list').slideToggle()">
+         {{=T('Professores que ministram ')}}{{=disc.short_name}}
+         {{=IMG(_src=URL('static', 'plus.png'))}}
+    </h4>
+    <div class="profs_list">
+        <table>
         <tr>
-            <th>Professor</th>
-            <th>Média nesta disciplina</th>
+            <th>{{=T('Professor')}}</th>
+            <th>{{=T('Média em')}} {{=disc.short_name}}</th>
         </tr>
-        {{for prof in profs:}}
-            <tr>
+        {{for i, prof in enumerate(profs):}}
+            <tr class="{{=['even', 'odd'][i % 2]}}">
                 <td>{{=A(prof['full_name'], _href=URL(request.application,'prof','home',vars=dict(prof_id=prof['id'])))}}</td>
                 <td>
-                    {{=prof['grade'] if not prof['grade'] == '\\' else '-'}}
+                    <b>{{=prof['grade'] if not prof['grade'] == '\\' else '-'}}</b>
                 </td>
             </tr>
         {{pass}}
-			</table>
-		</div>
-		{{if disc_grade != None:}}
-			<h4 class="profs_toggle cursored padded10" onclick="jQuery('.profs_list').slideToggle()">
-				A média de todos professores em {{=disc.short_name}} é {{=disc_grade or '-'}}
-				{{=IMG(_src=URL('static', 'plus.png'))}}
-			</h4>
-		{{pass}}
+        </table>
+        {{if disc_grade:}}
+            <h4>
+                A média de todos professores em {{=disc.short_name}} é {{=disc_grade or '-'}}
+            </h4>
+        {{pass}}
+    </div>
 {{pass}}
 
 <i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
