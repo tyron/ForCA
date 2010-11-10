@@ -106,3 +106,19 @@ Karmas = db.define_table(
         Field('value', 'integer', length=1,
             requires = IS_IN_SET([-1, 1], zero=None)),
         migrate='karmas.table')
+        
+#Tabela Favoritos
+Favoritos = db.define_table(
+        'favoritos',
+        Field('user_id', 'integer', length=32),
+        Field('avaliacao_id', db.avaliacoes, required=True, notnull=True,
+            requires = IS_IN_DB(db, db.avaliacoes.id, '')),
+        migrate='favoritos.table')
+        
+db.favoritos.user_id.requires = [
+    IS_NOT_IN_DB(db(
+        (db.favoritos.avaliacao_id == request.vars.avaliacao_id) &
+        (db.favoritos.user_id == request.vars.user_id)),
+    'favoritos.user_id',
+    error_message = 'Voce já favoritou essa avaliação')
+]

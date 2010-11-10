@@ -25,19 +25,24 @@
                         <tr>
                                 <td rowspan='4'>
                                         <div style='font-size:xx-large'>
-                                            {{if eval['grade']=="FF":}}
-                                                <b>{{=eval['grade']}}</b>
-                                            {{else:}}
-                                                <b>{{=eval['grade']}}&nbsp;</b>
-                                            {{pass}}
+                                            <b>{{=eval['grade']}}</b>
                                         </div>
                                 </td>
                                 <td>
                                     <table>
                                         <tr>
-                                            {{if not eval['anonimo']:}}                                                
-                                                {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+                                            {{if not eval['anonimo']:}}
+                                                {{if 'aluno_id' in request.vars:}}
+                                                    {{if eval['aluno_id'] == int(request.vars['aluno_id']):}}
+                                                        {{=B(eval['aluno_short_name'])}}
+                                                    {{else:}}
+                                                    {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+                                                  'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+                                                    {{pass}}
+                                                {{else:}}
+                                                    {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
                                                 'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+                                                {{pass}}
                                             {{else:}}
                                                 {{=B(T('Anônimo'))}}
                                             {{pass}}
@@ -104,6 +109,8 @@
                                                         _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
                                                 {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
                                                         _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
+                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                        _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
                                         {{elif 'disc_id' in request.vars:}}
                                                 {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
                                                         _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], disc_id=disc.id)),
@@ -117,17 +124,50 @@
                                                 {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
                                                         _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
                                         {{pass}}
-                                {{pass}}
+                                {{pass}}                                
+                                {{if 'prof_id' in request.vars:}}
+                                        {{if eh_favorita(eval['id']):}}
+                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
+                                        {{else:}}
+                                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
+                                        {{pass}}
+                                {{elif 'disc_id' in request.vars:}}
+                                        {{if eh_favorita(eval['id']):}}
+                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
+                                        {{else:}}
+                                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
+                                        {{pass}}                                        
+                                {{else:}}
+                                        {{if eh_favorita(eval['id']):}}
+                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'])))}}
+                                        {{else:}}
+                                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Favoritar',
+                                                    _href=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id'])))}}
+                                        {{pass}}               
+                                {{pass}}                                 
                         {{pass}}
                         </tr>
                         <div style="float:right"><br/><br/><br/>
-                                {{if get_prof_id() == eval['prof_id']:}}
+                                {{if get_prof_id() == eval['prof_id'] and not eval['reply']:}}
                                         {{=A('Responder', _href=URL(request.application, 'eval', 'reply', vars=dict(prof_id=eval['prof_id'], eval_id=eval['id'])))}}
                                 {{pass}}
                         </div>
                 </table>
                         {{if eval['reply']:}}
-                        <div style="padding:10px; background-color:#999999;">
+                                                <div style="padding:10px; background-color:#999999;">
+                                                    {{if eval['prof_user_id'] == session.auth.user.id:}}
+                                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir resposta'), _title='Excluir resposta', 
+                                                                        _href=URL(request.application, 'eval', 'reply_delete', vars=dict(eval_id=eval['id'])),
+                                                                        _onclick="return confirm('Tem certeza de que deseja excluir a resposta?');")}}
+                                                            {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Editar resposta'), _title='Editar resposta',
+                                                                        _href=URL(request.application, 'eval', 'reply', vars=dict(eval_id=eval['id'])))}}
+                                                    {{pass}}
+                                                    
                                 <b>Resposta: </b>
                                         {{=eval['reply']}}
                                 </div>

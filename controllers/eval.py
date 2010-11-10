@@ -74,6 +74,19 @@ def update():
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
+    
+@auth.requires_login()
+def favorite():
+    '''
+    Função favorita ou desfavorita uma avaliação para o usuario logado, dependendo do estado atual
+    '''
+    favorita_eval(request.vars['eval_id'])   
+    if 'prof_id' in request.vars:
+        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
+    elif 'disc_id' in request.vars:
+        redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+    else:
+        redirect(URL(request.application, 'profile', 'home'))
 
 @auth.requires_membership('Professor')
 def reply():
@@ -99,15 +112,15 @@ def reply():
 
 @auth.requires_membership('Professor')
 def reply_delete():
-	'''
-	Exclui uma resposta postada pelo professor a uma avaliacao
-	'''
-	if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
-		session.jump_back = request.env.http_referer
-	db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
-	db.commit()
-	session.flash = T('Resposta excluída com sucesso')
-	redirect(session.jump_back)
+    '''
+    Exclui uma resposta postada pelo professor a uma avaliacao
+    '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
+    db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
+    db.commit()
+    session.flash = T('Resposta excluída com sucesso')
+    redirect(session.jump_back)
 
 @auth.requires_login()
 def delete():
