@@ -1,5 +1,9 @@
 {{if len(evals):}}
 
+    {{if 'submit' in request.vars:}}
+        {{del request.vars['submit']}}
+    {{pass}}
+
     {{if page:}}
         <a style="float:left" href="{{=URL(args=[page-1], vars=request.vars)}}">{{=T('<anterior')}}</a>
     {{pass}}
