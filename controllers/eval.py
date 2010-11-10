@@ -80,13 +80,7 @@ def favorite():
     '''
     Função favorita ou desfavorita uma avaliação para o usuario logado, dependendo do estado atual
     '''
-    favorita_eval(request.vars['eval_id'])   
-    if 'prof_id' in request.vars:
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
-    elif 'disc_id' in request.vars:
-        redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-    else:
-        redirect(URL(request.application, 'profile', 'home'))
+    favorita_eval(request.vars['eval_id'])
 
 @auth.requires_membership('Professor')
 def reply():
