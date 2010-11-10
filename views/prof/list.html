@@ -9,7 +9,7 @@
     <tr class={{=['even', 'odd'][i % 2]}}>
 		<td>{{=A(prof.full_name, _href=URL('home', vars=dict(prof_id=prof.id)))}}</td>
 		<td>
-			{{=prof.grade or '-'}}
+            <b>{{=prof.grade or '-'}}</b>
 		</td>
 	</tr>
 	{{pass}}
