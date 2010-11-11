@@ -103,40 +103,39 @@
                                     {{pass}}
                                 </b>
                         </div>
-                        <div style='float:left'>
-                                <b>                                        
-                                    <form><input type="hidden" id="karma{{=eval['id']}}"/></form>
-                                    <span id="plus{{=eval['id']}}" style="float:left; cursor:hand; cursor:pointer" 
-                                            onclick="ajax('{{=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id']))}}', 
-                                            ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
-                                            jQuery('#plus{{=eval['id']}}').fadeOut();
-                                            jQuery('#minus{{=eval['id']}}').fadeOut();">
-                                            {{=IMG(_src=URL('static', 'thumb-up.png'))}}
-                                    </span>                                      
-                                </b>
-                        </div>
                         {{if session.auth:}}
-                                {{if eval['aluno_user_id'] == session.auth.user.id:}}
-                                        {{if 'prof_id' in request.vars:}}
-                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-                                                        _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], prof_id=prof.id)),
-                                                        _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-                                                        _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
-                                        {{elif 'disc_id' in request.vars:}}
-                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-                                                        _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], disc_id=disc.id)),
-                                                        _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-                                                        _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
-                                        {{else:}}
-                                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
-                                                        _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
-                                                        _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
-                                                        _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
-                                        {{pass}}
-                                {{pass}}                                                        
+                            <div style='float:left'>
+                            <b>                                        
+                                <form><input type="hidden" id="starred{{=eval['id']}}"/></form>
+                                <span id="favorite{{=eval['id']}}" style="float:left; cursor:hand; cursor:pointer" 
+                                        onclick="ajax('{{=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id']))}}', 
+                                        ['starred{{=eval['id']}}'], 'favorite{{=eval['id']}}');
+                                        jQuery('#favorite{{=eval['id']}}');">
+                                        {{=IMG(_src=URL('static', ('thumb-up.png' if eh_favorita(eval['id']) else 'thumb-down.png')))}}
+                                </span>     
+                            </b>
+                            </div>
+                            {{if eval['aluno_user_id'] == session.auth.user.id:}}
+                                    {{if 'prof_id' in request.vars:}}
+                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
+                                                    _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], prof_id=prof.id)),
+                                                    _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                                            {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
+                                                    _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], prof_id=prof.id)))}}
+                                    {{elif 'disc_id' in request.vars:}}
+                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
+                                                    _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'], disc_id=disc.id)),
+                                                    _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                                            {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
+                                                    _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'], disc_id=disc.id)))}}
+                                    {{else:}}
+                                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir'), _title='Excluir', 
+                                                    _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
+                                                    _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                                            {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt='Excluir'), _title='Editar',
+                                                    _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
+                                    {{pass}}
+                            {{pass}}                                                        
                         {{pass}}
                         </tr>
                         <div style="float:right"><br/><br/><br/>
