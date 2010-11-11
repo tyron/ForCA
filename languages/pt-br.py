@@ -88,6 +88,8 @@
 'Record ID': 'Record ID',
 'Register': 'Registre-se',
 'Request reset password': 'Request reset password',
+'Resposta excluída com sucesso': 'Resposta excluída com sucesso',
+'Resposta postada com sucesso': 'Resposta postada com sucesso',
 'Role': 'Role',
 'Rows in table': 'Linhas na tabela',
 'Rows selected': 'Linhas selecionadas',

@@ -1,10 +1,10 @@
 {{extend 'layout.html'}}
 {{if perfil_proprio:}}
-<h1>Olá, {{=aluno.full_name}}!</h1>
+    <h1>Olá, {{=aluno.short_name}}!</h1>
     <ul>
         {{if len_evals_all > 0:}}
             <li><h3>Você já postou {{=len_evals_all}} {{=('avaliação' if len_evals_all == 1 else 'avaliações')}}, cujo conceito médio é {{=grade_avg}}.</h3></li>
-            <li><h3>O saldo de suas avaliações é {{=karma_avg}}.</h3></li>
+            <li><h3>O saldo de qualidade de suas avaliações é {{=karma_avg}}.</h3></li>
             <li><h3>Últimas avaliações:</h3></li><br>
             {{include "eval/list.html"}}
             {{evals = evals_replyed}}
@@ -30,16 +30,9 @@
     <ul>
         {{if len_evals_all > 0:}}
             <li><h3>{{=aluno.short_name}} já postou {{=len_evals_all}} {{=('avaliação' if len_evals_all == 1 else 'avaliações')}}, cujo conceito médio é {{=grade_avg}}.</h3></li>
-            <li><h3>O saldo das avaliações de {{=aluno.short_name}} é {{=karma_avg}}.</h3></li>
+            <li><h3>O saldo de qualidade das avaliações de {{=aluno.short_name}} é {{=karma_avg}}.</h3></li>
             <li><h3>Últimas avaliações de {{=aluno.short_name}}:</h3></li><br>
             {{include "eval/list.html"}}
-            {{evals = evals_replyed}}
-            {{if len(evals) > 0:}}
-                <li><h3>Últimas avaliações respondidas de {{=aluno.short_name}}:</h3></li><br>
-                {{include "eval/list.html"}}
-            {{else:}}
-                <li><h3>{{=aluno.short_name}} ainda não teve nenhuma avaliação respondida.</h3></li><br>
-            {{pass}}
         {{else:}}
             <li><h3>{{=aluno.short_name}} ainda não postou nenhuma avaliação.</h3></li>
         {{pass}}

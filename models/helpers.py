@@ -34,6 +34,13 @@ def get_aluno_id():
     except:
         return 0
 
+def get_aluno_user_id(aluno_id):
+    '''
+    Retorna o user_id do aluno referenciado por aluno_id
+    '''
+    aluno = db(Alunos.id==aluno_id).select().first()
+    return aluno.user_id
+
 def get_aluno_full_name(aluno_id):
     '''
     Retorna o nome completo do aluno referenciado por aluno_id
@@ -61,12 +68,12 @@ def get_karma_avg(aluno_id):
     return sum(karmas)
 
 def get_link_to_aluno_home(aluno_id, name=None):
-	'''
-	Retorna um link para o profile/home do aluno referenciado por aluno_id
-	'''
-	if not name:
-		name = db(Alunos.id==aluno_id).select().first().full_name
-	return A(name, _href=URL(request.application, 'profile', 'home', vars=dict(aluno_id=aluno_id)))
+    '''
+    Retorna um link para o profile/home do aluno referenciado por aluno_id
+    '''
+    if not name:
+        name = db(Alunos.id==aluno_id).select().first().full_name
+    return A(name, _href=URL(request.application, 'profile', 'home', vars=dict(aluno_id=aluno_id)))
 
 #########################################
 #              Prof getters             #
@@ -126,9 +133,9 @@ def get_disc_id_from_code(disc_code):
     return disc.id
 
 def get_link_to_disc_home(disc_id, name=None):
-	if not name:
-		name = db(Disciplinas.id==disc_id).select().first().name
-	return A(name, _href=URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
+    if not name:
+        name = db(Disciplinas.id==disc_id).select().first().name
+    return A(name, _href=URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
 
 #########################################
 #              Eval getters             #
@@ -268,6 +275,36 @@ def update_profs_discs(prof_id, disc_id):
     db(db.profs_discs.id==prof_disc.id).update(count = count+1)
     db.commit()
     return count + 1
+
+#########################################
+#           favorites                   #
+#########################################
+
+    
+def favorita_eval(eval_id):
+    '''
+    Favorita ou desfavorita uma determinada avaliação para o usuário logado, dependendo do atual estado
+    '''
+    favorito = db((db.favoritos.avaliacao_id==eval_id)&(db.favoritos.user_id==session.auth.user.id)).select().first()
+    if not favorito:
+        db.favoritos.insert(
+            user_id      = session.auth.user.id,
+            avaliacao_id = eval_id
+        )
+    else:
+        db(db.favoritos.id==favorito.id).delete()    
+    db.commit()
+    
+def eh_favorita(eval_id):
+    '''
+    Verifica se determinada avaliação é favorita para o usuário logado
+    '''
+    favorito = db((db.favoritos.avaliacao_id==eval_id)&(db.favoritos.user_id==session.auth.user.id)).select().first()
+    if not favorito:
+        return False
+    else:
+        return True
+
 
 #########################################
 # Biased dropdowns: the pretty way      #

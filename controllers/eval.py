@@ -68,6 +68,19 @@ def update():
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
+    
+@auth.requires_login()
+def favorite():
+    '''
+    Função favorita ou desfavorita uma avaliação para o usuario logado, dependendo do estado atual
+    '''
+    eval_id = request.vars['eval_id']
+    favorita_eval(eval_id)
+    if eh_favorita(eval_id):
+        img = IMG(_src=URL('static', 'star_filled.png'))
+    else:
+        img = IMG(_src=URL('static', 'star_hollow.png'))
+    return img
 
 @auth.requires_membership('Professor')
 def reply():
@@ -93,15 +106,15 @@ def reply():
 
 @auth.requires_membership('Professor')
 def reply_delete():
-	'''
-	Exclui uma resposta postada pelo professor a uma avaliacao
-	'''
-	if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
-		session.jump_back = request.env.http_referer
-	db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
-	db.commit()
-	session.flash = T('Resposta excluída com sucesso')
-	redirect(session.jump_back)
+    '''
+    Exclui uma resposta postada pelo professor a uma avaliacao
+    '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
+    db(Avaliacoes.id==request.vars['eval_id']).update(reply=None, timestamp_reply=None)
+    db.commit()
+    session.flash = T('Resposta excluída com sucesso')
+    redirect(session.jump_back)
 
 @auth.requires_login()
 def delete():
