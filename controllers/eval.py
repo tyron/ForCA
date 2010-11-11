@@ -80,7 +80,13 @@ def favorite():
     '''
     Função favorita ou desfavorita uma avaliação para o usuario logado, dependendo do estado atual
     '''
-    favorita_eval(request.vars['eval_id'])
+    eval_id = request.vars['eval_id']
+    favorita_eval(eval_id)
+    if eh_favorita(eval_id):
+        img = IMG(_src=URL('static', 'star_filled.png'))
+    else:
+        img = IMG(_src=URL('static', 'star_hollow.png'))
+    return img
 
 @auth.requires_membership('Professor')
 def reply():

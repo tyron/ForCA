@@ -110,7 +110,9 @@
                                 <span id="favorite{{=eval['id']}}" style="float:left; cursor:hand; cursor:pointer" 
                                         onclick="ajax('{{=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id']))}}', 
                                         ['starred{{=eval['id']}}'], 'favorite{{=eval['id']}}');">
-                                        {{=IMG(_src=URL('static', ('thumb-up.png' if eh_favorita(eval['id']) else 'thumb-down.png')))}}
+                                        {{=IMG(_src=URL('static',('star_filled.png'
+                                        if eh_favorita(eval['id']) else
+                                        'star_hollow.png')))}}
                                 </span>     
                             </b>
                             </div>
