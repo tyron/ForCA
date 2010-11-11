@@ -51,3 +51,20 @@ def home():
 
         return dict(aluno=aluno, perfil_proprio=perfil_proprio, evals=evals, evals_replyed=evals_replyed, evals_favorited=evals_favorited,\
                                 len_evals_all=len_evals_all, karma_avg=karma_avg, grade_avg=grade_avg, page=page, per_page=10)
+
+@auth.requires_membership('Aluno')
+def favorites():
+    if len(request.args):
+        page = int(request.args[0])
+    else:
+        page = 0
+
+    limitby = (page*10, (page+1)*11)
+    if 'aluno_id' in request.vars:
+        user_id = get_aluno_user_id(request.vars['aluno_id'])
+    else:
+        user_id = session.auth.user.id
+    favorite_evals = db((Favoritos.user_id==user_id)&(Avaliacoes.id==Favoritos.avaliacao_id)).select(Avaliacoes.ALL, limitby=limitby)
+    refined_favorites = refine_evals(favorite_evals)
+    return dict(evals=refined_favorites, page=page, per_page=10)
+

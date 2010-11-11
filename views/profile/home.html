@@ -6,19 +6,25 @@
             <li><h3>Você já postou {{=len_evals_all}} {{=('avaliação' if len_evals_all == 1 else 'avaliações')}}, cujo conceito médio é {{=grade_avg}}.</h3></li>
             <li><h3>O saldo de qualidade de suas avaliações é {{=karma_avg}}.</h3></li>
             <li><h3>Últimas avaliações:</h3></li><br>
-            {{include "eval/list.html"}}
+            <div class="latest">
+                {{include "eval/list.html"}}
+            </div>
             {{evals = evals_replyed}}
+            <div class="answered">
             {{if len(evals) > 0:}}
                 <li><h3>Últimas avaliações respondidas:</h3></li><br>
-                {{include "eval/list.html"}}
+                    {{include "eval/list.html"}}
+                </div>
             {{else:}}
                 <li><h3>Você ainda não teve nenhuma avaliação respondida.</h3></li><br>
             {{pass}}
             {{evals = evals_favorited}}
+            <li><h3>Avaliações favoritas:</h3></li><br>
+            <div id="favorites">
             {{if len(evals) > 0:}}
-                <li><h3>Avaliações favoritas:</h3></li><br>
-                {{include "eval/list.html"}}
+                    {{include "eval/list.html"}}
             {{pass}}
+            </div>
         {{else:}}
             <li><h3>Você ainda não postou nenhuma avaliação.</h3></li>
         {{pass}}

@@ -34,6 +34,13 @@ def get_aluno_id():
     except:
         return 0
 
+def get_aluno_user_id(aluno_id):
+    '''
+    Retorna o user_id do aluno referenciado por aluno_id
+    '''
+    aluno = db(Alunos.id==aluno_id).select().first()
+    return aluno.user_id
+
 def get_aluno_full_name(aluno_id):
     '''
     Retorna o nome completo do aluno referenciado por aluno_id
@@ -258,6 +265,11 @@ def update_profs_discs(prof_id, disc_id):
     db(db.profs_discs.id==prof_disc.id).update(count = count+1)
     db.commit()
     return count + 1
+
+#########################################
+#           favorites                   #
+#########################################
+
     
 def favorita_eval(eval_id):
     '''
@@ -281,7 +293,8 @@ def eh_favorita(eval_id):
     if not favorito:
         return False
     else:
-        return True     
+        return True
+
 
 #########################################
 # Biased dropdowns: the pretty way      #
