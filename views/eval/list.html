@@ -1,19 +1,11 @@
 {{if len(evals):}}
 
-    {{vars = {} }}
-    {{if 'disc_id' in request.vars:}}
-        {{vars['disc_id'] = evals[0]['disc_id']}}
-    {{pass}}
-    {{if 'prof_id' in request.vars:}}
-        {{vars['prof_id'] = evals[0]['prof_id']}}
-    {{pass}}
-
     {{if page:}}
-        <a style="float:left" href="{{=URL(args=[page-1], vars=vars)}}">{{=T('<anterior')}}</a>
+        <a style="float:left" href="{{=URL(args=[page-1], vars=request.vars)}}">{{=T('<anterior')}}</a>
     {{pass}}
 
     {{if len(evals) > per_page:}}
-        <a style="float:right" href="{{=URL(args=[page+1], vars=vars)}}">{{=T('próxima>')}}</a>
+        <a style="float:right" href="{{=URL(args=[page+1], vars=request.vars)}}">{{=T('próxima>')}}</a>
     {{pass}}
 
     <br/>
@@ -118,7 +110,10 @@
                                     onclick="
                                     ajax('{{=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id']))}}', 
                                     ['starred{{=eval['id']}}'], 'favorite{{=eval['id']}}');
-                                    ajax('{{=URL(request.application, 'profile', 'favorites')}}', ['starred{{=eval['id']}}'], 'favorites');
+                                    //ajax('{{=URL(request.application, 'profile', 'favorites')}}', ['starred{{=eval['id']}}'], 'favorites');
+                                    {{if request.controller=='profile' and request.function == 'home':}}
+                                        location.reload();
+                                    {{pass}}
                                     ">
                                     {{=IMG(_src=URL('static',('star_filled.png' if eh_favorita(eval['id']) else 'star_hollow.png')))}}
                                 </span>
