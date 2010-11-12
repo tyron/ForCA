@@ -20,7 +20,7 @@ def generate():
     evals = get_refined_evals(prof_id=prof_id)
 
     response.headers['Content-Type']='application/pdf'
-    response.headers['Content-Disposition'] = 'attachment; filename=b.pdf'
+    response.headers['Content-Disposition'] = 'attachment; filename=avaliacoes.pdf'
 
     buf = StringIO()
 
