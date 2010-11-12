@@ -18,16 +18,16 @@
             {{else:}}
                 <li><h3>Você ainda não teve nenhuma avaliação respondida.</h3></li><br>
             {{pass}}
-            {{evals = evals_favorited}}
-            <li><h3>Avaliações favoritas:</h3></li><br>
-            <div id="favorites">
-            {{if len(evals) > 0:}}
-                    {{include "eval/list.html"}}
-            {{pass}}
-            </div>
         {{else:}}
             <li><h3>Você ainda não postou nenhuma avaliação.</h3></li>
         {{pass}}
+        {{evals = evals_favorited}}
+        <li><h3>Avaliações favoritas:</h3></li><br>
+        <div id="favorites">
+        {{if len(evals) > 0:}}
+                {{include "eval/list.html"}}
+        {{pass}}
+        </div>
     </ul>
 {{else:}}
     <table>
