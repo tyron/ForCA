@@ -44,8 +44,9 @@ def home():
         
         #Lista das avaliações favoritas do user logado no momento
         if perfil_proprio:
-            raw_favoritos = db((db.favoritos.user_id==session.auth.user.id)&(db.avaliacoes.id==db.favoritos.avaliacao_id)).select(db.avaliacoes.ALL)
-            evals_favorited = refine_evals(raw_favoritos)
+            #raw_favoritos = db((db.favoritos.user_id==session.auth.user.id)&(db.avaliacoes.id==db.favoritos.avaliacao_id)).select(db.avaliacoes.ALL)
+            #evals_favorited = refine_evals(raw_favoritos)
+            evals_favorited = get_favorite_evals(session.auth.user.id)
         else:
             evals_favorited = []
 

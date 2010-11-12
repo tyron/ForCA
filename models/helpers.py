@@ -270,6 +270,16 @@ def update_profs_discs(prof_id, disc_id):
 #           favorites                   #
 #########################################
 
+def get_favorite_evals(user_id):
+    '''
+    Retorna uma lista refinada de avaliacoes favoritas de um usuario referenciado por user_id
+    '''
+    favorite_rows = db(Favoritos.user_id==user_id).select()
+    raw_evals = []
+    for row in favorite_rows:
+        raw_evals.append(db(Avaliacoes.id==row.avaliacao_id).select().first())
+    return refine_evals(raw_evals)
+
     
 def favorita_eval(eval_id):
     '''
