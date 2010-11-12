@@ -104,6 +104,16 @@ def get_prof_id_from_email(prof_email):
     prof = db(db.professores.email==prof_email).select().first()
     return prof.id
 
+def is_prof_registered(prof_id):
+    '''
+    Retorna True se o professor esta registrado no sistema
+    '''
+    prof = db(Professores.id==prof_id).select().first()
+    if prof.user_id:
+        return True
+    else:
+        return False
+
 #########################################
 #              Disc getters             #
 #########################################

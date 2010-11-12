@@ -1,15 +1,24 @@
 {{extend 'layout.html'}}
+<h1>Professores</h1>
 <table>
 	<tr>
-		<th>Nome</th>
+        <th>Nome</th>
+        <th>Tá no ForCA?</th>
+        <th>Avaliações</th>
 		<th>Média</th>
 	</tr>
-	{{for prof in profs:}}
-	<tr>
-		<td>{{=A(prof.full_name, _href=URL('home', vars=dict(prof_id=prof.id)))}}</td>
-		<td>
-			{{=prof.grade or '-'}}
-		</td>
+	{{for i, prof in enumerate(profs):}}
+    <tr class={{=['even', 'odd'][i % 2]}}>
+        <td>{{=A(prof.full_name, _href=URL('home', vars=dict(prof_id=prof.id)))}}</td>
+        <td>
+            {{if is_prof_registered(prof.id):}}
+                {{=IMG(_src=URL('static', 'tick.png'))}}
+            {{else:}}
+                {{=IMG(_src=URL('static', 'cross.png'))}}
+            {{pass}}
+        </td>
+        <td>{{=len(get_refined_evals(prof_id=prof.id))}}</td>
+        <td><b>{{=prof.grade or '-'}}</b></td>
 	</tr>
 	{{pass}}
 </table>
