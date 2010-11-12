@@ -1,5 +1,9 @@
 {{if len(evals):}}
 
+    {{if 'submit' in request.vars:}}
+        {{del request.vars['submit']}}
+    {{pass}}
+
     {{if page:}}
         <a style="float:left" href="{{=URL(args=[page-1], vars=request.vars)}}">{{=T('<anterior')}}</a>
     {{pass}}
@@ -31,10 +35,6 @@
                                                 {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
                                                 'home', vars=dict(aluno_id=eval['aluno_id']))))}}
                                             {{pass}}
-                                        {{else:}}
-                                            {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
-                                            'home', vars=dict(aluno_id=eval['aluno_id']))))}}
-                                        {{pass}}
                                     {{else:}}
                                         {{=B(T('Anônimo'))}}
                                     {{pass}}
@@ -126,6 +126,7 @@
                             _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação')), _title=T('Editar avaliação'),
                             _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
+
                         {{pass}}
 
                     {{pass}}
@@ -153,10 +154,13 @@
                     {{=eval['reply']}}
                 </div>
             {{pass}}
-            </div><br/>
+        </div>
+        <br/>
 
         {{pass}}<br/>
 
-{{else:}}
-    <br/>
+    {{else:}}
+        <br/>
+    {{pass}}
+
 {{pass}}
