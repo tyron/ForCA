@@ -73,6 +73,7 @@
 'New password': 'New password',
 'No databases in this application': 'Sem bancos de dados nesta aplicação',
 'Not authorized': 'Not authorized',
+'Pesquisar': 'Pesquisar',
 'Old password': 'Old password',
 'Origin': 'Origin',
 'Os campos de senha não conferem': 'Os campos de senha não conferem',
