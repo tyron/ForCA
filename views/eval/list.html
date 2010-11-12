@@ -28,25 +28,29 @@
                             <table>
                                 <tr>
                                     {{if not eval['anonimo']:}}
-                                        {{if 'aluno_id' in request.vars:}}
+                                        {{if 'aluno_id' in request.vars and request.function != 'filter':}}
                                             {{if eval['aluno_id'] == int(request.vars['aluno_id']):}}
                                                 {{=B(eval['aluno_short_name'])}}
                                             {{else:}}
                                                 {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
                                                 'home', vars=dict(aluno_id=eval['aluno_id']))))}}
                                             {{pass}}
+                                        {{else:}}
+                                            {{=B(A(eval['aluno_name'], _href=URL(request.application, 'profile', 
+                                            'home', vars=dict(aluno_id=eval['aluno_id']))))}}
+                                        {{pass}}
                                     {{else:}}
                                         {{=B(T('Anônimo'))}}
                                     {{pass}}
                                     sobre
-                                    {{if 'prof_id' in request.vars:}}
+                                    {{if 'prof_id' in request.vars and request.function != 'filter':}}
                                         {{=B(eval['prof_short_name'])}}
                                     {{else:}}
                                         {{=B(A(eval['prof_name'], _href=URL(request.application, 'prof', 'home',
                                         vars=dict(prof_id=eval['prof_id']))))}}
                                     {{pass}}
                                     por
-                                    {{if 'disc_id' in request.vars:}}
+                                    {{if 'disc_id' in request.vars and request.function != 'filter':}}
                                         {{=B(eval['disc_short_name'])}}
                                     {{else:}}
                                         {{=B(A(eval['disc_name'], _href=URL(request.application, 'disc',
