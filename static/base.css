@@ -367,3 +367,17 @@ div.gradeFF {
 .even {
 	background-color: #EEEEEE;
 }
+
+.infoheader {
+    background-color: #349C01;
+    color: white;
+    text-align: center;
+    border-width: 3px;
+    border-color: white;
+}
+
+.infotable {
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid #349C01 !important;
+}
