@@ -18,6 +18,17 @@ def aluno_create(data):
         user_id    = data.id
     )
     db.commit()
+    
+#########################################
+#              Charts                   #
+#########################################
+def generate_bar_graph(height,widht,min,max,values,colors,labels,legends):
+    graph = '<img src="http://chart.apis.google.com/chart?cht=bvs' #Código padrão para montar gráfico de barras
+    graph += '&chs='+height+'x'+widht #Tamanho do gráfico
+    graph += '&chds='+min+','+max
+    graph += '&chco='A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats[\'A\']}},{{=evals_stats[\'B\']}},{{=evals_stats[\'C\']}},{{=evals_stats[\'D\']}},{{=evals_stats[\'FF\']}}&chdl=A|B|C|D|FF">'
+    return graph
+
 
 #########################################
 #              Aluno getters            #
@@ -33,6 +44,13 @@ def get_aluno_id():
         return aluno_id
     except:
         return 0
+
+def get_aluno_user_id(aluno_id):
+    '''
+    Retorna o user_id do aluno referenciado por aluno_id
+    '''
+    aluno = db(Alunos.id==aluno_id).select().first()
+    return aluno.user_id
 
 def get_aluno_full_name(aluno_id):
     '''
@@ -96,6 +114,16 @@ def get_prof_id_from_email(prof_email):
     '''
     prof = db(db.professores.email==prof_email).select().first()
     return prof.id
+
+def is_prof_registered(prof_id):
+    '''
+    Retorna True se o professor esta registrado no sistema
+    '''
+    prof = db(Professores.id==prof_id).select().first()
+    if prof.user_id:
+        return True
+    else:
+        return False
 
 #########################################
 #              Disc getters             #
@@ -258,6 +286,21 @@ def update_profs_discs(prof_id, disc_id):
     db(db.profs_discs.id==prof_disc.id).update(count = count+1)
     db.commit()
     return count + 1
+
+#########################################
+#           favorites                   #
+#########################################
+
+def get_favorite_evals(user_id):
+    '''
+    Retorna uma lista refinada de avaliacoes favoritas de um usuario referenciado por user_id
+    '''
+    favorite_rows = db(Favoritos.user_id==user_id).select()
+    raw_evals = []
+    for row in favorite_rows:
+        raw_evals.append(db(Avaliacoes.id==row.avaliacao_id).select().first())
+    return refine_evals(raw_evals)
+
     
 def favorita_eval(eval_id):
     '''
@@ -281,7 +324,8 @@ def eh_favorita(eval_id):
     if not favorito:
         return False
     else:
-        return True     
+        return True
+
 
 #########################################
 # Biased dropdowns: the pretty way      #

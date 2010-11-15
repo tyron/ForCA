@@ -18,6 +18,17 @@ def aluno_create(data):
         user_id    = data.id
     )
     db.commit()
+    
+#########################################
+#              Charts                   #
+#########################################
+def generate_bar_graph(height,widht,min,max,values,colors,labels,legends):
+    graph = '<img src="http://chart.apis.google.com/chart?cht=bvs' #Código padrão para montar gráfico de barras
+    graph += '&chs='+height+'x'+widht #Tamanho do gráfico
+    graph += '&chds='+min+','+max
+    graph += '&chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats[\'A\']}},{{=evals_stats[\'B\']}},{{=evals_stats[\'C\']}},{{=evals_stats[\'D\']}},{{=evals_stats[\'FF\']}}&chdl=A|B|C|D|FF">'
+    return graph
+
 
 #########################################
 #              Aluno getters            #
