@@ -2,9 +2,13 @@
 {{if perfil_proprio:}}
     <h1>Olá, {{=aluno.short_name}}!</h1>
     <ul>
-        {{if len_evals_all > 0:}}
-            <li><h3>Você já postou {{=len_evals_all}} {{=('avaliação' if len_evals_all == 1 else 'avaliações')}}, cujo conceito médio é {{=grade_avg}}.</h3></li>
-            <li><h3>O saldo de qualidade de suas avaliações é {{=karma_avg}}.</h3></li>
+        {{if evals_stats['len'] > 0:}}
+            <li><h3>Você já postou {{=evals_stats['len']}} {{=('avaliação' if evals_stats['len'] == 1 else 'avaliações')}}, cujo conceito médio é {{=evals_stats['grade_avg']}}.</h3></li>
+            <img src="http://chart.apis.google.com/chart?chs=300x150&cht=bvs&chds=0,{{=evals_stats['max_len_grade']}}&chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats['A']}},{{=evals_stats['B']}},{{=evals_stats['C']}},{{=evals_stats['D']}},{{=evals_stats['FF']}}&chl=A|B|C|D|FF"><br><br>
+            <li><h3>O saldo de qualidade de suas avaliações é {{=evals_stats['karma_avg']}} ({{=evals_stats['karma_len']}} {{=('qualificação' if evals_stats['karma_len'] == 1 else 'qualificações')}}).</h3></li></br>
+            {{if evals_stats['karma_len'] > 0:}}
+                <img src="http://chart.apis.google.com/chart?chs=300x125&cht=p3&chco=219A21|FF0000&chd=t:{{=evals_stats['karma_up']}},{{=evals_stats['karma_down']}}&chl={{=('Positivas' if evals_stats['karma_up'] > 0 else '')}}|{{=('Negativas' if evals_stats['karma_down'] > 0 else '')}}"><br><br>
+            {{pass}}
             <li><h3>Últimas avaliações:</h3></li><br>
             <div class="latest">
                 {{include "eval/list.html"}}
@@ -42,9 +46,13 @@
         </tr>
     </table>       
     <ul>
-        {{if len_evals_all > 0:}}
-            <li><h3>{{=aluno.short_name}} já postou {{=len_evals_all}} {{=('avaliação' if len_evals_all == 1 else 'avaliações')}}, cujo conceito médio é {{=grade_avg}}.</h3></li>
-            <li><h3>O saldo de qualidade das avaliações de {{=aluno.short_name}} é {{=karma_avg}}.</h3></li>
+        {{if evals_stats['len'] > 0:}}
+            <li><h3>{{=aluno.short_name}} já postou {{=evals_stats['len']}} {{=('avaliação' if evals_stats['len'] == 1 else 'avaliações')}}, cujo conceito médio é     {{=evals_stats['grade_avg']}}.</h3></li>
+            <img src="http://chart.apis.google.com/chart?chs=300x150&cht=bvs&chds=0,{{=evals_stats['max_len_grade']}}&chco=219A21|A8EEA8|FFFF88|FFA033|FF0000&chd=t:{{=evals_stats['A']}},{{=evals_stats['B']}},{{=evals_stats['C']}},{{=evals_stats['D']}},{{=evals_stats['FF']}}&chl=A|B|C|D|FF"><br><br>
+            <li><h3>O saldo de qualidade das avaliações de {{=aluno.short_name}} é {{=evals_stats['karma_avg']}} ({{=evals_stats['karma_len']}} {{=('qualificação' if evals_stats['karma_len'] == 1 else 'qualificações')}}).</h3></li>
+            {{if evals_stats['karma_len'] > 0:}}
+                <img src="http://chart.apis.google.com/chart?chs=300x125&cht=p3&chco=219A21|FF0000&chd=t:{{=evals_stats['karma_up']}},{{=evals_stats['karma_down']}}&chl={{=('Positivas' if evals_stats['karma_up'] > 0 else '')}}|{{=('Negativas' if evals_stats['karma_down'] > 0 else '')}}"><br><br>
+            {{pass}}
             <li><h3>Últimas avaliações de {{=aluno.short_name}}:</h3></li><br>
             {{include "eval/list.html"}}
         {{else:}}
