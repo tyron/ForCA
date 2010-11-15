@@ -28,7 +28,10 @@ def home():
         limitby = (page*10, (page+1)*11)
 
         aluno = db(db.alunos.id==aluno_id).select(db.alunos.ALL).first()
-        avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)  
+        avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
+        
+        #Pega informaçoes do conjunto de avaliações do aluno
+        evals_stats = get_evals_info(avaliacoes)
         
         #Lista das últimas avaliações do aluno        
         raw_evals = avaliacoes.select(orderby=~db.avaliacoes.timestamp_eval, limitby=(0,3))
@@ -46,23 +49,7 @@ def home():
             evals_favorited = get_favorite_evals(session.auth.user.id)
         else:
             evals_favorited = []
-            
-        #Pega dados estatísticos para exibir no profile home.
-        evals_stats = {}
-        avaliacoes = db(db.avaliacoes.aluno_id==aluno_id)
-        evals_stats['len'] = avaliacoes.count()
-        evals_stats['grade_avg'] = grade_average(avaliacoes)
-        evals_stats['A'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.grade == 'A')).count()
-        evals_stats['B'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.grade == 'B')).count()
-        evals_stats['C'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.grade == 'C')).count()
-        evals_stats['D'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.grade == 'D')).count()
-        evals_stats['FF'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.grade == 'FF')).count()
-        evals_stats['max_len_grade'] = max(evals_stats['A'],evals_stats['B'],evals_stats['C'],evals_stats['D'],evals_stats['FF'])
-        evals_stats['karma_len'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.id == db.karmas.avaliacao_id)).count()
-        evals_stats['karma_up'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == 1)).count()
-        evals_stats['karma_down'] = db((db.avaliacoes.aluno_id==aluno_id)&(db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == -1)).count()
-        evals_stats['karma_avg'] = get_karma_avg(aluno_id)
-        
+               
         return dict(aluno=aluno, perfil_proprio=perfil_proprio, evals=evals, evals_replyed=evals_replyed, evals_favorited=evals_favorited,\
                                 evals_stats=evals_stats, page=page, per_page=10)
 

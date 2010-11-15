@@ -203,6 +203,36 @@ def get_refined_evals(prof_id=None, disc_id=None):
     raw_evals = get_evals(prof_id, disc_id).select()
     evals = refine_evals(raw_evals)
     return evals
+    
+def get_evals_karma_avg(evals):
+    '''
+    Retorna a soma de karmas recebidos pelas avaliacoes
+    passadas como parâmetro
+    '''
+    karmas = []
+    for eval in evals:
+        if eval.karma:
+            karmas.append(eval.karma)
+    return sum(karmas)
+    
+def get_evals_info(evals):
+    '''
+    Retorna um dic com informações úteis para as avaliações passadas como parâmetro
+    '''
+    evals_info = {}
+    evals_info['len'] = evals.count()
+    evals_info['grade_avg'] = grade_average(evals)
+    evals_info['A'] = evals(db.avaliacoes.grade == 'A').count()
+    evals_info['B'] = evals(db.avaliacoes.grade == 'B').count()
+    evals_info['C'] = evals(db.avaliacoes.grade == 'C').count()
+    evals_info['D'] = evals(db.avaliacoes.grade == 'D').count()
+    evals_info['FF'] = evals(db.avaliacoes.grade == 'FF').count()
+    evals_info['max_len_grade'] = max(evals_info['A'],evals_info['B'],evals_info['C'],evals_info['D'],evals_info['FF'])
+    evals_info['karma_len'] = evals(db.avaliacoes.id == db.karmas.avaliacao_id).count()
+    evals_info['karma_up'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == 1)).count()
+    evals_info['karma_down'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == -1)).count()
+    evals_info['karma_avg'] = get_evals_karma_avg(evals.select())
+    return evals_info
 
 #########################################
 #           Funções auxiliares          #

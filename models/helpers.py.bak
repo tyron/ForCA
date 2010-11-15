@@ -26,7 +26,7 @@ def generate_bar_graph(height,widht,min,max,values,colors,labels,legends):
     graph = '<img src="http://chart.apis.google.com/chart?cht=bvs' #Código padrão para montar gráfico de barras
     graph += '&chs='+height+'x'+widht #Tamanho do gráfico
     graph += '&chds='+min+','+max
-    graph += '&chco='A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats[\'A\']}},{{=evals_stats[\'B\']}},{{=evals_stats[\'C\']}},{{=evals_stats[\'D\']}},{{=evals_stats[\'FF\']}}&chdl=A|B|C|D|FF">'
+    graph += '&chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats[\'A\']}},{{=evals_stats[\'B\']}},{{=evals_stats[\'C\']}},{{=evals_stats[\'D\']}},{{=evals_stats[\'FF\']}}&chdl=A|B|C|D|FF">'
     return graph
 
 
@@ -203,6 +203,35 @@ def get_refined_evals(prof_id=None, disc_id=None):
     raw_evals = get_evals(prof_id, disc_id).select()
     evals = refine_evals(raw_evals)
     return evals
+    
+def get_evals_karma_avg(evals):
+    '''
+    Retorna a soma de karmas recebidos pelas avaliacoes
+    passadas como parâmetro
+    '''
+    karmas = []
+    for eval in evals:
+        if eval.karma:
+            karmas.append(eval.karma)
+    return sum(karmas)
+    
+def get_evals_info(evals):
+    '''
+    Retorna um dic com informações úteis para as avaliações passadas como parâmetro
+    '''
+    evals_info = {}
+    evals_info['len'] = evals.count()
+    evals_info['grade_avg'] = grade_average(evals)
+    evals_info['A'] = evals(db.avaliacoes.grade == 'A').count()
+    evals_info['B'] = evals(db.avaliacoes.grade == 'B').count()
+    evals_info['C'] = evals(db.avaliacoes.grade == 'C').count()
+    evals_info['D'] = evals(db.avaliacoes.grade == 'D').count()
+    evals_info['FF'] = evals(db.avaliacoes.grade == 'FF').count()
+    evals_info['max_len_grade'] = max(evals_info['A'],evals_info['B'],evals_info['C'],evals_info['D'],evals_info['FF'])
+    evals_info['karma_len'] = evals(db.avaliacoes.id == db.karmas.avaliacao_id).count()
+    evals_info['karma_up'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == 1)).count()
+    evals_info['karma_down'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == -1)).count()
+    evals_info['karma_avg'] = get_evals_karma_avg(evals.select())
 
 #########################################
 #           Funções auxiliares          #
