@@ -8,8 +8,7 @@
             <li><h3>O saldo de qualidade de suas avaliações é {{=evals_stats['karma_avg']}} ({{=evals_stats['karma_len']}} {{=('qualificação' if evals_stats['karma_len'] == 1 else 'qualificações')}}).</h3></li></br>
             {{if evals_stats['karma_len'] > 0:}}
                 <img src="http://chart.apis.google.com/chart?chs=300x125&cht=p3&chco=219A21|FF0000&chd=t:{{=evals_stats['karma_up']}},{{=evals_stats['karma_down']}}&chl={{=('Positivas' if evals_stats['karma_up'] > 0 else '')}}|{{=('Negativas' if evals_stats['karma_down'] > 0 else '')}}"><br>
-            {{pass}}
-            <br>
+            {{pass}}<br>
             <li><h3>Últimas avaliações:</h3></li><br>            
             <div class="latest">
                 {{include "eval/list.html"}}
