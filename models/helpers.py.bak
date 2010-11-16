@@ -23,25 +23,31 @@ def aluno_create(data):
 #              Charts                   #
 #########################################
 def generate_bar_graph(widht, height, min, max, values):
+    '''
+    Gera um gráfico de barras com os parâmetros passados, sendo que values é um array de triplas contendo value, label e color.
+    '''
     graph = 'http://chart.apis.google.com/chart?cht=bvs&chxt=y' #Código padrão para montar gráfico de barras
-    graph += '&chs='+str(widht)+'x'+str(height)
-    graph += '&chds='+str(min)+','+str(max)
-    graph += '&chxr=0,'+str(min)+','+str(max)
-    graph += '&chd=t:'
+    graph += '&chs='+str(widht)+'x'+str(height) #Tamanho do gráfico
+    graph += '&chds='+str(min)+','+str(max) #Min e Max dos dados
+    graph += '&chxr=0,'+str(min)+','+str(max) #Min e max do eixo Y
+    graph += '&chd=t:' #Valores
     for value in values:
         graph += str(value['value'])+','
     graph = graph[:len(graph)-1]
-    graph += '&chl='
+    graph += '&chl=' #Labels, eixo X
     for value in values:
         graph += value['label']+'|'
     graph = graph[:len(graph)-1]
-    graph += '&chco='
+    graph += '&chco=' #Cores
     for value in values:
         graph += value['color']+'|'    
     graph = graph[:len(graph)-1]
     return graph
     
-def graph_grades(evals_info):    
+def graph_grades(evals_info):
+    '''
+    Gera um gráfico de barras de acordo com as notas do array de evals_info
+    '''    
     values = []
     value = {}
     value['label'] = 'A'
@@ -68,7 +74,7 @@ def graph_grades(evals_info):
     value['value'] = evals_info['FF']
     value['color'] = 'EFA5A5'
     values.append(value)
-    return generate_bar_graph(300, 150, 0, evals_info['max_len_grade'], values) 
+    return generate_bar_graph(175, 150, 0, evals_info['max_len_grade'], values) 
         
 #########################################
 #              Aluno getters            #

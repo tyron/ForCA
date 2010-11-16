@@ -29,7 +29,7 @@ def generate_bar_graph(widht, height, min, max, values):
     graph = 'http://chart.apis.google.com/chart?cht=bvs&chxt=y' #Código padrão para montar gráfico de barras
     graph += '&chs='+str(widht)+'x'+str(height) #Tamanho do gráfico
     graph += '&chds='+str(min)+','+str(max) #Min e Max dos dados
-    graph += '&chxr=0,'+str(min)+','+str(max) #Min e max do eixo Y
+    graph += '&chxr=0,'+str(min)+','+str(max) #Min e Max do eixo Y
     graph += '&chd=t:' #Valores
     for value in values:
         graph += str(value['value'])+','
@@ -74,7 +74,7 @@ def graph_grades(evals_info):
     value['value'] = evals_info['FF']
     value['color'] = 'EFA5A5'
     values.append(value)
-    return generate_bar_graph(300, 150, 0, evals_info['max_len_grade'], values) 
+    return generate_bar_graph(175, 150, 0, evals_info['max_len_grade'], values) 
         
 #########################################
 #              Aluno getters            #
