@@ -22,54 +22,26 @@ def aluno_create(data):
 #########################################
 #              Charts                   #
 #########################################
-def generate_bar_graph(widht, height, min, max, values):
-    graph = 'http://chart.apis.google.com/chart?cht=bvs&chxt=y' #Código padrão para montar gráfico de barras
-    graph += '&chs='+str(widht)+'x'+str(height)
-    graph += '&chds='+str(min)+','+str(max)
-    graph += '&chxr=0,'+str(min)+','+str(max)
+def generate_profs_discs_graph(min,max,values):
+    graph = '<img src="http://chart.apis.google.com/chart?cht=bvg&chs=500x225&chxt=x,y&chco=A6EFA5,D2EFA5,EFEFA5,EFC4A5,EFA5A5' #Código padrão para montar gráfico de barras
+    graph += '&chxr=0,'+min+','+max 
+    graph += '&chds='+min+','+max
+    graph += '&chds='
+    graph += '&chxl=0:'
+    for value in values:
+        graph += '|'+value['legend'] 
     graph += '&chd=t:'
     for value in values:
-        graph += str(value['value'])+','
-    graph = graph[:len(graph)-1]
-    graph += '&chl='
-    for value in values:
-        graph += value['label']+'|'
-    graph = graph[:len(graph)-1]
-    graph += '&chco='
-    for value in values:
-        graph += value['color']+'|'    
-    graph = graph[:len(graph)-1]
-    return graph
-    
-def graph_grades(evals_info):    
-    values = []
-    value = {}
-    value['label'] = 'A'
-    value['value'] = evals_info['A']
-    value['color'] = 'A6EFA5'
-    values.append(value)
-    value = {}
-    value['label'] = 'B'
-    value['value'] = evals_info['B']
-    value['color'] = 'D2EFA5'
-    values.append(value)
-    value = {}
-    value['label'] = 'C'
-    value['value'] = evals_info['C']
-    value['color'] = 'EFEFA5'
-    values.append(value)
-    value = {}
-    value['label'] = 'D'
-    value['value'] = evals_info['D']
-    value['color'] = 'EFC4A5'
-    values.append(value)
-    value = {}
-    value['label'] = 'FF'
-    value['value'] = evals_info['FF']
-    value['color'] = 'EFA5A5'
-    values.append(value)
-    return generate_bar_graph(300, 150, 0, evals_info['max_len_grade'], values) 
-        
+        graph += value['A']
+        graph += ','+value['B']
+        graph += ','+value['C']
+        graph += ','+value['D']
+        graph += ','+value['FF']
+        graph += '|'    
+    print graph
+
+
+
 #########################################
 #              Aluno getters            #
 #########################################

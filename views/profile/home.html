@@ -14,8 +14,8 @@
                             <b>{{=evals_stats['karma_len']}} qualificações (saldo {{=evals_stats['karma_avg']}})</b>
                     </tr>
                     <tr>
-                        <td>
-                            <img src="http://chart.apis.google.com/chart?chs=300x150&cht=bvs&chds=0,{{=evals_stats['max_len_grade']}}&chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats['A']}},{{=evals_stats['B']}},{{=evals_stats['C']}},{{=evals_stats['D']}},{{=evals_stats['FF']}}&chl=A|B|C|D|FF">
+                        <td>                            
+                            <img src="{{=graph_grades(evals_stats)}}">
                         </td>
                     {{if evals_stats['karma_len'] > 0:}}
                         <td>
@@ -74,7 +74,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="http://chart.apis.google.com/chart?chs=300x150&cht=bvs&chds=0,{{=evals_stats['max_len_grade']}}&chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5&chd=t:{{=evals_stats['A']}},{{=evals_stats['B']}},{{=evals_stats['C']}},{{=evals_stats['D']}},{{=evals_stats['FF']}}&chl=A|B|C|D|FF">
+                        <img src="{{=graph_grades(evals_stats)}}">
                     </td>
                 {{if evals_stats['karma_len'] > 0:}}
                     <td>
