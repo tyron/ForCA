@@ -279,6 +279,20 @@ def get_evals_karma_avg(evals):
         if eval.karma:
             karmas.append(eval.karma)
     return sum(karmas)
+
+def get_karmas(evals):
+    '''
+    Retorna informacoes de karma das avaliacoes como um dict
+    (karma_len, karma_up, karma_down, karma_avg)
+    '''
+    karmas     = filter(lambda karma: karma != 0, map(lambda eval: eval.karma, evals.select()))
+    karma_dict = {}
+    karma_dict['len']  = len(karmas)
+    karma_dict['up']   = len(filter(lambda karma: karma > 0, karmas))
+    karma_dict['down'] = len(filter(lambda karma: karma < 0, karmas))
+    karma_dict['avg']  = get_evals_karma_avg(evals.select())
+    return karma_dict
+
     
 def get_evals_info(evals):
     '''
@@ -293,10 +307,13 @@ def get_evals_info(evals):
     evals_info['D'] = evals(db.avaliacoes.grade == 'D').count()
     evals_info['FF'] = evals(db.avaliacoes.grade == 'FF').count()
     evals_info['max_len_grade'] = max(evals_info['A'],evals_info['B'],evals_info['C'],evals_info['D'],evals_info['FF'])
-    evals_info['karma_len'] = evals(db.avaliacoes.id == db.karmas.avaliacao_id).count()
-    evals_info['karma_up'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == 1)).count()
-    evals_info['karma_down'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == -1)).count()
-    evals_info['karma_avg'] = get_evals_karma_avg(evals.select())
+    
+    karmas = get_karmas(evals)
+    evals_info['karma_len'] = karmas['len']
+    evals_info['karma_up'] = karmas['up']
+    evals_info['karma_down'] = karmas['down']
+    evals_info['karma_avg'] = karmas['avg']
+
     return evals_info
 
 #########################################
