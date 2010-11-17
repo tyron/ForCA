@@ -18,7 +18,83 @@ def aluno_create(data):
         user_id    = data.id
     )
     db.commit()
-
+    
+#########################################
+#              Charts                   #
+#########################################
+ 
+def generate_basic_graph(type,widht, height, min, max, values):
+    '''
+    Gera um gráfico simples com os parâmetros passados, sendo que values é um array de triplas contendo value, label e color.
+    '''
+    graph = 'http://chart.apis.google.com/chart?chxt=y' #Código padrão para montar gráfico de barras
+    graph += '&cht='+type
+    graph += '&chs='+str(widht)+'x'+str(height) #Tamanho do gráfico
+    graph += '&chds='+str(min)+','+str(max) #Min e Max dos dados
+    graph += '&chxr=0,'+str(min)+','+str(max) #Min e Max do eixo Y
+    graph += '&chd=t:' #Valores
+    for value in values:
+        graph += str(value['value'])+','
+    graph = graph[:len(graph)-1]
+    graph += '&chl=' #Labels, eixo X
+    for value in values:
+        graph += value['label']+'|'
+    graph = graph[:len(graph)-1]
+    graph += '&chco=' #Cores
+    for value in values:
+        graph += value['color']+'|'    
+    graph = graph[:len(graph)-1]
+    return graph
+    
+def graph_grades(evals_info):
+    '''
+    Gera um gráfico de barras de acordo com as notas do array de evals_info
+    '''    
+    values = []
+    value = {}
+    value['label'] = 'A'
+    value['value'] = evals_info['A']
+    value['color'] = 'A6EFA5'
+    values.append(value)
+    value = {}
+    value['label'] = 'B'
+    value['value'] = evals_info['B']
+    value['color'] = 'D2EFA5'
+    values.append(value)
+    value = {}
+    value['label'] = 'C'
+    value['value'] = evals_info['C']
+    value['color'] = 'EFEFA5'
+    values.append(value)
+    value = {}
+    value['label'] = 'D'
+    value['value'] = evals_info['D']
+    value['color'] = 'EFC4A5'
+    values.append(value)
+    value = {}
+    value['label'] = 'FF'
+    value['value'] = evals_info['FF']
+    value['color'] = 'EFA5A5'
+    values.append(value)
+    return generate_basic_graph('bvs',175, 150, 0, evals_info['max_len_grade'], values) 
+    
+def graph_karmas(evals_info):
+    '''
+    Gera um gráfico pizza de acordo com os karmas do array de evals_info
+    '''    
+    values = []
+    value = {}
+    value['label'] = ('Positivas' if evals_info['karma_up'] > 0 else '')
+    value['value'] = evals_info['karma_up']
+    value['color'] = '219A21'
+    values.append(value)
+    value = {}
+    value['label'] = ('Negativas' if evals_info['karma_down'] > 0 else '')
+    value['value'] = evals_info['karma_down']
+    value['color'] = 'FF0000'
+    values.append(value)
+    return generate_basic_graph('p3',300, 125, 0, evals_info['karma_len'], values)
+        
 #########################################
 #              Aluno getters            #
 #########################################
@@ -192,6 +268,36 @@ def get_refined_evals(prof_id=None, disc_id=None):
     raw_evals = get_evals(prof_id, disc_id).select()
     evals = refine_evals(raw_evals)
     return evals
+    
+def get_evals_karma_avg(evals):
+    '''
+    Retorna a soma de karmas recebidos pelas avaliacoes
+    passadas como parâmetro
+    '''
+    karmas = []
+    for eval in evals:
+        if eval.karma:
+            karmas.append(eval.karma)
+    return sum(karmas)
+    
+def get_evals_info(evals):
+    '''
+    Retorna um dic com informações úteis para as avaliações passadas como parâmetro
+    '''
+    evals_info = {}
+    evals_info['len'] = evals.count()
+    evals_info['grade_avg'] = grade_average(evals)
+    evals_info['A'] = evals(db.avaliacoes.grade == 'A').count()
+    evals_info['B'] = evals(db.avaliacoes.grade == 'B').count()
+    evals_info['C'] = evals(db.avaliacoes.grade == 'C').count()
+    evals_info['D'] = evals(db.avaliacoes.grade == 'D').count()
+    evals_info['FF'] = evals(db.avaliacoes.grade == 'FF').count()
+    evals_info['max_len_grade'] = max(evals_info['A'],evals_info['B'],evals_info['C'],evals_info['D'],evals_info['FF'])
+    evals_info['karma_len'] = evals(db.avaliacoes.id == db.karmas.avaliacao_id).count()
+    evals_info['karma_up'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == 1)).count()
+    evals_info['karma_down'] = evals((db.avaliacoes.id == db.karmas.avaliacao_id)&(db.karmas.value == -1)).count()
+    evals_info['karma_avg'] = get_evals_karma_avg(evals.select())
+    return evals_info
 
 #########################################
 #           Funções auxiliares          #

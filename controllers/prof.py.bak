@@ -52,6 +52,26 @@ def home():
         else:
             disc['grade'] = grade_average(evals_prof_disc) 
         discs.append(disc)
+        
+        values = []
+        value = {}
+        value['legend'] = 'Tiaraju'
+        value['A'] = '1'
+        value['B'] = '1'
+        value['C'] = '2'
+        value['D'] = '5'
+        value['FF'] = '10'
+        values.append(value)
+        value = {}
+        value['legend'] = 'Weber'
+        value['A'] ='9'
+        value['B'] = '8'
+        value['C'] = '7'
+        value['D'] = '1'
+        value['FF'] = '0'
+        values.append(value)
+        
+        generate_profs_discs_graph('0','10',values)
    
     return dict(prof=prof, page=page, per_page=10, evals=sorted(evals, key=itemgetter('karma'), reverse=True), discs = sorted(sorted(discs, key=lambda x: rem_acentos(x['name'])), key=lambda x: x['grade'], reverse=False))
 
