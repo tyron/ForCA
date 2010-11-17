@@ -19,7 +19,7 @@
                         </td>
                     {{if evals_stats['karma_len'] > 0:}}
                         <td>
-                            <img src="http://chart.apis.google.com/chart?chs=300x125&cht=p3&chco=219A21|FF0000&chd=t:{{=evals_stats['karma_up']}},{{=evals_stats['karma_down']}}&chl={{=('Positivas' if evals_stats['karma_up'] > 0 else '')}}|{{=('Negativas' if evals_stats['karma_down'] > 0 else '')}}">
+                            <img src="{{=graph_karmas(evals_stats)}}">
                         </td>
                     {{pass}}
                     </tr>
@@ -78,7 +78,7 @@
                     </td>
                 {{if evals_stats['karma_len'] > 0:}}
                     <td>
-                        <img src="http://chart.apis.google.com/chart?chs=300x125&cht=p3&chco=219A21|FF0000&chd=t:{{=evals_stats['karma_up']}},{{=evals_stats['karma_down']}}&chl={{=('Positivas' if evals_stats['karma_up'] > 0 else '')}}|{{=('Negativas' if evals_stats['karma_down'] > 0 else '')}}">
+                        <img src="{{=graph_karmas(evals_stats)}}">
                     </td>
                 {{pass}}
                 </tr>

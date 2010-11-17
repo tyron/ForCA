@@ -44,6 +44,29 @@ def generate_bar_graph(widht, height, min, max, values):
     graph = graph[:len(graph)-1]
     return graph
     
+def generate_basic_graph(type,widht, height, min, max, values):
+    '''
+    Gera um gráfico simples com os parâmetros passados, sendo que values é um array de triplas contendo value, label e color.
+    '''
+    graph = 'http://chart.apis.google.com/chart?chxt=y' #Código padrão para montar gráfico de barras
+    graph += '&cht='+type
+    graph += '&chs='+str(widht)+'x'+str(height) #Tamanho do gráfico
+    graph += '&chds='+str(min)+','+str(max) #Min e Max dos dados
+    graph += '&chxr=0,'+str(min)+','+str(max) #Min e Max do eixo Y
+    graph += '&chd=t:' #Valores
+    for value in values:
+        graph += str(value['value'])+','
+    graph = graph[:len(graph)-1]
+    graph += '&chl=' #Labels, eixo X
+    for value in values:
+        graph += value['label']+'|'
+    graph = graph[:len(graph)-1]
+    graph += '&chco=' #Cores
+    for value in values:
+        graph += value['color']+'|'    
+    graph = graph[:len(graph)-1]
+    return graph
+    
 def graph_grades(evals_info):
     '''
     Gera um gráfico de barras de acordo com as notas do array de evals_info
@@ -74,7 +97,24 @@ def graph_grades(evals_info):
     value['value'] = evals_info['FF']
     value['color'] = 'EFA5A5'
     values.append(value)
-    return generate_bar_graph(175, 150, 0, evals_info['max_len_grade'], values) 
+    return generate_basic_graph('bvs',175, 150, 0, evals_info['max_len_grade'], values) 
+    
+def graph_karmas(evals_info):
+    '''
+    Gera um gráfico pizza de acordo com os karmas do array de evals_info
+    '''    
+    values = []
+    value = {}
+    value['label'] = ('Positivas' if evals_info['karma_up'] > 0 else '')
+    value['value'] = evals_info['karma_up']
+    value['color'] = '219A21'
+    values.append(value)
+    value = {}
+    value['label'] = ('Negativas' if evals_info['karma_down'] > 0 else '')
+    value['value'] = evals_info['karma_down']
+    value['color'] = 'FF0000'
+    values.append(value)
+    return generate_basic_graph('p3',300, 125, 0, evals_info['karma_len'], values)
         
 #########################################
 #              Aluno getters            #
