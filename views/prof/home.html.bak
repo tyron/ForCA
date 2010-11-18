@@ -37,21 +37,45 @@
     </tr>
 </table>
 
-{{if len(discs)>0:}}
-     <h4 class="discs_toggle cursored padded10" onclick="jQuery('.discs_list').slideToggle()">
-         {{=T('Disciplinas ministradas por ')}}{{=prof.short_name}}
-         {{=IMG(_src=URL('static', 'plus.png'))}}
-    </h4>
-    <div class="discs_list">
+{{if len(evals)>0:}}        
+    <div style="padding:15px;">
+        <table class="infotable">
+            <th colspan=2 class="infoheader">Estatísticas de {{=prof.short_name}}:</th>
+            <tr>
+                <td style="text-align:center">
+                    <b>Avaliações recebidas</b>
+                </td>
+                {{evolution_graph = graph_evolution_evals(prof_evals)}}
+                {{if evolution_graph:}}
+                    <td style="text-align:center">
+                        <b>Evolução</b>
+                    </td>
+                {{pass}}
+            </tr>
+            <tr>
+                <td>                            
+                    <img src="{{=graph_grades(evals_stats)}}">
+                </td>
+                {{if evolution_graph:}}
+                    <td>                            
+                        <img src="{{=evolution_graph}}">
+                    </td>
+                {{pass}}
+            </tr>
+        </table>
+    </div>
+{{pass}}
+
+<h4 class="discs_toggle cursored padded10" onclick="jQuery('.discs_list').slideToggle()">
+     {{=T('Disciplinas ministradas por ')}}{{=prof.short_name}}
+     {{=IMG(_src=URL('static', 'plus.png'))}}
+</h4>
+<div class="discs_list">
+    {{if len(discs)>0:}}
         <table>
         <tr>
-<<<<<<< HEAD
-            <th>Disciplina</th>
-            <th>Média de {{= prof.short_name}}</th>
-=======
             <th>{{=T('Disciplina')}}</th>
             <th>{{=T('Média de')}} {{=prof.short_name}}</th>
->>>>>>> e45e1095a1f278c162136e4ffa600ad5f7598add
         </tr>
         {{for i, disc in enumerate(discs):}}
             <tr class="{{=['even', 'odd'][i % 2]}}">
@@ -63,8 +87,9 @@
             </tr>
         {{pass}}
         </table>
-    </div>
-{{pass}}
+    {{pass}}
+</div>
+
 
 <i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>

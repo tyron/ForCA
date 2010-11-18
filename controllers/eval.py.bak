@@ -1,6 +1,3 @@
-from gluon.tools import Crud
-crud = Crud(globals(), db)
-
 def index():
     profs = db().select(db.professores.ALL, orderby=db.professores.full_name)
     return dict(profs=profs)    
@@ -55,7 +52,9 @@ def update():
     '''
     Função faz update de registro já existente
     '''
-    record = db.avaliacoes(request.vars['eval_id'])
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
+    record = Avaliacoes(request.vars['eval_id'])
     prof_id = record.professor_id
     form_up=SQLFORM(db.avaliacoes, record, 
         fields=['year','semester','grade','comment'], 
@@ -65,12 +64,7 @@ def update():
         session.flash = 'Avaliação editada com sucesso'
         update_grade(prof_id)
         update_timestamp_eval(record)
-        if 'prof_id' in request.vars:
-            redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
-        elif 'disc_id' in request.vars:
-            redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
-        else:
-            redirect(URL(request.application, 'profile', 'home'))
+        redirect(session.jump_back)
     else:
         response.flash = 'Por favor, preencha a sua avaliação'  
     return dict(form_up=form_up)
@@ -80,13 +74,13 @@ def favorite():
     '''
     Função favorita ou desfavorita uma avaliação para o usuario logado, dependendo do estado atual
     '''
-    favorita_eval(request.vars['eval_id'])   
-    if 'prof_id' in request.vars:
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
-    elif 'disc_id' in request.vars:
-        redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+    eval_id = request.vars['eval_id']
+    favorita_eval(eval_id)
+    if eh_favorita(eval_id):
+        img = IMG(_src=URL('static', 'star_filled.png'))
     else:
-        redirect(URL(request.application, 'profile', 'home'))
+        img = IMG(_src=URL('static', 'star_hollow.png'))
+    return img
 
 @auth.requires_membership('Professor')
 def reply():
@@ -127,6 +121,8 @@ def delete():
     '''
     Função que deleta uma avaliação existente
     '''
+    if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
+        session.jump_back = request.env.http_referer
     eval_id = request.vars['eval_id']
     eval = db.avaliacoes[eval_id]
     prof_id = eval.professor_id
@@ -134,12 +130,72 @@ def delete():
     db.commit()
     update_grade(prof_id)
     session.flash = 'Avaliação excluída com sucesso'
-    if 'prof_id' in request.vars:
-        redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=request.vars['prof_id'])))
-    elif 'disc_id' in request.vars:
-        redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=request.vars['disc_id'])))
+    redirect(session.jump_back)
+
+def filter():
+    '''
+    Retorna avaliações de acordo com diversos critérios e filtros
+    '''
+    if len(request.args) and 'submit' not in request.vars:
+        page = int(request.args[0])
     else:
-        redirect(URL(request.application, 'profile', 'home'))
+        page = 0
+    limitby = (page*10, (page+1)*11)
+    query = db(Avaliacoes.id > 0)
+
+    prof_df = disc_df = aluno_df = semester_df = year_df = grade_df = None
+
+    if 'prof_id' in request.vars and request.vars['prof_id']:
+        query = query(Avaliacoes.professor_id==request.vars['prof_id'])
+        prof_df = request.vars['prof_id']
+    if 'disc_id' in request.vars and request.vars['disc_id']:
+        query = query(Avaliacoes.disciplina_id==request.vars['disc_id'])
+        disc_df = request.vars['disc_id']
+    if 'aluno_id' in request.vars and request.vars['aluno_id']:
+        query = query(Avaliacoes.aluno_id==request.vars['aluno_id'])
+        aluno_df = request.vars['aluno_id']
+    if 'semester' in request.vars and request.vars['semester']:
+        query = query(Avaliacoes.semester==request.vars['semester'])
+        semester_df = request.vars['semester']
+    if 'year' in request.vars and request.vars['year']:
+        query = query(Avaliacoes.year==request.vars['year'])
+        year_df = request.vars['year']
+    if 'grade' in request.vars and request.vars['grade']:
+        query = query(Avaliacoes.grade==request.vars['grade'])
+        grade_df = request.vars['grade']
+
+    result = refine_evals(query.select(limitby=limitby))
+    evals_stats = get_evals_info(query)
+    
+    fields = {}
+
+    prof_drop = SQLFORM.factory(
+        Field('prof_id', Professores, default=prof_df,
+            requires = IS_IN_DB(db, Professores.id, '%(full_name)s', zero = '')))
+    fields['prof'] = prof_drop.custom.widget.prof_id
+
+    disc_drop = SQLFORM.factory(
+        Field('disc_id', Disciplinas, default=disc_df,
+            requires = IS_IN_DB(db, Disciplinas.id, '%(name)s', zero = '')))
+    fields['disc'] = disc_drop.custom.widget.disc_id
+
+    fields['year'] = SQLFORM.widgets.options.widget(Avaliacoes.year, year_df)
+    fields['year'].insert(0, '')
+    if not year_df:
+        for x in fields['year']:
+            if '_selected' in x.attributes:
+                x.attributes['_selected'] = False
+        fields['year'][0].attributes['_selected'] = 'selected'
+
+    fields['grade'] = SQLFORM.widgets.options.widget(Avaliacoes.grade, grade_df)
+    fields['grade'].insert(0, '')
+    if grade_df == None:
+        for x in fields['grade']:
+            if '_selected' in x.attributes:
+                x.attributes['_selected'] = False
+        fields['grade'][0].attributes['_selected'] = 'selected'
+
+    return dict(page=page, per_page=10, evals_stats=evals_stats, evals = result, fields=fields)
 
 def list(prof_id=None, disc_id=None, aluno_id=None, semester=None, year=None, grade=None, with_reply=False):
     '''
