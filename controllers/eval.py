@@ -155,31 +155,10 @@ def filter():
 
     fields = {}
 
-    prof_drop = SQLFORM.factory(
-        Field('prof_id', Professores, default=prof_df,
-            requires = IS_IN_DB(db, Professores.id, '%(full_name)s', zero = '')))
-    fields['prof'] = prof_drop.custom.widget.prof_id
-
-    disc_drop = SQLFORM.factory(
-        Field('disc_id', Disciplinas, default=disc_df,
-            requires = IS_IN_DB(db, Disciplinas.id, '%(name)s', zero = '')))
-    fields['disc'] = disc_drop.custom.widget.disc_id
-
-    fields['year'] = SQLFORM.widgets.options.widget(Avaliacoes.year, year_df)
-    fields['year'].insert(0, '')
-    if not year_df:
-        for x in fields['year']:
-            if '_selected' in x.attributes:
-                x.attributes['_selected'] = False
-        fields['year'][0].attributes['_selected'] = 'selected'
-
-    fields['grade'] = SQLFORM.widgets.options.widget(Avaliacoes.grade, grade_df)
-    fields['grade'].insert(0, '')
-    if grade_df == None:
-        for x in fields['grade']:
-            if '_selected' in x.attributes:
-                x.attributes['_selected'] = False
-        fields['grade'][0].attributes['_selected'] = 'selected'
+    fields['prof'] = get_prof_dropdown(default=prof_df)
+    fields['disc'] = get_disc_dropdown(default=disc_df)
+    fields['year'] = get_year_dropdown(default=year_df)
+    fields['grade'] = get_grade_dropdown(default=grade_df)
 
     return dict(page=page, per_page=10, evals = result, fields=fields)
 
