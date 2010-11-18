@@ -93,7 +93,47 @@ def graph_karmas(evals_info):
     value['value'] = evals_info['karma_down']
     value['color'] = 'FF0000'
     values.append(value)
-    return generate_basic_graph('p3',300, 125, 0, evals_info['karma_len'], values)
+    return generate_basic_graph('p3',300, 150, 0, evals_info['karma_len'], values)
+    
+def graph_evolution_evals(eval_rows):
+    '''
+    Gera um gráfico de linha com a evolução das notas ao longo dos semestres
+    '''
+    raw_evals = eval_rows.select(db.avaliacoes.year, groupby=db.avaliacoes.year, orderby=db.avaliacoes.year) 
+    evals = []
+    #Intera os resultados por ano
+    for raw_eval in raw_evals:
+        for x in [1,2]:#Cria uma entrada pra cada semestre do ano 
+            evals_semester = eval_rows((db.avaliacoes.year==raw_eval['year'])&(db.avaliacoes.semester==x))
+            result = evals_semester.select().first()
+            if result: 
+                eval = {}
+                eval['year']     = raw_eval['year']
+                eval['semester'] = x    
+                eval['grade'] = grade_average(evals_semester)
+                evals.append(eval)        
+    if len(evals)>1:        
+         #Gera código do gráfico
+        graph = 'http://chart.apis.google.com/chart?chf=c,lg,90,EFA5A5,0,A6EFA5,1\
+&chxs=0,00000099,12.5,0,l,00000099|1,676767,11.5,0,lt,676767&chxt=y,x&chs=300x150&cht=lxy&chco=00000099&chds=1,5,1,5.1\
+&chdl=M%E9dia&chdlp=b&chls=5&chm=o,00000099,0,-1,5&chxl=0:|FF|D|C|B|A|1:|'
+        for eval in evals:
+             graph += str(eval['year'])[-2:]+'%2F'+str(eval['semester'])+'|'
+        graph = graph[:len(graph)-1]
+        graph += '&chd=t:-1|'
+        for eval in evals:
+            graph += get_grade_value_graph(eval['grade'])+','
+        graph = graph[:len(graph)-1]
+        graph += '&chxp=0,1.2,2,3,4,5|1,'
+        for x in range(1,len(evals)):
+            graph += str(x)+','
+        graph = graph[:len(graph)-1]     
+        graph += '&chxr=0,1,5|1,1,'+str(len(evals))
+        graph += '&chg='+str(100/(len(evals)-1))+',0,0,0'
+        return graph
+    else:
+        return ''
+        
         
 #########################################
 #              Aluno getters            #
@@ -324,6 +364,10 @@ def get_grade_letter(numgrade):
 def get_grade_value(strgrade):
     grade_dict = {'A': 10, 'B': 8, 'C': 6, 'D': 3, 'FF': 1}
     return grade_dict[strgrade]
+    
+def get_grade_value_graph(strgrade):
+    grade_dict = {'A': '5', 'B': '4', 'C': '3', 'D': '2', 'FF': '1'}
+    return grade_dict[strgrade]    
 
 def harmonic_mean(listerms):
     numterms = len(listerms)
