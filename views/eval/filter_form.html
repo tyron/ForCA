@@ -1,20 +1,36 @@
 <form id='search' name='search' action="">
     <table>
         <tr>
-            <th>Professor</th>
-            <th>Disciplina</th>
+            {{if 'prof' in fields:}}
+                <th>Professor</th>
+            {{pass}}
+            {{if 'disc' in fields:}}
+                <th>Disciplina</th>
+            {{pass}}
         </tr>
         <tr>
-            <td>{{=fields['prof']}}</td>
-            <td>{{=fields['disc']}}</td>
+            {{if 'prof' in fields:}}
+                <td>{{=fields['prof']}}</td>
+            {{pass}}
+            {{if 'disc' in fields:}}
+                <td>{{=fields['disc']}}</td>
+            {{pass}}
         </tr>
         <tr>
-            <th>Ano</th>
-            <th>Nota</th>
+            {{if 'year' in fields:}}
+                <th>Ano</th>
+            {{pass}}
+            {{if 'grade' in fields:}}
+                <th>Nota</th>
+            {{pass}}
         </tr>
         <tr>
-            <td>{{=fields['year']}}</td>
-            <td>{{=fields['grade']}}</td>
+            {{if 'year' in fields:}}
+                <td>{{=fields['year']}}</td>
+            {{pass}}
+            {{if 'grade' in fields:}}
+                <td>{{=fields['grade']}}</td>
+            {{pass}}
             <td>
                 <input type="submit" name="submit" value="Buscar!" style="float:right"/>
             </td>
