@@ -85,7 +85,7 @@ input[type=text], input[type=password], textarea {
     width: 300px;  
 }
 select {
-    min-width: 200px;
+    min-width: 50px;
 }
 
 /*********** add proper separation between h1-h6 and text ***********/
@@ -380,4 +380,10 @@ div.gradeFF {
     margin-left: auto;
     margin-right: auto;
     border: 5px solid #349C01 !important;
+}
+
+.filters {
+    background-color: #CCCCCC;
+    padding: 0px;
+    margin: 0px;
 }
