@@ -43,19 +43,24 @@
             <th colspan=2 class="infoheader">Estatísticas de {{=prof.short_name}}:</th>
             <tr>
                 <td style="text-align:center">
-                    <b>Evolução</b>
-                </td>
-                <td style="text-align:center">
                     <b>Avaliações recebidas</b>
                 </td>
+                {{evolution_graph = graph_evolution_evals(prof_evals)}}
+                {{if evolution_graph:}}
+                    <td style="text-align:center">
+                        <b>Evolução</b>
+                    </td>
+                {{pass}}
             </tr>
             <tr>
                 <td>                            
                     <img src="{{=graph_grades(evals_stats)}}">
                 </td>
-                <td>                            
-                    <img src="{{=graph_evolution_evals(prof_evals)}}">
-                </td>
+                {{if evolution_graph:}}
+                    <td>                            
+                        <img src="{{=evolution_graph}}">
+                    </td>
+                {{pass}}
             </tr>
         </table>
     </div>
