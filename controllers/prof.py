@@ -34,8 +34,17 @@ def home():
         page = 0
     limitby = (page*10, (page+1)*11)
     prof = db(db.professores.id==prof_id).select(db.professores.ALL).first()
+
+    result_query, defaults = get_filter_query(db(Avaliacoes.professor_id == prof_id))
+
+    fields = {}
+
+    fields['disc'] = get_disc_dropdown(default=defaults['disc_id'])
+    fields['year'] = get_year_dropdown(default=defaults['year'])
+    fields['grade'] = get_grade_dropdown(default=defaults['grade'])
+
     #Lista de avaliações
-    raw_evals = get_evals(prof_id,None).select(limitby=limitby)
+    raw_evals = result_query.select(limitby=limitby)
     evals = refine_evals(raw_evals)    
     #Lista de disciplinas lecionadas pelo professor
     raw_discs = db(db.profs_discs.professor_id==prof_id).select()
@@ -53,7 +62,7 @@ def home():
             disc['grade'] = grade_average(evals_prof_disc) 
         discs.append(disc)
    
-    return dict(prof=prof, page=page, per_page=10, evals=sorted(evals, key=itemgetter('karma'), reverse=True), discs = sorted(sorted(discs, key=lambda x: rem_acentos(x['name'])), key=lambda x: x['grade'], reverse=False))
+    return dict(prof=prof, page=page, per_page=10, evals=sorted(evals, key=itemgetter('karma'), reverse=True), discs = sorted(sorted(discs, key=lambda x: rem_acentos(x['name'])), key=lambda x: x['grade'], reverse=False), fields=fields)
 
 def download():
     """
