@@ -28,7 +28,8 @@ def home():
     Lista avaliações recebidas pelo professor
     '''
     prof_id = request.vars['prof_id']
-    if len(request.args):
+
+    if len(request.args) and 'submit' not in request.vars:
         page = int(request.args[0])
     else:
         page = 0
