@@ -39,7 +39,7 @@
 'Update:': 'Update:',
 'Use (...)&(...) for AND, (...)|(...) for OR, and ~(...)  for NOT to build more complex queries.': 'Use (...)&(...) for AND, (...)|(...) for OR, and ~(...)  for NOT to build more complex queries.',
 'View': 'View',
-'Welcome %s': 'Welcome %s',
+'Welcome %s': 'Bem-vindo %s',
 'Welcome to Gluonization': 'Bem vindo ao Web2py',
 'Welcome to web2py': 'Welcome to web2py',
 'appadmin is disabled because insecure channel': 'appadmin is disabled because insecure channel',

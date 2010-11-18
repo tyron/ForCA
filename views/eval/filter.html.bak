@@ -1,0 +1,44 @@
+{{extend 'layout.html'}}
+
+<form id='search' name='search' action="">
+    <table>
+        <tr>
+            <th>Professor</th>
+            <th>Disciplina</th>
+        </tr>
+        <tr>
+            <td>{{=fields['prof']}}</td>
+            <td>{{=fields['disc']}}</td>
+        </tr>
+        <tr>
+            <th>Ano</th>
+            <th>Nota</th>
+        </tr>
+        <tr>
+            <td>{{=fields['year']}}</td>
+            <td>{{=fields['grade']}}</td>
+            <td>
+                <input type="submit" name="submit" value="Buscar!" style="float:right"/>
+            </td>
+        </tr>
+    </table>
+<br/><br/>
+</form>
+{{if evals_stats['len'] > 0:}}
+    <div style="padding:15px;">
+        <table class="infotable">
+            <th colspan=2 class="infoheader">Suas estatísticas:</th>
+            <tr>
+                <td style="text-align:center">
+                    <b>{{=evals_stats['len']}} avaliações postadas (média {{=evals_stats['grade_avg']}})</b>
+                </td>
+            </tr>
+            <tr>
+                <td>                            
+                    <img src="{{=graph_grades(evals_stats)}}">
+                </td>
+            </tr>
+        </table>
+    </div>
+{{pass}}
+{{include 'eval/list.html'}}

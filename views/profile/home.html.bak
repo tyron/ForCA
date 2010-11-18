@@ -12,6 +12,7 @@
                         </td>
                         <td style="text-align:center">
                             <b>{{=evals_stats['karma_len']}} qualificações (saldo {{=evals_stats['karma_avg']}})</b>
+                        </td>
                     </tr>
                     <tr>
                         <td>                            

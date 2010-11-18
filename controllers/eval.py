@@ -144,7 +144,7 @@ def filter():
     query, defaults = get_filter_query(db(Avaliacoes.id > 0))
 
     result = refine_evals(query.select(limitby=limitby))
-
+    
     fields = {}
 
     fields['prof'] = get_prof_dropdown(default=defaults['prof_id'])
