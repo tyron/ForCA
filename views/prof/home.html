@@ -61,14 +61,35 @@
     </div>
 {{pass}}
 
-<i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>
+
+<div class="filters">
+    <form id='search' name='search' action="">
+        <input type="hidden" name="prof_id" value="{{=prof.id}}"/>
+        <table>
+            <tr>
+                <td style="padding:0px; vertical-align:middle;"><b>Disciplina:</b></td>
+                <td>{{=fields['disc']}}</td>
+                <td style="padding:0px; vertical-align:middle;"><b>Ano:</b></td>
+                <td>{{=fields['year']}}</td>
+                <td style="padding:0px; vertical-align:middle;"><b>Nota:</b></td>
+                <td>{{=fields['grade']}}</td>
+                <td>
+                    <input type="submit" name="submit" value="Buscar!" style="float:right"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{{if not len(evals):}}
+    <br/><br/>
+    <i>nenhuma avaliação</i>
+    <br/><br/>
+{{pass}}
+
 {{include "eval/list.html"}}
 
 {{if not auth.has_membership('Professor'):}}
-    {{if 'prof_id' in request.vars:}}
-        {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
-    {{else:}}
-        {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
-    {{pass}}
+    {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
 {{pass}}
