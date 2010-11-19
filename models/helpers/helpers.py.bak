@@ -115,7 +115,7 @@ def graph_evolution_evals(eval_rows):
     if len(evals)>1:        
          #Gera código do gráfico
         graph = 'http://chart.apis.google.com/chart?chf=c,lg,90,EFA5A5,0,A6EFA5,1\
-&chxs=0,00000099,12.5,0,l,00000099|1,676767,11.5,0,lt,676767&chxt=y,x&cht=lxy&chco=00000099&chds=1,5,1,5.1\
+&chxs=0,00000099,12.5,0,l,00000099|1,676767,11.5,0,lt,676767&chxt=y,x&chs=300x150&cht=lxy&chco=00000099&chds=1,5,1,5.1\
 &chdl=M%E9dia&chdlp=b&chls=5&chm=o,00000099,0,-1,5&chxl=0:|FF|D|C|B|A|1:|'
         for eval in evals:
              graph += str(eval['year'])[-2:]+'%2F'+str(eval['semester'])+'|'
@@ -130,7 +130,6 @@ def graph_evolution_evals(eval_rows):
         graph = graph[:len(graph)-1]     
         graph += '&chxr=0,1,5|1,1,'+str(len(evals))
         graph += '&chg='+str(100/(len(evals)-1))+',0,0,0'
-        graph += '&chs='+str(50*len(evals))+'x150'
         return graph
     else:
         return ''
