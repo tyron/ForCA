@@ -31,9 +31,6 @@ def up():
 	eval_id = request.vars['eval_id']
 	up = create(eval_id, 1)
 	inc = inc_karma(eval_id, 1)
-	if not up or not inc:
-		response.flash = 'Houve problemas ao criar sua qualificação. Por favor tente novamente'
-		return None
 	return inc
 
 @auth.requires_login()
@@ -41,7 +38,4 @@ def down():
 	eval_id = request.vars['eval_id']
 	down = create(eval_id, -1)
 	inc = inc_karma(eval_id, -1)
-	if not down or not inc:
-		response.flash = 'Houve problemas ao criar sua qualificação. Por favor tente novamente'
-		return None
 	return inc
