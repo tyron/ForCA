@@ -37,45 +37,45 @@
     </tr>
 </table>
 
-{{if len(evals)>0:}}        
-    <div style="padding:15px;">
-        <table class="infotable">
-            <th colspan=2 class="infoheader">Estatísticas de {{=prof.short_name}}:</th>
-            <tr>
-                <td style="text-align:center">
-                    <b>Avaliações recebidas</b>
-                </td>
-                {{evolution_graph = graph_evolution_evals(prof_evals)}}
-                {{if evolution_graph:}}
-                    <td style="text-align:center">
-                        <b>Evolução</b>
-                    </td>
-                {{pass}}
-            </tr>
-            <tr>
-                <td>                            
-                    <img src="{{=graph_grades(evals_stats)}}">
-                </td>
-                {{if evolution_graph:}}
-                    <td>                            
-                        <img src="{{=evolution_graph}}">
-                    </td>
-                {{pass}}
-            </tr>
-        </table>
-    </div>
-{{pass}}
-
 <h4 class="discs_toggle cursored padded10" onclick="jQuery('.discs_list').slideToggle()">
-     {{=T('Disciplinas ministradas por ')}}{{=prof.short_name}}
+     {{=T('Mais informações sobre ')}}{{=prof.short_name}}
      {{=IMG(_src=URL('static', 'plus.png'))}}
 </h4>
 <div class="discs_list">
+    {{if len(evals)>0:}}        
+        <div style="padding:15px;">
+            <table class="infotable">
+                <th colspan=2 class="infoheader">Estatísticas:</th>
+                <tr>
+                    <td style="text-align:center">
+                        <b>Avaliações recebidas</b>
+                    </td>
+                    {{evolution_graph = graph_evolution_evals(prof_evals)}}
+                    {{if evolution_graph:}}
+                        <td style="text-align:center">
+                            <b>Evolução</b>
+                        </td>
+                    {{pass}}
+                </tr>
+                <tr>
+                    <td>                            
+                        <img src="{{=graph_grades(evals_stats)}}">
+                    </td>
+                    {{if evolution_graph:}}
+                        <td>                            
+                            <img src="{{=evolution_graph}}">
+                        </td>
+                    {{pass}}
+                </tr>
+            </table>
+        </div>
+    {{pass}}
     {{if len(discs)>0:}}
-        <table>
+        <table class="infotable">
+        <th colspan=2 class="infoheader">Disciplinas ministradas:</th>
         <tr>
             <th>{{=T('Disciplina')}}</th>
-            <th>{{=T('Média de')}} {{=prof.short_name}}</th>
+            <th>{{=T('Média de')}}{{=prof.short_name}}<th>
         </tr>
         {{for i, disc in enumerate(discs):}}
             <tr class="{{=['even', 'odd'][i % 2]}}">
@@ -87,18 +87,39 @@
             </tr>
         {{pass}}
         </table>
-    {{pass}}
+    {{pass}}    
 </div>
 
 
-<i>{{='nenhuma avaliação' if not len(evals) else ''}}</i>
 <br/>
+
+<div class="filters">
+    <form id='search' name='search' action="">
+        <input type="hidden" name="prof_id" value="{{=prof.id}}"/>
+        <table>
+            <tr>
+                <td style="padding:0px; vertical-align:middle;"><b>Disciplina:</b></td>
+                <td>{{=fields['disc']}}</td>
+                <td style="padding:0px; vertical-align:middle;"><b>Ano:</b></td>
+                <td>{{=fields['year']}}</td>
+                <td style="padding:0px; vertical-align:middle;"><b>Nota:</b></td>
+                <td>{{=fields['grade']}}</td>
+                <td>
+                    <input type="submit" name="submit" value="Buscar!" style="float:right"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{{if not len(evals):}}
+    <br/><br/>
+    <i>nenhuma avaliação</i>
+    <br/><br/>
+{{pass}}
+
 {{include "eval/list.html"}}
 
 {{if not auth.has_membership('Professor'):}}
-    {{if 'prof_id' in request.vars:}}
-        {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
-    {{else:}}
-        {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(disc_id=disc.id)))}}
-    {{pass}}
+    {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
 {{pass}}
