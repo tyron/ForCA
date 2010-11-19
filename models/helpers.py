@@ -99,16 +99,21 @@ def graph_evolution_evals(eval_rows):
     '''
     Gera um gráfico de linha com a evolução das notas ao longo dos semestres
     '''
-    raw_evals = eval_rows.select(db.avaliacoes.year, groupby=db.avaliacoes.year, orderby=db.avaliacoes.year) 
+    raw_evals = eval_rows.select(Avaliacoes.year)
+    raw_evals = set(map(lambda eval: eval['year'], raw_evals))
+    years = []
+    for year in raw_evals:
+        years.append(year)
+    years.sort()
     evals = []
     #Intera os resultados por ano
-    for raw_eval in raw_evals:
+    for year in years:
         for x in [1,2]:#Cria uma entrada pra cada semestre do ano 
-            evals_semester = eval_rows((db.avaliacoes.year==raw_eval['year'])&(db.avaliacoes.semester==x))
+            evals_semester = eval_rows((db.avaliacoes.year==year)&(db.avaliacoes.semester==x))
             result = evals_semester.select().first()
             if result: 
                 eval = {}
-                eval['year']     = raw_eval['year']
+                eval['year']     = year
                 eval['semester'] = x    
                 eval['grade'] = grade_average(evals_semester)
                 evals.append(eval)        
