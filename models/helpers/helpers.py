@@ -412,11 +412,12 @@ def update_grade(prof_id):
     return new_grade
     
 def update_timestamp_eval(eval_id):
-    db(db.avaliacoes.id==eval_id).update(timestamp_eval=datetime.now())
+    Avaliacoes[eval_id] = dict(timestamp_eval=datetime.now())
     db.commit()
 
 def update_timestamp_reply(eval_id):
-    db(db.avaliacoes.id==eval_id).update(timestamp_reply=datetime.now())
+    #db(db.avaliacoes.id==eval_id).update(timestamp_reply=datetime.now())
+    Avaliacoes[eval_id] = dict(timestamp_reply=datetime.now())
     db.commit()
 
 def check_unique_eval(form):
