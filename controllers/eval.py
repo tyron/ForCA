@@ -165,7 +165,7 @@ def filter():
         grade_df = request.vars['grade']
 
     result = refine_evals(query.select(limitby=limitby))
-
+    
     fields = {}
 
     prof_drop = SQLFORM.factory(

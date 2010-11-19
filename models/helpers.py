@@ -93,7 +93,7 @@ def graph_karmas(evals_info):
     value['value'] = evals_info['karma_down']
     value['color'] = 'FF0000'
     values.append(value)
-    return generate_basic_graph('p3',300, 150, 0, evals_info['karma_len'], values)
+    return generate_basic_graph('p3',300, 125, 0, evals_info['karma_len'], values)
     
 def graph_evolution_evals(eval_rows):
     '''
