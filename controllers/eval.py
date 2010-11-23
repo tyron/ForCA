@@ -125,12 +125,16 @@ def delete():
         session.jump_back = request.env.http_referer
     eval_id = request.vars['eval_id']
     eval = db.avaliacoes[eval_id]
-    prof_id = eval.professor_id
-    db(db.avaliacoes.id==eval_id).delete()
-    db.commit()
-    update_grade(prof_id)
-    session.flash = 'Avaliação excluída com sucesso'
-    redirect(session.jump_back)
+    if not eval.reply:
+        prof_id = eval.professor_id
+        db(db.avaliacoes.id==eval_id).delete()
+        db.commit()
+        update_grade(prof_id)
+        session.flash = T('Avaliação excluída com sucesso')
+        redirect(session.jump_back)
+    else:
+        session.flash = T('Você não pode excluir um avaliação respondida')
+        redirect(session.jump_back)
 
 def filter():
     '''

@@ -125,9 +125,14 @@
                         </div>
 
                         {{if eval['aluno_user_id'] == session.auth.user.id:}}
-                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação')), _title=T('Excluir avaliação'), 
-                            _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
-                            _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                            {{if not eval['reply']:}}
+                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação')), _title=T('Excluir avaliação'), 
+                                _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
+                                _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                            {{else:}}
+                                {{=IMG(_src=URL('static', 'cross_disabled.png'), _border=0, _class='cursored',
+                                _alt=T('Excluir avaliação'), _title=T('Você não pode excluir uma avaliação respondida'))}}
+                            {{pass}}
                             {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação')), _title=T('Editar avaliação'),
                             _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
                         {{pass}}

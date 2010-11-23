@@ -45,7 +45,8 @@ def home():
     fields['grade'] = get_grade_dropdown(default=defaults['grade'])
 
     #Lista de avaliações
-    prof_evals = get_evals(prof_id,None)
+    #prof_evals = get_evals(prof_id,None)
+    prof_evals = result_query
     evals_stats = get_evals_info(prof_evals)
     raw_evals = prof_evals.select(limitby=limitby)
     evals = refine_evals(raw_evals)    
