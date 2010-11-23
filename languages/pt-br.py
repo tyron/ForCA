@@ -116,6 +116,7 @@
 'User ID': 'User ID',
 'Ver professores que ministram essa disciplina': 'Ver professores que ministram essa disciplina',
 'View': 'View',
+'Você não pode excluir uma avaliação respondida': 'Você não pode excluir uma avaliação respondida',
 'Welcome %s': 'Bem-vindo, %s',
 'Welcome to web2py': 'Bem vindo ao web2py',
 'Which called the function': 'Which called the function',
