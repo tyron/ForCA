@@ -31,7 +31,6 @@ def up():
 	eval_id = request.vars['eval_id']
 	up = create(eval_id, 1)
 	inc = inc_karma(eval_id, 1)
-	if not up or not inc:
 	return inc
 
 @auth.requires_login()
@@ -39,5 +38,4 @@ def down():
 	eval_id = request.vars['eval_id']
 	down = create(eval_id, -1)
 	inc = inc_karma(eval_id, -1)
-	if not down or not inc:
 	return inc
