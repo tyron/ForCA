@@ -55,19 +55,23 @@ def update():
     if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
         session.jump_back = request.env.http_referer
     record = Avaliacoes(request.vars['eval_id'])
-    prof_id = record.professor_id
-    form_up=SQLFORM(db.avaliacoes, record, 
-        fields=['year','semester','grade','comment'], 
-        labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
+    if not record.reply:
+        prof_id = record.professor_id
+        form_up=SQLFORM(db.avaliacoes, record, 
+            fields=['year','semester','grade','comment'], 
+            labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
 
-    if form_up.accepts(request.vars, session):
-        session.flash = 'Avaliação editada com sucesso'
-        update_grade(prof_id)
-        update_timestamp_eval(record)
-        redirect(session.jump_back)
+        if form_up.accepts(request.vars, session):
+            session.flash = 'Avaliação editada com sucesso'
+            update_grade(prof_id)
+            update_timestamp_eval(record)
+            redirect(session.jump_back)
+        else:
+            response.flash = 'Por favor, preencha a sua avaliação'  
+        return dict(form_up=form_up)
     else:
-        response.flash = 'Por favor, preencha a sua avaliação'  
-    return dict(form_up=form_up)
+        session.flash = T('Você não pode editar uma avaliação respondida')
+        redirect(session.jump_back)
     
 @auth.requires_login()
 def favorite():
@@ -133,7 +137,7 @@ def delete():
         session.flash = T('Avaliação excluída com sucesso')
         redirect(session.jump_back)
     else:
-        session.flash = T('Você não pode excluir um avaliação respondida')
+        session.flash = T('Você não pode excluir uma avaliação respondida')
         redirect(session.jump_back)
 
 def filter():
