@@ -42,7 +42,7 @@
                     <th colspan=2 class="infoheader">Estatísticas:</th>
                     <tr>
                         <td style="text-align:center">
-                            <b>{{=evals_stats['len']}} avaliações postadas (média {{=evals_stats['grade_avg']}})</b>
+                            <b>{{=evals_stats['len']} {{='avaliações postadas' if evals_stats['len'] > 1 else 'avaliação postada'}} (média {{=evals_stats['grade_avg']}})</b>
                         </td>
                     </tr>
                     <tr>
@@ -69,6 +69,7 @@
         {{pass}}
         </table>
     </div>
+    
 {{pass}}
 
 <br/>

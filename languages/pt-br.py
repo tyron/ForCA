@@ -15,6 +15,7 @@
 'Atenção:': 'Atenção:',
 'Atenção: ': 'Atenção: ',
 'Available databases and tables': 'Bancos de dados e tabelas disponíveis',
+'Avaliação excluída com sucesso': 'Avaliação excluída com sucesso',
 'Cadastro ainda não verificado': 'Cadastro ainda não verificado',
 'Cannot be empty': 'Não pode ser vazio',
 'Change password': 'Change password',

@@ -56,7 +56,7 @@
                 <th colspan=2 class="infoheader">Estatísticas:</th>
                 <tr>
                     <td style="text-align:center">
-                        <b>Avaliações recebidas</b>
+                        <b>{{=evals_stats['len']}} {{='avaliações recebidas' if evals_stats['len'] > 1 else 'avaliação recebida'}}</b>
                     </td>
                     {{evolution_graph = graph_evolution_evals(prof_evals)}}
                     {{if evolution_graph:}}
