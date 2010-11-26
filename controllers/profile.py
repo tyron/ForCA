@@ -38,8 +38,8 @@ def home():
         evals = refine_evals(raw_evals)        
         
         #Lista das últimas avaliações do aluno, que foram respondidas        
-        avaliacoes = db((db.avaliacoes.aluno_id==aluno_id) & (db.avaliacoes.timestamp_reply!=None))
-        raw_evals = avaliacoes.select(orderby=~db.avaliacoes.timestamp_reply, limitby=(0,3))
+        avaliacoes_resp = avaliacoes(Avaliacoes.timestamp_reply!=None)
+        raw_evals = avaliacoes_resp.select(orderby=~Avaliacoes.timestamp_reply, limitby=(0,3))
         evals_replyed = refine_evals(raw_evals)
         
         #Lista das avaliações favoritas do user logado no momento
