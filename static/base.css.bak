@@ -331,12 +331,16 @@ div.gradeFF {
 }
 
 .karma-plus {
-    color: #777777;
+    color: #519A27;
     font-size: small;
 }
 
 .karma-minus {
     color: #EF6666;
+    font-size: small;
+}
+
+.karma-zero {
     font-size: small;
 }
 
@@ -371,6 +375,7 @@ div.gradeFF {
     background-color: #CCCCCC;
     padding: 0px;
     margin: 0px;
+}
 .infoheader {
     background-color: #349C01;
     color: white;
@@ -378,9 +383,14 @@ div.gradeFF {
     border-width: 3px;
     border-color: white;
 }
-
 .infotable {
     margin-left: auto;
     margin-right: auto;
     border: 5px solid #349C01 !important;
+}
+
+.filters {
+    background-color: #CCCCCC;
+    padding: 0px;
+    margin: 0px;
 }

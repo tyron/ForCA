@@ -331,12 +331,16 @@ div.gradeFF {
 }
 
 .karma-plus {
-    color: #777777;
+    color: #519A27;
     font-size: small;
 }
 
 .karma-minus {
     color: #EF6666;
+    font-size: small;
+}
+
+.karma-zero {
     font-size: small;
 }
 
