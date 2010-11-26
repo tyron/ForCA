@@ -81,9 +81,9 @@ def favorite():
     eval_id = request.vars['eval_id']
     favorita_eval(eval_id)
     if eh_favorita(eval_id):
-        img = IMG(_src=URL('static', 'star_filled.png'))
+        img = IMG(_src=URL('static', 'star_filled.png'), _title=T('Desfavoritar avaliação'))
     else:
-        img = IMG(_src=URL('static', 'star_hollow.png'))
+        img = IMG(_src=URL('static', 'star_hollow.png'), _title=T('Favoritar avaliação'))
     return img
 
 @auth.requires_membership('Professor')

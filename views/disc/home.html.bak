@@ -54,7 +54,7 @@
             </div>
         {{pass}}
         <table class="infotable">
-        <th colspan=2 class="infoheader">Professores que ministram:</th>
+        <th colspan=2 class="infoheader">Professores:</th>
         <tr>
             <th>{{=T('Professor')}}</th>
             <th>{{=T('Média em ')}}{{=disc.short_name}}</th>

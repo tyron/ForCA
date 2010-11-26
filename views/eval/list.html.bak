@@ -81,11 +81,12 @@
                                     ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
                                     jQuery('#plus{{=eval['id']}}').fadeOut();
                                     jQuery('#minus{{=eval['id']}}').fadeOut();">
-                                    {{=IMG(_src=URL('static', 'thumb-up.png'))}}
+                                    {{=IMG(_src=URL('static', 'thumb-up.png'), _title=T('Qualificar positivamente'))}}
                                 </span>
 
                                 <span style="float:right" id="karma_count{{=eval['id']}}" 
-                                    class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">{{=eval['karma']}}
+                                    class="karma-{{='plus' if eval['karma'] > 0 else 'minus' if eval['karma'] < 0 else 'zero'}}">{{=eval['karma']}}
+                                     {{=IMG(_src=URL('static', ''), _title=T('teste'))}}
                                 </span>
 
                                 <span id="minus{{=eval['id']}}" style="float:right; cursor:hand; cursor:pointer" 
@@ -93,11 +94,11 @@
                                     ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
                                     jQuery('#plus{{=eval['id']}}').fadeOut();
                                     jQuery('#minus{{=eval['id']}}').fadeOut();">
-                                    {{=IMG(_src=URL('static', 'thumb-down.png'))}}
+                                    {{=IMG(_src=URL('static', 'thumb-down.png'), _title=T('Qualificar negativamente'))}}
                                 </span>
 
                             {{else:}}
-                                <span style="float:right" class="karma-{{='plus' if eval['karma'] >= 0 else 'minus'}}">
+                                <span style="float:right" class="karma-{{='plus' if eval['karma'] > 0 else 'minus' if eval['karma'] < 0 else 'zero'}}">
                                     {{=eval['karma']}}
                                 </span>
                             {{pass}}
@@ -119,17 +120,25 @@
                                         location.reload();
                                     {{pass}}
                                     ">
-                                    {{=IMG(_src=URL('static',('star_filled.png' if eh_favorita(eval['id']) else 'star_hollow.png')))}}
+                                    {{=IMG(_src=URL('static',('star_filled.png' if eh_favorita(eval['id']) else 'star_hollow.png')), 
+                                    _title=T('Desfavoritar avaliação' if eh_favorita(eval['id']) else 'Favoritar avaliação'))}}
                                 </span>
                             </b>
                         </div>
 
                         {{if eval['aluno_user_id'] == session.auth.user.id:}}
-                            {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação')), _title=T('Excluir avaliação'), 
-                            _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
-                            _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                            {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação')), _title=T('Editar avaliação'),
-                            _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
+                            {{if not eval['reply']:}}
+                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação')), _title=T('Excluir avaliação'), 
+                                _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
+                                _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação')), _title=T('Editar avaliação'),
+                                _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
+                            {{else:}}
+                                {{=IMG(_src=URL('static', 'cross_disabled.png'), _border=0, _class='cursored',
+                                _alt=T('Excluir avaliação'), _title=T('Você não pode excluir uma avaliação respondida'))}}
+                                {{=IMG(_src=URL('static', 'pencil_disabled.png'), _border=0, _class='cursored',
+                                _alt=T('Editar avaliação'), _title=T('Você não pode editar uma avaliação respondida'))}}
+                            {{pass}}
                         {{pass}}
 
                     {{pass}}
@@ -145,7 +154,7 @@
 
             {{if eval['reply']:}}
                 <div style="padding:10px; background-color:#999999;">
-                    {{if eval['prof_user_id'] == session.auth.user.id:}}
+                    {{if (session.auth) and (eval['prof_user_id'] == session.auth.user.id):}}
                         {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt='Excluir resposta'), _title='Excluir resposta', 
                         _href=URL(request.application, 'eval', 'reply_delete', vars=dict(eval_id=eval['id'])),
                         _onclick="return confirm('Tem certeza de que deseja excluir a resposta?');")}}
