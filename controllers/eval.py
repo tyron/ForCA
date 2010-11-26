@@ -64,7 +64,7 @@ def update():
         if form_up.accepts(request.vars, session):
             session.flash = 'Avaliação editada com sucesso'
             update_grade(prof_id)
-            update_timestamp_eval(record)
+            update_timestamp_eval(record.id)
             redirect(session.jump_back)
         else:
             response.flash = 'Por favor, preencha a sua avaliação'  
@@ -100,7 +100,7 @@ def reply():
             showid = False)
 
     if form_reply.accepts(request.vars, session):
-        update_timestamp_reply(eval)
+        update_timestamp_reply(eval.id)
         session.flash = T('Resposta postada com sucesso')
         redirect(session.jump_back)
     else:
