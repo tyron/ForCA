@@ -186,7 +186,7 @@ def get_karma_avg(aluno_id):
     karmas = []
     for eval in aluno_evals:
         eval_karmas = db(Karmas.avaliacao_id==eval.id).select()
-        for karma in eval.karmas:
+        for karma in eval_karmas:
             karmas.append(karma.value)
     return sum(karmas)
 
