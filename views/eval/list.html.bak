@@ -82,7 +82,7 @@
                                     ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
                                     jQuery('#plus{{=eval['id']}}').fadeOut();
                                     jQuery('#minus{{=eval['id']}}').fadeOut();
-                                    jQuery('#karma_count{{=eval['id']}}').removeClass().addClass({{=get_karma_class(eval['id'],1)}});">
+                                    jQuery('#karma_count{{=eval['id']}}').removeClass().addClass('{{=get_karma_class(eval['id'], 1)}}');">
                                     {{=IMG(_src=URL('static', 'thumb-up.png'), _title=T('Qualificar positivamente'))}}
                                 </span>
 
@@ -95,7 +95,8 @@
                                     ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
                                     jQuery('#plus{{=eval['id']}}').fadeOut();
                                     jQuery('#minus{{=eval['id']}}').fadeOut();
-                                    jQuery('#karma_count{{=eval['id']}}').addClass({{=get_karma_class(eval['id'],-1)}});">
+                                    jQuery('#karma_count{{=eval['id']}}').removeClass().addClass('{{=get_karma_class(eval['id'], -1)}}');">
+
                                     {{=IMG(_src=URL('static', 'thumb-down.png'), _title=T('Qualificar negativamente'))}}
                                 </span>
 
