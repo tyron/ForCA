@@ -4,38 +4,46 @@
     jQuery(document).ready(function(){jQuery('.discs_list').hide()});
 </script>
 
-<table>
-    <tr>
-        <td rowspan='2'>
-            {{if prof.picture:}}
-                {{=A(IMG(_width='100px', _src=URL('download', args=prof.picture)), 
-                    _href=URL('home', vars=dict(id=prof.id)))}}
-            {{else:}}
-                {{=A(IMG(_width='100px', _src=URL(request.application, 'static/profs', 
-                        prof.email.split('@')[0]+'.jpg')),
-                    _href=URL('home', vars=dict(id=prof.id)))}}
-            {{pass}}
-        </td>
-        <td>
-            <table>
-                <tr>
-                    <h2>{{=prof.full_name}}</h2>
-                </tr>
-                <tr>
-                    {{=prof.email}}<br />
-                    {{if prof.site:}} 
-                        {{=A(prof.site, _href=prof.site, _target="_blank")}}
-                    {{pass}}
-                </tr>
-            </table>
-        </td>
-        <td>
-            <div style="font-size:50px">
-                <b>{{=prof.grade or ''}}</b>
-            </div>
-        </td>
-    </tr>
-</table>
+<div>
+    <table>
+        <tr>
+            <td rowspan='2'>
+                {{if prof.picture:}}
+                    {{=A(IMG(_width='100px', _src=URL('download', args=prof.picture)), 
+                        _href=URL('home', vars=dict(id=prof.id)))}}
+                {{else:}}
+                    {{=A(IMG(_width='100px', _src=URL(request.application, 'static/profs', 
+                            prof.email.split('@')[0]+'.jpg')),
+                        _href=URL('home', vars=dict(id=prof.id)))}}
+                {{pass}}
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <h2>{{=prof.full_name}}</h2>
+                    </tr>
+                    <tr>
+                        {{=prof.email}}<br />
+                        {{if prof.site:}} 
+                            {{=A(prof.site, _href=prof.site, _target="_blank")}}
+                        {{pass}}
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <div style="font-size:50px">
+                    <b>{{=prof.grade or ''}}</b>
+                </div>
+            </td>
+            <td style="padding:30px">
+                <a href={{=URL(request.application, 'report', 'generate', vars=dict(prof_id=prof.id))}}>
+                    {{=IMG(_src=URL('static', 'pdf.gif'), _border=0)}}
+                    baixar em PDF
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <h4 class="discs_toggle cursored padded10" onclick="jQuery('.discs_list').slideToggle()">
      {{=T('Mais informações sobre ')}}{{=prof.short_name}}

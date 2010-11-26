@@ -61,10 +61,10 @@ def favorites():
         page = 0
 
     limitby = (page*10, (page+1)*11)
-    if 'aluno_id' in request.vars:
-        user_id = get_aluno_user_id(request.vars['aluno_id'])
-    else:
-        user_id = session.auth.user.id
+#   if 'aluno_id' in request.vars:
+#        user_id = get_aluno_user_id(request.vars['aluno_id'])
+#    else:
+    user_id = session.auth.user.id
     #favorite_evals = db((Favoritos.user_id==user_id)&(Avaliacoes.id==Favoritos.avaliacao_id)).select(Avaliacoes.ALL, limitby=limitby)
     refined_favorites = get_favorite_evals(user_id)
     return dict(evals=refined_favorites, page=page, per_page=10)

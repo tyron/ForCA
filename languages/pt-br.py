@@ -126,6 +126,7 @@
 'You visited the url': 'You visited the url',
 'anterior': 'anterior',
 'appadmin is disabled because insecure channel': 'appadmin is disabled because insecure channel',
+'baixar em PDF': 'baixar em PDF',
 'cache': 'cache',
 'change password': 'alterar senha',
 'click here for online examples': 'clique aqui para ver alguns exemplos',

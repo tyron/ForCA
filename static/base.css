@@ -384,3 +384,9 @@ div.gradeFF {
     margin-right: auto;
     border: 5px solid #349C01 !important;
 }
+
+.filters {
+    background-color: #CCCCCC;
+    padding: 0px;
+    margin: 0px;
+}
