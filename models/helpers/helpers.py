@@ -334,11 +334,11 @@ def get_karmas(evals):
     karma_dict['avg']  = sum(karmas)
     return karma_dict
     
-def get_karma_class(eval_id):
+def get_karma_class(eval_id, inc=0):
     eval = db(db.avaliacoes.id==eval_id).select().first()
-    if eval.karma < 0:
+    if eval.karma+inc < 0:
         return 'karma-minus'
-    elif eval.karma > 0:
+    elif eval.karma+inc > 0:
         return 'karma-plus'
     else:
         return 'karma-zero'
