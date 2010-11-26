@@ -335,13 +335,10 @@ def get_karmas(evals):
     return karma_dict
     
 def get_karma_class(eval_id):
-    eval = db(db.avaliacoes.id==eval_id)
-    karmas = get_karmas(eval)    
-    print eval_id
-    print karmas
-    if karmas['avg'] < 0:
+    eval = db(db.avaliacoes.id==eval_id).select().first()
+    if eval.karma < 0:
         return 'karma-minus'
-    elif karmas['avg'] > 0:
+    elif eval.karma > 0:
         return 'karma-plus'
     else:
         return 'karma-zero'
