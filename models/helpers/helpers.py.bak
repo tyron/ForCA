@@ -99,23 +99,28 @@ def graph_evolution_evals(eval_rows):
     '''
     Gera um gráfico de linha com a evolução das notas ao longo dos semestres
     '''
-    raw_evals = eval_rows.select(db.avaliacoes.year, groupby=db.avaliacoes.year, orderby=db.avaliacoes.year) 
+    raw_evals = eval_rows.select(Avaliacoes.year)
+    raw_evals = set(map(lambda eval: eval['year'], raw_evals))
+    years = []
+    for year in raw_evals:
+        years.append(year)
+    years.sort()
     evals = []
     #Intera os resultados por ano
-    for raw_eval in raw_evals:
+    for year in years:
         for x in [1,2]:#Cria uma entrada pra cada semestre do ano 
-            evals_semester = eval_rows((db.avaliacoes.year==raw_eval['year'])&(db.avaliacoes.semester==x))
+            evals_semester = eval_rows((db.avaliacoes.year==year)&(db.avaliacoes.semester==x))
             result = evals_semester.select().first()
             if result: 
                 eval = {}
-                eval['year']     = raw_eval['year']
+                eval['year']     = year
                 eval['semester'] = x    
                 eval['grade'] = grade_average(evals_semester)
                 evals.append(eval)        
     if len(evals)>1:        
          #Gera código do gráfico
         graph = 'http://chart.apis.google.com/chart?chf=c,lg,90,EFA5A5,0,A6EFA5,1\
-&chxs=0,00000099,12.5,0,l,00000099|1,676767,11.5,0,lt,676767&chxt=y,x&chs=300x150&cht=lxy&chco=00000099&chds=1,5,1,5.1\
+&chxs=0,00000099,12.5,0,l,00000099|1,676767,11.5,0,lt,676767&chxt=y,x&cht=lxy&chco=00000099&chds=1,5,1,5.1\
 &chdl=M%E9dia&chdlp=b&chls=5&chm=o,00000099,0,-1,5&chxl=0:|FF|D|C|B|A|1:|'
         for eval in evals:
              graph += str(eval['year'])[-2:]+'%2F'+str(eval['semester'])+'|'
@@ -130,6 +135,7 @@ def graph_evolution_evals(eval_rows):
         graph = graph[:len(graph)-1]     
         graph += '&chxr=0,1,5|1,1,'+str(len(evals))
         graph += '&chg='+str(100/(len(evals)-1))+',0,0,0'
+        graph += '&chs='+str(50*len(evals))+'x150'
         return graph
     else:
         return ''
@@ -179,8 +185,9 @@ def get_karma_avg(aluno_id):
     aluno_evals = get_posted_evals(aluno_id)
     karmas = []
     for eval in aluno_evals:
-        if eval.karma:
-            karmas.append(eval.karma)
+        eval_karmas = db(Karmas.avaliacao_id==eval.id).select()
+        for karma in eval_karmas:
+            karmas.append(karma.value)
     return sum(karmas)
 
 def get_link_to_aluno_home(aluno_id, name=None):
@@ -309,31 +316,36 @@ def get_refined_evals(prof_id=None, disc_id=None):
     evals = refine_evals(raw_evals)
     return evals
     
-def get_evals_karma_avg(evals):
-    '''
-    Retorna a soma de karmas recebidos pelas avaliacoes
-    passadas como parâmetro
-    '''
-    karmas = []
-    for eval in evals:
-        if eval.karma:
-            karmas.append(eval.karma)
-    return sum(karmas)
 
 def get_karmas(evals):
     '''
     Retorna informacoes de karma das avaliacoes como um dict
     (karma_len, karma_up, karma_down, karma_avg)
     '''
-    karmas     = filter(lambda karma: karma != 0, map(lambda eval: eval.karma, evals.select()))
+    karmas = []
+    for eval in evals.select():
+        eval_karmas = db(Karmas.avaliacao_id==eval.id).select()
+        for karma in eval_karmas:
+            karmas.append(karma.value)
     karma_dict = {}
     karma_dict['len']  = len(karmas)
     karma_dict['up']   = len(filter(lambda karma: karma > 0, karmas))
     karma_dict['down'] = len(filter(lambda karma: karma < 0, karmas))
-    karma_dict['avg']  = get_evals_karma_avg(evals.select())
+    karma_dict['avg']  = sum(karmas)
     return karma_dict
-
     
+def get_karma_class(eval_id):
+    eval = db(db.avaliacoes.id==eval_id)
+    karmas = get_karmas(eval)    
+    print eval_id
+    print karmas
+    if karmas['avg'] < 0:
+        return 'karma-minus'
+    elif karmas['avg'] > 0:
+        return 'karma-plus'
+    else:
+        return 'karma-zero'
+            
 def get_evals_info(evals):
     '''
     Retorna um dic com informações úteis para as avaliações passadas como parâmetro
@@ -406,11 +418,12 @@ def update_grade(prof_id):
     return new_grade
     
 def update_timestamp_eval(eval_id):
-    db(db.avaliacoes.id==eval_id).update(timestamp_eval=datetime.now())
+    Avaliacoes[eval_id] = dict(timestamp_eval=datetime.now())
     db.commit()
 
 def update_timestamp_reply(eval_id):
-    db(db.avaliacoes.id==eval_id).update(timestamp_reply=datetime.now())
+    #db(db.avaliacoes.id==eval_id).update(timestamp_reply=datetime.now())
+    Avaliacoes[eval_id] = dict(timestamp_reply=datetime.now())
     db.commit()
 
 def check_unique_eval(form):

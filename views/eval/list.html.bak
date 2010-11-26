@@ -15,6 +15,7 @@
     <br/>
 
     {{for i, eval in enumerate(evals):}}
+        {{if eval['anonimo'] and eval['aluno_user_id'] != session.auth.user.id: continue}}
         {{if i==per_page: break}}
             <div class='grade{{=eval['grade']}}'>
                 <table>
@@ -80,20 +81,21 @@
                                     onclick="ajax('{{=URL(request.application, 'karma', 'up', vars=dict(eval_id=eval['id']))}}', 
                                     ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
                                     jQuery('#plus{{=eval['id']}}').fadeOut();
-                                    jQuery('#minus{{=eval['id']}}').fadeOut();">
+                                    jQuery('#minus{{=eval['id']}}').fadeOut();
+                                    jQuery(element.addClass({{=get_karma_class(eval['id'])}}));">
                                     {{=IMG(_src=URL('static', 'thumb-up.png'), _title=T('Qualificar positivamente'))}}
                                 </span>
 
                                 <span style="float:right" id="karma_count{{=eval['id']}}" 
                                     class="karma-{{='plus' if eval['karma'] > 0 else 'minus' if eval['karma'] < 0 else 'zero'}}">{{=eval['karma']}}
-                                     {{=IMG(_src=URL('static', ''), _title=T('teste'))}}
                                 </span>
 
                                 <span id="minus{{=eval['id']}}" style="float:right; cursor:hand; cursor:pointer" 
                                     onclick="ajax('{{=URL(request.application, 'karma', 'down', vars=dict(eval_id=eval['id']))}}', 
                                     ['karma{{=eval['id']}}'], 'karma_count{{=eval['id']}}');
                                     jQuery('#plus{{=eval['id']}}').fadeOut();
-                                    jQuery('#minus{{=eval['id']}}').fadeOut();">
+                                    jQuery('#minus{{=eval['id']}}').fadeOut();
+                                    jQuery(element.addClass({{=get_karma_class(eval['id'])}}));">
                                     {{=IMG(_src=URL('static', 'thumb-down.png'), _title=T('Qualificar negativamente'))}}
                                 </span>
 

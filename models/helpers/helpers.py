@@ -333,8 +333,19 @@ def get_karmas(evals):
     karma_dict['down'] = len(filter(lambda karma: karma < 0, karmas))
     karma_dict['avg']  = sum(karmas)
     return karma_dict
-
     
+def get_karma_class(eval_id):
+    eval = db(db.avaliacoes.id==eval_id)
+    karmas = get_karmas(eval)    
+    print eval_id
+    print karmas
+    if karmas['avg'] < 0:
+        return 'karma-minus'
+    elif karmas['avg'] > 0:
+        return 'karma-plus'
+    else:
+        return 'karma-zero'
+            
 def get_evals_info(evals):
     '''
     Retorna um dic com informações úteis para as avaliações passadas como parâmetro
