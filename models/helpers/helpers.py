@@ -185,8 +185,9 @@ def get_karma_avg(aluno_id):
     aluno_evals = get_posted_evals(aluno_id)
     karmas = []
     for eval in aluno_evals:
-        if eval.karma:
-            karmas.append(eval.karma)
+        eval_karmas = db(Karmas.avaliacao_id==eval.id).select()
+        for karma in eval.karmas:
+            karmas.append(karma.value)
     return sum(karmas)
 
 def get_link_to_aluno_home(aluno_id, name=None):
