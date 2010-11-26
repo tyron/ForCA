@@ -316,28 +316,22 @@ def get_refined_evals(prof_id=None, disc_id=None):
     evals = refine_evals(raw_evals)
     return evals
     
-def get_evals_karma_avg(evals):
-    '''
-    Retorna a soma de karmas recebidos pelas avaliacoes
-    passadas como parâmetro
-    '''
-    karmas = []
-    for eval in evals:
-        if eval.karma:
-            karmas.append(eval.karma)
-    return sum(karmas)
 
 def get_karmas(evals):
     '''
     Retorna informacoes de karma das avaliacoes como um dict
     (karma_len, karma_up, karma_down, karma_avg)
     '''
-    karmas     = filter(lambda karma: karma != 0, map(lambda eval: eval.karma, evals.select()))
+    karmas = []
+    for eval in evals.select():
+        eval_karmas = db(Karmas.avaliacao_id==eval.id).select()
+        for karma in eval_karmas:
+            karmas.append(karma.value)
     karma_dict = {}
     karma_dict['len']  = len(karmas)
     karma_dict['up']   = len(filter(lambda karma: karma > 0, karmas))
     karma_dict['down'] = len(filter(lambda karma: karma < 0, karmas))
-    karma_dict['avg']  = get_evals_karma_avg(evals.select())
+    karma_dict['avg']  = sum(karmas)
     return karma_dict
 
     
