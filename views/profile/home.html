@@ -8,21 +8,23 @@
                     <th colspan=2 class="infoheader">Suas estatísticas:</th>
                     <tr>
                         <td style="text-align:center">
-                            <b>{{=evals_stats['len']}} avaliações postadas (média {{=evals_stats['grade_avg']}})</b>
+                            <b>{{=evals_stats['len']}} {{='avaliações postadas' if evals_stats['len'] > 1 else 'avaliação postada'}} (média {{=evals_stats['grade_avg']}})</b>
                         </td>
+                        {{if evals_stats['karma_len'] > 0:}}
                         <td style="text-align:center">
-                            <b>{{=evals_stats['karma_len']}} qualificações (saldo {{=evals_stats['karma_avg']}})</b>
+                            <b>{{=evals_stats['karma_len']}} {{='qualificações' if evals_stats['karma_len'] > 1 else 'qualificação'}} (saldo {{=evals_stats['karma_avg']}})</b>
                         </td>
+                        {{pass}}
                     </tr>
                     <tr>
                         <td>                            
                             <img src="{{=graph_grades(evals_stats)}}">
                         </td>
-                    {{if evals_stats['karma_len'] > 0:}}
+                        {{if evals_stats['karma_len'] > 0:}}
                         <td>
                             <img src="{{=graph_karmas(evals_stats)}}">
                         </td>
-                    {{pass}}
+                        {{pass}}
                     </tr>
                 </table>
             </div><br/>
@@ -68,10 +70,13 @@
                 <th colspan=2 class="infoheader">Estatísticas de {{=aluno.short_name}}:</th>
                 <tr>
                     <td style="text-align:center">
-                        <b>{{=evals_stats['len']}} avaliações postadas (média {{=evals_stats['grade_avg']}})</b>
+                        <b>{{=evals_stats['len']}} {{='avaliações postadas' if evals_stats['len'] > 1 else 'avaliação postada'}} (média {{=evals_stats['grade_avg']}})</b>
                     </td>
+                    {{if evals_stats['karma_len'] > 0:}}
                     <td style="text-align:center">
-                        <b>{{=evals_stats['karma_len']}} qualificações (saldo {{=evals_stats['karma_avg']}})</b>
+                        <b>{{=evals_stats['karma_len']}} {{='qualificações' if evals_stats['karma_len'] > 1 else 'qualificação'}} (saldo {{=evals_stats['karma_avg']}})</b>
+                    </td>
+                    {{pass}}
                 </tr>
                 <tr>
                     <td>
