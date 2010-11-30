@@ -16,6 +16,7 @@ Alunos = db.define_table(
         Field('short_name', 'string', length=32),
         Field('grade', 'string', length=1, writable=False, readable=False,
             requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'])),
+        Field('reply_warning','boolean'),
         migrate='alunos.table')
 
 #Tabela Disciplinas

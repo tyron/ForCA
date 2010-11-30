@@ -22,6 +22,7 @@
 'Check to delete': 'Marque para apagar',
 'Client IP': 'Client IP',
 'Clique no link http://127.0.0.1:8000/ForCA/default/user/verify_email/%(key)s para confirmar seu cadastro.': 'Clique no link http://127.0.0.1:8000/ForCA/default/user/verify_email/%(key)s para confirmar seu cadastro.',
+'Configurações': 'Configurações',
 'Confirmação de senha': 'Confirmação de senha',
 'Controller': 'Controller',
 'Copyright': 'Copyright',
