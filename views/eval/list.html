@@ -23,8 +23,11 @@
                 <table>
                     <tr>
                         <td rowspan='4'>
+                            <span style="font-size:smaller; color: grey;">
+                                {{=eval['timestamp_eval'].day}}/{{=eval['timestamp_eval'].month}}/{{=str(eval['timestamp_eval'].year)[-2:]}}
+                            </span>
                             <div style='font-size:xx-large'>
-                                <b>{{=eval['grade']}}</b>
+                                <b>{{=eval['grade']}}</b><br/>
                             </div>
                         </td>
                         <td>
@@ -110,40 +113,40 @@
                     </div>
 
                     {{if session.auth:}}
-                        <div style='float:left'>
-                            <b>
-                                <form>
-                                    <input type="hidden" id="starred{{=eval['id']}}"/>
-                                </form>
-                                <span id="favorite{{=eval['id']}}" style="float:left; cursor:hand; cursor:pointer" 
-                                    onclick="
-                                    ajax('{{=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id']))}}', 
-                                    ['starred{{=eval['id']}}'], 'favorite{{=eval['id']}}');
-                                    //ajax('{{=URL(request.application, 'profile', 'favorites')}}', ['starred{{=eval['id']}}'], 'favorites');
-                                    {{if request.controller=='profile' and request.function == 'home':}}
-                                        location.reload();
-                                    {{pass}}
-                                    ">
-                                    {{=IMG(_src=URL('static',('star_filled.png' if eh_favorita(eval['id']) else 'star_hollow.png')), 
-                                    _title=T('Desfavoritar avaliação' if eh_favorita(eval['id']) else 'Favoritar avaliação'))}}
-                                </span>
-                            </b>
-                        </div>
-
-                        {{if eval['aluno_user_id'] == session.auth.user.id:}}
-                            {{if not eval['reply']:}}
-                                {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação')), _title=T('Excluir avaliação'), 
-                                _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
-                                _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
-                                {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação')), _title=T('Editar avaliação'),
-                                _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}                
-                            {{else:}}
-                                {{=IMG(_src=URL('static', 'cross_disabled.png'), _border=0, _class='cursored',
-                                _alt=T('Excluir avaliação'), _title=T('Você não pode excluir uma avaliação respondida'))}}
-                                {{=IMG(_src=URL('static', 'pencil_disabled.png'), _border=0, _class='cursored',
-                                _alt=T('Editar avaliação'), _title=T('Você não pode editar uma avaliação respondida'))}}
+                        <div style='float:left; align:center'>
+                            <form>
+                                <input type="hidden" id="starred{{=eval['id']}}"/>
+                            </form>
+                            <span id="favorite{{=eval['id']}}" style="cursor:hand; cursor:pointer" 
+                                onclick="
+                                ajax('{{=URL(request.application, 'eval', 'favorite', vars=dict(eval_id=eval['id']))}}', 
+                                ['starred{{=eval['id']}}'], 'favorite{{=eval['id']}}');
+                                //ajax('{{=URL(request.application, 'profile', 'favorites')}}', ['starred{{=eval['id']}}'], 'favorites');
+                                {{if request.controller=='profile' and request.function == 'home':}}
+                                    location.reload();
+                                {{pass}}
+                                ">
+                                {{=IMG(_src=URL('static',('star_filled.png' if eh_favorita(eval['id']) else 'star_hollow.png')), 
+                                _title=T('Desfavoritar avaliação' if eh_favorita(eval['id']) else 'Favoritar avaliação'),
+                                _width=16, _height=16)}}
+                            </span>
+                            {{if eval['aluno_user_id'] == session.auth.user.id:}}
+                                {{if not eval['reply']:}}
+                                    {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação'), _width=16, _height=16),
+                                    _title=T('Excluir avaliação'), 
+                                    _href=URL(request.application, 'eval', 'delete', vars=dict(eval_id=eval['id'])),
+                                    _onclick="return confirm('Tem certeza de que deseja excluir a avaliação?');")}}
+                                    {{=A(IMG(_src=URL('static', 'pencil.png'), _border=0, _alt=T('Editar avaliação'), _width=16, _height=16),
+                                    _title=T('Editar avaliação'),
+                                    _href=URL(request.application, 'eval', 'update', vars=dict(eval_id=eval['id'])))}}
+                                {{else:}}
+                                    {{=IMG(_width=16, _height=16, _src=URL('static', 'cross_disabled.png'), _border=0, _class='cursored',
+                                    _alt=T('Excluir avaliação'), _title=T('Você não pode excluir uma avaliação respondida'))}}
+                                    {{=IMG(_width=16, _height=16, _src=URL('static', 'pencil_disabled.png'), _border=0, _class='cursored',
+                                    _alt=T('Editar avaliação'), _title=T('Você não pode editar uma avaliação respondida'))}}
+                                {{pass}}
                             {{pass}}
-                        {{pass}}
+                        </div>
 
                     {{pass}}
                 </tr>
