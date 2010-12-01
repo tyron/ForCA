@@ -39,7 +39,9 @@ def home():
     disc_grade = grade_average(evals_disc)
     evals_stats = get_evals_info(evals_disc) 
     #Lista de avaliações
-    raw_evals = result_query.select(orderby=~Avaliacoes.karma|Avaliacoes.timestamp_eval)
+    raw_evals = result_query.select()
+    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
+    raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
     evals = refine_evals(raw_evals[limitby[0]:limitby[1]])
     #Lista de professores que dão a disciplina
     raw_profs = db(db.profs_discs.disciplina_id==disc_id).select()

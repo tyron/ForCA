@@ -365,6 +365,7 @@ def get_evals_info(evals):
 
     return evals_info
 
+
 #########################################
 #           Funções auxiliares          #
 #########################################

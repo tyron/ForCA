@@ -48,7 +48,9 @@ def home():
     #prof_evals = get_evals(prof_id,None)
     prof_evals = result_query
     evals_stats = get_evals_info(prof_evals)
-    raw_evals = prof_evals.select(orderby=~Avaliacoes.karma|Avaliacoes.timestamp_eval)
+    raw_evals = prof_evals.select()
+    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
+    raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
     evals = refine_evals(raw_evals[limitby[0]:limitby[1]])    
     #Lista de disciplinas lecionadas pelo professor
     raw_discs = db(db.profs_discs.professor_id==prof_id).select()

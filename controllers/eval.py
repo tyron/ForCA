@@ -151,7 +151,10 @@ def filter():
     limitby = (page*10, (page+1)*11)
     query, defaults = get_filter_query(db(Avaliacoes.id > 0))
 
-    result = refine_evals(query.select(orderby=~Avaliacoes.karma|Avaliacoes.timestamp_eval)[limitby[0]:limitby[1]])
+    raw_evals = query.select()
+    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
+    raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
+    result = refine_evals(raw_evals[limitby[0]:limitby[1]])
     
     fields = {}
 
