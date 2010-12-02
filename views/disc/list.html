@@ -12,7 +12,7 @@
             <td>{{=A(disc.name, _href=URL('home', vars=dict(disc_id=disc.id)))}}</td>
             <td>{{=disc.code}}</td>
             <td>{{=len(get_refined_evals(disc_id=disc.id))}}</td>
-            <td><b>{{=grade_average(get_evals(disc_id=disc.id)) or '-'}}</b></td>
+            <td><b>{{=disc.grade or '-'}}</b></td>
         </tr>
     {{pass}}
 </table>

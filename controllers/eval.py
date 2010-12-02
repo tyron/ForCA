@@ -32,11 +32,11 @@ def create():
     if form_add.accepts(request.vars, session, onvalidation=check_unique_eval):
         session.flash = 'Avaliação realizada com sucesso'
         if 'prof_id' in request.vars:
-            update_grade(prof_id)
+            update_grade(prof_id, request.vars['disciplina_id'])
             update_profs_discs(prof_id, request.vars['disciplina_id'])
             redirect(URL(request.application, 'prof', 'home', vars=dict(prof_id=prof_id)))
         else:
-            update_grade(request.vars['professor_id'])
+            update_grade(request.vars['professor_id'], disc_id)
             update_profs_discs(request.vars['professor_id'], disc_id)
             redirect(URL(request.application, 'disc', 'home', vars=dict(disc_id=disc_id)))
     else:
@@ -57,13 +57,14 @@ def update():
     record = Avaliacoes(request.vars['eval_id'])
     if not record.reply:
         prof_id = record.professor_id
+        disc_id = record.disciplina_id
         form_up=SQLFORM(db.avaliacoes, record, 
             fields=['year','semester','grade','comment'], 
             labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
 
         if form_up.accepts(request.vars, session):
             session.flash = 'Avaliação editada com sucesso'
-            update_grade(prof_id)
+            update_grade(prof_id, disc_id)
             update_timestamp_eval(record.id)
             redirect(session.jump_back)
         else:
@@ -131,9 +132,10 @@ def delete():
     eval = db.avaliacoes[eval_id]
     if not eval.reply:
         prof_id = eval.professor_id
+        disc_id = eval.disciplina_id
         db(db.avaliacoes.id==eval_id).delete()
         db.commit()
-        update_grade(prof_id)
+        update_grade(prof_id, disc_id)
         session.flash = T('Avaliação excluída com sucesso')
         redirect(session.jump_back)
     else:

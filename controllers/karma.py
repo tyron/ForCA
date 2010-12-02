@@ -15,7 +15,7 @@ def create(eval_id, value):
             value        = value
             )
     db.commit()
-    update_grade(eval.professor_id)
+    update_grade(eval.professor_id, eval.disciplina_id)
     response.flash = 'Obrigado pela sua qualificação!'
     return True
 

@@ -25,6 +25,8 @@ Disciplinas = db.define_table(
         Field('short_name', 'string', length=32),
         Field('code', 'string', length=8, required=True, notnull=True, unique=True),
         Field('resume', 'text'),
+        Field('grade', 'string', length=2, writable=False, readable=False,
+            requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
         migrate='disciplinas.table')
 
 #Tabela Professores
