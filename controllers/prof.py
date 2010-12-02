@@ -17,11 +17,6 @@ def edit():
         redirect(URL(request.application, 'prof', 'list'))
     return dict(form=form)
 
-def grade():
-    prof_id = request.vars['prof_id']
-    prof = Professores[prof_id]
-    return prof.grade
-
 def list():
     '''
     Exibe a lista de professores

@@ -31,11 +31,9 @@
                 </table>
             </td>
             <td>
-                <b>
-                    <div style="font-size:50px" id="prof_grade">
-                        {{=prof.grade or ''}}
-                    </div>
-                </b>
+                <div style="font-size:50px">
+                    <b>{{=prof.grade or ''}}</b>
+                </div>
             </td>
             <td style="padding:30px">
                 <a href={{=URL(request.application, 'report', 'generate', vars=dict(prof_id=prof.id))}}>
