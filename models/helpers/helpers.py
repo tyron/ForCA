@@ -377,43 +377,6 @@ def rem_acentos(str):
     from unicodedata import normalize
     return normalize('NFKD', str.decode('utf-8')).encode('ASCII', 'ignore')
     
-def get_grade_letter(numgrade):
-    if numgrade >= 9:
-        return 'A'
-    elif numgrade >= 7.5:
-        return 'B'
-    elif numgrade >= 6:
-        return 'C'
-    elif numgrade >= 3:
-        return 'D'
-    return 'FF'
-
-def get_grade_value(strgrade):
-    grade_dict = {'A': 10, 'B': 8, 'C': 6, 'D': 3, 'FF': 1}
-    return grade_dict[strgrade]
-    
-def get_grade_value_graph(strgrade):
-    grade_dict = {'A': '5', 'B': '4', 'C': '3', 'D': '2', 'FF': '1'}
-    return grade_dict[strgrade]    
-
-def harmonic_mean(listerms):
-    numterms = len(listerms)
-    return numterms / sum(map(lambda x: 1.0/x, listerms))
-
-def grade_average(eval_rows):
-    raw_grades = eval_rows.select(db.avaliacoes.grade)
-    if len(raw_grades) < 1:
-        return None
-    grades = map(lambda x: get_grade_value(x['grade']), raw_grades.as_list())
-    average = get_grade_letter(harmonic_mean(grades))
-    return average
-
-def update_grade(prof_id):
-    prof_evals = db(db.avaliacoes.professor_id==prof_id)
-    new_grade = grade_average(prof_evals)
-    db(db.professores.id==prof_id).update(grade=new_grade)
-    db.commit()
-    return new_grade
     
 def update_timestamp_eval(eval_id):
     Avaliacoes[eval_id] = dict(timestamp_eval=datetime.now())
