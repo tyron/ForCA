@@ -29,7 +29,7 @@ forca_auth.first_name.requires = \
 forca_auth.last_name.requires = \
 		IS_NOT_EMPTY(error_message = auth.messages.is_empty)
 forca_auth.password.requires = \
-		 CRYPT()
+		 [IS_LENGTH(minsize=2, error_message='A senha deve ter pelo menos 2 caracteres'), CRYPT()]
 forca_auth.email.requires = \
 		[IS_EMAIL(forced='inf\.ufrgs\.br', 
 			error_message = 'O e-mail deve ser @inf.ufrgs.br'),
