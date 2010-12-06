@@ -10,7 +10,7 @@ def create():
     if 'prof_id' in request.vars:
         prof_id = request.vars['prof_id']
         prof_name = db(db.professores.id==prof_id).select().first().short_name
-        form_add=SQLFORM(db.avaliacoes,
+        form_add=SQLFORM(db.avaliacoes, submit_button = 'Criar',
             fields = ['disciplina_id','year','semester','grade','comment', 'anonimo'], 
             labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
             hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
@@ -58,9 +58,9 @@ def update():
     if not record.reply:
         prof_id = record.professor_id
         disc_id = record.disciplina_id
-        form_up=SQLFORM(db.avaliacoes, record, 
+        form_up=SQLFORM(db.avaliacoes, record, submit_button = 'Salvar',
             fields=['year','semester','grade','comment'], 
-            labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False, deletable=True)
+            labels={'year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: '}, showid=False)
 
         if form_up.accepts(request.vars, session):
             session.flash = 'Avaliação editada com sucesso'
