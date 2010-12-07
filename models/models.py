@@ -2,9 +2,16 @@ from datetime import datetime
 
 if request.env.web2py_runtime_gae:
     db = DAL('gae')
+#    #caching
+    from gluon.contrib.gae_memcache import MemcacheClient
+#    from gluon.contrib.memdb import MEMDB
+    cache.memcache = MemcacheClient(request)
+    cache.ram = cache.disk = cache.memcache
+#    session.connect(request, response, MEMDB(cache.memcache))
     session.connect(request, response, db)
 else:
     db = DAL('postgres://forca:xx@localhost/forca')
+
 
 #Tabela Alunos
 Alunos = db.define_table(
