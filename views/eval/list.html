@@ -15,9 +15,6 @@
     <br/>
 
     {{for i, eval in enumerate(evals):}}
-        {{if session.auth:}}
-            {{if eval['anonimo'] and eval['aluno_user_id'] != session.auth.user.id: continue}}
-        {{pass}}
         {{if i==per_page: break}}
             <div class='grade{{=eval['grade']}}'>
                 <table>
