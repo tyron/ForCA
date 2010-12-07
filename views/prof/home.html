@@ -10,11 +10,11 @@
             <td rowspan='2'>
                 {{if prof.picture:}}
                     {{=A(IMG(_width='100px', _src=URL('download', args=prof.picture)), 
-                        _href=URL('home', vars=dict(id=prof.id)))}}
+                        _href=URL('home', vars=dict(prof_id=prof.id)))}}
                 {{else:}}
                     {{=A(IMG(_width='100px', _src=URL(request.application, 'static/profs', 
                             prof.email.split('@')[0]+'.jpg')),
-                        _href=URL('home', vars=dict(id=prof.id)))}}
+                        _href=URL('home', vars=dict(prof_id=prof.id)))}}
                 {{pass}}
             </td>
             <td>
