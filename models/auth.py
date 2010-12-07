@@ -40,6 +40,7 @@ auth.settings.table_user = forca_auth
 auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 auth.settings.create_user_groups = False
+auth.settings.register_next = URL(request.application, 'default', 'user/login')
 
 auth.define_tables()
 
@@ -90,7 +91,7 @@ auth.messages.access_denied = 'Acesso negado'
 auth.messages.registration_verifying = 'Cadastro ainda não verificado'
 auth.messages.registration_pending = 'Acesse o link de confirmação no seu e-mail para completar o cadastro'
 auth.messages.logged_in = 'Logado'
-auth.messages.email_sent = 'E-mail enviado'
+auth.messages.email_sent = 'Acesse o link de confirmação no seu e-mail para completar o cadastro'
 auth.messages.unable_to_send_email = 'Não foi possível enviar o e-mail'
 auth.messages.email_verified = 'E-mail verificado'
 auth.messages.logged_out = 'Deslogado'
