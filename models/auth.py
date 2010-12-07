@@ -33,7 +33,7 @@ forca_auth.password.requires = \
 forca_auth.email.requires = \
 		[IS_EMAIL(forced='inf\.ufrgs\.br', 
 			error_message = 'O e-mail deve ser @inf.ufrgs.br'),
-				IS_NOT_IN_DB(db, forca_auth.email)]
+				IS_NOT_IN_DB(db, forca_auth.email, error_message='Este e-mail já está cadastrado')]
 
 #auth settings
 auth.settings.table_user = forca_auth
