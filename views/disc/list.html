@@ -4,14 +4,12 @@
     <tr>
         <th>Nome</th>
         <th>Código</th>
-        <th>Avaliações</th>
         <th>Média</th>
     </tr>
     {{for i, disc in enumerate(discs):}}
         <tr class="{{=['even', 'odd'][i % 2]}}">
             <td>{{=A(disc.name, _href=URL('home', vars=dict(disc_id=disc.id)))}}</td>
             <td>{{=disc.code}}</td>
-            <td>{{=len(get_refined_evals(disc_id=disc.id))}}</td>
             <td><b>{{=disc.grade or '-'}}</b></td>
         </tr>
     {{pass}}
