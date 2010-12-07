@@ -11,7 +11,7 @@ def list():
     '''
     Exibe a lista de disciplinas
     '''
-    return dict(discs=db().select(db.disciplinas.ALL, orderby=Disciplinas.name))
+    return dict(discs=db().select(db.disciplinas.ALL).sort(lambda discs: rem_acentos(discs.name)))
     
 def home():
     '''
