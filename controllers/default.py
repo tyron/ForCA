@@ -34,6 +34,7 @@ def user():
             @auth.requires_permission('read','table name',record_id)
     to decorate functions that need access control
     """
+    forca_auth.email.writable = (request.args(0)!='profile')
     return dict(form=auth())
 
 
