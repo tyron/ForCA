@@ -4,6 +4,7 @@
 	<tr>
         <th>Nome</th>
         <th>Tá no ForCA?</th>
+        <th>Avaliações</th>
 		<th>Média</th>
 	</tr>
 	{{for i, prof in enumerate(profs):}}
@@ -16,6 +17,7 @@
                 {{=IMG(_src=URL('static', 'cross.png'))}}
             {{pass}}
         </td>
+        <td>{{=int(db(Avaliacoes.professor_id==prof.id).count())}}</td>
         <td><b>{{=prof.grade or '-'}}</b></td>
 	</tr>
 	{{pass}}
