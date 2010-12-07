@@ -100,18 +100,18 @@
 
 
 <br/>
-
+<!--
 <div class="filters">
     <form id='search' name='search' action="">
         <input type="hidden" name="prof_id" value="{{=prof.id}}"/>
         <table>
             <tr>
                 <td style="padding:0px; vertical-align:middle;"><b>Disciplina:</b></td>
-                <td>{{=fields['disc']}}</td>
+                <td>{{#fields['disc']}}</td>
                 <td style="padding:0px; vertical-align:middle;"><b>Ano:</b></td>
-                <td>{{=fields['year']}}</td>
+                <td>{{#fields['year']}}</td>
                 <td style="padding:0px; vertical-align:middle;"><b>Nota:</b></td>
-                <td>{{=fields['grade']}}</td>
+                <td>{{#fields['grade']}}</td>
                 <td>
                     <input type="submit" name="submit" value="Buscar!" style="float:right"/>
                 </td>
@@ -119,7 +119,7 @@
         </table>
     </form>
 </div>
-
+-->
 {{if not len(evals):}}
     <br/><br/>
     <i>nenhuma avaliação</i>

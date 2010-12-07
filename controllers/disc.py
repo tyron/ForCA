@@ -25,21 +25,23 @@ def home():
         page = 0
     limitby = (page*10, (page+1)*11)
 
-    result_query, defaults = get_filter_query(db(Avaliacoes.disciplina_id == disc_id))
+    #result_query, defaults = get_filter_query(db(Avaliacoes.disciplina_id == disc_id))
 
-    fields = {}
+    #fields = {}
 
-    fields['prof'] = get_prof_dropdown(default=defaults['prof_id'])
-    fields['year'] = get_year_dropdown(default=defaults['year'])
-    fields['grade'] = get_grade_dropdown(default=defaults['grade'])
+    #fields['prof'] = get_prof_dropdown(default=defaults['prof_id'])
+    #fields['year'] = get_year_dropdown(default=defaults['year'])
+    #fields['grade'] = get_grade_dropdown(default=defaults['grade'])
 
     evals_disc = db(Avaliacoes.disciplina_id == disc_id)
 
     disc = db(db.disciplinas.id==disc_id).select().first()
     disc_grade = grade_average(evals_disc)
     evals_stats = get_evals_info(evals_disc) 
+
     #Lista de avaliações
-    raw_evals = result_query.select()
+    #raw_evals = result_query.select()
+    raw_evals = evals_disc.select()
     raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
     raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
     evals = refine_evals(raw_evals[limitby[0]:limitby[1]])
@@ -60,5 +62,5 @@ def home():
         profs.append(prof)
 
 
-    return dict(disc = disc, evals_stats=evals_stats, evals = evals, fields=fields, page=page, per_page=10,\
+    return dict(disc = disc, evals_stats=evals_stats, evals = evals, page=page, per_page=10, #fields=fields,
                 profs = sorted(sorted(profs, key=lambda x: rem_acentos(x['full_name'])), key=lambda x: x['grade'], reverse=False))
