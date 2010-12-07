@@ -29,17 +29,18 @@ forca_auth.first_name.requires = \
 forca_auth.last_name.requires = \
 		IS_NOT_EMPTY(error_message = auth.messages.is_empty)
 forca_auth.password.requires = \
-		 CRYPT()
+		 [IS_LENGTH(minsize=2, error_message='A senha deve ter pelo menos 2 caracteres'), CRYPT()]
 forca_auth.email.requires = \
 		[IS_EMAIL(forced='inf\.ufrgs\.br', 
 			error_message = 'O e-mail deve ser @inf.ufrgs.br'),
-				IS_NOT_IN_DB(db, forca_auth.email)]
+				IS_NOT_IN_DB(db, forca_auth.email, error_message='Este e-mail já está cadastrado')]
 
 #auth settings
 auth.settings.table_user = forca_auth
 auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 auth.settings.create_user_groups = False
+auth.settings.register_next = URL(request.application, 'default', 'user/login')
 
 auth.define_tables()
 
@@ -88,8 +89,9 @@ auth.messages.delete_label = 'Marque para excluir'
 auth.messages.function_disabled = 'Função desabilitada'
 auth.messages.access_denied = 'Acesso negado'
 auth.messages.registration_verifying = 'Cadastro ainda não verificado'
+auth.messages.registration_pending = 'Acesse o link de confirmação no seu e-mail para completar o cadastro'
 auth.messages.logged_in = 'Logado'
-auth.messages.email_sent = 'E-mail enviado'
+auth.messages.email_sent = 'Acesse o link de confirmação no seu e-mail para completar o cadastro'
 auth.messages.unable_to_send_email = 'Não foi possível enviar o e-mail'
 auth.messages.email_verified = 'E-mail verificado'
 auth.messages.logged_out = 'Deslogado'

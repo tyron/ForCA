@@ -15,13 +15,13 @@ def get_eval_quality(eval_row):
         return 1
 
 def get_grade_letter(numgrade):
-    if numgrade > 4.5:
+    if numgrade > 4.2:
         return 'A'
-    elif numgrade > 3.5:
+    elif numgrade > 3.4:
         return 'B'
-    elif numgrade > 2.5:
+    elif numgrade > 2.6:
         return 'C'
-    elif numgrade > 1.5:
+    elif numgrade > 1.8:
         return 'D'
     return 'FF'
 
