@@ -21,7 +21,7 @@ def list():
     '''
     Exibe a lista de professores
     '''
-    return dict(profs=db().select(db.professores.ALL).sort(lambda profs: rem_acentos(profs.full_name)))
+    return dict(profs=db().select(db.professores.ALL, orderby=Professores.full_name))
 
 def home():
     '''
