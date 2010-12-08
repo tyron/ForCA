@@ -59,7 +59,7 @@ if db(db.professores.id > 0).count() == 0:
 	db.professores.insert(id=57, email='marinho@inf.ufrgs.br', short_name='Marinho', full_name='Marinho Pilla Barcellos', site='http://www.inf.ufrgs.br/~marinho')
 	db.professores.insert(id=58, email='newton@inf.ufrgs.br', short_name='Newton', full_name='Newton Braga Rosa')
 	db.professores.insert(id=59, email='nicolas@inf.ufrgs.br', short_name='Nicolas', full_name='Nicolas Bruno Maillard', site='http://www.inf.ufrgs.br/~nicolas')
-	db.professores.insert(id=60, email='bordini@inf.ufrgs.br', short_name='Bordini', full_name='Rafael Heitor Bordini', site='http://www.inf.ufrgs.br/~bordini/')
+	db.professores.insert(id=60, email='r.bordini@inf.ufrgs.br', short_name='Bordini', full_name='Rafael Heitor Bordini', site='http://www.inf.ufrgs.br/~bordini/')
 	db.professores.insert(id=61, email='galante@inf.ufrgs.br', short_name='Renata', full_name='Renata de Matos Galante', site='http://www.inf.ufrgs.br/~galante')
 	db.professores.insert(id=62, email='binsely@inf.ufrgs.br', short_name='Bins Ely', full_name='Roberto Bins Ely', site='http://www.inf.ufrgs.br/~binsely')
 	db.professores.insert(id=63, email='cabral@inf.ufrgs.br', short_name='Cabral', full_name='Roberto Cabral de Mello Borges')
