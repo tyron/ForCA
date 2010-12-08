@@ -16,8 +16,7 @@
 
     {{for i, eval in enumerate(evals):}}
         {{if  eval['anonimo']:}}
-            {{if 'aluno_id' in request.vars and perfil_proprio == False: continue}}
-            {{pass}}
+            {{if 'aluno_id' in request.vars and !perfil_proprio: continue}}
         {{pass}}
         {{if i==per_page: break}}
             <div class='grade{{=eval['grade']}}'>
