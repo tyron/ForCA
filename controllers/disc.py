@@ -62,5 +62,5 @@ def home():
         profs.append(prof)
 
 
-    return dict(disc = disc, evals_stats=evals_stats, evals = evals, page=page, per_page=10, #fields=fields,
+    return dict(disc = disc, evals_stats=evals_stats, evals = evals, page=page, per_page=10, disc_evals = evals_disc, #fields=fields,
                 profs = sorted(sorted(profs, key=lambda x: rem_acentos(x['full_name'])), key=lambda x: x['grade'], reverse=False))

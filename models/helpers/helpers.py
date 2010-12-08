@@ -46,37 +46,23 @@ def generate_basic_graph(type,widht, height, min, max, values):
     graph = graph[:len(graph)-1]
     return graph
     
-def graph_grades(evals_info):
+def graph_grades(evals):
     '''
-    Gera um gráfico de barras de acordo com as notas do array de evals_info
+    Gera um gráfico de barras de acordo com as notas das avaliacoes
     '''    
+    colors = {'A':'A6EFA5', 'B':'D2EFA5', 'C':'EFEFA5', 'D':'EFC4A5', 'FF':'EFA5A5'}
     values = []
-    value = {}
-    value['label'] = 'A'
-    value['value'] = evals_info['A']
-    value['color'] = 'A6EFA5'
-    values.append(value)
-    value = {}
-    value['label'] = 'B'
-    value['value'] = evals_info['B']
-    value['color'] = 'D2EFA5'
-    values.append(value)
-    value = {}
-    value['label'] = 'C'
-    value['value'] = evals_info['C']
-    value['color'] = 'EFEFA5'
-    values.append(value)
-    value = {}
-    value['label'] = 'D'
-    value['value'] = evals_info['D']
-    value['color'] = 'EFC4A5'
-    values.append(value)
-    value = {}
-    value['label'] = 'FF'
-    value['value'] = evals_info['FF']
-    value['color'] = 'EFA5A5'
-    values.append(value)
-    return generate_basic_graph('bvs',175, 150, 0, evals_info['max_len_grade'], values) 
+    max_len_grade = 0
+    for grade in ['A', 'B', 'C', 'D', 'FF']:
+        entry = {}
+        grade_count = evals(Avaliacoes.grade==grade).count()
+        entry['label'] = grade
+        entry['value'] = grade_count
+        entry['color'] = colors[grade]
+        values.append(entry)
+        if grade_count > max_len_grade:
+            max_len_grade = grade_count
+    return generate_basic_graph('bvs',175, 150, 0, max_len_grade, values) 
     
 def graph_karmas(evals_info):
     '''

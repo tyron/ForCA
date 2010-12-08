@@ -50,8 +50,8 @@ def home():
         else:
             evals_favorited = []
                
-        return dict(aluno=aluno, perfil_proprio=perfil_proprio, evals=evals, evals_replyed=evals_replyed, evals_favorited=evals_favorited,\
-                    evals_stats=evals_stats, page=page, per_page=10)
+        return dict(aluno=aluno, perfil_proprio=perfil_proprio, user_evals = avaliacoes, evals=evals, evals_replyed=evals_replyed,\
+                evals_favorited=evals_favorited, evals_stats=evals_stats, page=page, per_page=10)
 
 @auth.requires_membership('Aluno')
 def favorites():

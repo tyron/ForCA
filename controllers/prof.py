@@ -46,8 +46,9 @@ def home():
 
     #Lista de avaliações
     prof_evals = get_evals(prof_id,None)
+    evals_stats = {}
+    evals_stats['len'] = prof_evals.count()
     #prof_evals = result_query
-    evals_stats = get_evals_info(prof_evals)
     raw_evals = prof_evals.select()
     raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
     raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
