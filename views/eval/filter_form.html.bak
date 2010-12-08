@@ -1,0 +1,42 @@
+<div class="filters">
+<form id='search' name='search' action="">
+    <table>
+        <tr>
+            {{if 'prof' in fields:}}
+                <th>Professor</th>
+            {{pass}}
+            {{if 'disc' in fields:}}
+                <th>Disciplina</th>
+            {{pass}}
+        </tr>
+        <tr>
+            {{if 'prof' in fields:}}
+                <td>{{=fields['prof']}}</td>
+            {{pass}}
+            {{if 'disc' in fields:}}
+                <td>{{=fields['disc']}}</td>
+            {{pass}}
+        </tr>
+        <tr>
+            {{if 'year' in fields:}}
+                <th>Ano</th>
+            {{pass}}
+            {{if 'grade' in fields:}}
+                <th>Nota</th>
+            {{pass}}
+        </tr>
+        <tr>
+            {{if 'year' in fields:}}
+                <td>{{=fields['year']}}</td>
+            {{pass}}
+            {{if 'grade' in fields:}}
+                <td>{{=fields['grade']}}</td>
+            {{pass}}
+            <th>
+                <input type="submit" name="submit" value="Buscar!" style="float:right"/>
+            </th>
+        </tr>
+    </table>
+<br/><br/>
+</form>
+</div>
