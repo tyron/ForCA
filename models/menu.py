@@ -19,5 +19,6 @@ response.menu = [
         (T('Início'),      False, URL(request.application,'default','index'),   []),
         (T('Professores'), False, URL(request.application,'prof','list'),       []),
         (T('Disciplinas'), False, URL(request.application,'disc','list'),       []),
-        (T('Pesquisar'),   False, URL(request.application,'eval','filter'),     [])
+        (T('Pesquisar'),   False, URL(request.application,'eval','filter'),     []),
+        (T('FAQ'),         False, URL(request.application,'default','faq'),     [])
     ]
