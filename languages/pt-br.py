@@ -46,6 +46,7 @@
 'Editar avaliação': 'Editar avaliação',
 'Enviar': 'Enviar',
 'Excluir avaliação': 'Excluir avaliação',
+'FAQ': 'FAQ',
 'Favoritar avaliação': 'Favoritar avaliação',
 'ForCA - Verificação de e-mail': 'ForCA - Verificação de e-mail',
 'Fórum Colaborativo de Avaliação': 'Fórum Colaborativo de Avaliação',
