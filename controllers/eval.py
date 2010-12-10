@@ -154,8 +154,8 @@ def filter():
     query, defaults = get_filter_query(db(Avaliacoes.id > 0))
 
     raw_evals = query.select()
-    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
     raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
+    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
     result = refine_evals(raw_evals[limitby[0]:limitby[1]])
     
     fields = {}
