@@ -1,6 +1,11 @@
 {{extend 'layout.html'}}
 {{if perfil_proprio:}}
-    <h1>Olá, {{=aluno.short_name}}!</h1>
+    <h1>
+        Olá, {{=aluno.short_name}}!
+        {{if aluno.email in get_contributors():}}
+            {{=IMG(_src=URL(request.application, 'static', 'medal.gif'), _title='Colaborador do ForCA')}}
+        {{pass}}
+    </h1>
     <ul>
         {{if evals_stats['len'] > 0:}}
             <div style="padding:15px;">
@@ -58,7 +63,12 @@
 {{else:}}
     <table>
         <tr>
-            <h1>{{=aluno.full_name}}</h1>
+            <h1>
+                {{=aluno.full_name}}
+                {{if aluno.email in get_contributors():}}
+                    {{=IMG(_src=URL(request.application, 'static', 'medal.gif'), _title='Colaborador do ForCA')}}
+                {{pass}}
+            </h1>
         </tr>
         <tr>
             {{=aluno.email}}
