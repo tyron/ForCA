@@ -74,3 +74,4 @@ if db(db.professores.id > 0).count() == 0:
 	db.professores.insert(id=72, email='jnj@inf.ufrgs.br', short_name='José Junior', full_name='José Nicoletti Junior')
 	db.professores.insert(id=73, email='karin.becker@inf.ufrgs.br', short_name='Karin Becker', full_name='Karin Becker', site='http://www.inf.ufrgs.br/~kbecker')
 	db.professores.insert(id=74, email='franca@inf.ufrgs.br', short_name='França', full_name='Luis de França Gonçalves Ferreira')
+	db.professores.insert(id=75, email='caco@inf.ufrgs.br', short_name='Caco', full_name='Antônio Carlos Beck Filho')
