@@ -21,7 +21,7 @@ def home():
     return dict()
 
 def faq():
-    len_users = db(Alunos.id>0).count()
+    len_users = db(Alunos.id>0).count()+db(Professores.user_id>0).count()
     len_evals = db(Avaliacoes.id>0).count()
     len_karmas= db(Karmas.id>0).count()
     return dict(len_users=len_users, len_evals=len_evals, len_karmas=len_karmas)

@@ -12,7 +12,7 @@ def create():
         prof_name = db(db.professores.id==prof_id).select().first().short_name
         form_add=SQLFORM(db.avaliacoes, submit_button = 'Criar',
             fields = ['disciplina_id','year','semester','grade','comment', 'anonimo'], 
-            labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anonimo:'},
+            labels = {'disciplina_id':'Disciplina: ','year':'Ano: ','semester':'Semestre: ','grade':'Nota: ','comment':'Comentário: ','anonimo': 'Anônimo:'},
             hidden = dict(aluno_id=get_aluno_id(), professor_id=prof_id))
         form_add.vars.professor_id = prof_id
         form_add[0][0] = gae_disc_biased_dropdown(prof_id)
@@ -154,8 +154,10 @@ def filter():
     query, defaults = get_filter_query(db(Avaliacoes.id > 0))
 
     raw_evals = query.select()
-    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
+
     raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
+    raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
+
     result = refine_evals(raw_evals[limitby[0]:limitby[1]])
     
     fields = {}
