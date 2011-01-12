@@ -270,19 +270,23 @@ def refine_evals(raw_evals):
     '''
     evals = []
     for raw_eval in raw_evals:
+        prof  = db(Professores.id==raw_eval['professor_id']).select().first()
+        aluno = db(Alunos.id==raw_eval['aluno_id']).select().first()
+        disc  = db(Disciplinas.id==raw_eval['disciplina_id']).select().first()
         eval = {}
         eval['id']               = raw_eval['id']
         eval['prof_id']          = raw_eval['professor_id']
-        eval['prof_user_id']     = db(db.professores.id==raw_eval['professor_id']).select().first().user_id
+        eval['prof_user_id']     = prof.user_id
+        eval['prof_blocked']     = prof.blocked
         eval['disc_id']          = raw_eval['disciplina_id']
-        eval['aluno_user_id']    = db(db.alunos.id==raw_eval['aluno_id']).select().first().user_id
+        eval['aluno_user_id']    = aluno.user_id
         eval['aluno_id']         = raw_eval['aluno_id']
-        eval['aluno_name']       = db(db.alunos.id==raw_eval['aluno_id']).select().first().full_name
-        eval['aluno_short_name'] = db(db.alunos.id==raw_eval['aluno_id']).select().first().short_name
-        eval['prof_name']        = db(db.professores.id==raw_eval['professor_id']).select().first().full_name
-        eval['prof_short_name']  = db(db.professores.id==raw_eval['professor_id']).select().first().short_name
-        eval['disc_name']        = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().name
-        eval['disc_short_name']  = db(db.disciplinas.id==raw_eval['disciplina_id']).select().first().short_name
+        eval['aluno_name']       = aluno.full_name
+        eval['aluno_short_name'] = aluno.short_name
+        eval['prof_name']        = prof.full_name
+        eval['prof_short_name']  = prof.short_name
+        eval['disc_name']        = disc.name
+        eval['disc_short_name']  = disc.short_name
         eval['semester']         = str(raw_eval['year'])+'/'+str(raw_eval['semester'])
         eval['grade']            = raw_eval['grade']
         eval['karma']            = raw_eval['karma']

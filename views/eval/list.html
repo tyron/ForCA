@@ -18,6 +18,7 @@
         {{if  eval['anonimo']:}}
             {{if 'aluno_id' in request.vars and perfil_proprio == False: continue}}
         {{pass}}
+        {{if eval['prof_blocked']: continue}}
         {{if i==per_page: break}}
             <div class='grade{{=eval['grade']}}'>
                 <table>
