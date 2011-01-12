@@ -9,6 +9,14 @@
         <h1>
             Perfil bloqueado
         </h1>
+        {{if session.auth:}}
+            {{if session.auth.user.id == prof.user_id:}}
+                <div style="float:right">
+                    <b>{{=A('desbloquear meu perfil', _href=URL('prof', 'unblock', vars=dict(prof_id=prof.id)),\
+                        _onclick="return confirm('Tem certeza de que deseja desbloquear seu perfil?');")}}</b>
+                </div>
+            {{pass}}
+        {{pass}}
         <b>
             Este professor optou por bloquear seu perfil no ForCA
         </b>
@@ -141,6 +149,14 @@
 
     {{if not auth.has_membership('Professor'):}}
         {{=A('Adicionar avaliação', _href=URL(request.application, 'eval', 'create', vars=dict(prof_id=prof.id)))}}
+    {{pass}}
+    {{if session.auth:}}
+        {{if session.auth.user.id == prof.user_id:}}
+            <div style="float:right;">
+                <b>{{=A('bloquear meu perfil', _href=URL('prof', 'block', vars=dict(prof_id=prof.id)),\
+                    _onclick="return confirm('Tem certeza de que deseja bloquear seu perfil?');")}}</b>
+            </div>
+        {{pass}}
     {{pass}}
     
 {{pass}}
