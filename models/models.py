@@ -41,6 +41,7 @@ Professores = db.define_table(
             requires = IS_IN_SET(['A', 'B', 'C', 'D', 'FF'], zero=None)),
         Field('site','string',length=64,readable=False),
         Field('picture', 'upload'),
+        Field('blocked', 'boolean', default=False, writable=False, readable=False),
         migrate='professores.table')
 
 #Tabela Avaliacoes

@@ -382,16 +382,16 @@ if db(db.profs_discs.id > 0).count() == 0:
 		professor_id=get_prof_id_from_email('navaux@inf.ufrgs.br'),
 		disciplina_id=get_disc_id_from_code('INF01113'))
 	db.profs_discs.insert(
-		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		professor_id=get_prof_id_from_email('r.bordini@inf.ufrgs.br'),
 		disciplina_id=get_disc_id_from_code('INF01142'))
 	db.profs_discs.insert(
-		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		professor_id=get_prof_id_from_email('r.bordini@inf.ufrgs.br'),
 		disciplina_id=get_disc_id_from_code('INF05005'))
 	db.profs_discs.insert(
-		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		professor_id=get_prof_id_from_email('r.bordini@inf.ufrgs.br'),
 		disciplina_id=get_disc_id_from_code('INF05008'))
 	db.profs_discs.insert(
-		professor_id=get_prof_id_from_email('bordini@inf.ufrgs.br'),
+		professor_id=get_prof_id_from_email('r.bordini@inf.ufrgs.br'),
 		disciplina_id=get_disc_id_from_code('INF05516'))
 	db.profs_discs.insert(
 		professor_id=get_prof_id_from_email('weber@inf.ufrgs.br'),

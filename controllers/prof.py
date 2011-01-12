@@ -36,6 +36,10 @@ def home():
     limitby = (page*10, (page+1)*11)
     prof = db(db.professores.id==prof_id).select(db.professores.ALL).first()
 
+    #escapa se perfil do professor esta bloqueado - PALAZZO QUERIDO!
+    if prof.blocked:
+        return dict(blocked=True)
+
     #result_query, defaults = get_filter_query(db(Avaliacoes.professor_id == prof_id))
 
     #fields = {}
@@ -73,6 +77,28 @@ def home():
             evals = evals,\
             discs=sorted(sorted(discs, key=lambda x: rem_acentos(x['name'])), key=lambda x: x['grade'], reverse=False))
             #fields=fields)
+
+@auth.requires_membership('Professor')
+def block():
+    """
+    Funcao para bloqueio do perfil de um professor
+    """
+    prof_id = request.vars['prof_id']
+    Professores[prof_id] = dict(blocked = True)
+    db.commit()
+    session.flash = 'Seu perfil foi bloqueado com sucesso.'
+    redirect(URL('default', 'index'))
+
+@auth.requires_membership('Professor')
+def unblock():
+    """
+    Funcao para desbloqueio do perfil de um professor
+    """
+    prof_id = request.vars['prof_id']
+    Professores[prof_id] = dict(blocked = False)
+    db.commit()
+    session.flash = 'Seu perfil foi desbloqueado com sucesso!'
+    redirect(URL('default', 'index'))
 
 def download():
     """
