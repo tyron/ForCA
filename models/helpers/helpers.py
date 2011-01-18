@@ -502,6 +502,7 @@ def gae_prof_biased_dropdown(disc_id):
     pds = map(lambda x: {'professor_id': x['professor_id'], 'disciplina_id': x['disciplina_id']}, profs_discs)
     results = []
     for prof in profs:
+        if prof.blocked: continue
         dictkey = {'disciplina_id': int(disc_id), 'professor_id': prof.id}
         if dictkey in pds:
             results.append([prof.id, prof.full_name, profs_discs[pds.index(dictkey)]['count']])
