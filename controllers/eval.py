@@ -157,6 +157,7 @@ def filter():
 
     raw_evals = raw_evals.sort(lambda row: row.karma, reverse=True)
     raw_evals = raw_evals.sort(lambda row: row.timestamp_eval, reverse=True)
+    raw_evals = raw_evals.sort(lambda row: row.anonimo)
 
     result = refine_evals(raw_evals[limitby[0]:limitby[1]])
     
