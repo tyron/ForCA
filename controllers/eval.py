@@ -130,6 +130,10 @@ def delete():
         session.jump_back = request.env.http_referer
     eval_id = request.vars['eval_id']
     eval = db.avaliacoes[eval_id]
+    if session.auth:
+        if session.auth.user.id != get_aluno_user_id(eval.aluno_id):
+            session.flash = T('Operação não permitida!')
+            return 'Fuckoff smartass!'
     if not eval.reply:
         prof_id = eval.professor_id
         disc_id = eval.disciplina_id
