@@ -1,3 +1,10 @@
 {{extend 'layout.html'}}
-{{=alunos}}
+<h2>Estatísticas de avaliação</h2>
+<ul>
+	<li>A: {{=num_evals_a}} ({{="%.2f" % perc_evals_a}}%)</li>
+	<li>B: {{=num_evals_b}} ({{="%.2f" % perc_evals_b}}%)</li>
+	<li>C: {{=num_evals_c}} ({{="%.2f" % perc_evals_c}}%)</li>
+	<li>D: {{=num_evals_d}} ({{="%.2f" % perc_evals_d}}%)</li>
+	<li>FF: {{=num_evals_ff}} ({{="%.2f" % perc_evals_ff}}%)</li>
+</ul>
 {{pass}}
