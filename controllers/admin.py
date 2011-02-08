@@ -1,3 +1,4 @@
 @auth.requires_membership('Admin')
 def index():
-    return dict()
+    alunos = db(auth.settings.table_event.id>0).select()
+    return dict(alunos=alunos)

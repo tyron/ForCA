@@ -199,6 +199,13 @@ def get_prof_id():
     except:
         return 0
 
+def get_prof_user_id(prof_id):
+    '''
+    Retorna o user_id do professor referenciado por prof_id
+    '''
+    prof = db(Professores.id==prof_id).select().first()
+    return prof.user_id
+
 def get_prof_name(prof_id):
     '''
     Retorna o nome completo do professor referenciado por prof_id
