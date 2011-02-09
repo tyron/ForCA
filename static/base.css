@@ -357,6 +357,10 @@ div.gradeFF {
     background-color: #E58989;
 }
 
+.alertbox {
+    background-color: #89E589;
+}
+
 .cursored {
     cursor: pointer
 }

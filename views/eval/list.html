@@ -18,6 +18,7 @@
         {{if  eval['anonimo']:}}
             {{if 'aluno_id' in request.vars and perfil_proprio == False: continue}}
         {{pass}}
+        {{if eval['prof_blocked']: continue}}
         {{if i==per_page: break}}
             <div class='grade{{=eval['grade']}}'>
                 <table>
@@ -130,7 +131,7 @@
                                 _title=T('Desfavoritar avaliação' if eh_favorita(eval['id']) else 'Favoritar avaliação'),
                                 _width=16, _height=16)}}
                             </span>
-                            {{if eval['aluno_user_id'] == session.auth.user.id:}}
+                            {{if eval['aluno_user_id'] == session.auth.user.id or auth.has_membership('Admin'):}}
                                 {{if not eval['reply']:}}
                                     {{=A(IMG(_src=URL('static', 'cross.png'), _border=0, _alt=T('Excluir avaliação'), _width=16, _height=16),
                                     _title=T('Excluir avaliação'), 

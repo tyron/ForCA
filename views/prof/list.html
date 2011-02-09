@@ -7,16 +7,23 @@
 		<th>Média</th>
 	</tr>
 	{{for i, prof in enumerate(profs):}}
-    <tr class={{=['even', 'odd'][i % 2]}}>
-        <td>{{=A(prof.full_name, _href=URL('home', vars=dict(prof_id=prof.id)))}}</td>
-        <td>
-            {{if prof.user_id:}}
-                {{=IMG(_src=URL('static', 'tick.png'))}}
-            {{else:}}
-                {{=IMG(_src=URL('static', 'cross.png'))}}
-            {{pass}}
-        </td>
-        <td><b>{{=prof.grade or '-'}}</b></td>
+    <tr class={{='warning' if prof.blocked else ['even', 'odd'][i % 2]}}>
+        <td>{{=prof.full_name if prof.blocked else A(prof.full_name, _href=URL('home', vars=dict(prof_id=prof.id)))}}</td>
+        {{if prof.blocked:}}
+            <td colspan=2 style="text-align: center">
+                <b>Perfil bloqueado</b>
+                {{=IMG(_src=URL('static', 'question.png'), _title="O professor solicitou o bloqueio de seu perfil")}}
+            </td>
+        {{else:}}
+            <td>
+                {{if prof.user_id:}}
+                    {{=IMG(_src=URL('static', 'tick.png'))}}
+                {{else:}}
+                    {{=IMG(_src=URL('static', 'cross.png'))}}
+                {{pass}}
+            </td>
+            <td><b>{{=prof.grade or '-'}}</b></td>
+        {{pass}}
 	</tr>
 	{{pass}}
 </table>

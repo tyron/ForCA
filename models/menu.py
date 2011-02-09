@@ -22,3 +22,6 @@ response.menu = [
         (T('Pesquisar'),   False, URL(request.application,'eval','filter'),     []),
         (T('FAQ'),         False, URL(request.application,'default','faq'),     [])
     ]
+
+if auth.has_membership('Admin'):
+    response.menu += [(T('Admin'), False, URL(request.application,'admin','index'), [])]

@@ -55,6 +55,11 @@ def update():
     if request.wsgi.environ['REQUEST_METHOD'] == 'GET':
         session.jump_back = request.env.http_referer
     record = Avaliacoes(request.vars['eval_id'])
+    if session.auth:
+        if session.auth.user.id != get_aluno_user_id(record.aluno_id):
+            if not auth.has_membership('Admin'):
+                session.flash = T('Operação não permitida!')
+                return 'Fuckoff smartass!'
     if not record.reply:
         prof_id = record.professor_id
         disc_id = record.disciplina_id
@@ -130,6 +135,11 @@ def delete():
         session.jump_back = request.env.http_referer
     eval_id = request.vars['eval_id']
     eval = db.avaliacoes[eval_id]
+    if session.auth:
+        if session.auth.user.id != get_aluno_user_id(eval.aluno_id):
+            if not auth.has_membership('Admin'):
+                session.flash = T('Operação não permitida!')
+                return 'Fuckoff smartass!'
     if not eval.reply:
         prof_id = eval.professor_id
         disc_id = eval.disciplina_id
