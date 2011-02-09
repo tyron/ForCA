@@ -1,30 +1,37 @@
 @auth.requires_membership('Admin')
 def index():
+    events = auth.db(auth.db.auth_event.id>0).select(orderby=~auth.db.auth_event.time_stamp)
+    users = []
+    for event in events:
+        if event.description[-10:] == 'Registered':
+            desc = event.description
+            uid = desc.split()[1]
+            user = auth.db(auth.db.auth_user.id==uid).select().first()
+            if user:
+                if not user.registration_key:
+                    users.append({'email': user.email, 'name': user.first_name})
+
     evals = db(Avaliacoes.id>0).select().as_list()
     num_evals = len(evals)
 
-    evals_a = filter(lambda eval: eval['grade'] == 'A', evals)
-    num_evals_a = len(evals_a)
-    perc_evals_a = (num_evals_a/float(num_evals)) * 100
+    evals_stats = {}
 
-    evals_b = filter(lambda eval: eval['grade'] == 'B', evals)
-    num_evals_b = len(evals_b)
-    perc_evals_b = (num_evals_b/float(num_evals)) * 100
+    for grade in ['A', 'B', 'C', 'D', 'FF']:
+        grade_evals = filter(lambda eval: eval['grade'] == grade, evals)
+        num_grade = len(grade_evals)
+        pct_grade = (num_grade/float(num_evals)) * 100
+        evals_stats[grade] = {'num': num_grade, 'pct': pct_grade}
+    
+    chart_url='''http://chart.apis.google.com/chart?chs=400x325&cht=p\
+&chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5\
+&chd=s:BBBBB\
+&chdl=A|B|C|D|FF\
+&chma=50,50,50,50\
+&chl=%d+(%d%%)|%d+(%d%%)|%d+(%d%%)|%d+(%d%%)|%d+(%d%%)\
+&chtt=Distribuição+de+conceitos+de+avaliações''' % (evals_stats['A']['num'], evals_stats['A']['pct'],\
+                                                    evals_stats['B']['num'], evals_stats['B']['pct'],\
+                                                    evals_stats['C']['num'], evals_stats['C']['pct'],\
+                                                    evals_stats['D']['num'], evals_stats['D']['pct'],\
+                                                    evals_stats['FF']['num'], evals_stats['FF']['pct'])
 
-    evals_c = filter(lambda eval: eval['grade'] == 'C', evals)
-    num_evals_c = len(evals_c)
-    perc_evals_c = (num_evals_c/float(num_evals)) * 100
-
-    evals_d = filter(lambda eval: eval['grade'] == 'D', evals)
-    num_evals_d = len(evals_d)
-    perc_evals_d = (num_evals_d/float(num_evals)) * 100
-
-    evals_ff = filter(lambda eval: eval['grade'] == 'FF', evals)
-    num_evals_ff = len(evals_ff)
-    perc_evals_ff = (num_evals_ff/float(num_evals)) * 100
-
-    return dict(num_evals_a=num_evals_a, perc_evals_a=perc_evals_a,\
-                num_evals_b=num_evals_b, perc_evals_b=perc_evals_b,\
-                num_evals_c=num_evals_c, perc_evals_c=perc_evals_c,\
-                num_evals_d=num_evals_d, perc_evals_d=perc_evals_d,\
-                num_evals_ff=num_evals_ff, perc_evals_ff=perc_evals_ff)
+    return dict(users=users[:10], chart_url=chart_url)
