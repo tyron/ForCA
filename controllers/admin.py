@@ -16,19 +16,26 @@ def index():
 
     evals_stats = {}
 
+    max_num = 0
     for grade in ['A', 'B', 'C', 'D', 'FF']:
         grade_evals = filter(lambda eval: eval['grade'] == grade, evals)
         num_grade = len(grade_evals)
+        if num_grade > max_num:
+            max_num = num_grade
         pct_grade = (num_grade/float(num_evals)) * 100
         evals_stats[grade] = {'num': num_grade, 'pct': pct_grade}
     
     chart_url='''http://chart.apis.google.com/chart?chs=400x325&cht=p\
 &chco=A6EFA5|D2EFA5|EFEFA5|EFC4A5|EFA5A5\
-&chd=s:BBBBB\
+&chd=t:%d,%d,%d,%d,%d\
+&chds=0,%d
 &chdl=A|B|C|D|FF\
 &chma=50,50,50,50\
 &chl=%d+(%d%%)|%d+(%d%%)|%d+(%d%%)|%d+(%d%%)|%d+(%d%%)\
-&chtt=Distribuição+de+conceitos+de+avaliações''' % (evals_stats['A']['num'], evals_stats['A']['pct'],\
+&chtt=Distribuição+de+conceitos+de+avaliações''' % (evals_stats['A']['num'], evals_stats['B']['num'],\
+                                                    evals_stats['C']['num'], evals_stats['D']['num'],\
+                                                    evals_stats['FF']['num'], max_num,\
+                                                    evals_stats['A']['num'], evals_stats['A']['pct'],\
                                                     evals_stats['B']['num'], evals_stats['B']['pct'],\
                                                     evals_stats['C']['num'], evals_stats['C']['pct'],\
                                                     evals_stats['D']['num'], evals_stats['D']['pct'],\
