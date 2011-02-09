@@ -13,5 +13,13 @@
     <h2>Estatísticas de avaliações</h2>
     <img src="{{=chart_url}}"/>
 </div>
-
+<br/>
+<div name="profs_logged">
+    <h2>Últimos logins de professores</h2>
+    <ul>
+        {{for prof in profs:}}
+            <li><b>{{=prof['name']}}</b> ({{=prof['email']}}) - {{=prof['time']}}</li>
+        {{pass}}
+    </ul>
+</div>
 {{pass}}
