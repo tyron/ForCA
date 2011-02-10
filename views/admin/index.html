@@ -14,11 +14,19 @@
     <img src="{{=chart_url}}"/>
 </div>
 <br/>
-<div name="profs_logged">
-    <h2>Últimos logins de professores</h2>
+<div name="logins">
+    <h2>Últimos logins</h2>
+    <h3>Professores</h3>
     <ul>
         {{for prof in profs:}}
             <li><b>{{=prof['name']}}</b> ({{=prof['email']}}) - {{=prof['time']}}</li>
+        {{pass}}
+    </ul>
+    <br/>
+    <h3>Alunos</h3>
+    <ul>
+        {{for aluno in alunos:}}
+            <li><b>{{=aluno['name']}}</b> ({{=aluno['email']}}) - {{=aluno['time']}}</li>
         {{pass}}
     </ul>
 </div>
